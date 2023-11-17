@@ -1,7 +1,7 @@
 /- IMPORTS -/
 
 import Mathlib.CategoryTheory.Bicategory.Basic
-import Mathlib.CategoryTheory.Types 
+import Mathlib.CategoryTheory.Types
 import Mathlib.CategoryTheory.DiscreteCategory
 import Mathlib.Combinatorics.Quiver.Basic
 import Mathlib.CategoryTheory.Category.Init
@@ -18,8 +18,6 @@ import Mathlib.CategoryTheory.Monad.Adjunction
 import Mathlib.CategoryTheory.Monad.Algebra
 import Mathlib.CategoryTheory.Monad.Monadicity
 import Mathlib.CategoryTheory.Monad.Basic
-universe u
-universe v
 
 import Mathlib.AlgebraicTopology.SimplexCategory
 import Mathlib.AlgebraicTopology.SimplicialSet
@@ -33,15 +31,34 @@ import Mathlib.CategoryTheory.Bicategory.Basic
 import Mathlib.CategoryTheory.Bicategory.IsKan
 import Mathlib.CategoryTheory.Bicategory.Extension
 
+universe u
+universe v
+/-
+I've written out some of the more immediate tasks on our agenda.
 
+The first goal (Whitehead theorem (a)
+appears to be two to four months away.
+Here I've written some tasks. The idea
+is that we would have a more
+concrete list of items to go through,
+and that for each one we would either
+complete the task, break it down into smaller ones
+(which is almost always helpful),
+add some #check's, pass the task on to the other,
+or ask for more of a breakdown.
+I was thinking the way we'd do this is like this:
+I'll type your initials --JX next to the one I
+want you to look at. Then if it's too much or
+you're confused then replace it with --DY and
+I'll take the message to break it down further
 
+-/
 
 /- CHAPTER 1 -/
 
 
 
 open CategoryTheory
-
 
 #check CategoryTheory.Bicategory.mk
 #check CategoryTheory.Bicategory.Strict
@@ -99,12 +116,12 @@ notation η "▷" F => ℂ𝕒𝕥.whiskerRight η F
 #check ℂ𝕒𝕥.rightUnitor
 #check ℂ𝕒𝕥.whiskerLeft_id
 #check ℂ𝕒𝕥.whiskerLeft_comp
-#check ℂ𝕒𝕥.id_whiskerLeft 
+#check ℂ𝕒𝕥.id_whiskerLeft
 #check ℂ𝕒𝕥.comp_whiskerLeft
 #check ℂ𝕒𝕥.id_whiskerRight
 #check ℂ𝕒𝕥.comp_whiskerRight
 #check ℂ𝕒𝕥.whiskerRight_comp
-#check ℂ𝕒𝕥.whiskerRight_id 
+#check ℂ𝕒𝕥.whiskerRight_id
 #check ℂ𝕒𝕥.whisker_assoc
 #check ℂ𝕒𝕥.whisker_exchange
 #check ℂ𝕒𝕥.pentagon
@@ -153,6 +170,11 @@ notation A "⭢" B => A ⟶ B
 #check Cube.boundary
 -- Cube.boundary.{u_1} (N : Type u_1) : Set (N → ↑unitInterval)
 --   -- ↑ means type coersion, which can often be omitted
+/-
+I'm wondering exactly what kind of cube this is...
+is it (Δ¹)ⁿ, or (γ)ⁿ for some γ with b
+-/
+
 
 -----------------------------------------
 -- category theory
@@ -208,6 +230,65 @@ notation A "⭢" B => A ⟶ B
 
 
 -- PART I: ∞-Categories
+
+
+-- JX
+/-
+- Definition of a pushout in a category (the Category X structure with seven entries)
+-/
+
+def is_pushout (C : Cat) (X : C) (Y : C) (Z : C) (f : C.str.map X Y) (g : C.str.map X Z) (P : C) : Prop := sorry
+/-
+should return the proposition that there is a unique map given the setup for pushout
+-/
+
+/-
+def "category with pushouts"
+-/
+
+/-
+def pushout in a category with pushouts?
+-/
+
+/-
+perhaps something for the maps...
+-/
+
+-- note that (X : C) is really (X : C.α), and that C.α is what we write for
+-- the object component of a category
+
+-- JX
+/-
+def horn_filling (X : SSet) : ∀(n : ℕ),∀(i : Fin (n + 1)),∀
+-/
+
+-- JX
+/-
+def inner horn filling condition should feature 0 < i and either i < n +1 or i < n (I can't tell which)
+-/
+
+
+
+/-
+- Definition of ∞-Cat.α (the type of quasicategories with inner horn filling condition)
+-/
+
+
+-- JX
+/-
+Let's see what  definition of the internal hom of simplicial sets...
+specifically starting with [⃗⃗, X]
+-/
+
+/-
+definition of
+-/
+
+/-
+- Definition of π⃗ₙ using Ω⃗
+-/
+
+
 
 /- CHAPTER 2 -/
 
