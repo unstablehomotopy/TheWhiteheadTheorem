@@ -1,0 +1,3866 @@
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.12.8)  17 NOV 2023 01:36
+entering extended mode
+ \write18 enabled.
+ %&-line parsing enabled.
+**ThreeWhiteheadTheoremsandThreePuppeSequences.tex
+(./ThreeWhiteheadTheoremsandThreePuppeSequences.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24>
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count181
+\c@chapter=\count182
+\c@section=\count183
+\c@subsection=\count184
+\c@subsubsection=\count185
+\c@paragraph=\count186
+\c@subparagraph=\count187
+\c@figure=\count188
+\c@table=\count189
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2022-02-24 L3 programming layer (loader) 
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
+
+(|extractbb --version)
+\c__kernel_sys_dvipdfmx_version_int=\count190
+\l__color_backend_stack_int=\count191
+\g__color_backend_stack_int=\count192
+\g__graphics_track_int=\count193
+\l__pdf_internal_box=\box50
+\g__pdf_backend_object_int=\count194
+\g__pdf_backend_annotation_int=\count195
+\g__pdf_backend_link_int=\count196
+))
+Package: xparse 2022-01-12 L3 Experimental document command parser
+)
+Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count197
+\l__fontspec_language_int=\count198
+\l__fontspec_strnum_int=\count199
+\l__fontspec_tmp_int=\count266
+\l__fontspec_tmpa_int=\count267
+\l__fontspec_tmpb_int=\count268
+\l__fontspec_tmpc_int=\count269
+\l__fontspec_em_int=\count270
+\l__fontspec_emdef_int=\count271
+\l__fontspec_strong_int=\count272
+\l__fontspec_strongdef_int=\count273
+\l__fontspec_tmpa_dim=\dimen139
+\l__fontspec_tmpb_dim=\dimen140
+\l__fontspec_tmpc_dim=\dimen141
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+
+Package fontspec Info: Could not resolve font "STIX Two Text/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Font family 'STIXTwoText(0)' created for font 'STIX Two
+(fontspec)             Text' with options [Ligatures=TeX].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"STIX Two
+(fontspec)             Text/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"STIX Two
+(fontspec)             Text/OT:script=latn;language=dflt;+smcp;mapping=tex-text
+;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"STIX Two
+(fontspec)             Text/I/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"STIX Two
+(fontspec)             Text/I/OT:script=latn;language=dflt;+smcp;mapping=tex-te
+xt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"STIX Two
+(fontspec)             Text/BI/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"STIX Two
+(fontspec)             Text/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count274
+\c@Blindtext=\count275
+\c@blind@countparstart=\count276
+\blind@countxx=\count277
+\blindtext@numBlindtext=\count278
+\blind@countyy=\count279
+\c@blindlist=\count280
+\c@blindlistlevel=\count281
+\c@blindlist@level=\count282
+\blind@listitem=\count283
+\c@blind@listcount=\count284
+\c@blind@levelcount=\count285
+\blind@mathformula=\count286
+\blind@Mathformula=\count287
+\c@blind@randomcount=\count288
+\c@blind@randommax=\count289
+\c@blind@pangramcount=\count290
+\c@blind@pangrammax=\count291
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2022-02-21 v7.00n Hypertext links for LaTeX
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen142
+\Hy@linkcounter=\count292
+\Hy@pagecounter=\count293
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2022-02-21 v7.00n Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count294
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2022-02-21 v7.00n Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Hyper figures OFF on input line 4137.
+Package hyperref Info: Link nesting OFF on input line 4142.
+Package hyperref Info: Hyper index ON on input line 4145.
+Package hyperref Info: Plain pages OFF on input line 4152.
+Package hyperref Info: Backreferencing OFF on input line 4157.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4390.
+\c@Hy@tempcnt=\count295
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4749.
+\XeTeXLinkMargin=\dimen143
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count296
+\Field@Width=\dimen144
+\Fld@charsize=\dimen145
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing OFF on input line 6042.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
+LaTeX Info: Redefining \ref on input line 6097.
+LaTeX Info: Redefining \pageref on input line 6101.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count297
+\c@Item=\count298
+\c@Hfootnote=\count299
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2022-02-21 v7.00n Hyperref driver for XeTeX
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box51
+\c@Hy@AnnotLevel=\count300
+\HyField@AnnotCount=\count301
+\Fld@listcount=\count302
+\c@bookmark@seq@number=\count303
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip49
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks17
+\verbatim@line=\toks18
+\verbatim@in@stream=\read2
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2021/12/24 v2.6 Yet another Pygments shim for LaTeX
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count304
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/12/21 4.1b verbatim text (tvz,hv)
+\FV@CodeLineNo=\count305
+\FV@InFile=\read3
+\FV@TabBox=\box52
+\c@FancyVerbLine=\count306
+\FV@StepNumber=\count307
+\FV@OutFile=\write3
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+))
+(/usr/local/texlive/2022/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+\linenopenalty=\count308
+\output=\toks19
+\linenoprevgraf=\count309
+\linenumbersep=\dimen146
+\linenumberwidth=\dimen147
+\c@linenumber=\count310
+\c@pagewiselinenumber=\count311
+\c@LN@truepage=\count312
+\c@internallinenumber=\count313
+\c@internallinenumbers=\count314
+\quotelinenumbersep=\dimen148
+\bframerule=\dimen149
+\bframesep=\dimen150
+\bframebox=\box53
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count315
+\c@FV@TrueTabCounter=\count316
+\FV@TabBox@Group=\box54
+\FV@TmpLength=\skip50
+\c@FV@HighlightLinesStart=\count317
+\c@FV@HighlightLinesStop=\count318
+\FV@LoopCount=\count319
+\FV@NCharsBox=\box55
+\FV@BreakIndent=\dimen151
+\FV@BreakIndentNChars=\count320
+\FV@BreakSymbolSepLeft=\dimen152
+\FV@BreakSymbolSepLeftNChars=\count321
+\FV@BreakSymbolSepRight=\dimen153
+\FV@BreakSymbolSepRightNChars=\count322
+\FV@BreakSymbolIndentLeft=\dimen154
+\FV@BreakSymbolIndentLeftNChars=\count323
+\FV@BreakSymbolIndentRight=\dimen155
+\FV@BreakSymbolIndentRightNChars=\count324
+\c@FancyVerbLineBreakLast=\count325
+\FV@LineBox=\box56
+\FV@LineIndentBox=\box57
+\FV@LineWidth=\dimen156
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count326
+\calc@Bcount=\count327
+\calc@Adimen=\dimen157
+\calc@Bdimen=\dimen158
+\calc@Askip=\skip51
+\calc@Bskip=\skip52
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count328
+\calc@Cskip=\skip53
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/catchfile/catchfile.sty
+Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+runsystem(uname -s > "ThreeWhiteheadTheoremsandThreePuppeSequences.w18")...exec
+uted.
+
+
+(./ThreeWhiteheadTheoremsandThreePuppeSequences.w18)
+runsystem(rm -- "ThreeWhiteheadTheoremsandThreePuppeSequences.w18")...executed.
+
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/local/texlive/2022/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count329
+\decimalpart=\count330
+)
+Package: xstring 2021/07/21 v1.84 String manipulations (CT)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip54
+\fb@frw=\dimen159
+\fb@frh=\dimen160
+\FrameRule=\dimen161
+\FrameSep=\dimen162
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count331
+\float@exts=\toks20
+\float@box=\box58
+\@float@everytoks=\toks21
+\@floatcapt=\box59
+)
+\minted@appexistsfile=\read4
+\minted@bgbox=\box60
+\minted@code=\write4
+\c@minted@FancyVerbLineTemp=\count332
+\c@minted@pygmentizecounter=\count333
+\@float@every@listing=\toks22
+\c@listing=\count334
+)
+runsystem(mkdir -p _minted-ThreeWhiteheadTheoremsandThreePuppeSequences)...exec
+uted.
+
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 107.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen163
+\Gin@req@width=\dimen164
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks23
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks24
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2022/01/07 version 5.0.2 text color boxes
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks25
+\pgfutil@tempdima=\dimen165
+\pgfutil@tempdimb=\dimen166
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box61
+) (/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
+))
+Package: pgf 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks26
+\pgfkeys@temptoks=\toks27
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks28
+))
+\pgf@x=\dimen167
+\pgf@y=\dimen168
+\pgf@xa=\dimen169
+\pgf@ya=\dimen170
+\pgf@xb=\dimen171
+\pgf@yb=\dimen172
+\pgf@xc=\dimen173
+\pgf@yc=\dimen174
+\pgf@xd=\dimen175
+\pgf@yd=\dimen176
+\w@pgf@writea=\write5
+\r@pgf@reada=\read5
+\c@pgf@counta=\count335
+\c@pgf@countb=\count336
+\c@pgf@countc=\count337
+\c@pgf@countd=\count338
+\t@pgf@toka=\toks29
+\t@pgf@tokb=\toks30
+\t@pgf@tokc=\toks31
+\pgf@sys@id@count=\count339
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
+)
+Driver file for pgf: pgfsys-xetex.def
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.de
+f
+File: pgfsys-xetex.def 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx
+.def
+File: pgfsys-dvipdfmx.def 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
+)
+\pgfsys@objnum=\count340
+)))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfsyssoftpath@smallbuffer@items=\count341
+\pgfsyssoftpath@bigbuffer@items=\count342
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)) (/usr/local/texlive/2022/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 227.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2021/05/15 v3.1.9a (3.1.9a)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen177
+\pgfmath@count=\count343
+\pgfmath@box=\box62
+\pgfmath@toks=\toks32
+\pgfmath@stack@operand=\toks33
+\pgfmath@stack@operation=\toks34
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count344
+)) (/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@picminx=\dimen178
+\pgf@picmaxx=\dimen179
+\pgf@picminy=\dimen180
+\pgf@picmaxy=\dimen181
+\pgf@pathminx=\dimen182
+\pgf@pathmaxx=\dimen183
+\pgf@pathminy=\dimen184
+\pgf@pathmaxy=\dimen185
+\pgf@xx=\dimen186
+\pgf@xy=\dimen187
+\pgf@yx=\dimen188
+\pgf@yy=\dimen189
+\pgf@zx=\dimen190
+\pgf@zy=\dimen191
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@path@lastx=\dimen192
+\pgf@path@lasty=\dimen193
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@shorten@end@additional=\dimen194
+\pgf@shorten@start@additional=\dimen195
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfpic=\box63
+\pgf@hbox=\box64
+\pgf@layerbox@main=\box65
+\pgf@picture@serial@count=\count345
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgflinewidth=\dimen196
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@pt@x=\dimen197
+\pgf@pt@y=\dimen198
+\pgf@pt@temp=\dimen199
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfarrowsep=\dimen256
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@max=\dimen257
+\pgf@sys@shading@range@num=\count346
+\pgf@shadingcount=\count347
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfexternal@startupbox=\box66
+))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex
+File: pgfcorerdf.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfnodeparttextbox=\box67
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@nodesepstart=\dimen258
+\pgf@nodesepend=\dimen259
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2021/05/15 v3.1.9a (3.1.9a)
+)) (/usr/local/texlive/2022/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
+\@envbody=\toks35
+)
+\tcb@titlebox=\box68
+\tcb@upperbox=\box69
+\tcb@lowerbox=\box70
+\tcb@phantombox=\box71
+\c@tcbbreakpart=\count348
+\c@tcblayer=\count349
+\c@tcolorbox@number=\count350
+\tcb@temp=\box72
+\tcb@temp=\box73
+\tcb@temp=\box74
+\tcb@temp=\box75
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
+Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/textgreek/textgreek.sty
+Package: textgreek 2011/10/09 v0.7 Greek symbols in text
+Package textgreek Info: Loading the definitions for the Greek fontencoding. on 
+input line 39.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/greek-fontenc/lgrenc.def
+File: lgrenc.def 2020/10/13 2.0 LGR Greek font encoding definitions
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/greek-fontenc/greek-fontenc.def
+File: greek-fontenc.def 2020/10/30 2.0 Common Greek font encoding definitions
+))
+Package textgreek Info: Loaded fontmap: {eur/*/*}{U/eur/*/*} {phv/*/*}{U/psy/*/
+*}. on input line 69.
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
+\symwasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tipa/tipa.sty
+Package: tipa 2002/08/08 TIPA version 1.1
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tipa/t3enc.def
+File: t3enc.def 2001/12/31 T3 encoding
+LaTeX Font Info:    Font shape `TU/STIXTwoText(0)/m/sl' in size <10> not availa
+ble
+(Font)              Font shape `TU/STIXTwoText(0)/m/it' tried instead on input 
+line 316.
+
+
+LaTeX Font Warning: Font shape `TU/STIXTwoText(0)/b/n' undefined
+(Font)              using `TU/STIXTwoText(0)/m/n' instead on input line 356.
+
+LaTeX Font Info:    Trying to load font information for T3+lmss on input line 3
+57.
+LaTeX Font Info:    No file T3lmss.fd. on input line 357.
+LaTeX Font Info:    Trying to load font information for T3+cmr on input line 35
+7.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tipa/t3cmr.fd
+File: t3cmr.fd 2001/12/31 TIPA font definitions
+)
+
+LaTeX Font Warning: Font shape `T3/lmss/m/n' undefined
+(Font)              using `T3/cmr/m/n' instead on input line 357.
+
+))) (/usr/local/texlive/2022/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen260
+\ESO@tempdimb=\dimen261
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/lipsum/lipsum.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
+)
+Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
+\g__lipsum_par_int=\count351
+\l__lipsum_a_int=\count352
+\l__lipsum_b_int=\count353
+(/usr/local/texlive/2022/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
+(/usr/local/texlive/2022/texmf-dist/tex/latex/bbold/bbold.sty
+Package: bbold 1994/04/06 Bbold symbol package
+LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 42.
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/doublestroke/dsfont.sty
+Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count354
+\Gm@cntv=\count355
+\c@Gm@tempcnt=\count356
+\Gm@bindingoffset=\dimen262
+\Gm@wd@mp=\dimen263
+\Gm@odd@mp=\dimen264
+\Gm@even@mp=\dimen265
+\Gm@layoutwidth=\dimen266
+\Gm@layoutheight=\dimen267
+\Gm@layouthoffset=\dimen268
+\Gm@layoutvoffset=\dimen269
+\Gm@dimlist=\toks36
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
+\LTleft=\skip55
+\LTright=\skip56
+\LTpre=\skip57
+\LTpost=\skip58
+\LTchunksize=\count357
+\LTcapwidth=\dimen270
+\LT@head=\box76
+\LT@firsthead=\box77
+\LT@foot=\box78
+\LT@lastfoot=\box79
+\LT@gbox=\box80
+\LT@cols=\count358
+\LT@rows=\count359
+\c@LT@tables=\count360
+\c@LT@chunks=\count361
+\LT@p@ftn=\toks37
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks38
+\thm@bodyfont=\toks39
+\thm@headfont=\toks40
+\thm@notefont=\toks41
+\thm@headpunct=\toks42
+\thm@preskip=\skip59
+\thm@postskip=\skip60
+\thm@headsep=\skip61
+\dth@everypar=\toks43
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen271
+\pgffor@skip=\dimen272
+\pgffor@stack=\toks44
+\pgffor@toks=\toks45
+))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@plot@mark@count=\count362
+\pgfplotmarksize=\dimen273
+)
+\tikz@lastx=\dimen274
+\tikz@lasty=\dimen275
+\tikz@lastxsaved=\dimen276
+\tikz@lastysaved=\dimen277
+\tikz@lastmovetox=\dimen278
+\tikz@lastmovetoy=\dimen279
+\tikzleveldistance=\dimen280
+\tikzsiblingdistance=\dimen281
+\tikz@figbox=\box81
+\tikz@figbox@bg=\box82
+\tikz@tempbox=\box83
+\tikz@tempbox@bg=\box84
+\tikztreelevel=\count363
+\tikznumberofchildren=\count364
+\tikznumberofcurrentchild=\count365
+\tikz@fig@count=\count366
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfmatrixcurrentrow=\count367
+\pgfmatrixcurrentcolumn=\count368
+\pgf@matrix@numberofcolumns=\count369
+)
+\tikz@expandcount=\count370
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/local/texlive/2022/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
+Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
+meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfarrowinset=\dimen282
+\pgfarrowlength=\dimen283
+\pgfarrowwidth=\dimen284
+\pgfarrowlinewidth=\dimen285
+)))
+\c@definition=\count371
+\c@theorem=\count372
+\c@example=\count373
+\c@lemma=\count374
+\c@definitioncounter=\count375
+\c@theoremcounter=\count376
+\c@printcounter=\count377
+\c@examplecounter=\count378
+\c@ccounter=\count379
+\c@pcounter=\count380
+\c@lcounter=\count381
+\c@sectioncount=\count382
+\c@subsectioncount=\count383
+\c@chaptercount=\count384
+\c@partcount=\count385
+runsystem(which pygmentize && touch ThreeWhiteheadTheoremsandThreePuppeSequence
+s.aex)...executed.
+
+runsystem(rm ThreeWhiteheadTheoremsandThreePuppeSequences.aex)...executed.
+
+
+No file ThreeWhiteheadTheoremsandThreePuppeSequences.aux.
+\openout1 = `ThreeWhiteheadTheoremsandThreePuppeSequences.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 402.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
+02.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 402.
+LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 4
+02.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
+File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
+)
+LaTeX Font Info:    ... okay on input line 402.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 402.
+LaTeX Font Info:    ... okay on input line 402.
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 402.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 402.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 402.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 402.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 402.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 402.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 402.
+LaTeX Font Info:    Redeclaring math accent \check on input line 402.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 402.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 402.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 402.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 402.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 402.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 402.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/STIXTwoText(0)/m/n on input line 402
+.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 402.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/STIXTwoText(0)/m/n on input line 40
+2.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/STIXTwoText(0)/m/n --> TU/STIXTwoText(0)/m/n on inpu
+t line 402.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/STIXTwoText(0)/m/it on input line 4
+02.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/STIXTwoText(0)/b/n on input line 40
+2.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 402.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 402.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/STIXTwoText(0)/m/n --> TU/STIXTwoText(0)/b/n on inpu
+t line 402.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/STIXTwoText(0)/b/it on input line 
+402.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 402.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 402.
+Package hyperref Info: Link coloring OFF on input line 402.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count386
+)
+LaTeX Info: Redefining \ref on input line 402.
+LaTeX Info: Redefining \pageref on input line 402.
+LaTeX Info: Redefining \nameref on input line 402.
+\@outlinefile=\write6
+\openout6 = `ThreeWhiteheadTheoremsandThreePuppeSequences.out'.
+
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(93.95122pt, 426.39256pt, 93.95122pt)
+* v-part:(T,H,B)=(93.95122pt, 607.06755pt, 93.95122pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=426.39256pt
+* \textheight=607.06755pt
+* \oddsidemargin=21.68123pt
+* \evensidemargin=21.68123pt
+* \topmargin=-8.38626pt
+* \headheight=12.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=125.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
+
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 445
+.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 445
+.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 44
+5.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+bbold on input line 4
+45.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/bbold/Ubbold.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 454--456
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmono8-regular]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmono8-regular]:!
+Missing character: There is no ⃡ (U+20E1) in font [lmmono8-regular]:!
+Missing character: There is no ⃡ (U+20E1) in font [lmmono8-regular]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--470
+
+ []
+
+
+Overfull \hbox (16.58226pt too wide) in paragraph at lines 483--483
+ [][] 
+ []
+
+
+Overfull \hbox (7.22743pt too wide) in paragraph at lines 486--486
+ [] 
+ []
+
+
+Overfull \hbox (3.22914pt too wide) in paragraph at lines 492--493
+[][] 
+ []
+
+File: ll.png Graphic file (type bmp)
+<ll.png>
+[1
+
+] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 535--538
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--538
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--555
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--573
+
+ []
+
+Missing character: There is no 夏 (U+590F) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no 家 (U+5BB6) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no 桢 (U+6862) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+
+Underfull \hbox (badness 10000) in paragraph at lines 574--575
+
+ []
+
+[5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 697--697
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 697--697
+
+ []
+
+
+Overfull \hbox (20.29225pt too wide) in alignment at lines 701--867
+ [] [] 
+ []
+
+[7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 894--894
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 894--894
+
+ []
+
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 896.
+
+Underfull \hbox (badness 10000) in paragraph at lines 896--897
+
+ []
+
+
+Overfull \hbox (12.43163pt too wide) in paragraph at lines 902--903
+[]\TU/STIXTwoText(0)/b/n/12 (The Whitehead theorem for $\OMS/cmsy/m/n/12 1$\TU/
+STIXTwoText(0)/b/n/12 -groupoids) $\OMS/cmsy/m/n/12 8$\TU/STIXTwoText(0)/b/n/12
+ (E:D⃡($\OMS/cmsy/m/n/12 1$\TU/STIXTwoText(0)/b/n/12 -Grpd)),$\OMS/cmsy/m/n/12 
+8$\TU/STIXTwoText(0)/b/n/12 (B:D⃡($\OMS/cmsy/m/n/12 1$\TU/STIXTwoText(0)/b/n/12
+ -Grpd)),$\OMS/cmsy/m/n/12 8$\TU/STIXTwoText(0)/b/n/12 (F:E
+ []
+
+
+Overfull \hbox (37.75694pt too wide) in paragraph at lines 903--904
+[]\TU/STIXTwoText(0)/b/n/12 (The Whitehead theorem for based connected $\OMS/cm
+sy/m/n/12 1$\TU/STIXTwoText(0)/b/n/12 -groupoids) $\OMS/cmsy/m/n/12 8$\TU/STIXT
+woText(0)/b/n/12 (E:D($\OMS/cmsy/m/n/12 1$\TU/STIXTwoText(0)/b/n/12 -Grpd$[][]$
+)),$\OMS/cmsy/m/n/12 8$\TU/STIXTwoText(0)/b/n/12 (B:D($\OMS/cmsy/m/n/12 1$\TU/S
+TIXTwoText(0)/b/n/12 -
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 946--947
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 950--951
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 952--953
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 954--955
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 967--968
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 975--976
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--986
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 998--999
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1000--1001
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 1008--1009
+
+ []
+
+
+Overfull \hbox (15.85379pt too wide) in paragraph at lines 1019--1021
+\TU/STIXTwoText(0)/b/n/12 pullback with the base form components of the functor
+s Alg(Mon($\OML/cmm/m/it/12 !$\TU/STIXTwoText(0)/b/n/12 ⃗)), Alg(Mon($\OML/cmm/
+m/it/12 !$\TU/STIXTwoText(0)/b/n/12 ⃡)),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1027--1028
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1029--1030
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 1061--1062
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1063--1064
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 1104--1105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1106--1107
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1108--1109
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1110--1111
+
+ []
+
+
+Overfull \hbox (50.58987pt too wide) in paragraph at lines 1129--1129
+ [] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 1141--1141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1141--1141
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -S default -f latex -P commandprefix=PYG > _minted-ThreeWh
+iteheadTheoremsandThreePuppeSequences/default.pygstyle)...executed.
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/default.pygstyle)
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||||" -o _minted-ThreeWhiteheadTheoremsandThreePupp
+eSequences/9CB10422B1664C4AF50BA117E26C4604D70B1A45A05851C43A4C8D87C8EE9267.pyg
+tex ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/9CB10422B1664C4AF50BA11
+7E26C4604D70B1A45A05851C43A4C8D87C8EE9267.pygtex)
+Underfull \hbox (badness 10000) in paragraph at lines 1156--1157
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1158--1159
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1160--1161
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||||" -o _minted-ThreeWhiteheadTheoremsandThreePupp
+eSequences/2C68672B1B3550149FF6F9BC9950D3C8D70B1A45A05851C43A4C8D87C8EE9267.pyg
+tex ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/2C68672B1B3550149FF6F9B
+C9950D3C8D70B1A45A05851C43A4C8D87C8EE9267.pygtex) [16]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||||" -o _minted-ThreeWhiteheadTheoremsandThreePupp
+eSequences/3182D186ECF2B459BE272295E5D462B8D70B1A45A05851C43A4C8D87C8EE9267.pyg
+tex ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/3182D186ECF2B459BE27229
+5E5D462B8D70B1A45A05851C43A4C8D87C8EE9267.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||||" -o _minted-ThreeWhiteheadTheoremsandThreePupp
+eSequences/A85FDA54CC6044D6385486F89E3CC809D70B1A45A05851C43A4C8D87C8EE9267.pyg
+tex ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/A85FDA54CC6044D6385486F
+89E3CC809D70B1A45A05851C43A4C8D87C8EE9267.pygtex)
+Underfull \hbox (badness 10000) in paragraph at lines 1201--1202
+
+ []
+
+
+Overfull \hbox (3.8995pt too wide) in paragraph at lines 1203--1204
+[]\TU/STIXTwoText(0)/b/n/12 These $[]$ commands define functions that prove fun
+damental properties of equal-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1203--1204
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||||" -o _minted-ThreeWhiteheadTheoremsandThreePupp
+eSequences/D9549C61DC6ABB1FE1EFFD8EE0814279D70B1A45A05851C43A4C8D87C8EE9267.pyg
+tex ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/D9549C61DC6ABB1FE1EFFD8
+EE0814279D70B1A45A05851C43A4C8D87C8EE9267.pygtex) [17]
+Underfull \hbox (badness 10000) in paragraph at lines 1218--1219
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||||" -o _minted-ThreeWhiteheadTheoremsandThreePupp
+eSequences/9C68F9C3C8C4DD13D971E4FA7247307AD70B1A45A05851C43A4C8D87C8EE9267.pyg
+tex ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/9C68F9C3C8C4DD13D971E4F
+A7247307AD70B1A45A05851C43A4C8D87C8EE9267.pygtex)
+Underfull \hbox (badness 10000) in paragraph at lines 1237--1238
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 1242--1242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1242--1242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1355--1356
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 1357--1358
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1361--1364
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1361--1364
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1361--1364
+
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 1365--1366
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1365--1366
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1367--1368
+
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 1371--1371
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1371--1371
+
+ []
+
+
+Overfull \hbox (21.65738pt too wide) in paragraph at lines 1371--1371
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1373--1374
+
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 1375--1375
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1375--1375
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1377--1378
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 1379--1379
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1379--1379
+
+ []
+
+
+Overfull \hbox (3.11739pt too wide) in paragraph at lines 1379--1379
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1381--1382
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1383--1384
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 1385--1385
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1385--1385
+
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 1394--1394
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1394--1394
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1396--1397
+
+ []
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 1402--1402
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1402--1402
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/86C93E86518420419480BECCBAE186950AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/86C93E86518420419480BEC
+CBAE186950AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/134CFF1B5BA4345A84D203F5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex) [27]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex) [28]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex) [29]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/134CFF1B5BA4345A84D203F
+5D047B6A50AD15CC4C11D7E4F1DD48D581769614B.pygtex) [30]
+Underfull \hbox (badness 10000) in paragraph at lines 1656--1657
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1656--1657
+
+ []
+
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 1659--1660
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1659--1660
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1661--1662
+
+ []
+
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 1673--1673
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1673--1673
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 1675--1676
+
+ []
+
+Missing character: There is no ⋯ (U+22EF) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+
+Underfull \hbox (badness 10000) in paragraph at lines 1677--1678
+
+ []
+
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 1680--1680
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1680--1680
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
+
+ []
+
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 1685--1685
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1685--1685
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 1691--1692
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1691--1692
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1693--1694
+
+ []
+
+Missing character: There is no ᵢ (U+1D62) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no ≤ (U+2264) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no ≤ (U+2264) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no ᵢ (U+1D62) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no ᵢ (U+1D62) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+
+Underfull \hbox (badness 10000) in paragraph at lines 1705--1706
+
+ []
+
+[36]
+Missing character: There is no ᵢ (U+1D62) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+
+Underfull \hbox (badness 10000) in paragraph at lines 1714--1715
+
+ []
+
+[37]
+Overfull \hbox (17.91551pt too wide) in paragraph at lines 1735--1736
+[]\TU/STIXTwoText(0)/b/n/12 Maps from a pouch mod an equivalence relation (real
+ly we phrase this as a pushout!),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1738--1739
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1740--1741
+
+ []
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 1769--1769
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1769--1769
+
+ []
+
+
+Overfull \hbox (3.79926pt too wide) in paragraph at lines 1771--1772
+\TU/STIXTwoText(0)/b/n/12 with a natural transformation $[]$$\OMS/cmsy/m/n/12 1
+$$[]$\TU/STIXTwoText(0)/b/n/12 . To con-
+ []
+
+[39]
+Underfull \hbox (badness 10000) in paragraph at lines 1774--1774
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1774--1774
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1776--1777
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1778--1779
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1780--1781
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1782--1783
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1784--1785
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1791--1792
+
+ []
+
+[40]
+Missing character: There is no ᵢ (U+1D62) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+
+Underfull \hbox (badness 10000) in paragraph at lines 1795--1796
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1797--1798
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1799--1800
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1801--1802
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1805--1806
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1809--1810
+
+ []
+
+[41]
+Missing character: There is no ᵢ (U+1D62) in font STIX Two Text Regular/OT:scri
+pt=latn;language=dflt;mapping=tex-text;!
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 1820--1820
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1820--1820
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1824--1825
+
+ []
+
+[43]
+Underfull \hbox (badness 10000) in paragraph at lines 1829--1830
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1829--1830
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1831--1832
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1833--1834
+
+ []
+
+[44]
+Underfull \hbox (badness 10000) in paragraph at lines 1858--1858
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1858--1858
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1860--1861
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/F3BFEA450123C07D74F6B3243183888E0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/F3BFEA450123C07D74F6B32
+43183888E0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+Underfull \hbox (badness 10000) in paragraph at lines 1887--1888
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/D8979FA27601578629CB967827A422140AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/D8979FA27601578629CB967
+827A422140AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+Underfull \vbox (badness 5939) has occurred while \output is active []
+
+ [45]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/E51D91BDD725DAD9E01DDCB8A49F93710AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/E51D91BDD725DAD9E01DDCB
+8A49F93710AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/56C44E0E26877189A619BCAA5894F0D00AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/56C44E0E26877189A619BCA
+A5894F0D00AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/60A684F217AE5D67A7D197B2838618A10AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/60A684F217AE5D67A7D197B
+2838618A10AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/D69F717837FB64F13340AF9859EF023F0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/D69F717837FB64F13340AF9
+859EF023F0AD15CC4C11D7E4F1DD48D581769614B.pygtex) [46]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/E0D406693E9EAD9A51DA1A25B6924E310AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/E0D406693E9EAD9A51DA1A2
+5B6924E310AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/0C923EA60EE98EFEA347A6CDB30D5C760AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/0C923EA60EE98EFEA347A6C
+DB30D5C760AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/D5B38C3E8FB2280F2B806A97B919884A0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/D5B38C3E8FB2280F2B806A9
+7B919884A0AD15CC4C11D7E4F1DD48D581769614B.pygtex) [47]
+Underfull \hbox (badness 10000) in paragraph at lines 1992--1992
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1992--1992
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1994--1995
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/99E5E7233A38837995A4254CDB2E81710AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/99E5E7233A38837995A4254
+CDB2E81710AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/EF77A37114A93735FBCA555A77F4F8750AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/EF77A37114A93735FBCA555
+A77F4F8750AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/244E68D805353AB4EF9EEC961CCEB25C0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/244E68D805353AB4EF9EEC9
+61CCEB25C0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/03034EDD539C4843E25DA0299CC634640AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/03034EDD539C4843E25DA02
+99CC634640AD15CC4C11D7E4F1DD48D581769614B.pygtex) [48]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/EC89CB86A06A8F30C7FD810FA17BE6C00AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/EC89CB86A06A8F30C7FD810
+FA17BE6C00AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/98058ABC7776D770CCD4989BC0DD93640AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/98058ABC7776D770CCD4989
+BC0DD93640AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/45E5AB38A7D7073E7C380F42E71C45540AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/45E5AB38A7D7073E7C380F4
+2E71C45540AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [49]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/F8E33B484B21B50360C99E57A34E7BE40AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/F8E33B484B21B50360C99E5
+7A34E7BE40AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/D3C35B9A9BE66F22D702AFE0FD72DE210AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/D3C35B9A9BE66F22D702AFE
+0FD72DE210AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+Underfull \hbox (badness 10000) in paragraph at lines 2116--2117
+
+ []
+
+[50]
+Underfull \hbox (badness 10000) in paragraph at lines 2119--2119
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2119--2119
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2121--2122
+
+ []
+
+[51]
+Underfull \hbox (badness 10000) in paragraph at lines 2124--2124
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2124--2124
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2126--2127
+
+ []
+
+[52]
+Underfull \hbox (badness 10000) in paragraph at lines 2131--2131
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2131--2131
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2133--2134
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2135--2136
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/A6F1EDA518911EDCB7ACBD967465B4630AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/A6F1EDA518911EDCB7ACBD9
+67465B4630AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/C870C2EAF6FD13EBDF499B27B3D5A83A0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/C870C2EAF6FD13EBDF499B2
+7B3D5A83A0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/433EE5CB500EDBF4E9F98B39ED82B80C0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/433EE5CB500EDBF4E9F98B3
+9ED82B80C0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/D8B15E62E5F2FE8CECC868B653878F000AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/D8B15E62E5F2FE8CECC868B
+653878F000AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/C6E555533C978E6E4AF2F80F617B61F80AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/C6E555533C978E6E4AF2F80
+F617B61F80AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/A994F4AC0A64F137899DDEA32D6718B10AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/A994F4AC0A64F137899DDEA
+32D6718B10AD15CC4C11D7E4F1DD48D581769614B.pygtex) [53]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/88AADF827D6C482870E3339892BA43DF0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/88AADF827D6C482870E3339
+892BA43DF0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/C2E53F4FEE687E076C22F02D183A57490AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/C2E53F4FEE687E076C22F02
+D183A57490AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/35D8C541DA6B47D7DE7CF55996F92B6F0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/35D8C541DA6B47D7DE7CF55
+996F92B6F0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/5C33070270FE0A7F6489DA1BF93A33FF0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/5C33070270FE0A7F6489DA1
+BF93A33FF0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/AC37ACF90D6614CF1BDD374F26270B090AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/AC37ACF90D6614CF1BDD374
+F26270B090AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/2A753D562BEFC27EA375CA669A40C1CC0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/2A753D562BEFC27EA375CA6
+69A40C1CC0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+Underfull \vbox (badness 4291) has occurred while \output is active []
+
+ [54]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/7D0EE79EE2D87D5DA577D7A09C7F36230AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/7D0EE79EE2D87D5DA577D7A
+09C7F36230AD15CC4C11D7E4F1DD48D581769614B.pygtex
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+) [55]
+Underfull \hbox (badness 10000) in paragraph at lines 2284--2284
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2284--2284
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmono12-regular]:!
+
+Overfull \hbox (2.71773pt too wide) in paragraph at lines 2286--2287
+\TU/STIXTwoText(0)/b/n/12 which says that \TU/lmtt/m/n/12 ($\OML/cmm/m/it/12 !$
+\TU/lmtt/m/n/12 ⃗ f).obj g \TU/STIXTwoText(0)/b/n/12 forms a component of an in
+ternal \TU/lmtt/m/n/12 P⃗ f\TU/STIXTwoText(0)/b/n/12 -presheaf $\OML/cmm/m/it/1
+2 !$\TU/STIXTwoText(0)/b/n/12 ⃗ (which
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2286--2287
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/D2574578D09DB8119FBC41D64EA85B480AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/D2574578D09DB8119FBC41D
+64EA85B480AD15CC4C11D7E4F1DD48D581769614B.pygtex
+Missing character: There is no ⃗ (U+20D7) in font [lmmono10-italic]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmono10-italic]:!
+) [56]
+Underfull \hbox (badness 10000) in paragraph at lines 2308--2309
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2308--2309
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2310--2311
+
+ []
+
+[57]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <24.88> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2313.
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2313--2314
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2313--2314
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2315--2316
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2317--2318
+
+ []
+
+[58]
+Underfull \hbox (badness 10000) in paragraph at lines 2319--2319
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2319--2319
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/EFC9B3C6B40B838BB9A0B885A9D1F60F0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/EFC9B3C6B40B838BB9A0B88
+5A9D1F60F0AD15CC4C11D7E4F1DD48D581769614B.pygtex
+
+LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 2.
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-boldoblique]:!
+LaTeX Font Info:    Font shape `TU/STIXTwoText(0)/bx/it' in size <12> not avail
+able
+(Font)              Font shape `TU/STIXTwoText(0)/b/it' tried instead on input 
+line 2.
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-boldoblique]:!
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <5> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2.
+
+LaTeX Font Warning: Font shape `TU/STIXTwoText(0)/bx/n' undefined
+(Font)              using `TU/STIXTwoText(0)/m/n' instead on input line 2.
+
+) [59]
+Underfull \hbox (badness 10000) in paragraph at lines 2334--2334
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2334--2334
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2336--2337
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/016684C657AE82C9BE977B1AC5DAE2E70AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/016684C657AE82C9BE977B1
+AC5DAE2E70AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/70A9C7831FA38DA1641DB7A7DCFD124C0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/70A9C7831FA38DA1641DB7A
+7DCFD124C0AD15CC4C11D7E4F1DD48D581769614B.pygtex
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-boldoblique]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-boldoblique]:!
+) [60]
+Underfull \hbox (badness 10000) in paragraph at lines 2360--2360
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2360--2360
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/CAC0ECE514DCACB7A27F9DC7088192EC0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/CAC0ECE514DCACB7A27F9DC
+7088192EC0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+Underfull \hbox (badness 10000) in paragraph at lines 2375--2376
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/7A8D372B557195ECB581EA3A5A31403E0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/7A8D372B557195ECB581EA3
+A5A31403E0AD15CC4C11D7E4F1DD48D581769614B.pygtex) [61]
+Underfull \hbox (badness 10000) in paragraph at lines 2390--2390
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2390--2390
+
+ []
+
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+Missing character: There is no ⃗ (U+20D7) in font [lmmonolt10-bold]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2392--2393
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/3C3A3A4334347464AA10E0F7434CFA680AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/3C3A3A4334347464AA10E0F
+7434CFA680AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+Overfull \hbox (32.3182pt too wide) in paragraph at lines 2407--2408
+[]\TU/STIXTwoText(0)/b/n/12 Next we prove the internal C-sheaf delooping princi
+pal. This says says that \TU/lmtt/b/n/12 Shf_($\OMS/cmsy/m/n/12 1$\TU/lmtt/b/n/
+12 -$\U/bbold/m/n/12 C$$a$$t$\TU/lmtt/b/n/12 )
+ []
+
+
+Overfull \hbox (53.09229pt too wide) in paragraph at lines 2407--2408
+\TU/lmtt/b/n/12 (P_($\OMS/cmsy/m/n/12 1$\TU/lmtt/b/n/12 -$\U/bbold/m/n/12 C$$a$
+$t$\TU/lmtt/b/n/12 ) C C ($\U/bbold/m/n/12 1$\TU/lmtt/b/n/12 _(D($\OMS/cmsy/m/n
+/12 1$\TU/lmtt/b/n/12 -$\U/bbold/m/n/12 C$$a$$t$\TU/lmtt/b/n/12 )) C)) $\OMS/cm
+sy/m/n/12 '$\TU/lmtt/b/n/12 _($[]$$[]$$[]$) !? (p_($\OMS/cmsy/m/n/12 1$\TU/lmtt
+/b/n/12 -$\U/bbold/m/n/12 C$$a$$t$\TU/lmtt/b/n/12 ) C C ($\U/bbold/m/n/12 1$\TU
+/lmtt/b/n/12 _(D($\OMS/cmsy/m/n/12 1$\TU/lmtt/b/n/12 -$\U/bbold/m/n/12 C$$a$$t$
+\TU/lmtt/b/n/12 ))
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2407--2408
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/F2DB1C0A5426DA0F9BD24664D41990820AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/F2DB1C0A5426DA0F9BD2466
+4D41990820AD15CC4C11D7E4F1DD48D581769614B.pygtex) [62]
+Underfull \hbox (badness 10000) in paragraph at lines 2427--2428
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2427--2428
+
+ []
+
+[63]
+Underfull \hbox (badness 10000) in paragraph at lines 2430--2431
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2430--2431
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2432--2433
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/4B675B40FABF3FCFE7AE2C3361B490310AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/4B675B40FABF3FCFE7AE2C3
+361B490310AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/B7C68CE64F4A001A118E0985E0AA1FE30AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/B7C68CE64F4A001A118E098
+5E0AA1FE30AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/4A84E78B0C9B385089B4A1FE6A08576D0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/4A84E78B0C9B385089B4A1F
+E6A08576D0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/A6F0B71FE49D7B07EA4C5B7E637698C80AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/A6F0B71FE49D7B07EA4C5B7
+E637698C80AD15CC4C11D7E4F1DD48D581769614B.pygtex) [64]
+Underfull \hbox (badness 10000) in paragraph at lines 2484--2485
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2484--2485
+
+ []
+
+
+Overfull \hbox (47.19696pt too wide) in paragraph at lines 2486--2487
+[]\TU/STIXTwoText(0)/b/n/12 In this section, we prove Whitehead theorem (b), wh
+ich says that $\OMS/cmsy/m/n/12 8$\TU/STIXTwoText(0)/b/n/12 (E:D($\OMS/cmsy/m/n
+/12 1$\TU/STIXTwoText(0)/b/n/12 -Grpd)),$\OMS/cmsy/m/n/12 8$\TU/STIXTwoText(0)/
+b/n/12 (B:D($\OMS/cmsy/m/n/12 1$\TU/STIXTwoText(0)/b/n/12 -
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2486--2487
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2488--2489
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2492--2493
+
+ []
+
+[65]
+Underfull \hbox (badness 10000) in paragraph at lines 2494--2494
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2494--2494
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2496--2497
+
+ []
+
+[66]
+Underfull \hbox (badness 10000) in paragraph at lines 2498--2498
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2498--2498
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2500--2501
+
+ []
+
+[67]
+Underfull \hbox (badness 10000) in paragraph at lines 2503--2503
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2503--2503
+
+ []
+
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-bold]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2505--2506
+
+ []
+
+[68]
+Underfull \hbox (badness 10000) in paragraph at lines 2509--2509
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2509--2509
+
+ []
+
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-bold]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2511--2512
+
+ []
+
+[69]
+Underfull \hbox (badness 10000) in paragraph at lines 2513--2513
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2513--2513
+
+ []
+
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-bold]:!
+[70]
+Underfull \hbox (badness 10000) in paragraph at lines 2516--2517
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2516--2517
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2518--2519
+
+ []
+
+[71]
+Underfull \hbox (badness 10000) in paragraph at lines 2520--2520
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2520--2520
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2522--2523
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/2F7E48255F308E6774A8AE07F7CEB4C90AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/2F7E48255F308E6774A8AE0
+7F7CEB4C90AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/68B329DA9893E34099C7D8AD5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [72]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/B2374B63FDD81AAC7F966C13361052330AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/B2374B63FDD81AAC7F966C1
+3361052330AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/44D99E7BD50B13D83F78061D8ACE892B0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/44D99E7BD50B13D83F78061
+D8ACE892B0AD15CC4C11D7E4F1DD48D581769614B.pygtex) [73]
+Underfull \hbox (badness 10000) in paragraph at lines 2624--2624
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2624--2624
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2626--2627
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/FD9E897D476F2B4784897F4BE0EC1A1E0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/FD9E897D476F2B4784897F4
+BE0EC1A1E0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/22B588137E700BB7D211B88C371B5E8C0AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/22B588137E700BB7D211B88
+C371B5E8C0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [74]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [75]
+Underfull \hbox (badness 10000) in paragraph at lines 2713--2713
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2713--2713
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2715--2716
+
+ []
+
+[76]
+Underfull \hbox (badness 10000) in paragraph at lines 2718--2718
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2718--2718
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2720--2721
+
+ []
+
+[77]
+Underfull \hbox (badness 10000) in paragraph at lines 2723--2723
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2723--2723
+
+ []
+
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-bold]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2725--2726
+
+ []
+
+[78]
+Underfull \hbox (badness 10000) in paragraph at lines 2727--2727
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2727--2727
+
+ []
+
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-bold]:!
+
+Underfull \hbox (badness 10000) in paragraph at lines 2729--2730
+
+ []
+
+[79]
+Underfull \hbox (badness 10000) in paragraph at lines 2735--2736
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2735--2736
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2737--2738
+
+ []
+
+[80]
+Underfull \hbox (badness 10000) in paragraph at lines 2743--2744
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2743--2744
+
+ []
+
+[81]
+Underfull \hbox (badness 10000) in paragraph at lines 2745--2745
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2745--2745
+
+ []
+
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-bold]:!
+
+Overfull \hbox (1.08752pt too wide) in paragraph at lines 2747--2748
+[]\TU/STIXTwoText(0)/bx/n/12 After the last section is complete, we will be in 
+a place to prove the internal groupoid
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2747--2748
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/B3B48F7EA909117008B1074B9317B5330AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/B3B48F7EA909117008B1074
+B9317B5330AD15CC4C11D7E4F1DD48D581769614B.pygtex) [82]
+Underfull \hbox (badness 10000) in paragraph at lines 2760--2760
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2760--2760
+
+ []
+
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-bold]:!
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/016684C657AE82C9BE977B1
+AC5DAE2E70AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/7C27ADA2BFE944EC8FA67428A93D7E120AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/7C27ADA2BFE944EC8FA6742
+8A93D7E120AD15CC4C11D7E4F1DD48D581769614B.pygtex
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-boldoblique]:!
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-boldoblique]:!
+) [83]
+Underfull \hbox (badness 10000) in paragraph at lines 2784--2784
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2784--2784
+
+ []
+
+
+Overfull \hbox (20.90746pt too wide) in paragraph at lines 2784--2784
+ [] 
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/45E92D2296EB92378A8FF8AD3C92F1250AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/45E92D2296EB92378A8FF8A
+D3C92F1250AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/8111B3C69624F5F8004F37971C7570310AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/8111B3C69624F5F8004F379
+71C7570310AD15CC4C11D7E4F1DD48D581769614B.pygtex) [84]
+Underfull \hbox (badness 10000) in paragraph at lines 2811--2811
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2811--2811
+
+ []
+
+
+Overfull \hbox (20.90746pt too wide) in paragraph at lines 2811--2811
+ [] 
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/FA909F19B3D423E6866116DC027D34440AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/FA909F19B3D423E6866116D
+C027D34440AD15CC4C11D7E4F1DD48D581769614B.pygtex
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-boldoblique]:!
+Missing character: There is no ⃡ (U+20E1) in font [lmmonolt10-boldoblique]:!
+) [85]
+Underfull \hbox (badness 10000) in paragraph at lines 2827--2828
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2827--2828
+
+ []
+
+[86]
+Underfull \hbox (badness 10000) in paragraph at lines 2831--2832
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2831--2832
+
+ []
+
+
+Overfull \hbox (23.55156pt too wide) in paragraph at lines 2834--2835
+[]\TU/STIXTwoText(0)/bx/n/12 Here we define the mentioned categories D($\OMS/cm
+sy/m/n/12 1$\TU/STIXTwoText(0)/bx/n/12 -Grpd$[][]$) of connected based $\OMS/cm
+sy/m/n/12 1$\TU/STIXTwoText(0)/bx/n/12 -groupoids
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2834--2835
+
+ []
+
+[87]
+Underfull \hbox (badness 10000) in paragraph at lines 2838--2838
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2838--2838
+
+ []
+
+[88]
+Underfull \hbox (badness 10000) in paragraph at lines 2840--2840
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2840--2840
+
+ []
+
+[89]
+Underfull \hbox (badness 10000) in paragraph at lines 2842--2842
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2842--2842
+
+ []
+
+[90]
+Underfull \hbox (badness 10000) in paragraph at lines 2846--2847
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2846--2847
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2848--2849
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2850--2851
+
+ []
+
+[91]
+Underfull \hbox (badness 10000) in paragraph at lines 2852--2852
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2852--2852
+
+ []
+
+[92]
+Underfull \hbox (badness 10000) in paragraph at lines 2856--2856
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2856--2856
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2858--2859
+
+ []
+
+[93]
+Underfull \hbox (badness 10000) in paragraph at lines 2861--2862
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2861--2862
+
+ []
+
+[94]
+Underfull \hbox (badness 10000) in paragraph at lines 2863--2863
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2863--2863
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/A9F7A47DFC27F8D0C537FEBBFD83C6D80AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/A9F7A47DFC27F8D0C537FEB
+BFD83C6D80AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [95]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/DC0E2AA9852AD4335ABBE7F117D9EC340AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/DC0E2AA9852AD4335ABBE7F
+117D9EC340AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/2473C73C11A4C52D290BD32DD6C0D5400AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/2473C73C11A4C52D290BD32
+DD6C0D5400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [96]
+Underfull \hbox (badness 10000) in paragraph at lines 2965--2965
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2965--2965
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/800EB015609402803E8333AFA3E07BD20AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/800EB015609402803E8333A
+FA3E07BD20AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/22B588137E700BB7D211B88
+C371B5E8C0AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [97]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [98]
+Underfull \hbox (badness 10000) in paragraph at lines 3043--3043
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3043--3043
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3045--3046
+
+ []
+
+[99]
+Underfull \hbox (badness 10000) in paragraph at lines 3048--3048
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3048--3048
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3050--3051
+
+ []
+
+[100]
+Underfull \hbox (badness 10000) in paragraph at lines 3053--3053
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3053--3053
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3055--3056
+
+ []
+
+[101]
+Underfull \hbox (badness 10000) in paragraph at lines 3058--3058
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3058--3058
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3060--3061
+
+ []
+
+[102]
+Underfull \hbox (badness 10000) in paragraph at lines 3065--3066
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3065--3066
+
+ []
+
+[103]
+Underfull \hbox (badness 10000) in paragraph at lines 3070--3071
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3070--3071
+
+ []
+
+[104]
+Underfull \hbox (badness 10000) in paragraph at lines 3072--3072
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3072--3072
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/B3B48F7EA909117008B1074
+B9317B5330AD15CC4C11D7E4F1DD48D581769614B.pygtex) [105]
+Underfull \hbox (badness 10000) in paragraph at lines 3087--3087
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3087--3087
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/016684C657AE82C9BE977B1
+AC5DAE2E70AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/2E1D2606ED7F5FF48750DA0D1F217CA80AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/2E1D2606ED7F5FF48750DA0
+D1F217CA80AD15CC4C11D7E4F1DD48D581769614B.pygtex) [106]
+Underfull \hbox (badness 10000) in paragraph at lines 3113--3113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3113--3113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3115--3116
+
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/4092E838C339FC96F75B74DC78839E870AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/4092E838C339FC96F75B74D
+C78839E870AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [107]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/EE927C4D2BBA511BAEE367330C1386B00AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/EE927C4D2BBA511BAEE3673
+30C1386B00AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/DE696EC4B1F1BB6DC338A879F7DF68970AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/DE696EC4B1F1BB6DC338A87
+9F7DF68970AD15CC4C11D7E4F1DD48D581769614B.pygtex) [108]
+Underfull \hbox (badness 10000) in paragraph at lines 3233--3233
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3233--3233
+
+ []
+
+
+Overfull \hbox (58.70744pt too wide) in paragraph at lines 3233--3233
+ [] 
+ []
+
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/74A2B2179C9903A26B5E1F63C02FCF270AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/74A2B2179C9903A26B5E1F6
+3C02FCF270AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex) [109]
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/68B329DA9893E34099C7D8A
+D5CB9C9400AD15CC4C11D7E4F1DD48D581769614B.pygtex)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/F1FBE0381556DF3B6A2BFBC37E8BAA950AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/F1FBE0381556DF3B6A2BFBC
+37E8BAA950AD15CC4C11D7E4F1DD48D581769614B.pygtex
+Overfull \hbox (10.14795pt too wide) in paragraph at lines 2--2
+\TU/lmtt/b/sl/12 internal_groupoid_action_delooping_principal_proof 
+ []
+
+)
+\openout3 = `ThreeWhiteheadTheoremsandThreePuppeSequences.pyg'.
+
+runsystem(pygmentize -l lean -f latex -P commandprefix=PYG -F tokenmerge -P str
+ipnl=False -P "escapeinside=||" -o _minted-ThreeWhiteheadTheoremsandThreePuppeS
+equences/2228E977EBEA8966E27929F43E39CB670AD15CC4C11D7E4F1DD48D581769614B.pygte
+x ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+
+(./_minted-ThreeWhiteheadTheoremsandThreePuppeSequences/2228E977EBEA8966E27929F
+43E39CB670AD15CC4C11D7E4F1DD48D581769614B.pygtex) [110]
+Overfull \hbox (65.80766pt too wide) in paragraph at lines 5426--5427
+[][]$[][][][][] [] [] [] [][][] [] [][][][][][][][][][][][][] [] [][] [] [][][]
+[][][] [] [][][][][][] [] [][][][] [] [][][][][][][][] [] [][][][][][] [] [][][
+][][][][][][][][] []
+ []
+
+[111]
+Overfull \hbox (3.3635pt too wide) in paragraph at lines 5439--5440
+[]\TU/STIXTwoText(0)/bx/n/12 Saunders Mac Lane, ”Categories for the Working Mat
+hematician,” Graduate Texts
+ []
+
+
+Overfull \hbox (93.00768pt too wide) in paragraph at lines 5452--5453
+[][]$[][][][][] [] [] [] [][][][][][][][][][][][] [] [][][] [] [][][][][][][][]
+[] [] [][][][] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][]$[] 
+ []
+
+[112]
+Underfull \hbox (badness 10000) in paragraph at lines 5462--5469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5462--5469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5462--5469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5462--5469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5462--5469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5462--5469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5471--5472
+
+ []
+
+File: about.jpg Graphic file (type bmp)
+<about.jpg>
+[113] [114] (./ThreeWhiteheadTheoremsandThreePuppeSequences.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+Package rerunfilecheck Warning: File `ThreeWhiteheadTheoremsandThreePuppeSequen
+ces.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `ThreeWhiteheadTheoremsandThreePuppe
+Sequences.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+runsystem(rm ThreeWhiteheadTheoremsandThreePuppeSequences.pyg)...executed.
+
+ )
+(\end occurred inside a group at level 2)
+
+### simple group (level 2) entered at line 2737 ({)
+### simple group (level 1) entered at line 2310 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 31648 strings out of 476179
+ 724997 string characters out of 5809544
+ 1203508 words of memory out of 5000000
+ 51491 multiletter control sequences out of 15000+600000
+ 484922 words of font info for 121 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 83i,14n,89p,4480b,1008s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on ThreeWhiteheadTheoremsandThreePuppeSequences.pdf (114 pages).
+
