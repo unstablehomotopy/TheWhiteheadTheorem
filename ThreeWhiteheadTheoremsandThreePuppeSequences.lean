@@ -176,6 +176,34 @@ is it (Δ¹)ⁿ, or (γ)ⁿ for some γ with b
 -/
 
 
+-- JX
+/-
+Let's see what  definition of the internal hom of simplicial sets...
+specifically starting with [Δ¹, X]
+-/
+
+/-
+definition of [Δ¹, X] **as a simplicial set**
+
+https://ncatlab.org/nlab/show/internal+hom#in_simplicial_sets
+(see "In Simplicial Sets")
+-/
+
+/-
+the basic idea is that the set of n-simplices is defined like so:
+
+SSetHom X Y n := Hom_(Set) (X × Δ[n], Y)
+-/
+
+/-
+the main use of this for us (and potentially even the only one?)
+is in defining the six homotopical operations on the front cover.
+We'll need [Δ¹,-] for this... but also the functorial one...
+so we need to defien SSetHom on MAPS as well...
+see if you can write out more of the components possibly with some sorries
+(the components of the SSetHom in the above)... then we can add in the definition for maps
+-/
+
 -----------------------------------------
 -- category theory
 -----------------------------------------
@@ -237,7 +265,7 @@ is it (Δ¹)ⁿ, or (γ)ⁿ for some γ with b
 - Definition of a pushout in a category (the Category X structure with seven entries)
 -/
 
-def is_pushout (C : Cat) (X : C) (Y : C) (Z : C) (f : C.str.map X Y) (g : C.str.map X Z) (P : C) : Prop := sorry
+def is_pushout (C : Cat) (X : C) (Y : C) (Z : C) (f : C.str.Hom X Y) (g : C.str.Hom X Z) (P : C) : Prop := sorry
 /-
 should return the proposition that there is a unique map given the setup for pushout
 -/
@@ -273,19 +301,71 @@ def inner horn filling condition should feature 0 < i and either i < n +1 or i <
 - Definition of ∞-Cat.α (the type of quasicategories with inner horn filling condition)
 -/
 
-
--- JX
 /-
-Let's see what  definition of the internal hom of simplicial sets...
-specifically starting with [⃗⃗, X]
+the definition of ∞-Cat.str is not that hard, since
+∞-Cat is a fully faithful subcategory of the category
+of simplicial sets.
 -/
 
+-- in what follows we'd like to define all of the components of the InfCatstr (everything that isn't the object component)
+
+-- def InfCatstrHom
+-- def InfCatstr???
+-- def InfCatstr???
+-- def InfCatstr???
+
+-- def InfCatstr
+
+def InfCat : Cat := sorry
+
+notation "∞-Cat" => InfCat
+
 /-
-definition of
+next comes the derived category....
+
+we're basically going to make two of these, and I'm pretty sure we need both...
+
+the easier one is constructed using the same objects as ∞-Cat and has as its morphisms equivalence classes
+of morphisms ...
+
+all in all we'd like to write out all of the entries with some sorries (like seven of them)
 -/
+
+def DerInfCat : Cat := sorry
+
+
+
+
+-- Definition of Ω⃗, i.e. [Δ¹, -]
+/-
+Here we will define a functor Ω⃗ : Functor ∞-Cat ∞-Cat
+note to self: it's super unfortunate that these
+combining unicode over characters don't always work.
+Maybe we can find some other sort of notation which does.
+Searching through the unicode catalogue can be fun
+https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts
+-/
+
+def directed_path_space : Functor ∞-Cat ∞-Cat := sorry
+
+-- Our next goal will mainly be to define :i
+/-
+
+-/
+
 
 /-
 - Definition of π⃗ₙ using Ω⃗
+-/
+
+def 𝕊𝕖𝕥 : Cat := sorry
+#check Functor
+def pi (n : Nat) : Functor (∞-Cat) 𝕊𝕖𝕥 := by sorry
+notation "π" n => pi n
+
+
+/-
+
 -/
 
 
