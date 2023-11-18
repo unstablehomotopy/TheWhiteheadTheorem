@@ -21,9 +21,9 @@ Here are the packages that I use
 
 
 %ENVIRONMENTS
-\iffalse
-Here I define some common environments. I use definitions, theorems, examples, and lemmas.
-\fi
+
+%Here I define some common environments. I use definitions, theorems, examples, and lemmas.
+
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
@@ -278,26 +278,22 @@ Here I define some common environments. I use definitions, theorems, examples, a
 \newunicodechar{ꜞ}{$\raisebox{1ex}{\scalebox{0.5}{\texttt{¡}}}$}
 
 
-\iffalse
-This is notation we will use for categories
-\fi
+
+%This is notation we will use for categories
+
 
 \newunicodechar{𝟙}{$\mathbb{1}$}
 \newunicodechar{∘}{$\circ$}
 
+%This is notation we will use for twocategories
 
-\iffalse
-This is notation we will use for twocategories
-\fi
 
 \newunicodechar{𝟏}{${\bold{1}}$}
 \newunicodechar{⭢}{$\longrightarrow$}
 \newunicodechar{•}{${\bullet}$}
 \newunicodechar{∙}{${\bullet}$}
 
-\iffalse
-This is notation we will use for ∞-ℂ𝕒𝕥
-\fi
+%This is notation we will use for ∞-ℂ𝕒𝕥
 
 \newunicodechar{よ}{$\includegraphics[width=0.27cm,height=0.27cm]{yon.png}$}
 \newunicodechar{⊥}{$\bot$}
@@ -573,13 +569,11 @@ Copyright\ \textcopyright \ October 19th 2023 Elliot Dean Young.\ All rights res
 
 We wish to acknowledge the collaborative efforts of E. Dean Young and Jiazhen Xia (夏家桢). The first author initially formulated the extensive outline and twelve goals presented in this research, and both made valuable contributions refining, extending, and implementing them.\\
 
-\iffalse
-\begin{center}
-\begin{tcolorbox}[width=4in,colback={White},title={},colbacktitle=White,coltitle=black]
-\texttt{Hundreds of years into the future, we look back on those who stood against the conservative extension ℝ → ℂ with a clarity that assures us they had nothing to fear...}
-\end{tcolorbox}
-\end{center}
-\fi
+%\begin{center}
+%\begin{tcolorbox}[width=4in,colback={White},title={},colbacktitle=White,coltitle=black]
+%\texttt{Hundreds of years into the future, we look back on those who stood against the conservative extension ℝ → ℂ with a clarity that assures us they had nothing to fear...}
+%\end{tcolorbox}
+%\end{center}
 
 
 \newpage
@@ -676,15 +670,7 @@ e &  & &\\
 \fi
 
 
-\iffalse
-\texttt{repl} & & &\\
-\hline 
-\texttt{∞} & & & \\
-\hline 
-\texttt{*} & &  &\\
-\hline
-\texttt{⊥} & & & \\
-\fi
+
 
 
 
@@ -864,12 +850,10 @@ The internal group delooping principal & \texttt{D(}∞\texttt{-Grpd₀)} and in
 \hline
 The internal group action delooping principal & \texttt{D(}∞\texttt{-Grpd}₀\texttt{/G}₀\texttt{)} and internal ΩG₀-actions in \texttt{D(}∞\texttt{-Grpd₀⁄G₀)} \\
  \hline 
-\end{longtable}
-}
-
-\iffalse
-\multicolumn{2}{||c||}{\texttt{Chapter 2: Straightening Systems}} \\
+  \multicolumn{2}{||c||}{\texttt{PART IV: } Straightening and Unstraightening} \\
 \hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 17: }Unstraightening Systems} \\
+\hline
 $\texttt{s\_(Γ) f} $ & The directed homotopy pullback adjunction \\ 
 \hline
 $\texttt{S\_(Γ) f} $ & The directed path-space adjunction \\ 
@@ -882,11 +866,28 @@ $\texttt{⊥\_(Γ)}$ & The overobject classifier  \\
 \hline
 $\texttt{χ\_(Γ)}$ & The characteristic morphism \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 3: Sets as a pullback system}} \\
-\hline\hline
-𝕊𝕖𝕥 & The pullback system of sets \\
+\multicolumn{2}{||c||}{\texttt{Chapter 18: }Kan Extensions} \\
+\hline
+??? & ???\\
+\hline
+\multicolumn{2}{||c||}{\texttt{Chapter 19: }Isbell Duality} \\
+\hline
+??? & ???\\
+\hline
+\multicolumn{2}{||c||}{\texttt{Chapter 20: }Adjoints} \\
+\hline
+??? & ???\\
+\hline
+\multicolumn{2}{||c||}{\texttt{Chapter 18: }Colimits and Homotopy Colimits} \\
+\hline
+??? & ???\\
+\hline
+\multicolumn{2}{||c||}{\texttt{Chapter 18: }Pointed Kan Extensions} \\
+\hline
+??? & ???\\
 \hline \hline
-\fi
+\end{longtable}
+}
 
 
 
@@ -5227,179 +5228,6 @@ this should show that the map [Cᵒᵖ,Set] ⇄ [Dᵒᵖ,Set]
 
 
 
-
-
-
-
-\part{PROPER AND ÉTALE MAPS FOR ∞-CATEGORIES}
-
-Next we introduce the concept of a pulback_system, which is much like a pullback system or topos, but which is both complete and cocomplete and features two adjunctions in its maps. ... 
-
-\begin{enumerate}
-\item $\texttt{[-,}$∞$\texttt{\_(}$∞$\texttt{-Cat)] : D(}$∞$\texttt{-Cat) ⭢ D(}$∞$\texttt{-Cat)}$ always has two adjunctions so that ∞-categories produce a pulback_system.
-\item The pulback_system obtained from monoids in the homotopy category of spectra is to do with equations and unknowns
-\item The pulback_system obtained from comonoids in the homotopy category of spectra is better suited to be a 
-\item The pulback_system of analytic spaces, in which proper is equivalent to étale and to a condition involving trace
-\end{enumerate} We will mainly be interested in two different loci: the pulback_system of ∞-categories, the pulback_system of comonoid objects in the homotopy category of spectra, the (opposite) pulback_system of monoid objects in the homotopy category of spectra. Each of these obeys the fundamental theorems about loci 
-
-I would like to make special thanks in this section to Paul Taylor and Martin Escardo, whose studies of adjoint-based conditions related to compactness and etaleness in locales contain many gems of point-set topology. Taylor's paper on these matters can be found \href{https://paultaylor.eu/ASD/foufct/foufct.pdf}{here} and Escardo's central paper on these matters can be found \href{https://www.cs.bham.ac.uk/~mhe/papers/barbados.pdf}{here}. Here we have expressed compactness as the existence of a topological adjoint and etaleness (compare with Paul Taylor's $\textit{overt}$) as the existence of an adjoint continuous in the scott topology. 
-
-
-
-\chapter{The Free Locus}
-
-
-
-\chapter{Filtered Colimits and Cofiltered Limits}
-
-\begin{enumerate}
-\item It may be possible to show that the free pullback_system on a cartesian closed pullback_system is cartesian closed.
-\item Finite limits and filtered colimits commute in a pullback\_system.
-\item Freely adding in new pullbacks (finite limits) to category is an important construction.
-\item Filtered colimits are those colimits that commute with finite limits.
-\item The free pullback_system map of a functor has a right adjoint, and yet it may not produce a commutative diagram featuring the original functor. 
-\item The condition expressing that it does is that the original functor preserve filtered colimits. We say a functor is continuous if it preserves filtered colimits.
-\item If a left adjoint map of loci has a right adjoint that preserves filtered colimits, then it should be called a continuous adjunction.
-\item 
-\end{enumerate}
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-def completion : adjunction ℂ𝕒𝕥 := sorry
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-notation C "̂" => completion.Fst.Obj C
-notation : 10000 "⟨" L "⟩" => completion.Snd.Obj L
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\begin{theorem}
-Let \texttt{Γ₁} and \texttt{Γ₂} be loci, and let \texttt{f : (ℂ𝕒𝕥.Hom (completion.Snd.Obj Γ₁) (completion.Snd.Obj Γ₂)).Obj}. The following are equivalent:
-\begin{enumerate}
-\item There is a commutative square featuring $\texttt{completion.ε Γ₁}$, $\texttt{completion.ε Γ₂}$, $\texttt{f}$ $\texttt{f̂}$.
-\item $f$ preserves filtered colimits.
-\end{enumerate}
-\end{theorem}
-
-\chapter{Continuous Maps}
-
-\begin{enumerate}
-\item When the free pullback_system on a representation has an adjunction, we say that the original map is continuous. This is equivalent to preserving filtered colimits.
-\item When a left adjoint has a continuous right adjoint, we say it is continuous
-\end{enumerate}
-
-\chapter{Open Maps and Closed Maps}
-
-\begin{enumerate}
-\item An analysis of open and closed maps of locales reveals frobenius reciprocity as an important condition.
-\item The main theorem of this section says that frobenius reciprocity is equivalent to the preservation of a hom.
-\item 
-\end{enumerate}
-
-\begin{definition}
-Let $\texttt{C, D : pullback\_system}$. Let $\texttt{f : Pul.Hom C D}$. $\texttt{f}$ is said to be open if \iffalse$\texttt{∀\_(f)𛲔.Obj (- \times\_(Γ) f) ≅\_() (∀\_(f)𛲔.Obj (-) \times -}$\fi. 
-\end{definition}
-
-
-
-This definition is related to the definition of an \href{https://ncatlab.org/nlab/show/open+morphism}{open morphism of locales}.
-
-\begin{definition}
-Let $\texttt{C, D : Cat\_(D(Γ)).Obj}$. Let $\texttt{f : Cat\_(D(Γ)).Hom C D}$. $\texttt{f}$ is said to be closed if \iffalse$\texttt{∀\_(f)𛲔.Obj (- \times\_(Γ) f) ≅\_() (∀\_(f)𛲔.Obj (-) \times -}$\fi.
-\end{definition}
-
-This definition is related to the definition of a \href{https://ncatlab.org/nlab/show/closed+morphism}{closed morphism of locales}
-
-\begin{theorem}[Open and closed maps]
-Let $\texttt{C, D : Cat\_(D(Γ)).Obj}$. Let $\texttt{f : Cat\_(D(Γ)).Hom C D}$.
-\begin{enumerate}
-\item The following are equivalent: 
-\begin{enumerate}
-\item ??? \iffalse$\texttt{∀\_(f)𛲔.Obj (- \times\_(Γ) g) ≅\_(Cat.Hom) (∀\_(f)𛲔.Obj (-) \times\_(Γ) g)}$.\fi
-\item ???
-\end{enumerate}
-\item The following are equivalent:
-\begin{enumerate}
-\item ??? \iffalse$\texttt{∃_(f)ॱ.Obj (- \times\_(Γ) f) ≅\_() (∃\_(f)ॱ.Obj X) \times Y}$.\fi
-\item ???
-\end{enumerate}
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-\iffalse
-  C(X, f([Y, Z]))
-= D(exists_f X, [Y, Z])
-= D(exists_f X prod Y, Z)
-= D(Y prod exists_f X, Z)
-= D(Y, [exists_f X, Z])
-in a way which is natural in Z, and opnatural in X and Y.
-\fi
-
-and
-
-\iffalse
-  C(X, [fY, fZ])
-= C(X prod fY, fZ)
-= C(fY prod X, fZ)
-= C(exists_f (fY prod X), Z)
-in a way which is natural in Z, and opnatural in X and Y.
-\fi
-\end{proof}
-
-\begin{theorem}
-Let $\texttt{f : Loc.Hom X Y}$ and $\texttt{g : Loc.Hom Y Z}$ be maps of loci $\texttt{X : Loc.Obj}$ and $\texttt{Y : Loc.Obj}$. Then
-\begin{enumerate}
-\item If $\texttt{f}$ and $\texttt{g}$ are closed, then $\texttt{g ∘\_(Loc) f}$ is closed.
-\item If $\texttt{f}$ and $\texttt{g}$ are open, then $\texttt{g ∘\_(Loc) f}$ is open.
-\end{enumerate} 
-\end{theorem}
-
-
-To do:
-\begin{enumerate}
-\item Add in a classifier for closed maps.
-\item Add in a classifier for open maps.
-\end{enumerate}
-
-\iffalse % "open if and only if postcomposition with an open is an open" "closed if and only if postcomposition with a closed is a closed"
-\begin{theorem}
-Let $\texttt{B}$ be a space and let $\texttt{f : X -> Y}$ be a map of $\texttt{S}$-spaces $\texttt{X}$ and $\texttt{Y}$. Then 
-\begin{enumerate}
-\item The following are equivalent:
-\begin{enumerate}
-\item $\texttt{F : 𝕃𝕠𝕔.Hom ()}$ is closed.
-\item $\texttt{f • g}$ is closed when $\texttt{g}$ is closed.%%%how to define image?
-\end{enumerate}
-\item The following are equivalent:
-\begin{enumerate}
-\item $f$ is open.
-\item $f • g$ is closed when $\texttt{g}$ is closed.%%%how to define image?
-\end{enumerate}
-\end{enumerate}
-%%%phrase this for S-complete and R-cocomplete, and then have the space and algebra versions as corollares.
-\end{theorem}
-
-\begin{proof}
-
-\end{proof}
-
-
-\fi
-\fi
 
 
 \newpage
