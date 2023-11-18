@@ -193,6 +193,8 @@ https://ncatlab.org/nlab/show/internal+hom#in_simplicial_sets
 the basic idea is that the set of n-simplices is defined like so:
 
 SSetHom X Y n := Hom_(Set) (X × Δ[n], Y)
+SSetHom X Y face...
+SSetHom X Y degeneracy...
 -/
 
 /-
@@ -353,7 +355,25 @@ def directed_path_space : Functor ∞-Cat ∞-Cat := sorry
 
 -/
 
+/-
+Next we'd like to define ∞-Cat/C...
+but also and at the same time all overcategories
+-/
 
+def Ovr (C : ∞-Cat) : Cat := sorry
+
+/-
+After that we'll define D(∞-Cat/C)
+-/
+
+def DerInfCatOvr (C : ∞-Cat) : Cat := sorry
+
+
+/-
+
+-/
+
+-- next we'll define π⃗ₙ
 /-
 - Definition of π⃗ₙ using Ω⃗
 -/
@@ -371,6 +391,24 @@ notation "π" n => pi n
 
 
 /- CHAPTER 2 -/
+
+/-
+in the last section we have defined
+we'll have moved the insights on
+simplicial sets to the beginning
+-/
+
+-- REP (the cofibrant replacement functor)
+
+def REPn (n : Nat) : Functor ∞-Cat ∞-Cat := sorry
+
+def REP : Functor ∞-Cat ∞-Cat := sorry
+
+-- HEP (the directed homotopy extension theorem)
+
+
+
+
 
 
 /- CHAPTER 3 -/
