@@ -1,6 +1,7 @@
 ## lean
 /build
 /lake-packages/*
+/.lake
 
 
 ## Core latex/pdflatex auxiliary files:
