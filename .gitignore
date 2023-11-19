@@ -1,3 +1,8 @@
+## lean
+/build
+/lake-packages/*
+
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
