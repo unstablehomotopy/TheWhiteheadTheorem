@@ -54,6 +54,22 @@ I'll take the message to break it down further
 
 -/
 
+/-
+A smaller goal could be creating the following derived categories, along with properties of geometric realization:
+
+* ∞-Cat
+* ∞-Cat⁄C
+* D(∞-Cat)
+* D(∞-Cat⁄C)
+* ∞-Grpd
+* ∞-Grpd⁄G
+* D(∞-Grpd)
+* D(∞-Grpd₀)
+* D(∞-Grpd₀/G)
+* D(∞-Grpd₀)
+* D(∞-Grpd₀/G₀)
+-/
+
 /- CHAPTER 1 -/
 
 
@@ -262,23 +278,6 @@ see if you can write out more of the components possibly with some sorries
 -- PART I: ∞-Categories
 
 
--- JX
-/-
-- Definition of a pushout in a category (the Category X structure with seven entries)
--/
-
-def is_pushout (C : Cat) (X : C) (Y : C) (Z : C) (f : C.str.Hom X Y) (g : C.str.Hom X Z) (P : C) : Prop := sorry
-/-
-should return the proposition that there is a unique map given the setup for pushout
--/
-
-/-
-def "category with pushouts"
--/
-
-/-
-def pushout in a category with pushouts?
--/
 
 /-
 perhaps something for the maps...
@@ -287,12 +286,12 @@ perhaps something for the maps...
 -- note that (X : C) is really (X : C.α), and that C.α is what we write for
 -- the object component of a category
 
--- JX
+
 /-
 def horn_filling (X : SSet) : ∀(n : ℕ),∀(i : Fin (n + 1)),∀
 -/
 
--- JX
+--
 /-
 def inner horn filling condition should feature 0 < i and either i < n +1 or i < n (I can't tell which)
 -/
@@ -317,6 +316,40 @@ of simplicial sets.
 -- def InfCatstr???
 
 -- def InfCatstr
+
+variable (f : SSet → Prop)
+
+#check SSet.standardSimplex
+-- SSet.standardSimplex : CategoryTheory.Functor SimplexCategory SSet
+
+#check SSet.horn
+-- SSet.horn (n : ℕ) (i : Fin (n + 1)) : SSet
+
+#check Unit
+
+#check SSet.hornInclusion
+-- SSet.hornInclusion (n : ℕ) (i : Fin (n + 1)) :
+--   SSet.horn n i ⟶ SSet.standardSimplex.obj (SimplexCategory.mk n)
+
+-- #check Fin n
+
+-- D()
+-- D()
+-- D()
+#check 0 < 1
+
+
+def make_an_element_of_Fin (n : Nat) (N : Nat) (p : 0 < n) (q : n < N) : Fin N := by sorry
+def FintoNat (N : Nat) (f : Fin n) : Nat := by sorry
+def FintoGeq (N : Nat) (f : Fin n) : 0 < (FintoNat N f) := by sorry
+def FintoLeq (N : Nat) (f : Fin n) : (FintoNat N f) <= N := by sorry
+
+
+-- def inner_horn_filling_condition ()
+
+
+-- Type should instead be something more sophisticated
+def quasicategory : Type (u+1) := { X : SSet // f X}
 
 def InfCat : Cat := sorry
 
@@ -350,17 +383,14 @@ https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts
 
 def directed_path_space : Functor ∞-Cat ∞-Cat := sorry
 
--- Our next goal will mainly be to define :i
+-- Our next goal will mainly be to define
 /-
 
 -/
 
 /-
-Next we'd like to define ∞-Cat/C...
-but also and at the same time all overcategories
+check their Ovr
 -/
-
-def Ovr (C : ∞-Cat) : Cat := sorry
 
 /-
 After that we'll define D(∞-Cat/C)
@@ -393,6 +423,38 @@ notation "π" n => pi n
 /- CHAPTER 2 -/
 
 /-
+In Lurie's HTT, which uses Joyal's theory of quasicategories, three model structures are established,
+or really two, one of which comes in left and right forms. Details on these model structures are available
+at:
+
+https://people.math.harvard.edu/~lurie/papers/highertopoi.pdf
+
+terminology (xiv)
+
+
+See also:
+- Proposition 1.2.5.1 due to Joyal
+- Definition 2.0.0.3 (page 53) due to Joyal
+- Available here: https://www.sciencedirect.com/science/article/pii/S0022404902001354
+
+-/
+
+/-
+Mathlib's SSet.
+-/
+
+#check SSet.S1
+#check SSet.toTop
+#check SSet.sk
+#check SSet.Truncated
+#check SSet.hom_ext
+#check CategoryTheory.Cat SSet
+#check SSet.asOrderHom
+#check SSet.hornInclusion
+
+
+
+/-
 in the last section we have defined
 we'll have moved the insights on
 simplicial sets to the beginning
@@ -400,14 +462,18 @@ simplicial sets to the beginning
 
 -- REP (the cofibrant replacement functor)
 
-def REPn (n : Nat) : Functor ∞-Cat ∞-Cat := sorry
-
 def REP : Functor ∞-Cat ∞-Cat := sorry
 
+def REPn (n : Nat) : Functor ∞-Cat ∞-Cat := sorry
+
+-- LREP (the left cofibrant replacement functor)
+
+
+-- RREP (the right cofibrant replacement functor)
+
+
+
 -- HEP (the directed homotopy extension theorem)
-
-
-
 
 
 
