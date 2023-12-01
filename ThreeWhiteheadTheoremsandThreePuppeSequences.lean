@@ -235,6 +235,8 @@ see if you can write out more of the components possibly with some sorries
 --   (D : Type u₂) [inst✝¹ : CategoryTheory.Category.{v₂, u₂} D] :
 --      Type (max v₁ v₂ u₁ u₂)
 
+#check CategoryTheory.NatTrans
+
 #check CategoryTheory.Functor.category -- category of functors
 -- CategoryTheory.Functor.category.{v₁, v₂, u₁, u₂}
 --   {C : Type u₁} [inst✝ : CategoryTheory.Category.{v₁, u₁} C]
@@ -310,11 +312,18 @@ of simplicial sets.
 
 -- in what follows we'd like to define all of the components of the InfCatstr (everything that isn't the object component)
 
+-- ⥤
+
+notation C "-->" D => C ⥤ D
+notation F "--->" G => CategoryTheory.NatTrans F G
+notation η "---->" ε => CategoryTheory.NatTrans.ext η ε
+
+#check CategoryTheory.NatTrans.ext
+
 -- def InfCatstrHom
 -- def InfCatstr???
 -- def InfCatstr???
 -- def InfCatstr???
-
 -- def InfCatstr
 
 variable (f : SSet → Prop)
@@ -327,6 +336,11 @@ variable (f : SSet → Prop)
 
 #check Unit
 
+#check SSet
+variable (X : SSet)
+variable (Y : SSet)
+#check X ⭢ Y
+
 #check SSet.hornInclusion
 -- SSet.hornInclusion (n : ℕ) (i : Fin (n + 1)) :
 --   SSet.horn n i ⟶ SSet.standardSimplex.obj (SimplexCategory.mk n)
@@ -336,24 +350,71 @@ variable (f : SSet → Prop)
 -- D()
 -- D()
 -- D()
-#check 0 < 1
+-- #check 0 < 1
+
 
 
 def make_an_element_of_Fin (n : Nat) (N : Nat) (p : 0 < n) (q : n < N) : Fin N := by sorry
-def FintoNat (N : Nat) (f : Fin n) : Nat := by sorry
-def FintoGeq (N : Nat) (f : Fin n) : 0 < (FintoNat N f) := by sorry
-def FintoLeq (N : Nat) (f : Fin n) : (FintoNat N f) <= N := by sorry
-
+-- def FintoNat (N : Nat) (f : Fin n) : Nat := f.val
+-- def FintoGeq (N : Nat) (f : Fin n) : 0 < (FintoNat N f) :=
+-- def FintoLeq (N : Nat) (f : Fin n) : (FintoNat N f) <= N :=
+-- def  { a :=  , b :=  }
 
 -- def inner_horn_filling_condition ()
 
+-- SSet.standardSimplex.obj
+--
+--
+
+variable (T : Type)
+variable (S : Type)
+
+-- ≫
+-- ≫
+-- :---> :---> ⥤ ⟶ :---> ⭢
+--
+
+variable (n : Nat)
+#check (SimplexCategory.mk n)
+-- SSet.horn
+
+variable {n : Nat}
+notation "Δⁿ" =>  SSet.standardSimplex.obj (SimplexCategory.mk n)
+#check Δⁿ
+
+-- Inner horn filling condition
+
+def inner_horn_filling_condition (X : SSet) : Prop := ∀(f : SSet.horn X),∀(N : Nat),∃(g : (SSet.standardSimplex.obj (SimplexCategory.mk n)) ⭢ X),SSet.hornInclusion g
+
+
+-- Horn filling condition
+def horn_filling_condition (X : SSet) : Prop := by sorry
+
 
 -- Type should instead be something more sophisticated
-def quasicategory : Type (u+1) := { X : SSet // f X}
+def quasicategory : Type (u+1) := { X : SSet // inner_horn_filling_condition X}
+/-
 
-def InfCat : Cat := sorry
+-/
+
+def Kan_complex : Type (u+1) := { X : SSet // horn_filling_condition X}
+/-
+Considerations and future changes: we may prefer to
+replace this with a different construction of the same set,
+but I see no reason to for now.
+-/
+
+
+
+def InfCat : Category quasicategory := sorry
 
 notation "∞-Cat" => InfCat
+
+
+-- def homotopy (X : ∞-Cat) (Y : ∞-Cat) (f : X ⭢ Y) (g : X ⭢ Y) :  := by sorry
+/-
+
+-/
 
 /-
 next comes the derived category....
@@ -407,10 +468,10 @@ def DerInfCatOvr (C : ∞-Cat) : Cat := sorry
 /-
 - Definition of π⃗ₙ using Ω⃗
 -/
-
+#check Type ⥤ Type
 def 𝕊𝕖𝕥 : Cat := sorry
 #check Functor
-def pi (n : Nat) : Functor (∞-Cat) 𝕊𝕖𝕥 := by sorry
+-- def pi (n : Nat) : (∞-Cat)  Type := by sorry
 notation "π" n => pi n
 
 
@@ -460,17 +521,18 @@ we'll have moved the insights on
 simplicial sets to the beginning
 -/
 
--- REP (the cofibrant replacement functor)
+-- REP (the replacement functor)
 
 def REP : Functor ∞-Cat ∞-Cat := sorry
 
 def REPn (n : Nat) : Functor ∞-Cat ∞-Cat := sorry
 
--- LREP (the left cofibrant replacement functor)
 
+/-
+def REPnobj
 
--- RREP (the right cofibrant replacement functor)
-
+def REPnhom
+-/
 
 
 -- HEP (the directed homotopy extension theorem)
