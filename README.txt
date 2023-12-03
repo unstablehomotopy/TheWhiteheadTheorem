@@ -1,0 +1,2 @@
+
+This repository is for the demonstration of the Puppe sequence (long exact sequence of homotopy groups) and the Whitehead theorem. The .pdf file of "ThreeWhiteheadTheoremsandThreePuppeSequences.pdf" contains an introduction and explanation of its goals. The .lean file of "ThreeWhiteheadTheoremsandThreePuppeSequences.lean" contains initial progress towards these goals.
