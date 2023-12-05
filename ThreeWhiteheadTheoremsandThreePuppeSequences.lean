@@ -394,6 +394,7 @@ def horn_filling_condition (X : SSet) : Prop := by sorry
 -- Type should instead be something more sophisticated
 def quasicategory : Type (u+1) := { X : SSet // inner_horn_filling_condition X}
 /-
+recall the the three fundamentals of restricted comprehension:
 
 -/
 
@@ -449,6 +450,8 @@ def directed_path_space : Functor ∞-Cat ∞-Cat := sorry
 
 -/
 
+notation "Ω⃗" => directed_path_space
+
 /-
 check their Ovr
 -/
@@ -468,10 +471,10 @@ def DerInfCatOvr (C : ∞-Cat) : Cat := sorry
 /-
 - Definition of π⃗ₙ using Ω⃗
 -/
+
+#check ∞-Cat
 #check Type ⥤ Type
-def 𝕊𝕖𝕥 : Cat := sorry
-#check Functor
--- def pi (n : Nat) : (∞-Cat)  Type := by sorry
+def pi (n : Nat) : Functor (∞-Cat) Type := by sorry
 notation "π" n => pi n
 
 
@@ -555,6 +558,21 @@ def REPnhom
 
 /- CHAPTER 7 -/
 
+/-
+We construct our category of infinity groupoids from objects in SSet with the Kan filling conditiion
+
+-/
+
+
+notation "∞-Grpd" => InfGrpd
+
+-- notation "D⃡(∞-Grpd)" => DerInfGrpd
+/-
+The symbol D⃡ can be compared with the symbol π⃡₀,
+even though former is just notation
+-/
+
+-- over category of ∞-Grpd ⁄ G
 
 /- CHAPTER 8 -/
 
@@ -571,6 +589,8 @@ def REPnhom
 -- PART III: Based Connected ∞-Groupoids
 
 /- CHAPTER 12 -/
+
+
 
 
 /- CHAPTER 13 -/
