@@ -10,7 +10,19 @@ namespace InfCategory
   open Simplicial -- notations such as `Λ[n, i]` and `Δ[n]` become available
 
   section
+    universe v₁ v₂ v₃ u₁ u₂ u₃
+    open NatTrans Category CategoryTheory.Functor
+    variable (C : Type u₁) [Category.{v₁} C] (D : Type u₂) [Category.{v₂} D]
+    #check C
+  end
+
+  section
     variable (X Y : SSet)
+    set_option trace.Meta.synthInstance true
+    #print Category
+    #print SimplicialObject
+    #check (inferInstance : Category SSet)
+    #check (inferInstance : CategoryTheory.Functor X) -- ?
     #check X ⟶ Y
     #check NatTrans X Y
 
@@ -49,7 +61,15 @@ namespace InfCategory
     ∀ (n i : Nat), n ≥ 2 ∧ 0 < i ∧ i < n → horn_filling_condition X n i}
 
   #check (inferInstance : Category SSet)
+  -- #check (inferInstance : Category InfCategory)
+  -- instance : Category InfCategory := inferInstance -- ?
+  -- instance : Category InfCategory := by -- ?
+  --   dsimp only [InfCategory]
+  --   infer_instance
+  instance : Category InfCategory where -- reference: https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Functor/Category.html
+    Hom X Y := NatTrans X.1 Y.1
+    id X := NatTrans.id X.1
+    comp α β := NatTrans.vcomp α β
   #check (inferInstance : Category InfCategory)
-  instance : Category InfCategory := inferInstance -- ?
 
 end InfCategory
