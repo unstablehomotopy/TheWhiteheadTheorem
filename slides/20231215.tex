@@ -47,12 +47,30 @@
 %\subsection{sub a}
 
 \begin{frame}[fragile]
-\frametitle{Whitehead Theorem}
+\frametitle{Two goals}
+\begin{block}{The Whitehead Theorem}
 \begin{leancode}
-∀X : D(∞-Grpd₀), ∀Y : D(∞-Grpd₀),
-∀f : X ⭢ Y, ∀g : X ⭢ Y,
-(∀n : Nat, πₙ f = πₙ g) → f = g
+          ∀X : D(∞-Grpd₀), ∀Y : D(∞-Grpd₀),
+          ∀f : X ⭢ Y, ∀g : X ⭢ Y,
+          (∀n : Nat, πₙ f = πₙ g) → f = g
 \end{leancode}
+\end{block}
+
+\medskip
+
+\begin{block}{The Puppe Sequence}
+\begin{leancode}
+          ⬝⬝⬝ ⭢ π₁.obj E₀ ⭢ π₁.obj B₀ ⭢
+          π₀.obj ((𝟙 B₀) • ((ω.hom (𝟙 B₀)).hom f)) ⭢
+          π₀.obj (E₀) ⭢ π₀.obj(B₀)
+\end{leancode}
+\end{block}
+
+\medskip
+\begin{itemize}
+	\item The homotopy fiber
+\end{itemize}
+
 %\medskip
 %\begin{itemize}
 %	\item 1
@@ -60,18 +78,18 @@
 %\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Puppe Sequence}
-\begin{leancode}
-⬝⬝⬝ ⭢ π₁.obj E₀ ⭢ π₁.obj B₀ ⭢
-π₀.obj ((𝟙 B₀) • ((ω.hom (𝟙 B₀)).hom f)) ⭢
-π₀.obj (E₀) ⭢ π₀.obj(B₀)
-\end{leancode}
-\medskip
-\begin{itemize}
-	\item The homotopy fiber
-\end{itemize}
-\end{frame}
+%\begin{frame}[fragile]
+%\frametitle{Puppe Sequence}
+%\begin{leancode}
+%⬝⬝⬝ ⭢ π₁.obj E₀ ⭢ π₁.obj B₀ ⭢
+%π₀.obj ((𝟙 B₀) • ((ω.hom (𝟙 B₀)).hom f)) ⭢
+%π₀.obj (E₀) ⭢ π₀.obj(B₀)
+%\end{leancode}
+%\medskip
+%\begin{itemize}
+%	\item The homotopy fiber
+%\end{itemize}
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%
 
