@@ -452,13 +452,13 @@ Here are the packages that I use
 {\footnotesize
 \begin{center}
 \scalebox{1.1}{
-\begin{tabular}{|| l | l || l | l | l | l || l | l || l | l | l | l || } 
+\begin{tabular}{|| l | l || l | l | l | l | l || l | l || l | l | l | l | l || } 
 \hline
-$\texttt{IntCat}$ & \texttt{D⃗(}∞\texttt{-Cat)} & Ω⃗ & P⃗ & B⃗ & E⃗ & $\texttt{IntPrShf}$ & \texttt{D⃗(}∞\texttt{-Cat/C)} & ω⃗ &  p⃗ & b⃗ & e⃗\\
+$\texttt{IntCat}$ & \texttt{D⃗(}∞\texttt{-Cat)} & Σ⃗ & Ω⃗ & P⃗ & B⃗ & E⃗ & $\texttt{IntPrShf}$ & \texttt{D⃗(}∞\texttt{-Cat/C)} & σ⃗ & ω⃗ &  p⃗ & b⃗ & e⃗\\
 \hline
-$\texttt{IntGrpd}$ & \texttt{D⃡(}∞\texttt{-Grpd)} & Ω⃡ & P⃡ & B⃡ & E⃡ & $\texttt{IntAct}$ & \texttt{D⃡(}∞\texttt{-Grpd/G)} & ω⃡ & p⃡ & b⃡ & e⃡\\
+$\texttt{IntGrpd}$ & \texttt{D⃡(}∞\texttt{-Grpd)} & Σ⃡ & Ω⃡ & P⃡ & B⃡ & E⃡ & $\texttt{IntAct}$ & \texttt{D⃡(}∞\texttt{-Grpd/G)} & σ⃡ & ω⃡ & p⃡ & b⃡ & e⃡\\
  \hline
-$\texttt{IntGrp}$ & \texttt{D(}∞\texttt{-Grpd₀)} & Ω & P & B & E & $\texttt{IntAct₀}$ & \texttt{D(}∞\texttt{-Grpd₀/G₀)} & ω & p & b & e\\
+$\texttt{IntGrp}$ & \texttt{D(}∞\texttt{-Grpd₀)} & Σ & Ω & P & B & E & $\texttt{IntAct₀}$ & \texttt{D(}∞\texttt{-Grpd₀/G₀)} & σ & ω & p & b & e\\
  \hline
 \end{tabular}}
 \end{center}}
@@ -721,7 +721,11 @@ D⃗(∞-Cat⁄C) & The derived category of ∞-categories over C \\
 \hline
 Ω⃗ : ∞-Cat ⭢ ∞-Cat & The directed path space functor \\
  \hline 
+ Σ⃗ : ∞-Cat ⭢ ∞-Cat & The directed unbased suspension \\
+\hline 
 ω⃗ f : ∞-Cat⁄D ⭢ ∞-Cat/C & The directed homotopy pullback functor\\
+ \hline 
+ σ⃗ f : ∞-Cat/C ⭢ ∞-Cat/D & The directed homotopy pushout \\
  \hline 
 π⃗ₙ : ∞-Cat ⭢ Set & The connected components functors\\
  \hline \hline
@@ -767,7 +771,11 @@ D⃡(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
 \hline
 Ω⃡ : ∞-Grpd ⭢ ∞-Grpd & The directed path space functor \\
  \hline 
+Σ⃡ : ∞-Grpd ⭢ ∞-Grpd & The unbased suspension functor \\
+ \hline 
 ω⃡ f : ∞-Grpd⁄D ⭢ ∞-Grpd/C & The directed homotopy pullback functor\\
+\hline 
+σ⃡ f : ∞-Grpd/C ⭢ ∞-Grpd/D & Homotopy pushout with a point \\
  \hline 
 π⃡ₙ : ∞-Grpd ⭢ Set & The connected components functors\\
  \hline \hline
@@ -814,7 +822,11 @@ D(∞-Grpd₀/X₀) & The derived category of based connected ∞-groupoids over
 \hline
 Ω : ∞-Grpd₀ ⭢ ∞-Grpd & The loop space functor \\
 \hline
-ω f : D(∞-Grpd/D₀) ⭢ D(∞-Grpd⁄C₀) & The homotopy fiber\\
+Σ : ∞-Grpd₀ ⭢ ∞-Grpd₀ & The based suspension functor \\
+\hline 
+ω f : ∞-Grpd/D₀ ⭢ ∞-Grpd/C₀ & The homotopy fiber\\
+\hline 
+σ f : ∞-Grpd₀/C₀ ⭢ ∞-Grpd₀/D₀ & Based homotopy pushout \\
  \hline 
 πₙ : ∞-Grpd₀ ⭢ Set & The connected components functors\\
  \hline \hline
@@ -849,14 +861,12 @@ The Puppe sequence & \scalebox{0.8}{$\cdots$ ⭢ π₁(E₀) ⭢ π₁(B₀) ⭢
 The internal group delooping principal & \texttt{D(}∞\texttt{-Grpd₀)} and internal groups in based spaces \\
 \hline
 The internal group action delooping principal & \texttt{D(}∞\texttt{-Grpd}₀\texttt{/G}₀\texttt{)} and internal ΩG₀-actions in \texttt{D(}∞\texttt{-Grpd₀⁄G₀)} \\
- \hline 
-  \multicolumn{2}{||c||}{\texttt{PART IV: } Straightening and Unstraightening} \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 17: }Unstraightening Systems} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 17: }Pullback Systems} \\
 \hline
-$\texttt{s\_(Γ) f} $ & The directed homotopy pullback adjunction \\ 
+$\texttt{p\_(Γ) f}$ & The directed homotopy pullback adjunction \\ 
 \hline
-$\texttt{S\_(Γ) f} $ & The directed path-space adjunction \\ 
+$\texttt{P\_(Γ) f} $ & The directed path-space adjunction \\ 
 \hline
 $\texttt{*\_(Γ)}$  & The point \\ 
 \hline
@@ -916,11 +926,11 @@ We will use the following models in the theorem above:
 
 \begin{enumerate}[(i)]
 \item ∞-Cat is the category of quasicategories.
-\item ∞-Grpd is the category of simplicial sets with the Kan lifting condition.
-\item ∞-Grpd₀ is the category of based connected simplicial sets with the Kan lifting condition.
+\item ∞-Grpd is the category of Kan complexes.
+\item ∞-Grpd₀ is the category of based connected Kan complexes.
 \end{enumerate}
 
-The operations require great care in their definition. The existence of a base point makes πₙ relatively easy to define, while π⃗ₙ and π⃡ₙ require careful consideration and get much larger by comparison:
+π⃗ₙ and π⃡ₙ require great care in their definition. The existence of a base point makes πₙ relatively easy to define, while π⃗ₙ and π⃡ₙ `grow' as n does.
 
 \begin{enumerate}[(i)]
 \item π⃗ₙ : ∞-Cat ⭢ Set
@@ -944,9 +954,7 @@ and
 \item Ω is the loop space functor
 \end{enumerate}
 
-The first of the Whitehead theorems, (a), is the most abstract. The third, (c), is the one from Whitehead's original papers. The second forms a nice intermediate between the two.\\
-
-
+The third theorem (c), is the one from Whitehead's original papers.\\
 
 The choice of quasicategories gives nice integration with Mathlib's existing features (though technically only the inner horns and simplices are defined, not even the category of quasicategories itself), a possible benefit over a more ``synthetic" approach based on forcing the three Whitehead theorems and three Puppe sequences at the outset (along with the functors, natural isomorphisms, and equations in the first several pages). \\
 
@@ -1046,17 +1054,40 @@ These six new functors combine with the functors below to form categorical equiv
 
 \iffalse
 The essential images of B and b are...
+https://math.stackexchange.com/questions/4825283/b-of-a-pseudo-group
 \fi
 
-As mentioned, we will show six categorical equivalences featuring these:
+We will show six categorical equivalences featuring these:
 
 \begin{enumerate}
-\item P⃗ • B⃗ ≅ 𝟙 (IntCat D(∞-Cat)) and B⃗ • P⃗ ≅ 𝟙 D(∞-Cat)
-\item P⃡ • B⃡ ≅ 𝟙 (IntGrpd D(∞-Grpd)) and B⃡ • P⃡ ≅ 𝟙 D(∞-Grpd)
-\item P • B ≅ 𝟙 (IntGrp D(∞-Grpd₀)) and B • P ≅ 𝟙 D(∞-Grpd₀) (see \href{https://mathoverflow.net/questions/128883/why-omega-x-and-bg-are-adjoint-functors}{here})
-\item p⃗ • b⃗ ≅ 𝟙 (IntPrShf D(∞-Cat⁄C) P⃗C) and b⃗ • p⃗ ≅ 𝟙 D(∞-Cat⁄C)
-\item p⃡ • b⃡ ≅ 𝟙 (IntAct D(∞-Cat⁄C) P⃡X) and b⃡ • p⃡ ≅ 𝟙 D(∞-Cat⁄C) 
-\item p • b ≅ 𝟙 (IntAct₀ D(∞-Grpd₀⁄X₀) PX₀) and b • p ≅ 𝟙 D(∞-Grpd₀⁄X₀) (see \href{https://en.wikipedia.org/wiki/Principal_bundle}{here})
+\item P⃗ • B⃗ ≅ 𝟙 (DlpIntCat D(∞-Cat)) and B⃗ • P⃗ ≅ 𝟙 D(∞-Cat)
+\item P⃡ • B⃡ ≅ 𝟙 (DlpIntGrpd D(∞-Grpd)) and B⃡ • P⃡ ≅ 𝟙 D(∞-Grpd)
+\item P • B ≅ 𝟙 (DlpIntGrp D(∞-Grpd₀)) and B • P ≅ 𝟙 D(∞-Grpd₀) (see \href{https://mathoverflow.net/questions/128883/why-omega-x-and-bg-are-adjoint-functors}{here})
+\item p⃗ • b⃗ ≅ 𝟙 (DlpIntPrShf D(∞-Cat⁄C) P⃗C) and b⃗ • p⃗ ≅ 𝟙 D(∞-Cat⁄C)
+\item p⃡ • b⃡ ≅ 𝟙 (DlpIntAct D(∞-Cat⁄C) P⃡X) and b⃡ • p⃡ ≅ 𝟙 D(∞-Cat⁄C) 
+\item p • b ≅ 𝟙 (DlpIntAct₀ D(∞-Grpd₀⁄X₀) PX₀) and b • p ≅ 𝟙 D(∞-Grpd₀⁄X₀) (see \href{https://en.wikipedia.org/wiki/Principal_bundle}{here})
+\end{enumerate}
+
+Take special note that each of these six involves a condition ensuring that the functor B⃗ be well defined. Consider the functors:
+
+\begin{enumerate}
+\item D(IntCat ∞-Cat) ⭢ IntCat D(∞-Cat)
+\item D(IntGrpd ∞-Grpd) ⭢ IntGrpd D(∞-Grpd)
+\item D(IntGrp ∞-Grpd₀) ⭢ IntGrp D(∞-Grpd₀)
+\item D(IntPrShf ∞-Cat⁄C) P⃗C ⭢ IntPrShf D(∞-Cat⁄C) P⃗C
+\item D(IntAct ∞-Cat⁄C) P⃡X ⭢ IntAct D(∞-Cat⁄C) P⃡X
+\item D(IntAct₀ ∞-Grpd₀⁄X₀) PX₀ ⭢ IntAct₀ D(∞-Grpd₀⁄X₀) PX₀
+\end{enumerate}
+
+It may happen that a given object in the codomain of these six functors lies in their essential image. In this case, any of the six of B⃗, B⃡, B, b⃗, b⃡, b can be obtained as a quotient of six functors E⃗, E⃡, E, e⃗, e⃡, e, respectively:
+
+\begin{enumerate}
+\item E⃗ : IntCat ∞-Cat ⭢ ∞-Cat
+\item E⃡ : IntGrpd ∞-Grpd ⭢ ∞-Grpd
+\item E : IntGrp ∞-Grpd₀ ⭢ ∞-Grpd₀
+\item e⃗ : IntPrShf ∞-Cat⁄C P⃗C ⭢ ∞-Cat⁄C P⃗C
+\item e⃡ : IntAct ∞-Cat⁄C P⃡X ⭢ ∞-Cat⁄C P⃡X
+\item e : IntAct₀ ∞-Grpd₀⁄X₀ PX₀ ⭢ ∞-Grpd₀⁄X₀ PX₀
 \end{enumerate}
 
 We will make extensive use of Mathlib's \href{https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Category/Cat.html#CategoryTheory.Cat.bicategory}{bicategory of categories} and material on \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4//Mathlib/AlgebraicTopology/SimplicialSet.lean#L47-L48}{simplicial sets}. We further use Mathlib's pullbacks and \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Products/Basic.lean}{categorical products}, as well as their \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Monad/Algebra.lean}{Eilenberg-Moore theory constructions}. I'd like to extend my appreciation to Scott Morison, Eric Wieser, Floris Van Doorne, and all the contributors who have put their efforts into creating these robust features for Mathlib 4.\\
@@ -1135,7 +1166,7 @@ None of these theorems are currently contained in Mathlib. The last four are fam
 \begin{enumerate}
 \item The Whitehead theorem
 \item The Puppe sequence and its exactness
-\item The theorem that Ω • B ≅ 𝟙 (IntGrp D(∞-Grpd)) and B • Ω ≅ 𝟙 D(∞-Grpd₀)
+\item The theorem that P • B ≅ 𝟙 (essential${\_}$image P) and B • P ≅ 𝟙 D(∞-Grpd₀)
 \item The theorem that BG classifies \href{https://en.wikipedia.org/wiki/Principal_bundle}{G-principal bundles}
 \end{enumerate}
 
@@ -1363,297 +1394,6 @@ The conceptual difference between the first, second, and third Whitehead theorem
 \ \\
 \ \\
 
-\chapter{Chapter 1: Mathlib's Category Theory Section}
-
-I intend for this to cover some of the basics of Mathlib's category theory in the final document. For now, just know that we'll be using bicategories, the bicategory of categories, Cat, Functor, NaturalTransform, its Eilenberg-Moore theory constructions, and its material on simplicial sets.\\
-
-
-
-\section{Mathlib's \texttt{Category, Functor, NaturalTransform}}  
-
-Here I intend to cover some of the basics of Mathlib's Categories, Functors, and NaturalTransformations. I will for instance write out checks (\texttt{\#check}) of the main types, as well as some instructions as to how to create new examples of these structures for beginners.\\
-
-\section{Mathlib's bicategories}
-
-Even though we are only going to use strict bicategories, strict bicategories work terribly with type systems and necessitate the use of $\texttt{cast}$. Mathlib's bicategories are also enabled by $\texttt{aesop}$, which plays a nice role in inferring simple lemmas such as ones involving identity and associativity laws. The bicategory of categories is the only bicategory we'll really need, if at all.\\
-
-\section{Mathlib's adjunctions, monads, and comonads}
-
-We're going to make extensive use of adjunctions, specifically the ones involved in directed homotopy pullback, homotopy pullback, and homotopy kernel. These are each adjoint to a functor which post-composes with a morphism.\\
-
-We will also make a lot of use of monads and comonads.\\
-
-\section{Mathlib's Eilenberg-Moore theory}
-
-Mathlib has great constructions of the fundamentals in Eilenberg-Moore theory. It turns out that we'll not actually use any co-Eilenberg co-Moore theory. We'll make use of:
-
-\begin{enumerate}
-\item The monad corresponding to an adjunction
-\item The adjunction corresponding to a monad (Eilenberg-Moore adjunction)
-\end{enumerate}
-
-\section{Mathlib's pullbacks and products}
-
-Pullbacks and products are essential to the definition of the internal structures we're using. For our purposes, it makes the most sense to define pullbacks in a way which handles the assumption of their existence pleasently (and without much work for the user).\\
-
-In the material that follows, we will be interested in forming pullbacks for four of the six internal structures that we make. We also take care to establish the definition of a delooping of an endofunctor of Bicategory.Cat (Mathlib's category of categories). 
-
-
-
-\section{Mathlib's simplicial sets}
-
-Mathlib already has simplicial sets, along with the the definition of the n-simplices Δⁿ and the inner horns Λ[;]. We 
-
-\begin{enumerate}
-\item Mathlib's definition of Δⁿ
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check Δⁿ
-/-
-Goal: check Lean's n-simplices and 
--/
-
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Mathlib's definition of the inner horns
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Mathlib's definition of the inclusion of inner horns
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Defining the pushout of quasicategories
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Defining the boundary of Δⁿ
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-
-\item Pushouts in simplicial sets.
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-
-\item A lemma involving the colimit of a diagram made out of subsimplicial sets, establishing on certain grounds that this colimit is isomorphic to the whole simplicial set.
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Defining the quasicategory lifting condition using Mathlib's predefined inner horns
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Defining the Kan lifting condition using Mathlib's predefined horns
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Lifting conditions and products
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item The inner hom of simplicial sets (we need to see what Mathlib already has for this)
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Lifting conditions and the product of simplicial sets
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Lifting conditions and the path space [Δ¹,-]
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item 
-
-\item Lifting conditions and hom of simplicial sets
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Mathlib's cartesian closed category.
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Defining the cubes Cₙ = (Δ¹)ⁿ
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Defining the boundary of cubes Cₙ
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\item Defining the boundary of simplicial sets Δⁿ
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- #check ???
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-\end{enumerate}
-
-
-
-
-
-
-
 \part{∞-CATEGORIES}
 
 
@@ -1663,7 +1403,6 @@ This chapter and the next chapter are more technical and difficult than the rest
 
 \begin{enumerate}
 \item Defining D(∞-Cat) by formally inverting weak equivalences.
-
 \item Defining D(∞-Cat/C) by formally inverting weak equivalences.
 \item Defining a fibrant replacement functor for ∞-Cat
 \item Defining a fibrant replacement functor for ∞-Cat/C
@@ -2128,7 +1867,6 @@ Next we mention the internal presheaf principal, which says that the pullback of
 
 
 
-
 \section{P⃗}
 
 In this section, we construct the functor P⃗ mentioned in the introduction. Specifically, $\texttt{(Ω⃗ f)}$ forms a component of an internal category.\\
@@ -2285,7 +2023,6 @@ notation "P⃗_(" Γ ")" => path_space Γ
 \section{p⃗}
 
 In this final section of the chapter, we establish the internal presheaf principal, which says that \texttt{(ω⃗ f).obj g} forms a component of an internal \texttt{P⃗ f}-presheaf ω⃗ (which produces an internal presheaf). We write \texttt{ω⃗\_(Γ) f g : Shf\_(Γ) (P\_(Γ) f)} for this internal presheaf.\\
-
 
 The descent principal expresses how 
 
@@ -2739,8 +2476,6 @@ In this chapter we construct the Puppe sequence for π⃡ₙ. {\bf Note: one joi
 
 
 
-
-
 \chapter{Chapter 11: The Groupoid Fixed Point Principals}
 
 \section{\texttt{B⃡}}
@@ -2817,7 +2552,7 @@ def internal_groupoid_delooping_principal (Γ : pulback_system) : Type := D(Γ) 
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
 /-
--- def internal_groupoid_presheaf_delooping_principal (Γ : pullback_system) (C : D(Γ).Obj) : Type := Shf_(Γ) (P⃡ (𝟙_(D(Γ)) C)) ≅ Der_(Γ) C
+-- def internal_groupoid_presheaf_delooping_principal (Γ : pullback_system) (C : ∞-...) : Type := Shf_(Γ) (P⃡ (𝟙_(D(∞-Cat)) C)) ≅ Der_(∞-Cat) C
 -/
 
 \end{minted}
@@ -3408,7 +3143,7 @@ structure pullback_system where
 \end{tcolorbox}
 \end{center}
 
-The last axiom above is a bit tricky, but is related to Lurie's ``straightening" and ``unstraightening".\\
+The last axiom above is a bit tricky, but it is related to straightening and unstraightening.\\
 
 We use the notation like this:
 
@@ -3423,7 +3158,7 @@ notation "D(" Γ "⁄-)" => "Γ"
 \end{tcolorbox}
 \end{center}
 
-In the remainder of this section, I made some boxes which altogether filled out make pullback systems into a category. This is not essential for our three goals.\\
+In the remainder of this section, I made some boxes which altogether filled out make pullback systems into a category.\\
 
 %LEAN: defining a map of pullback systems
 \begin{center}
@@ -3437,7 +3172,6 @@ structure PulHom (Γ₁ : pullback_system) (Γ₂ : pullback_system) where
 -- plays well with CmpHom?
 -- Idn
 -- Cmp
-
 
 \end{minted}
 \end{tcolorbox}
@@ -3518,9 +3252,9 @@ notation "Loc" => Pul
 \end{tcolorbox}
 \end{center}
 
-\section{$\texttt{D}$}
+\section{The Pullback System of Infinity Categories}
 
-The pullback system will encapsulate both the information of D(∞-Cat) (in general this is written D(Γ)) and D(∞-Cat⁄C) (in general this is written D(Γ⁄C).\\
+The pullback system will be able to encapsulate information associated to ∞-Cat, D(∞-Cat), and D(∞-Cat⁄C), namely the derived directed homotopy pullback functor and its adjoint D(ω𛲔.hom f), derived postcomposition D(ωॱ.hom f).\\
 
 $D(Γ)$ is the ``Obj" component from the above structure:
 
@@ -3696,7 +3430,7 @@ Here we define the "false" map, which consists of a point mapping into the unive
 
 \section{$\texttt{χ\_(Γ)}$}
 
-The ``characteristic function" \texttt{χ : C ⭢ ∞\_(Γ)} of an ∞-functor F : D ⭢ C is a lot like the subobject classifier in a topos, but instead more like an overobject classifier.
+The $\textit{straightening}$ of \texttt{χ.obj F : D ⭢ ∞\_(∞-Cat)} an ∞-functor F : C ⭢ D is an object in ∞-Cat ⁄ C.
 
 %LEAN: defining χ_(Γ) : ???
 \begin{center}
@@ -3704,7 +3438,7 @@ The ``characteristic function" \texttt{χ : C ⭢ ∞\_(Γ)} of an ∞-functor F
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
 -- defining χ_(Γ) : ???
--- def characteristic_function (Γ : pullback_system) {_ : overobject_classifier Γ}
+-- def straightening (Γ : pullback_system) {_ : overobject_classifier Γ}
 
 \end{minted}
 \end{tcolorbox}
@@ -3724,20 +3458,13 @@ The ``characteristic function" \texttt{χ : C ⭢ ∞\_(Γ)} of an ∞-functor F
 The last two components of the pullback\_system strucuture (the very last of which is currently unfilled) ensure that straightening and unstraightening hold.\\
 
 
-\chapter{Chapter 3: Set}
+\chapter{Set}
 
 We next produce the simplest example of a pullback system, namely $\texttt{𝕊𝕖𝕥}$, whose object component $\texttt{𝕊𝕖𝕥.Obj}$ is the category $\texttt{Set}$ previously constructed. It is the only example of a pullback system that we construct besides the main one.\\
 
 I haven't filled any of this out, but it is much easier to see how set maps f : X ⭢ Y correspond to set maps Y ⭢ ∞\_(𝕊𝕖𝕥) than for the case of ∞-ℂ𝕒𝕥 (which is the mentioned pullback system from which we will obtain such objects as D(∞-Cat/C) and D(∞-Cat).\\
 
 Currently I don't have any of this filled out, but keep in mind that the analogue of ω⃗ here is simply pullback of sets (much simpler than directed derived directed homotopy pullback).\\
-
-
-
-\part{Geometric Maps}
-
-
-
 
 
 \chapter{Kan Extensions}
@@ -3767,7 +3494,6 @@ Currently I don't have any of this filled out, but keep in mind that the analogu
 
 -- def el (Γ : pullback_system) (C : D(Γ).Obj) (F : D(Γ).Hom C ∞_(Γ)) := (Γ.Pul C ∞_(Γ) F).Hom *_(Γ) ∞_(Γ) ⊥_(Γ)
 -- #check el
-
 /-
 
 -/
@@ -3783,9 +3509,9 @@ Currently I don't have any of this filled out, but keep in mind that the analogu
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- (Lan F).Obj
+-- (Lan F).α
 /-
-(Lan F).Obj 
+(Lan F).α
 -/
 
 \end{minted}
@@ -4185,6 +3911,7 @@ Currently I don't have any of this filled out, but keep in mind that the analogu
 \end{center}
 
 \chapter{Isbell Duality}
+
 Isbell duality is perhaps the latest development in category theory which we include. It emerged from efforts to understand the \href{https://ncatlab.org/nlab/show/duality+between+algebra+and+geometry}{duality between Geometry and Algebra}, but is not so widely recognized as the cannon established from Mac Lane's seminal text.
 
 
@@ -5259,7 +4986,6 @@ this should show that the map [Cᵒᵖ,Set] ⇄ [Dᵒᵖ,Set]
 \item \url{https://www.cse.chalmers.se/~coquand/cubicaltt.pdf}
 \item \url{https://arxiv.org/pdf/1607.04156.pdf}
 \item \url{https://carloangiuli.com}
-\item Emily Riehl and Michael Shulman. A type theory for synthetic ∞-categories. Higher Structures, 2017.
 \item \url{https://florisvandoorn.com/papers/dissertation.pdf}
 \item \url{https://florisvandoorn.com/papers/convolution.pdf}
 \end{enumerate}
