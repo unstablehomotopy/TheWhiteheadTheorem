@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{fontspec}
+% switch to a monospace font supporting more Unicode characters
+\setmonofont{JuliaMono}
+\usepackage{minted}
+% instruct minted to use our local theorem.py
+\newmintinline[lean]{lean4.py:Lean4Lexer -x}{bgcolor=white}
+\newminted[leancode]{lean4.py:Lean4Lexer -x}{fontsize=\footnotesize}
+%\usemintedstyle{tango}  % a nice, colorful theme
+\usemintedstyle{xcode}
+
+\begin{document}
+\begin{leancode}
+theorem funext {f₁ f₂ : ∀ (x : α), β x} (h : ∀ x, f₁ x = f₂ x) : f₁ = f₂ := by
+  show extfunApp (Quotient.mk' f₁) = extfunApp (Quotient.mk' f₂)
+  apply congrArg
+  apply Quotient.sound
+  exact h
+\end{leancode}
+
+\begin{leancode}
+  def horn_filling_condition (X : SSet) (n i : Nat): Prop :=
+    ∀ f : Λ[n, i] ⟶ X, ∃ g : Δ[n] ⟶ X,
+    f = SSet.hornInclusion n i ≫ g
+  
+  /-- A simplicial set is called an ∞-category if it has the extension property
+  for all inner horn inclusions `Λ[n, i] ⟶ Δ[n]`, n ≥ 2, 0 < i < n. -/
+  def InfCategory := {X : SSet //
+    ∀ (n i : Nat), n ≥ 2 ∧ 0 < i ∧ i < n → horn_filling_condition X n i}
+\end{leancode}
+\end{document}
