@@ -5,6 +5,8 @@
 \usepackage{ctex} % Chinese characters
 \usepackage{fontspec}
 
+\usepackage{hyperref}
+
 \usepackage{mathrsfs}  %\mathscr
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Lean code
@@ -133,11 +135,29 @@
 
 %%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[allowframebreaks]
-	\nocite{*}
-       \frametitle{References}
-       %\printbibliography
+\begin{frame}
+   \frametitle{Related Work}
+   
+   \begin{itemize}
+   \item Spectral Sequences in Homotopy Type Theory
+   	   \begin{itemize}
+	   \item Floris van Doorn et al.
+	   \item \url{https://github.com/cmu-phil/Spectral}
+	   \item Lean 2
+	   \end{itemize}
+	\item Myers, David Jaz, Hisham Sati, and Urs Schreiber. ``Topological Quantum Gates in Homotopy Type Theory.'' \textit{arXiv preprint arXiv:2303.02382} (2023).
+   	   \begin{itemize}
+	   \item simulating and verifying topological quantum gates
+	   \item Professor Schrieber suggested we formalize the construction of their ``Gauss-Manin connections.''
+	   \end{itemize}
+   \end{itemize}
 \end{frame}
+
+%\begin{frame}[allowframebreaks]
+%	\nocite{*}
+%       \frametitle{References}
+%       %\printbibliography
+%\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%
