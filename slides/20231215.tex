@@ -62,7 +62,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile] % The fragile option is needed when the content contains verbatim.
-\frametitle{Frame Title}
+\frametitle{Definition of $\infty$-category}
   \begin{leancode}
   def horn_filling_condition (X : SSet) (n i : Nat): Prop :=
     ∀ f : Λ[n, i] ⟶ X, ∃ g : Δ[n] ⟶ X,
@@ -74,6 +74,28 @@
   def InfCategory := {X : SSet //
     ∀ (n i : Nat),
     n ≥ 2 ∧ 0 < i ∧ i < n → horn_filling_condition X n i}
+    
+  #check (inferInstance : Category SSet) -- OK
+  #check (inferInstance : Category InfCategory) -- fail
+  \end{leancode}
+\end{frame}
+
+\begin{frame}[fragile] % The fragile option is needed when the content contains verbatim.
+\frametitle{Automatic typeclass inference?}
+  \begin{leancode}
+  -- instance : Category InfCategory := inferInstance -- ?
+  
+  -- instance : Category InfCategory := by -- ?
+  --   dsimp only [InfCategory]
+  --   infer_instance
+  
+  instance : Category InfCategory where
+    Hom X Y := NatTrans X.1 Y.1
+    id X := NatTrans.id X.1
+    comp α β := NatTrans.vcomp α β
+
+  #check (inferInstance : Category SSet) -- OK
+  #check (inferInstance : Category InfCategory) -- OK
   \end{leancode}
 \end{frame}
 
