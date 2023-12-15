@@ -60,6 +60,11 @@ namespace InfCategory
   def InfCategory := {X : SSet //
     ∀ (n i : Nat), n ≥ 2 ∧ 0 < i ∧ i < n → horn_filling_condition X n i}
 
+  /-- A Kan complex is a simplicial set X which has the extension property
+  for horn inclusions `Λ[n, i] ⟶ Δ[n]` for 0 ≤ i ≤ n. -/
+  def KanComplex := {X : SSet //
+    ∀ (n i : Nat), 0 ≤ i ∧ i ≤ n → horn_filling_condition X n i}
+
   #check (inferInstance : Category SSet)
   -- #check (inferInstance : Category InfCategory)
   -- instance : Category InfCategory := inferInstance -- ?
@@ -70,6 +75,11 @@ namespace InfCategory
     Hom X Y := NatTrans X.1 Y.1
     id X := NatTrans.id X.1
     comp α β := NatTrans.vcomp α β
+  instance : Category KanComplex where
+    Hom X Y := NatTrans X.1 Y.1
+    id X := NatTrans.id X.1
+    comp α β := NatTrans.vcomp α β
   #check (inferInstance : Category InfCategory)
+  #check (inferInstance : Category KanComplex)
 
 end InfCategory
