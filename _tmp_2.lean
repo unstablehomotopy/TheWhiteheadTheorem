@@ -4,6 +4,7 @@
 import Mathlib.CategoryTheory.Category.Basic
 
 import Mathlib.AlgebraicTopology.SimplicialSet
+import Mathlib.AlgebraicTopology.SimplicialObject
 
 namespace InfCategory
   open CategoryTheory
@@ -17,6 +18,29 @@ namespace InfCategory
   end
 
   section
+    variable (x : ℤ)
+    #check (x : ℕ)
+  end
+
+  section
+    def takeWhile (p : α → Bool) (as : Array α) : Array α :=
+      go 0 #[]
+    where
+      go (i : Nat) (r : Array α) : Array α :=
+        if h : i < as.size then
+          let a := as.get ⟨i, h⟩
+          if p a then
+            go (i+1) (r.push a)
+          else
+            r
+        else
+          r
+    termination_by go i r => as.size - i
+
+    #print Array
+  end
+
+  section
     variable (X Y : SSet)
     set_option trace.Meta.synthInstance true
     #print Category
@@ -27,6 +51,7 @@ namespace InfCategory
     #check NatTrans X Y
 
     def NatGtZero := {X : Nat // X > 0}
+    #check NatGtZero
     example : NatGtZero := ⟨1, by decide⟩
     section
       variable (n : NatGtZero)
@@ -83,3 +108,44 @@ namespace InfCategory
   #check (inferInstance : Category KanComplex)
 
 end InfCategory
+
+----------------------------------
+
+namespace SSet
+  #check horn
+  #check hornInclusion
+
+  #check CategoryTheory.Functor.prod
+
+  open Simplicial
+
+  /- The product of two simplicial sets -/
+  def prod (X : SSet.{u}) (Y : SSet.{u}) : SSet.{u} where
+    obj n := (X.obj n) × (Y.obj n)
+    map {n₁ n₂} f α := ⟨X.map f α.1, Y.map f α.2⟩
+    -- map {n₁ n₂} f α := {
+    --   fst := X.map f α.1
+    --   snd := Y.map f α.2
+    -- }
+
+  /- The internal hom -/
+  def hom (X : SSet) (Y : SSet) : SSet where
+    obj n := prod X (standardSimplex.obj (Opposite.unop n))
+
+  section
+    variable (X : SSet)
+    variable (n_nat : ℕ)
+    def n := SimplexCategory.mk n_nat
+    open Simplicial
+    #check X _[0] -- notation defined in SimplicialObject.lean
+    #check prod X (standardSimplex.obj (Opposite.unop n))
+  end
+
+  #check Opposite.op
+  #check Opposite.unop
+
+end SSet
+
+
+#check SSet
+#check CategoryTheory.SimplicialObject
