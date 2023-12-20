@@ -120,7 +120,7 @@ namespace SSet
   open Simplicial
 
   /- The product of two simplicial sets -/
-  def prod (X : SSet.{u}) (Y : SSet.{u}) : SSet.{u} where
+  def prod (X : SSet.{u}) (Y : SSet.{v}) : SSet.{max u v} where
     obj n := (X.obj n) × (Y.obj n)
     map {n₁ n₂} f α := ⟨X.map f α.1, Y.map f α.2⟩
     -- map {n₁ n₂} f α := {
@@ -129,16 +129,21 @@ namespace SSet
     -- }
 
   /- The internal hom -/
-  def hom (X : SSet) (Y : SSet) : SSet where
+  def hom (X : SSet.{u}) (Y : SSet.{v}) : SSet.{max u v} where
     obj n := prod X (standardSimplex.obj (Opposite.unop n))
 
   section
-    variable (X : SSet)
+    variable (X : SSet.{u}) (Y : SSet.{v})
+    #check prod X Y
     variable (n_nat : ℕ)
+    variable (m : SimplixCategroyᵒᵖ)
     def n := SimplexCategory.mk n_nat
     open Simplicial
     #check X _[0] -- notation defined in SimplicialObject.lean
-    #check prod X (standardSimplex.obj (Opposite.unop n))
+    #check n
+    #check Opposite.op m
+    #check Opposite.unop m
+    #check m.unop
   end
 
   #check Opposite.op
