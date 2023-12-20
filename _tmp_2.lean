@@ -117,6 +117,7 @@ namespace SSet
 
   #check CategoryTheory.Functor.prod
 
+  open CategoryTheory
   open Simplicial
 
   /- The product of two simplicial sets -/
@@ -129,8 +130,8 @@ namespace SSet
     -- }
 
   /- The internal hom -/
-  def hom (X : SSet.{u}) (Y : SSet.{v}) : SSet.{max u v} where
-    obj n := prod X (standardSimplex.obj (Opposite.unop n))
+  def hom (X : SSet.{u}) (Y : SSet.{u}) : SSet.{_} where
+    obj n := NatTrans (prod X (standardSimplex.obj (Opposite.unop n))) Y
 
   section
     variable (X : SSet.{u}) (Y : SSet.{v})
