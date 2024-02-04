@@ -439,11 +439,7 @@ Here are the packages that I use
 \begin{tcolorbox}[width=5.8in,colback={white},coltitle=white]
 \begin{center}
 \ \\
-\scalebox{3}{\texttt{𝕋𝕙𝕣𝕖𝕖 𝕎𝕙𝕚𝕥𝕖𝕙𝕖𝕒𝕕 𝕋𝕙𝕖𝕠𝕣𝕖𝕞𝕤}}\\
-\ \\
-\scalebox{3}{\texttt{𝕒𝕟𝕕}}\\
-\ \\
-\scalebox{3}{\texttt{𝕋𝕙𝕣𝕖𝕖 ℙ𝕦𝕡𝕡𝕖 𝕊𝕖𝕢𝕦𝕖𝕟𝕔𝕖𝕤}}\\
+\scalebox{3}{\texttt{Three Variations of the Whitehead Theorem}}\\
 \ \\
 \end{center}
 \end{tcolorbox}
@@ -452,13 +448,13 @@ Here are the packages that I use
 {\footnotesize
 \begin{center}
 \scalebox{1.1}{
-\begin{tabular}{|| l | l || l | l | l | l | l || l | l || l | l | l | l | l || } 
+\begin{tabular}{|| l | l || l | l | l  || l | l || l | l | l  || } 
 \hline
-$\texttt{IntCat}$ & \texttt{D(}∞\texttt{-Cat)} & Σ⃗ & Ω⃗ & P⃗ & B⃗ & E⃗ & $\texttt{InfPreShf}$ & \texttt{D(}∞\texttt{-Cat/C)} & σ⃗ & ω⃗ &  p⃗ & b⃗ & e⃗\\
+$\texttt{IntCat}$ & \texttt{D(}∞\texttt{-Cat)} & Σ⃗ & Ω⃗ & P⃗ & $\texttt{InfPreShf}$ & \texttt{D(}∞\texttt{-Cat/C)} & σ⃗ & ω⃗ & p⃗ \\
 \hline
-$\texttt{IntGrpd}$ & \texttt{D(}∞\texttt{-Grpd)} & Σ⃡ & Ω⃡ & P⃡ & B⃡ & E⃡ & $\texttt{IntAct}$ & \texttt{D(}∞\texttt{-Grpd/G)} & σ⃡ & ω⃡ & p⃡ & b⃡ & e⃡\\
+$\texttt{IntGrpd}$ & \texttt{D(}∞\texttt{-Grpd)} & Σ⃡ & Ω⃡ & P⃡  & $\texttt{IntAct}$ & \texttt{D(}∞\texttt{-Grpd/G)} & σ⃡ & ω⃡ & p⃡\\
  \hline
-$\texttt{IntGrp}$ & \texttt{D(}∞\texttt{-Grpd₀)} & Σ & Ω & P & B & E & $\texttt{IntAct₀}$ & \texttt{D(}∞\texttt{-Grpd₀/G₀)} & σ & ω & p & b & e\\
+$\texttt{IntGrp}$ & \texttt{D(}∞\texttt{-Grpd₀)} & Σ & Ω & P  & $\texttt{IntAct₀}$ & \texttt{D(}∞\texttt{-Grpd₀/G₀)} & σ & ω & p \\
  \hline
 \end{tabular}}
 \end{center}}
@@ -472,13 +468,6 @@ $\texttt{IntGrp}$ & \texttt{D(}∞\texttt{-Grpd₀)} & Σ & Ω & P & B & E & $\t
 \scalebox{0.85}{∀(X:D(∞-Grpd)),∀(Y:D(∞-Grpd)),∀(f:X ⭢ Y),∀(g:X ⭢ Y),(∀(n:Nat),(π⃡ₙ f = π⃡ₙ g)) → f = g}\\
 \ \\
 \scalebox{0.85}{∀(X:D(∞-Grpd₀)),∀(Y:D(∞-Grpd₀)),∀(f:X ⭢ Y),∀(g:X ⭢ Y),(∀(n:Nat),(πₙ f = πₙ g)) → f = g}\\
-\ \\
-\scalebox{0.85}{$\cdots$ ⭢ π⃗₁.obj C ⭢ π⃗₁.obj D $\circlearrowright$ π⃗₀.obj ((𝟙 C) • ((ω⃗.hom (𝟙 D)).hom f) ) ⭢ (π⃗₀.obj C) ⭢ (π⃗₀.obj D)}\\
-\ \\
-\scalebox{0.85}{$\cdots$ ⭢ π⃡₁.obj E ⭢ π⃡₁.obj B $\circlearrowright$ π⃡₀.obj ((𝟙 B) • ((ω⃡.hom (𝟙 C)).hom f) ) ⭢ (π⃡₀.obj E) ⭢ (π⃡₀.obj B)}\\
-\ \\
-\scalebox{0.85}{$\cdots$ ⭢ π₁.obj E₀ ⭢ π₁.obj B₀ ⭢ π₀.obj ((𝟙 B₀) • ((ω.hom (𝟙 B₀)).hom f)) ⭢ π₀.obj (E₀) ⭢ π₀.obj(B₀)}\\
-\ \\
 \end{center}
 \end{tcolorbox}
 \end{center}
@@ -493,10 +482,8 @@ $\texttt{IntGrp}$ & \texttt{D(}∞\texttt{-Grpd₀)} & Σ & Ω & P & B & E & $\t
 
 \begin{center}
 \texttt{Plans to prove three variations of the}\\
-\texttt{Whitehead theorem and the exactness of}\\
-\texttt{three variations of the Puppe sequence}\\
-\texttt{of homotopy groups in Lean 4, with}\\
-\texttt{extensive use of Mathlib 4}
+\texttt{Whitehead theorem of homotopy groups in}\\
+\texttt{Lean 4, with extensive use of Mathlib 4}
 \end{center}
 
 
@@ -706,17 +693,13 @@ $\texttt{F}$. \\
 \hline
  p⃡ C & The (remembrant derived) homotopy pullback functor  \\
  \hline \hline
- \multicolumn{2}{||c||}{\texttt{Chapter 11: }The Puppe Sequence for ∞-Groupoids} \\
-\hline \hline
-The Puppe sequence & \scalebox{0.8}{$\cdots$ ⭢ π⃡₁(E) ⭢ π⃡₁(B) $\circlearrowright$ π⃡₀(ω⃡ (𝟙 C) f) ⭢ π⃡₀(E) ⭢ π⃡₀(B)} \\
-\hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 12: }The Groupoid Fixed Point Principals} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 11: }The Groupoid Fixed Point Principals} \\
 \hline \hline
 The internal groupoid delooping principal & \texttt{D(}∞\texttt{-Grpd)} is deloopable internal categories in itself \\
 \hline
 The internal groupoid action delooping principal & \texttt{D(}∞\texttt{-Grpd⁄C)} is deloopable internal groupoid actions in itself \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 13: }The Category of Pairs of ∞-Groupoids} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 12: }The Category of Pairs of ∞-Groupoids} \\
 \hline \hline
 Pair Grpd & The category of pairs of ∞-groupoids \\
 \hline
@@ -728,7 +711,7 @@ D(Pair ∞-Grpd) & The derived category of pairs of ∞-groupoids \\
 \hline \hline
  \multicolumn{2}{||c||}{\texttt{PART III: } ∞-Categories} \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 14: }∞\texttt{-Cat}} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 13: }∞\texttt{-Cat}} \\
 \hline \hline
 D(∞-Cat) & The derived category of ∞-categories \\
 \hline
@@ -744,7 +727,7 @@ D(∞-Cat⁄C) & The derived category of ∞-categories over C \\
  \hline 
 π⃗ₙ : ∞-Cat ⭢ Set & The connected components functors\\
  \hline \hline
- \multicolumn{2}{||c||}{\texttt{Chapter 15: }The Whitehead Theorem for ∞-Categories} \\
+ \multicolumn{2}{||c||}{\texttt{Chapter 14: }The Whitehead Theorem for ∞-Categories} \\
 \hline \hline
 REP for ∞-categories & The cofibrant replacement functor for ∞-categories\\
 \hline
@@ -752,7 +735,7 @@ HEP for ∞-categories & The directed homotopy extension property\\
 \hline 
 Whitehead theorem (a) & A map $\texttt{F : D(}$∞$\texttt{-Cat).Hom E B}$ is determined by $\texttt{λ(n:Nat),}$π⃗ₙ$\texttt{F}$.\\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 16: Internal Categories and Internal Sheaves}} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 15: Internal Categories and Internal Sheaves}} \\
 \hline \hline
  $\texttt{IntCat Γ C}$   & The category of internal categories \\
  \hline
@@ -766,17 +749,13 @@ P⃗ : D(∞-Cat) ⭢ IntCat D(∞-Cat)  & The (remembrant derived) directed pat
  \hline 
 p⃗ C : D(∞-Cat⁄C) ⭢ InfPreShf D(∞-Cat⁄C) & The (remembrant derived) directed homotopy pullback functor\\
  \hline \hline
- \multicolumn{2}{||c||}{\texttt{Chapter 17: }The Puppe Sequence for ∞-Categories} \\
-\hline \hline
-The Puppe sequence & \scalebox{0.8}{$\cdots$ ⭢ π⃗₁(C) ⭢ π⃗₁(D) $\circlearrowright$ π⃗₀(ω⃗ (𝟙 D) f) ⭢ π⃗₀(C) ⭢ π⃗₀(D)}  \\
-\hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 18: }The Categorical Fixed Point Principals} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 16: }The Categorical Fixed Point Principals} \\
 \hline \hline
 The internal category principal & \texttt{D(}∞\texttt{-Cat)} is equivalent to deloopable internal categories in itself \\
 \hline
 The internal sheaf principal & \texttt{D(}∞\texttt{-Cat⁄C)} is equivalent to deloopable internal presheaves in itself \\
 \hline \hline 
-\multicolumn{2}{||c||}{\texttt{Chapter 19: }The Category of Pairs of ∞-Categories} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 17: }The Category of Pairs of ∞-Categories} \\
 \hline \hline
 Pair ∞-Cat & The category of pairs \\
 \hline
