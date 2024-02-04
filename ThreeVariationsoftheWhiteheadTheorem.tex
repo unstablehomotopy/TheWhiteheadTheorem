@@ -467,9 +467,9 @@ $\texttt{IntGrp}$ & \texttt{D(}∞\texttt{-Grpd₀)} & Σ & Ω & P & B & E & $\t
 \begin{center}
 \begin{tcolorbox}[width=6in,colback={white}]
 \begin{center}
-\scalebox{0.85}{∀(C:D⃗(∞-Cat)),∀(D:D⃗(∞-Cat)),∀(F:C ⭢ D),∀(G:C ⭢ D),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G}\\
+\scalebox{0.85}{∀(C:D(∞-Cat)),∀(D:D(∞-Cat)),∀(F:C ⭢ D),∀(G:C ⭢ D),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G}\\
 \ \\
-\scalebox{0.85}{∀(X:D⃡(∞-Grpd)),∀(Y:D⃡(∞-Grpd)),∀(f:X ⭢ Y),∀(g:X ⭢ Y),(∀(n:Nat),(π⃡ₙ f = π⃡ₙ g)) → f = g}\\
+\scalebox{0.85}{∀(X:D(∞-Grpd)),∀(Y:D(∞-Grpd)),∀(f:X ⭢ Y),∀(g:X ⭢ Y),(∀(n:Nat),(π⃡ₙ f = π⃡ₙ g)) → f = g}\\
 \ \\
 \scalebox{0.85}{∀(X:D(∞-Grpd₀)),∀(Y:D(∞-Grpd₀)),∀(f:X ⭢ Y),∀(g:X ⭢ Y),(∀(n:Nat),(πₙ f = πₙ g)) → f = g}\\
 \ \\
@@ -973,18 +973,20 @@ Take special note that each of these six involves a condition ensuring that the 
 \item D(IntAct₀ ∞-Grpd₀⁄X₀) PX₀ ⭢ IntAct₀ D(∞-Grpd₀⁄X₀) PX₀
 \end{enumerate}
 
-It may happen that a given object in the codomain of these six functors lies in their essential image. In this case, any of the six of B⃗, B⃡, B, b⃗, b⃡, b can be obtained as a quotient of six functors E⃗, E⃡, E, e⃗, e⃡, e, respectively:
+It may happen that a given object in the codomain of these six functors lies in their essential image. In this case, any of the six of B⃗, B⃡, B, b⃗, b⃡, b can sometimes but not always be obtained as a quotient of six functors E⃗, E⃡, E, e⃗, e⃡, e, respectively:
 
 \begin{enumerate}
 \item E⃗ : IntCat ∞-Cat ⭢ ∞-Cat
 \item E⃡ : IntGrpd ∞-Grpd ⭢ ∞-Grpd
 \item E : IntGrp ∞-Grpd₀ ⭢ ∞-Grpd₀
-\item e⃗ : InfPreShf ∞-Cat⁄C P⃗.obj C ⭢ ∞-Cat⁄C P⃗.obj C
+\item e⃗ : PreShf ∞-Cat⁄C P⃗.obj C ⭢ ∞-Cat⁄C P⃗.obj C
 \item e⃡ : IntAct ∞-Cat⁄C P⃡.obj X ⭢ ∞-Cat⁄C P⃡.obj X
 \item e : IntAct₀ ∞-Grpd₀⁄X₀ P.obj X₀ ⭢ ∞-Grpd₀⁄X₀ P.obj X₀
 \end{enumerate}
 
-We will make extensive use of Mathlib's \href{https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Category/Cat.html#CategoryTheory.Cat.bicategory}{bicategory of categories} and material on \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4//Mathlib/AlgebraicTopology/SimplicialSet.lean#L47-L48}{simplicial sets}. We further use Mathlib's pullbacks and \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Products/Basic.lean}{categorical products}, as well as their \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Monad/Algebra.lean}{Eilenberg-Moore theory constructions}. I'd like to extend my appreciation to Scott Morison, Eric Wieser, Floris Van Doorne, and all the contributors who have put their efforts into creating these robust features for Mathlib 4.\\
+The functors above will be defined as certain homotopy colimits, themselves certain coequilizers. On the condition that an internal category is internally filtered and internally cofiltered, we can further construct the B⃗.\\
+
+We will make extensive use of Mathlib's \href{https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Category/Cat.html#CategoryTheory.Cat.bicategory}{bicategory of categories} and material on \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4//Mathlib/AlgebraicTopology/SimplicialSet.lean#L47-L48}{simplicial sets}. We further use Mathlib's pullbacks and \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Products/Basic.lean}{categorical products}, as well as their \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Monad/Algebra.lean}{Eilenberg-Moore theory constructions}. I'd like to extend my appreciation to Scott Morison, Eric Wieser, Floris Van Doorn, and all the contributors who have put their efforts into creating these robust features for Mathlib 4.\\
 
 Altogether, the project gets the following ``periodic table" of 30 functors featured on the front cover:\\
 
@@ -1063,7 +1065,9 @@ None of these theorems are currently contained in Mathlib. The last four are fam
 \item The theorem that BG classifies \href{https://en.wikipedia.org/wiki/Principal_bundle}{G-principal bundles}
 \end{enumerate}
 
-These four established theorems and the eight novel ones form a good vignette for our project. In the work that ensues, we plan to take an approach which establishes the known results before the original ones, taking advantage of the predefined πₙ functors in $\texttt{Mathlib 4}$ in the process. This decision will also help to take an approach which is more gradual and incremental, and to start with smaller pull requests.\\
+These four established theorems and the eight novel ones form a good vignette for our project. Where previous approaches have considered comparisons between models such as the ones we have developed here, the goals above provide a unification which I would like to discuss in the section on pairs.\\
+
+In the work that ensues, we plan to take an approach which establishes the known results before the original ones, taking advantage of the predefined πₙ functors in $\texttt{Mathlib 4}$ in the process. This decision will also help to take an approach which is more gradual and incremental, and to start with smaller pull requests.\\
 
 
 \section{Introduction to \texttt{Lean 4}}
@@ -3440,6 +3444,19 @@ Relevant discussions on the $\texttt{Lean 4}$ Zulip:
 \begin{enumerate}
 \item 
 \end{enumerate}
+
+\iffalse
+Maintainers:
+
+For a list containing more detailed information, see https://leanprover-community.github.io/teams/maintainers.html
+
+Patrick Massot (@patrickmassot): documentation, topology, geometry
+
+- July 17th 1961- Mark Solm's birthday. On this date in 2024, I would like to reach out to him with my proposal for putting his dynamics in Lean 4. was 62 years, 5 months and 28 days ago, which is 22,826 days.
+- https://en.wikipedia.org/wiki/Hamiltonian_mechanics
+
+\fi
+
 
 Ideas for future applications:
 
