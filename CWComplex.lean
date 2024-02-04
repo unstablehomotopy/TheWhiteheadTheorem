@@ -64,8 +64,11 @@ namespace tmp_namespace_2
     simp [Metric.closedBall]
     exact le_of_eq hpt
   def S1_to_D2 : (𝕊^1) → (𝔻^2) := fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
-  theorem continuous_S1_to_D2 : Continuous S1_to_D2 := by
-    sorry
+  theorem continuous_S1_to_D2 : Continuous S1_to_D2 :=
+    ⟨ by
+      intro s hs
+      sorry
+    ⟩
   variable (cells : Type)
   def sumS := Σ (_ : cells), 𝕊^1
   def sumD := Σ (_ : cells), 𝔻^2
