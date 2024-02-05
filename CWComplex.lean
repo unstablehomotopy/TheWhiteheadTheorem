@@ -26,12 +26,20 @@ notation "𝔹^" n => Metric.ball (0 : EuclideanSpace ℝ <| Fin n) 1
 /- closed ball (disc) in ℝ^n with radius 1 -/
 notation "𝔻^" n => Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
 
+set_option trace.Meta.synthInstance true in
 #check TopologicalSpace (𝕊^1)
+#check TopologicalSpace <| Set.Elem (𝕊^1)
 #check TopologicalSpace (𝔻^2)
 #check TopCat.of (𝕊^1)
 #check TopCat.sigmaIsoSigma
 #check TopCat
+
 namespace tmp_namespace_1
+  variable (X : Type) [TopologicalSpace X]
+  set_option trace.Meta.synthInstance true in
+  #check TopologicalSpace { x : X | true } -- subset
+  --#check TopologicalSpace { x : X // true } -- subtype
+
   universe u v w
   def sigmaIsoSigma₁ {ι : Type u} (α : ι → TopCatMax.{u, v}) : ∐ α ≅ TopCat.of (Σi, α i) := sorry
   #check sigmaIsoSigma₁
@@ -67,8 +75,22 @@ namespace tmp_namespace_2
   theorem continuous_S1_to_D2 : Continuous S1_to_D2 :=
     ⟨ by
       intro s hs
-      sorry
+      rw [isOpen_induced_iff] at *
+      obtain ⟨t, ht, ht'⟩ := hs
+      use t, ht
+      rw [ht'.symm]
+      -- note: the two occurences of "Subtype.val" are not of the same type, so we can't apply Eq.trans ht'
+      ext ⟨xval, xprop⟩
+      repeat
+        rw [Set.mem_preimage]
+      constructor
+      repeat
+        intro h
+        dsimp [S1_to_D2] at *
+        exact h
     ⟩
+  #check Eq.trans
+
   variable (cells : Type)
   def sumS := Σ (_ : cells), 𝕊^1
   def sumD := Σ (_ : cells), 𝔻^2
