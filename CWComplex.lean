@@ -19,18 +19,20 @@ import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
 #check Metric.ball (0 : EuclideanSpace ℝ (Fin 3)) 1 -- open ball
 #check TopologicalSpace (Metric.ball (0 : EuclideanSpace ℝ (Fin 3)) 1)
 
-/- sphere in ℝ^n with radius 1 -/
-notation "𝕊^" n => Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
-/- open ball in ℝ^n with radius 1 -/
-notation "𝔹^" n => Metric.ball (0 : EuclideanSpace ℝ <| Fin n) 1
-/- closed ball (disc) in ℝ^n with radius 1 -/
-notation "𝔻^" n => Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
+/- sphere in ℝⁿ with radius 1 -/
+notation:0 "𝕊" n => Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
+/- open ball in ℝⁿ with radius 1 -/
+notation:0 "𝔹" n => Metric.ball (0 : EuclideanSpace ℝ <| Fin n) 1
+/- closed ball (disc) in ℝⁿ with radius 1 -/
+notation:0 "𝔻" n => Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
 
 set_option trace.Meta.synthInstance true in
-#check TopologicalSpace (𝕊^1)
-#check TopologicalSpace <| Set.Elem (𝕊^1)
-#check TopologicalSpace (𝔻^2)
-#check TopCat.of (𝕊^1)
+#check TopologicalSpace (Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| 0) 1) -- S (-1) is empty
+#check TopologicalSpace (𝕊 0)
+#check TopologicalSpace (𝕊 1)
+#check TopologicalSpace <| Set.Elem (𝕊 1)
+#check TopologicalSpace (𝔻 2)
+#check TopCat.of (𝕊 1)
 #check TopCat.sigmaIsoSigma
 #check TopCat
 
@@ -53,52 +55,109 @@ namespace tmp_namespace_1
   #check sigmaIsoSigma₄
 
   --set_option trace.Meta.synthInstance true in
-  --#check {cells : Type*} → (α : cells → TopCat) → (∀ i, α i = TopCat.of (𝕊^1)) → (∐ α : TopCat) --???
-  #check {cells : Type*} → TopCat.of (Σ (_ : cells), 𝕊^1)
+  --#check {cells : Type*} → (α : cells → TopCat) → (∀ i, α i = TopCat.of (𝕊 1)) → (∐ α : TopCat) --???
+  #check {cells : Type*} → TopCat.of (Σ (_ : cells), 𝕊 1)
 
   variable (cells : Type)
-  noncomputable def S1 := TopCat.of (𝕊^1) -- noncomputable because of ENNReal.instCanonicallyOrderedCommSemiringENNReal
-  noncomputable def sumS := TopCat.of (Σ (_ : cells), 𝕊^1)
-  noncomputable def sumD := TopCat.of (Σ (_ : cells), 𝔻^2)
+  noncomputable def S1 := TopCat.of (𝕊 1) -- noncomputable because of ENNReal.instCanonicallyOrderedCommSemiringENNReal
+  noncomputable def sumS := TopCat.of (Σ (_ : cells), 𝕊 1)
+  noncomputable def sumD := TopCat.of (Σ (_ : cells), 𝔻 2)
 end tmp_namespace_1
 
 namespace tmp_namespace_2
-  def S1_to_D2_₁ : (𝕊^1) → (𝔻^2) := by
-    intro ⟨pt, hpt⟩ -- pt is in ℝ^2; hpt says the distance from x to 0 is 1
+noncomputable section
+  def S1_to_D2_₁ : (𝕊 1) → (𝔻 2) := by
+    intro ⟨pt, hpt⟩ -- pt is in ℝ 2; hpt says the distance from x to 0 is 1
     simp [Metric.sphere] at hpt
     have x : ℝ := pt 0 -- x coordinate of the point
     have y : ℝ := pt 1
     use pt
     simp [Metric.closedBall]
     exact le_of_eq hpt
-  def S1_to_D2 : (𝕊^1) → (𝔻^2) := fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
-  theorem continuous_S1_to_D2 : Continuous S1_to_D2 :=
-    ⟨ by
-      intro s hs
-      rw [isOpen_induced_iff] at *
-      obtain ⟨t, ht, ht'⟩ := hs
-      use t, ht
-      rw [ht'.symm]
-      -- note: the two occurences of "Subtype.val" are not of the same type, so we can't apply Eq.trans ht'
-      ext ⟨xval, xprop⟩
-      repeat
-        rw [Set.mem_preimage]
-      constructor
-      repeat
-        intro h
-        dsimp [S1_to_D2] at *
-        exact h
-    ⟩
-  #check Eq.trans
+  def S1_to_D2 : (𝕊 1) → (𝔻 2) := fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
+  theorem continuous_S1_to_D2 : Continuous S1_to_D2 := ⟨by
+    intro s hs
+    rw [isOpen_induced_iff] at *
+    obtain ⟨t, ht, ht'⟩ := hs
+    use t, ht
+    rw [ht'.symm]
+    -- note: the two occurences of "Subtype.val" are not of the same type, so we can't apply Eq.trans ht'
+    ext ⟨xval, xprop⟩
+    repeat
+      rw [Set.mem_preimage]
+    constructor
+    repeat
+      intro h
+      dsimp [S1_to_D2] at *
+      exact h
+  ⟩
 
   variable (cells : Type)
-  def sumS := Σ (_ : cells), 𝕊^1
-  def sumD := Σ (_ : cells), 𝔻^2
+  def sumS1 := TopCat.of (Σ (_ : cells), 𝕊 1)
+  def sumD2 := TopCat.of (Σ (_ : cells), 𝔻 2)
+  def sumS1' := (Σ (_ : cells), 𝕊 1)
+  def sumD2' := (Σ (_ : cells), 𝔻 2)
+  -- def sumS1_to_sumD2 :
+  --   TopCat.of (Σ (_ : cells), 𝕊 1) → TopCat.of (Σ (_ : cells), 𝔻 2) :=
+  --   fun ⟨i, x⟩ => ⟨i, S1_to_D2 x⟩
+  -- def sumS1_to_sumD2' :
+  --   (Σ (_ : cells), 𝕊 1) → (Σ (_ : cells), 𝔻 2) :=
+  --   fun ⟨i, x⟩ => ⟨i, S1_to_D2 x⟩
+  -- #check sumS1_to_sumD2
+  -- #check sumS1_to_sumD2'
+  -- theorem continuous_sumS1_to_sumD2 : Continuous <| sumS1_to_sumD2 cells := by
+  --   apply continuous_sigma
+  --   intro i
+  --   dsimp [sumS1_to_sumD2]
+  --   sorry
+  def sumS1_to_sumD2:
+    TopCat.of (Σ (_ : cells), 𝕊 1) → TopCat.of (Σ (_ : cells), 𝔻 2) :=
+    Sigma.map id fun (_ : cells) (x : 𝕊 1) => S1_to_D2 x
+  theorem continuous_sumS1_to_sumD2 : Continuous <| sumS1_to_sumD2 cells := by
+    apply Continuous.sigma_map
+    intro _
+    apply continuous_S1_to_D2
+  #check continuous_sigmaMk
+  #check continuous_sigma_map
+  #check Continuous.sigma_map
+  #check continuous_inclusion
+  --theorem continuous_sumS1_to_sumD2 : Continuous sumS1_to_sumD2 := by
+end
 end tmp_namespace_2
 
 --universe u v w x
 --variable {F : Type*} {X : Type u} {X' : Type v} {Y : Type w} {Z : Type x} {ι : Type*}
 --variable [TopologicalSpace X] [TopologicalSpace X'] [TopologicalSpace Y]
+
+def CellBorderInclusion (n : ℕ) : (𝕊 n) → (𝔻 n + 1) := fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
+
+theorem continuous_cellBorderInclusion (n : ℕ) : Continuous (CellBorderInclusion n) :=
+  ⟨by
+    intro s hs
+    rw [isOpen_induced_iff] at *
+    obtain ⟨t, ht, ht'⟩ := hs
+    use t, ht
+    rw [ht'.symm]
+    ext ⟨xval, xprop⟩
+    repeat
+      rw [Set.mem_preimage]
+    constructor
+    repeat
+      intro h
+      dsimp [CellBorderInclusion] at *
+      exact h
+  ⟩
+
+def SigmaCellBorderInclusion (n : ℕ) (cells : Type) :
+  TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of (Σ (_ : cells), 𝔻 n + 1) :=
+  Sigma.map id fun _ x => CellBorderInclusion n x
+
+theorem continuous_sigmaCellBorderInclusion (n : ℕ) (cells : Type) :
+  Continuous (SigmaCellBorderInclusion n cells) := by
+    apply Continuous.sigma_map
+    intro _
+    apply continuous_cellBorderInclusion
+
 
 -- A type witnessing that X' is obtained from X by attaching n-cells
 structure AttachCells (X X' : Type*) [TopologicalSpace X] [TopologicalSpace X'] (n : ℕ) where
@@ -106,25 +165,25 @@ structure AttachCells (X X' : Type*) [TopologicalSpace X] [TopologicalSpace X'] 
   cells : Type
   inclusion : C(X, X') -- rewrite using pushouts?
 
-structure CWComplex where
-  /- Skeleta -/
-  sk : ℤ → TopCat
-  /- Every n-skeleton for n < 0 is empty. -/
-  sk_neg_empty : ∀ n < 0, sk n = Empty
-  /- For n ≥ 0, the (n-1)-skeleton is obtained from the n-skeleton by attaching n-cells. -/
-  attach_cells : (n : ℕ) → AttachCells (sk (n - 1)) (sk n) n
+-- structure CWComplex where
+--   /- Skeleta -/
+--   sk : ℤ → TopCat
+--   /- Every n-skeleton for n < 0 is empty. -/
+--   sk_neg_empty : ∀ n < 0, sk n = Empty
+--   /- For n ≥ 0, the (n-1)-skeleton is obtained from the n-skeleton by attaching n-cells. -/
+--   attach_cells : (n : ℕ) → AttachCells (sk (n - 1)) (sk n) n
 
 -- -- A type witnessing that X' is obtained from X by attaching n-cells
 -- structure AttachCells (X X' : Type*) [TopologicalSpace X] [TopologicalSpace X'] (n : ℕ) where
 --   inclusion : C(X, X')
 --   cells : Type
--- -- should also have, for each i in cells a map ∂D^n ⟶ X, and
+-- -- should also have, for each i in cells a map ∂D n ⟶ X, and
 -- -- a homeomorphism between X' and the result of gluing these n-cells to X
 
--- structure CWComplex where
---   /- Skeleta -/
---   sk : ℕ → TopCat
---   /- The 0-skeleton is a discrete topological space. -/
---   discrete_sk_zero : DiscreteTopology (sk 0)
---   /- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-cells. -/
---   attach : (n : ℕ) → AttachCells (sk n) (sk (n + 1)) (n + 1)
+structure CWComplex where
+  /- Skeleta -/
+  sk : ℕ → TopCat
+  /- The 0-skeleton is a discrete topological space. -/
+  discrete_sk_zero : DiscreteTopology (sk 0)
+  /- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-cells. -/
+  attach : (n : ℕ) → AttachCells (sk n) (sk (n + 1)) (n + 1)
