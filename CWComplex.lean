@@ -156,41 +156,40 @@ theorem continuous_cellBorderInclusion (n : ℕ) : Continuous (CellBorderInclusi
   ⟩
 
 def SigmaCellBorderInclusion (n : ℕ) (cells : Type) :
-  TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of (Σ (_ : cells), 𝔻 n + 1) :=
-    Sigma.map id fun _ x => CellBorderInclusion n x
+    TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of (Σ (_ : cells), 𝔻 n + 1) :=
+  Sigma.map id fun _ x => CellBorderInclusion n x
 
 theorem continuous_sigmaCellBorderInclusion (n : ℕ) (cells : Type) :
-  Continuous (SigmaCellBorderInclusion n cells) := by
-    apply Continuous.sigma_map
-    intro _
-    apply continuous_cellBorderInclusion
+    Continuous (SigmaCellBorderInclusion n cells) := by
+  apply Continuous.sigma_map
+  intro _
+  apply continuous_cellBorderInclusion
 
 def BundledSigmaCellBorderInclusion (n : ℕ) (cells : Type) :
-  ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of (Σ (_ : cells), 𝔻 n + 1)) :=
-    ⟨SigmaCellBorderInclusion n cells, continuous_sigmaCellBorderInclusion n cells⟩
+    ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of (Σ (_ : cells), 𝔻 n + 1)) :=
+  ⟨SigmaCellBorderInclusion n cells, continuous_sigmaCellBorderInclusion n cells⟩
 
-def SigmaAttachMap (X : Type) [TopologicalSpace X]
-  (n : ℕ) (cells : Type) (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
-  TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of X :=
-    fun ⟨i, x⟩ => attach_maps i x
+def SigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cells : Type)
+    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
+    TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of X :=
+  fun ⟨i, x⟩ => attach_maps i x
 
-theorem continuous_sigmaAttachMap (X : Type) [TopologicalSpace X]
-  (n : ℕ) (cells : Type) (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
-  Continuous (SigmaAttachMap X n cells attach_maps) := by
-    apply continuous_sigma
-    exact fun i => ContinuousMap.continuous (attach_maps i)
+theorem continuous_sigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cells : Type)
+    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
+    Continuous (SigmaAttachMap X n cells attach_maps) := by
+  apply continuous_sigma
+  exact fun i => (attach_maps i).continuous
 
-def BundledSigmaAttachMap (X : Type) [TopologicalSpace X]
-  (n : ℕ) (cells : Type) (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
-  ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of X) :=
-    ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
+def BundledSigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cells : Type)
+    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
+    ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of X) :=
+  ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
 
 -- A type witnessing that X' is obtained from X by attaching n-cells
 structure AttachCells (X X' : Type) [TopologicalSpace X] [TopologicalSpace X'] (n : ℕ) where
   /- The index type over n-cells -/
   cells : Type
   attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)
-  --attach_maps : cells → ContinuousMap (𝕊 n) X
   iso_pushout : (TopCat.of X') ≅ CategoryTheory.Limits.pushout
     (BundledSigmaCellBorderInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
