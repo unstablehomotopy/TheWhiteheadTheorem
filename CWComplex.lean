@@ -178,7 +178,7 @@ theorem continuous_sigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cel
     (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
     Continuous (SigmaAttachMap X n cells attach_maps) := by
   apply continuous_sigma
-  exact fun i => (attach_maps i).continuous
+  exact fun i => (attach_maps i).continuous_toFun
 
 def BundledSigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cells : Type)
     (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
