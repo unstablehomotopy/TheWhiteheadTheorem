@@ -170,32 +170,30 @@ def BundledSigmaCellBorderInclusion (n : ℕ) (cells : Type) :
     ⟨SigmaCellBorderInclusion n cells, continuous_sigmaCellBorderInclusion n cells⟩
 
 def SigmaAttachMap (X : Type) [TopologicalSpace X]
-  (n : ℕ) (cells : Type) (attach_maps : cells → TopCat.of (𝕊 n) → X) :
+  (n : ℕ) (cells : Type) (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
   TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of X :=
     fun ⟨i, x⟩ => attach_maps i x
 
 theorem continuous_sigmaAttachMap (X : Type) [TopologicalSpace X]
-  (n : ℕ) (cells : Type) (attach_maps : cells → TopCat.of (𝕊 n) → X)
-  (continuous_attach_maps : (i : cells) → Continuous (attach_maps i)) :
+  (n : ℕ) (cells : Type) (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
   Continuous (SigmaAttachMap X n cells attach_maps) := by
     apply continuous_sigma
-    apply continuous_attach_maps
+    exact fun i => ContinuousMap.continuous (attach_maps i)
 
 def BundledSigmaAttachMap (X : Type) [TopologicalSpace X]
-  (n : ℕ) (cells : Type) (attach_maps : cells → TopCat.of (𝕊 n) → X)
-  (continuous_attach_maps : (i : cells) → Continuous (attach_maps i)) :
+  (n : ℕ) (cells : Type) (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
   ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of X) :=
-    ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps continuous_attach_maps⟩
+    ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
 
 -- A type witnessing that X' is obtained from X by attaching n-cells
 structure AttachCells (X X' : Type) [TopologicalSpace X] [TopologicalSpace X'] (n : ℕ) where
   /- The index type over n-cells -/
   cells : Type
-  attach_maps : cells → (𝕊 n) → X
-  continuous_attach_maps : (i : cells) → Continuous (attach_maps i)
+  attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)
+  --attach_maps : cells → ContinuousMap (𝕊 n) X
   iso_pushout : (TopCat.of X') ≅ CategoryTheory.Limits.pushout
     (BundledSigmaCellBorderInclusion n cells)
-    (BundledSigmaAttachMap X n cells attach_maps continuous_attach_maps)
+    (BundledSigmaAttachMap X n cells attach_maps)
   -- pushout : (TopCat.of X') ≅ @CategoryTheory.Limits.pushout TopCat _
   --   (TopCat.of (Σ (_ : cells), 𝕊 n))
   --   (TopCat.of (Σ (_ : cells), 𝔻 n + 1))
