@@ -194,12 +194,6 @@ structure AttachCells (X X' : Type) [TopologicalSpace X] [TopologicalSpace X'] (
   iso_pushout : (TopCat.of X') ≅ CategoryTheory.Limits.pushout
     (BundledSigmaCellBorderInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
-  -- pushout : (TopCat.of X') ≅ @CategoryTheory.Limits.pushout TopCat _
-  --   (TopCat.of (Σ (_ : cells), 𝕊 n))
-  --   (TopCat.of (Σ (_ : cells), 𝔻 n + 1))
-  --   (TopCat.of X)
-  --   (BundledSigmaCellBorderInclusion n cells)
-  --   (BundledSigmaAttachMap X n cells attach_maps continuous_attach_maps) _
 
 -- structure CWComplex where
 --   /- Skeleta -/
@@ -208,13 +202,6 @@ structure AttachCells (X X' : Type) [TopologicalSpace X] [TopologicalSpace X'] (
 --   sk_neg_empty : ∀ n < 0, sk n = Empty
 --   /- For n ≥ 0, the (n-1)-skeleton is obtained from the n-skeleton by attaching n-cells. -/
 --   attach_cells : (n : ℕ) → AttachCells (sk (n - 1)) (sk n) n
-
--- -- A type witnessing that X' is obtained from X by attaching n-cells
--- structure AttachCells (X X' : Type*) [TopologicalSpace X] [TopologicalSpace X'] (n : ℕ) where
---   inclusion : C(X, X')
---   cells : Type
--- -- should also have, for each i in cells a map ∂D n ⟶ X, and
--- -- a homeomorphism between X' and the result of gluing these n-cells to X
 
 structure CWComplex where
   /- Skeleta -/
