@@ -169,28 +169,28 @@ def BundledSigmaCellBorderInclusion (n : ℕ) (cells : Type) :
     ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of (Σ (_ : cells), 𝔻 n + 1)) :=
   ⟨SigmaCellBorderInclusion n cells, continuous_sigmaCellBorderInclusion n cells⟩
 
-def SigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
-    TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of X :=
+def SigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
+    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X) :
+    TopCat.of (Σ (_ : cells), 𝕊 n) → X :=
   fun ⟨i, x⟩ => attach_maps i x
 
-theorem continuous_sigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
+theorem continuous_sigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
+    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X) :
     Continuous (SigmaAttachMap X n cells attach_maps) := by
   apply continuous_sigma
   exact fun i => (attach_maps i).continuous_toFun
 
-def BundledSigmaAttachMap (X : Type) [TopologicalSpace X] (n : ℕ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)) :
-    ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of X) :=
+def BundledSigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
+    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X) :
+    ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) X :=
   ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
 
 -- A type witnessing that X' is obtained from X by attaching n-cells
-structure AttachCells (X X' : Type) [TopologicalSpace X] [TopologicalSpace X'] (n : ℕ) where
+structure AttachCells (X X' : TopCat) (n : ℕ) where
   /- The index type over n-cells -/
   cells : Type
-  attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) (TopCat.of X)
-  iso_pushout : (TopCat.of X') ≅ CategoryTheory.Limits.pushout
+  attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X
+  iso_pushout : X' ≅ CategoryTheory.Limits.pushout
     (BundledSigmaCellBorderInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
 
@@ -209,5 +209,6 @@ structure CWComplex where
   discrete_sk_zero : DiscreteTopology (sk 0)
   /- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-cells. -/
   attach_cells : (n : ℕ) → AttachCells (sk n) (sk (n + 1)) (n + 1)
+  --closure_finite
 
 end
