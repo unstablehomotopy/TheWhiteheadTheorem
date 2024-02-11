@@ -156,7 +156,7 @@ theorem continuous_cellBorderInclusion (n : ℕ) : Continuous (CellBorderInclusi
   ⟩
 
 def SigmaCellBorderInclusion (n : ℕ) (cells : Type) :
-    TopCat.of (Σ (_ : cells), 𝕊 n) → TopCat.of (Σ (_ : cells), 𝔻 n + 1) :=
+    (Σ (_ : cells), 𝕊 n) → (Σ (_ : cells), 𝔻 n + 1) :=
   Sigma.map id fun _ x => CellBorderInclusion n x
 
 theorem continuous_sigmaCellBorderInclusion (n : ℕ) (cells : Type) :
@@ -170,18 +170,18 @@ def BundledSigmaCellBorderInclusion (n : ℕ) (cells : Type) :
   ⟨SigmaCellBorderInclusion n cells, continuous_sigmaCellBorderInclusion n cells⟩
 
 def SigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X) :
-    TopCat.of (Σ (_ : cells), 𝕊 n) → X :=
+    (attach_maps : cells → ContinuousMap (𝕊 n) X) :
+    (Σ (_ : cells), 𝕊 n) → X :=
   fun ⟨i, x⟩ => attach_maps i x
 
 theorem continuous_sigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X) :
+    (attach_maps : cells → ContinuousMap (𝕊 n) X) :
     Continuous (SigmaAttachMap X n cells attach_maps) := by
   apply continuous_sigma
   exact fun i => (attach_maps i).continuous_toFun
 
 def BundledSigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X) :
+    (attach_maps : cells → ContinuousMap (𝕊 n) X) :
     ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) X :=
   ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
 
@@ -189,7 +189,7 @@ def BundledSigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
 structure AttachCells (X X' : TopCat) (n : ℕ) where
   /- The index type over n-cells -/
   cells : Type
-  attach_maps : cells → ContinuousMap (TopCat.of (𝕊 n)) X
+  attach_maps : cells → ContinuousMap (𝕊 n) X
   iso_pushout : X' ≅ CategoryTheory.Limits.pushout
     (BundledSigmaCellBorderInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
