@@ -773,6 +773,10 @@ D(Pair ∞-Cat) & The derived category of pairs \\
 \newpage
 \section{Introduction}
 
+\iffalse
+"equivalence"
+\fi
+
 {\bf The main goals of this repository is to prove three variations of the Whitehead theorem and to establish three variations of the Puppe sequence}. It is important that initial pull requests stemming from our work remain basic and accessible; we hope to make progress which is gradual and incremental.\\
 
 Besides this goal, we have two others. Here are the three Whitehead Theorems which form our main three goals:
@@ -782,6 +786,16 @@ Besides this goal, we have two others. Here are the three Whitehead Theorems whi
 \item (The Whitehead theorem for ∞-groupoids) ∀(E:D(∞-Grpd)),∀(B:D(∞-Grpd)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃡ₙ F = π⃡ₙ G)) → F = G, where π⃡ₙ is notation for π⃡ n.
 \item (The Whitehead theorem for based connected ∞-groupoids) ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n.
 \end{enumerate}
+
+We also maintain a fourth Whitehead theorem for Hilbert space:
+
+\begin{enumerate}
+\item (The Whitehead theorem for Hilbert space) ∀(v:l₂),∀(w:l₂),∀(n:Nat),∀(a:πᵢ(v)),∀(b:πⱼ(v)), where πᵢ : l₂ ⭢ ℂ is notation for ⟨eᵢ,-⟩
+\end{enumerate}
+
+\iffalse
+We keep a separate, fourth whitehead theorem for Hilbert space, like so:
+\fi
 
 We have stated these theorems in the above in an order reversed from the order of its implementation. This choice 
 
