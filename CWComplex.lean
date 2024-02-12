@@ -193,7 +193,7 @@ structure AttachCells (X X' : TopCat) (n : ℕ) where
   /- The index type over n-cells -/
   cells : Type
   attach_maps : cells → ContinuousMap (𝕊 n) X
-  iso_pushout : X' ≅ CategoryTheory.Limits.pushout
+  iso_pushout : X' ≅ Limits.pushout
     (BundledSigmaCellBorderInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
 
@@ -213,20 +213,30 @@ structure CWComplex where
   /- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-cells. -/
   attach_cells : (n : ℕ) → AttachCells (sk n) (sk (n + 1)) (n + 1)
 
+-- The inclusion map from X to X', given that X' is obtained from X by attaching n-cells
+def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : X ⟶ X'
+  := @Limits.pushout.inr TopCat _ _ _ X
+      (BundledSigmaCellBorderInclusion n att.cells)
+      (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
+
+-- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
+def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+  AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
+
 section
   #check CategoryTheory.Limits.colimit
 
-  set_option trace.Meta.synthInstance true
+  --set_option trace.Meta.synthInstance true
   #check (Functor ℕ ℕ)
   #check (Preorder.smallCategory ℕ)
 
   def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
-    obj := fun n => X.sk n
-    map := sorry
+    obj n := X.sk n
+    map f := sorry
+    -- (f : n ⟶ m)
 end
 
-/-- The topology on a CW-complex.
--/
+-- The topology on a CW-complex.
 instance instTopologicalSpaceCWComplex : TopologicalSpace CWComplex :=
   sorry
 
