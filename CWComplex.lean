@@ -224,8 +224,8 @@ def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
 -- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
-def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m)
-    : X.sk n ⟶ X.sk m :=
+def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
+    X.sk n ⟶ X.sk m :=
   if h : n < m then by
     have h' : n + 1 ≤ m := by linarith
     exact CWComplexSkeletaInclusion' X n ≫ CWComplexSkeletaInclusion X (n + 1) m h'
@@ -251,9 +251,14 @@ section
       have : n ≤ m := Quiver.Hom.le f
       exact CWComplexSkeletaInclusion X n m this
     map_id := by
-
+      intro n
+      dsimp
+      dsimp [CWComplexSkeletaInclusion]
+      have n_le_n : n ≤ n := Nat.le.refl
       sorry
-    map_comp := sorry
+    map_comp := by
+      aesop
+      sorry
 end
 
 -- The topology on a CW-complex.
