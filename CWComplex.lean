@@ -220,8 +220,22 @@ def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : 
       (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
 -- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
-def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
+
+-- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
+def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m)
+    : X.sk n ⟶ X.sk m :=
+  if h : n < m then by
+    have h' : n + 1 ≤ m := by linarith
+    exact CWComplexSkeletaInclusion' X n ≫ CWComplexSkeletaInclusion X (n + 1) m h'
+  else by
+    have h' : n = m := eq_of_le_of_not_lt n_le_m h
+    rw [<- h']
+    exact 𝟙 (X.sk n)
+  termination_by m - n
+
+#print CWComplexSkeletaInclusion
 
 section
   #check CategoryTheory.Limits.colimit
@@ -232,8 +246,14 @@ section
 
   def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
     obj n := X.sk n
-    map f := sorry
-    -- (f : n ⟶ m)
+    map := @fun n m f => by
+      dsimp
+      have : n ≤ m := Quiver.Hom.le f
+      exact CWComplexSkeletaInclusion X n m this
+    map_id := by
+
+      sorry
+    map_comp := sorry
 end
 
 -- The topology on a CW-complex.
