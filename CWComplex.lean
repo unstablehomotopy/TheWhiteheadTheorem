@@ -11,7 +11,10 @@ import Mathlib.Topology.Order
 import Mathlib.Topology.MetricSpace.Basic
 import Mathlib.CategoryTheory.Limits.Shapes.Products
 import Mathlib.CategoryTheory.Limits.Shapes.Pullbacks
+import Mathlib.CategoryTheory.Category.Preorder
 import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
+
+open CategoryTheory
 
 #check TopCat.sigmaIsoSigma
 #check EuclideanSpace ℝ (Fin 3)
@@ -122,11 +125,11 @@ noncomputable section
   #check Continuous.sigma_map
   #check continuous_inclusion
   --theorem continuous_sumS1_to_sumD2 : Continuous sumS1_to_sumD2 := by
+
+  #check @CategoryTheory.Limits.pushout TopCat _
+  #check CategoryTheory.Limits.HasPushout
 end
 end tmp_namespace_2
-
-#check CategoryTheory.Limits.pushout
-
 
 ----------------------------------------------------------
 
@@ -209,6 +212,22 @@ structure CWComplex where
   discrete_sk_zero : DiscreteTopology (sk 0)
   /- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-cells. -/
   attach_cells : (n : ℕ) → AttachCells (sk n) (sk (n + 1)) (n + 1)
-  --closure_finite
+
+section
+  #check CategoryTheory.Limits.colimit
+
+  set_option trace.Meta.synthInstance true
+  #check (Functor ℕ ℕ)
+  #check (Preorder.smallCategory ℕ)
+
+  def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
+    obj := fun n => X.sk n
+    map := sorry
+end
+
+/-- The topology on a CW-complex.
+-/
+instance instTopologicalSpaceCWComplex : TopologicalSpace CWComplex :=
+  sorry
 
 end
