@@ -259,6 +259,9 @@ section
     map_comp := by
       aesop
       sorry
+
+  #eval [1, 2, 3, 4, 5].foldl (·*·) 1
+  #check List.foldl_assoc
 end
 
 -- The topology on a CW-complex.
