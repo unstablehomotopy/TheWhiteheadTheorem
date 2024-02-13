@@ -6,14 +6,14 @@ import Mathlib.Tactic
 import Mathlib.Data.List.Basic
 
 
-structure Vector (n : Nat) where
+structure Vector' (n : Nat) where
   data : List Nat
   lenc : (List.length data = n)
 
-def append (a : Vector n) (b : Vector m) : Vector (n + m) :=
+def append (a : Vector' n) (b : Vector' m) : Vector' (n + m) :=
   ⟨a.data ++ b.data, by simp only [List.length_append, a.lenc, b.lenc]⟩
 
-theorem zero_append (h : 0 + n = n) (a : Vector n) :
+theorem zero_append (h : 0 + n = n) (a : Vector' n) :
   h ▸ (append ⟨[], by decide⟩ a) = a := by
   simp [append]
   revert h
