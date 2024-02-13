@@ -222,7 +222,7 @@ structure AttachCells (X X' : TopCat) (n : ℕ) where
 --   /- For n ≥ 0, the (n-1)-skeleton is obtained from the n-skeleton by attaching n-cells. -/
 --   attach_cells : (n : ℕ) → AttachCells (sk (n - 1)) (sk n) n
 
-structure CWComplex where
+class CWComplex where
   /- Skeleta -/
   sk : ℕ → TopCat
   /- The 0-skeleton is a discrete topological space. -/
@@ -291,7 +291,8 @@ def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
     exact p n m l n_le_m m_le_l (Nat.le_trans n_le_m m_le_l)
 
 -- The topology on a CW-complex.
-instance instTopologicalSpaceCWComplex : TopologicalSpace CWComplex :=
+-- reference: https://www.moogle.ai/search/raw?q=ring%20topology
+instance instTopologicalSpaceCWComplex {X : Type u} [CWComplex X] : TopologicalSpace X :=
   sorry
 
 end
