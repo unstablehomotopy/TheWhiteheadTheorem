@@ -246,25 +246,112 @@ section
   #check (Functor ℕ ℕ)
   #check (Preorder.smallCategory ℕ)
 
+  #check Eq.mpr
+
+  def range' : (start len : Nat) → List Nat
+  | _, 0   => []
+  | s, n+1 => s :: range' (s+1) n
+
+  example : range' n 0 = [] := rfl
+  example : range' n (n - n) = [] := by
+    have hzero : n - n = 0 := Nat.sub_self n
+    rw [hzero]
+    rfl
+
+  example : CWComplexSkeletaInclusion' X n 0 = 𝟙 (X.sk n) := rfl
+  lemma n_add_n_minus_n (X : CWComplex) (n : ℕ) : (X.sk n ⟶ X.sk (n + (n - n))) = (X.sk n ⟶ X.sk n) :=
+    by rw [Nat.add_sub_of_le Nat.le.refl]
+  def id_n_minus_n (X : CWComplex) (n : ℕ) : (X.sk n) ⟶ X.sk (n + (n - n)) := by
+    --have : n + (n - n) = n := Nat.add_sub_of_le Nat.le.refl
+    rw [Nat.add_sub_of_le Nat.le.refl]
+    exact 𝟙 (X.sk n)
+  #print id_n_minus_n
+  def id_n_minus_n' (X : CWComplex) (n : ℕ) : (X.sk n) ⟶ X.sk (n + (n - n)) :=
+    Eq.mpr (n_add_n_minus_n X n) (𝟙 (X.sk n))
+  -- example : CWComplexSkeletaInclusion' X n (n - n) = 𝟙 (X.sk n) := sorry -- type error!
+
+  theorem X_0_id (X : CWComplex) :
+      Eq.mp (n_add_n_minus_n X 0) (CWComplexSkeletaInclusion' X 0 (0 - 0)) = 𝟙 (X.sk 0) := rfl
+  #print X_0_id
+  theorem X_1_id (X : CWComplex) :
+    Eq.mp (n_add_n_minus_n X 1) (CWComplexSkeletaInclusion' X 1 (1 - 1)) = 𝟙 (X.sk 1) := rfl
+  #print X_1_id
+  theorem X_n_id (X : CWComplex) : (n : ℕ) ->
+      Eq.mp (n_add_n_minus_n X n) (CWComplexSkeletaInclusion' X n (n - n)) = 𝟙 (X.sk n)
+    | 0     => by
+      simp
+      rfl
+    | 1     => by
+      simp
+      rfl
+    | 100     => by
+      simp
+      rfl
+    | n + 1 => by
+      simp
+      rfl
+      sorry
+  theorem X_n_id' (X : CWComplex) : (n : ℕ) ->
+      cast (n_add_n_minus_n X n) (CWComplexSkeletaInclusion' X n (n - n)) = 𝟙 (X.sk n) := by
+    --simp
+    intro n
+    unfold CWComplexSkeletaInclusion'
+    --rw [Nat.sub_self n]
+    sorry
+
+  #check CategoryTheory.eqToHom
+  #check cast
+
   def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
     obj n := X.sk n
-    map := @fun n m f => by
-      rw [<- Nat.add_sub_of_le <| Quiver.Hom.le f]
-      exact CWComplexSkeletaInclusion' X n (m - n)
+    -- map := @fun n m f => by
+    --   rw [<- Nat.add_sub_of_le <| Quiver.Hom.le f]
+    --   exact CWComplexSkeletaInclusion' X n (m - n)
+    map := @fun n m n_le_m => CWComplexSkeletaInclusion'' X n m <| Quiver.Hom.le n_le_m
     map_id := by
       intro n
       dsimp
+      unfold CWComplexSkeletaInclusion''-- CWComplexSkeletaInclusion'
+
+      -- conv =>
+      --   lhs; rhs;
+
+      have hskn : (X.sk n ⟶ X.sk <| n + (n - n)) = (X.sk n ⟶ X.sk n) := by rw [Nat.add_sub_of_le Nat.le.refl]
+      let idn : (X.sk n ⟶ X.sk <| n + (n - n)) := Eq.mpr (n_add_n_minus_n X n) (𝟙 (X.sk n))
+      have : CWComplexSkeletaInclusion' X n (n - n) = Eq.mpr (n_add_n_minus_n X n) (𝟙 (X.sk n)) := by
+        unfold CWComplexSkeletaInclusion'
+        sorry
+
+
       have hzero : n - n = 0 := Nat.sub_self n
-      -- rw [this]
-      simp
+      --rw [hzero]
+
+      have hzero' : ∀ n : ℕ, n - n = 0 := Nat.sub_self
+      --erw [Nat.sub_self]
+      --subst Nat.sub_self
+
+      --unfold CWComplexSkeletaInclusion'
+
+      -- conv =>
+      --   lhs; lhs
+      --   ext x
+      --   arg 1
+      --   pattern (n - n)
+      --   rw [Nat.sub_self n]
+
+
       have h : CWComplexSkeletaInclusion' X n 0 = 𝟙 (X.sk n) := rfl
-      dsimp [CWComplexSkeletaInclusion']
+      have h : CWComplexSkeletaInclusion' X n (n - n) = 𝟙 (X.sk n) := by
+        rw [Nat.sub_self]
+        apply?
+        sorry
+      dsimp [CWComplexSkeletaInclusion'] at *
       aesop
       have n_le_n : n ≤ n := Nat.le.refl
       sorry
     map_comp := by
       intro n m l f g
-      dsimp
+      simp
       aesop
       sorry
 
