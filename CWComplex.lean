@@ -228,12 +228,10 @@ def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1
 -- Does mathlib have that?
 def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
     X.sk n ⟶ X.sk m :=
-  if h : n < m then by
-    have h' : n + 1 ≤ m := by linarith
-    exact CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m h'
+  if h : n < m then
+    CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m (by linarith)
   else by
-    have h' : n = m := eq_of_le_of_not_lt n_le_m h
-    rw [<- h']
+    rw [<- (eq_of_le_of_not_lt n_le_m h)]
     exact 𝟙 (X.sk n)
   termination_by m - n
 
