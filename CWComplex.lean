@@ -223,20 +223,19 @@ def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : 
 def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
-def range' : (start len : Nat) → List Nat
-  | _, 0 => []
-  | s, n+1 => s :: range' (s+1) n
-
 -- The inclusion map from the (start)-skeleton to the (start + len)-skeleton of a CW-complex
 -- Note: A dependently-typed `List` with `List.range'` and `List.foldl_assoc` could help here.
 -- Does mathlib have that?
-def CWComplexSkeletaInclusion' (X : CWComplex) (start len : ℕ) : X.sk start ⟶ X.sk (start + len) :=
-  go start len where
-    go : (s l : ℕ) -> X.sk s ⟶ X.sk (s + l)
-    | s, 0     => 𝟙 (X.sk s)
-    | s, l + 1 => by
-      rw [<- Nat.succ_add_eq_add_succ s l]
-      exact CWComplexSkeletaInclusion X s ≫ go (s + 1) l
+def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
+    X.sk n ⟶ X.sk m :=
+  if h : n < m then by
+    have h' : n + 1 ≤ m := by linarith
+    exact CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m h'
+  else by
+    have h' : n = m := eq_of_le_of_not_lt n_le_m h
+    rw [<- h']
+    exact 𝟙 (X.sk n)
+  termination_by m - n
 
 #print CWComplexSkeletaInclusion
 
