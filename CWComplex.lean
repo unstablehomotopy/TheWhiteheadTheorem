@@ -129,6 +129,23 @@ noncomputable section
   #check @CategoryTheory.Limits.pushout TopCat _
   #check CategoryTheory.Limits.HasPushout
 end
+
+section
+  #check CategoryTheory.Limits.colimit
+
+  --set_option trace.Meta.synthInstance true
+  #check (Functor ℕ ℕ)
+  #check (Preorder.smallCategory ℕ)
+
+  #check Eq.mpr
+  #check CategoryTheory.eqToHom
+  #check cast
+
+  #eval [1, 2, 3, 4, 5].foldl (·*·) 1
+  #eval [1, 2, 3, 4, 5].foldr (·*·) 1
+  #check List.range'
+  #check List.foldl_assoc
+end
 end tmp_namespace_2
 
 ----------------------------------------------------------
@@ -236,61 +253,42 @@ def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n �
     exact CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m this
   termination_by m - n
 
-#print CWComplexSkeletaInclusion
-
-section
-  #check CategoryTheory.Limits.colimit
-
-  --set_option trace.Meta.synthInstance true
-  #check (Functor ℕ ℕ)
-  #check (Preorder.smallCategory ℕ)
-
-  #check Eq.mpr
-  #check CategoryTheory.eqToHom
-  #check cast
-
-  def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
-    obj n := X.sk n
-    map := @fun n m n_le_m => CWComplexSkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
-    map_id := by simp [CWComplexSkeletaInclusion']
-    map_comp := by
-      let rec p (n m l : ℕ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
-          CWComplexSkeletaInclusion' X n l n_le_l =
-          CWComplexSkeletaInclusion' X n m n_le_m ≫
-          CWComplexSkeletaInclusion' X m l m_le_l :=
-        if hnm : n = m then by
-          unfold CWComplexSkeletaInclusion'
-          rcases em (m = l) with hml | hml
-          . simp [hnm, hml]
-          have h1 : m < l := Nat.lt_of_le_of_ne m_le_l hml
-          have h2 : n < l := by linarith
-          simp [hnm, Nat.ne_of_lt h1, Nat.ne_of_lt h2]
+def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
+  obj := X.sk
+  map := @fun n m n_le_m => CWComplexSkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
+  map_id := by simp [CWComplexSkeletaInclusion']
+  map_comp := by
+    let rec p (n m l : ℕ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
+        CWComplexSkeletaInclusion' X n l n_le_l =
+        CWComplexSkeletaInclusion' X n m n_le_m ≫
+        CWComplexSkeletaInclusion' X m l m_le_l :=
+      if hnm : n = m then by
+        unfold CWComplexSkeletaInclusion'
+        rcases em (m = l) with hml | hml
+        . simp [hnm, hml]
+        have h1 : m < l := Nat.lt_of_le_of_ne m_le_l hml
+        have h2 : n < l := by linarith
+        simp [hnm, Nat.ne_of_lt h1, Nat.ne_of_lt h2]
+        aesop
+      else by
+        have h1 : n < m := Nat.lt_of_le_of_ne n_le_m hnm
+        have h2 : n < l := by linarith
+        unfold CWComplexSkeletaInclusion'
+        simp [hnm, Nat.ne_of_lt h2]
+        rcases em (m = l) with hml | hml
+        . simp [hml]
           aesop
-        else by
-          have h1 : n < m := Nat.lt_of_le_of_ne n_le_m hnm
-          have h2 : n < l := by linarith
-          unfold CWComplexSkeletaInclusion'
-          simp [hnm, Nat.ne_of_lt h2]
-          rcases em (m = l) with hml | hml
-          . simp [hml]
-            aesop
-          congr
-          rw [p (n + 1) m l h1 m_le_l h2]
-          congr
-          simp [hml]
-          conv => lhs; unfold CWComplexSkeletaInclusion'
-          simp [hml]
-      termination_by l - n
-      intro n m l n_le_m m_le_l
-      have n_le_m := Quiver.Hom.le n_le_m
-      have m_le_l := Quiver.Hom.le m_le_l
-      exact p n m l n_le_m m_le_l (Nat.le_trans n_le_m m_le_l)
-
-  #eval [1, 2, 3, 4, 5].foldl (·*·) 1
-  #eval [1, 2, 3, 4, 5].foldr (·*·) 1
-  #check List.range'
-  #check List.foldl_assoc
-end
+        congr
+        rw [p (n + 1) m l h1 m_le_l h2]
+        congr
+        simp [hml]
+        conv => lhs; unfold CWComplexSkeletaInclusion'
+        simp [hml]
+    termination_by l - n
+    intro n m l n_le_m m_le_l
+    have n_le_m := Quiver.Hom.le n_le_m
+    have m_le_l := Quiver.Hom.le m_le_l
+    exact p n m l n_le_m m_le_l (Nat.le_trans n_le_m m_le_l)
 
 -- The topology on a CW-complex.
 instance instTopologicalSpaceCWComplex : TopologicalSpace CWComplex :=
