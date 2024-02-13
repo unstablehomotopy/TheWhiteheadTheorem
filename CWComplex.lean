@@ -222,7 +222,10 @@ structure AttachCells (X X' : TopCat) (n : ℕ) where
 --   /- For n ≥ 0, the (n-1)-skeleton is obtained from the n-skeleton by attaching n-cells. -/
 --   attach_cells : (n : ℕ) → AttachCells (sk (n - 1)) (sk n) n
 
-class CWComplex where
+--variable {X : Type}
+
+--class CWComplex (X : Type u) where
+structure CWComplex where
   /- Skeleta -/
   sk : ℕ → TopCat
   /- The 0-skeleton is a discrete topological space. -/
