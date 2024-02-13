@@ -271,10 +271,29 @@ section
             simp [hnm, h1', h2']
             aesop
         else by
-          sorry
-      intro n m l f g
+          have h1  : n < m := Nat.lt_of_le_of_ne n_le_m hnm
+          have h2  : n < l := by linarith
+          have h2' : ¬ n = l := Nat.ne_of_lt h2
+          unfold CWComplexSkeletaInclusion'
+          simp [hnm, h2']
+          rcases em (m = l) with h3 | h3
+          . simp [h3]
+            aesop
+          congr
+          have : CWComplexSkeletaInclusion' X (n + 1) l h2 =
+                 CWComplexSkeletaInclusion' X (n + 1) m h1 ≫
+                 CWComplexSkeletaInclusion' X m l m_le_l := p (n + 1) m l h1 m_le_l h2
+          rw [this]
+          congr
+          simp [h3]
+          conv => lhs; unfold CWComplexSkeletaInclusion'
+          simp [h3]
+      termination_by l - n
+      intro n m l n_le_m m_le_l
+      have n_le_m := Quiver.Hom.le n_le_m
+      have m_le_l := Quiver.Hom.le m_le_l
       dsimp
-      sorry
+      exact p n m l n_le_m m_le_l (Nat.le_trans n_le_m m_le_l)
 
   #eval [1, 2, 3, 4, 5].foldl (·*·) 1
   #eval [1, 2, 3, 4, 5].foldr (·*·) 1
