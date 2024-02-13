@@ -24,11 +24,11 @@ lemma n_add_n_sub_n (f : PrefunctorFromNat C) (n : ℕ) :
   by rw [Nat.add_sub_of_le Nat.le.refl]
 
 -- I'd like to show that the prefunctor preserves identity morphisms.
--- This is proved by rfl for any specific natural number n (e.g., n = 100), but...
+-- This is proved by rfl for any specific natural number n (e.g., n = 100).
 theorem map_id_100 (f : PrefunctorFromNat C) :
     (n_add_n_sub_n f 100) ▸ (RangeCompose f 100 (100 - 100)) = 𝟙 (f.obj 100) := rfl
 
--- I'm stuck on the general case. Any help is appreciated!
+-- But I'm stuck on the general case. Any help is appreciated!
 theorem map_id (f : PrefunctorFromNat C) :
     (n : ℕ) -> (n_add_n_sub_n f n) ▸ (RangeCompose f n (n - n)) = 𝟙 (f.obj n) := by
   intro n
