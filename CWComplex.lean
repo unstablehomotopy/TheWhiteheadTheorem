@@ -285,8 +285,7 @@ section
     Eq.mp (n_add_n_minus_n X 1) (CWComplexSkeletaInclusion' X 1 (1 - 1)) = 𝟙 (X.sk 1) := rfl
   #print X_1_id
   theorem X_n_id (X : CWComplex) : (n : ℕ) ->
-      Eq.mp (n_add_n_minus_n X n) (CWComplexSkeletaInclusion' X n (n - n))
-      = 𝟙 (X.sk n)
+      Eq.mp (n_add_n_minus_n X n) (CWComplexSkeletaInclusion' X n (n - n)) = 𝟙 (X.sk n)
     | 0     => by
       simp
       rfl
@@ -301,11 +300,11 @@ section
       rfl
       sorry
   theorem X_n_id' (X : CWComplex) : (n : ℕ) ->
-      (n_add_n_minus_n X n) ▸ (CWComplexSkeletaInclusion' X n (n - n))
-      = 𝟙 (X.sk n) := by
+      cast (n_add_n_minus_n X n) (CWComplexSkeletaInclusion' X n (n - n)) = 𝟙 (X.sk n) := by
     --simp
     intro n
     unfold CWComplexSkeletaInclusion'
+    --rw [Nat.sub_self n]
     sorry
 
   #check CategoryTheory.eqToHom

@@ -37,6 +37,7 @@ example {n : Nat} {l : List (Fin n)} {l_len : n = l.length} {x : Fin n}
   use! j
   · convert h'
   · congr
-    generalize Fin n = X at l
+    --generalize  h'' : Fin n = X at l
+    generalize  h : Fin n = X at l
     subst l_len
     rfl
