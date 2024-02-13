@@ -258,41 +258,32 @@ section
           CWComplexSkeletaInclusion' X n l n_le_l =
           CWComplexSkeletaInclusion' X n m n_le_m ≫
           CWComplexSkeletaInclusion' X m l m_le_l :=
-        if hnm : n = m then
-          if hml : m = l then by
-            unfold CWComplexSkeletaInclusion'
-            simp [hnm, hml]
-          else by
-            have h1  : m < l := Nat.lt_of_le_of_ne m_le_l hml
-            have h1' : ¬ m = l := Nat.ne_of_lt h1
-            have h2  : n < l := by linarith
-            have h2' : ¬ n = l := Nat.ne_of_lt h2
-            unfold CWComplexSkeletaInclusion'
-            simp [hnm, h1', h2']
-            aesop
-        else by
-          have h1  : n < m := Nat.lt_of_le_of_ne n_le_m hnm
-          have h2  : n < l := by linarith
-          have h2' : ¬ n = l := Nat.ne_of_lt h2
+        if hnm : n = m then by
           unfold CWComplexSkeletaInclusion'
-          simp [hnm, h2']
-          rcases em (m = l) with h3 | h3
-          . simp [h3]
+          rcases em (m = l) with hml | hml
+          . simp [hnm, hml]
+          have h1 : m < l := Nat.lt_of_le_of_ne m_le_l hml
+          have h2 : n < l := by linarith
+          simp [hnm, Nat.ne_of_lt h1, Nat.ne_of_lt h2]
+          aesop
+        else by
+          have h1 : n < m := Nat.lt_of_le_of_ne n_le_m hnm
+          have h2 : n < l := by linarith
+          unfold CWComplexSkeletaInclusion'
+          simp [hnm, Nat.ne_of_lt h2]
+          rcases em (m = l) with hml | hml
+          . simp [hml]
             aesop
           congr
-          have : CWComplexSkeletaInclusion' X (n + 1) l h2 =
-                 CWComplexSkeletaInclusion' X (n + 1) m h1 ≫
-                 CWComplexSkeletaInclusion' X m l m_le_l := p (n + 1) m l h1 m_le_l h2
-          rw [this]
+          rw [p (n + 1) m l h1 m_le_l h2]
           congr
-          simp [h3]
+          simp [hml]
           conv => lhs; unfold CWComplexSkeletaInclusion'
-          simp [h3]
+          simp [hml]
       termination_by l - n
       intro n m l n_le_m m_le_l
       have n_le_m := Quiver.Hom.le n_le_m
       have m_le_l := Quiver.Hom.le m_le_l
-      dsimp
       exact p n m l n_le_m m_le_l (Nat.le_trans n_le_m m_le_l)
 
   #eval [1, 2, 3, 4, 5].foldl (·*·) 1
