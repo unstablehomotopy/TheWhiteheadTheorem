@@ -220,15 +220,15 @@ def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : 
       (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
 -- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
-def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
 -- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
-def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
+def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
     X.sk n ⟶ X.sk m :=
   if h : n < m then by
     have h' : n + 1 ≤ m := by linarith
-    exact CWComplexSkeletaInclusion' X n ≫ CWComplexSkeletaInclusion X (n + 1) m h'
+    exact CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m h'
   else by
     have h' : n = m := eq_of_le_of_not_lt n_le_m h
     rw [<- h']
@@ -249,11 +249,11 @@ section
     map := @fun n m f => by
       dsimp
       have : n ≤ m := Quiver.Hom.le f
-      exact CWComplexSkeletaInclusion X n m this
+      exact CWComplexSkeletaInclusion' X n m this
     map_id := by
       intro n
       dsimp
-      dsimp [CWComplexSkeletaInclusion]
+      dsimp [CWComplexSkeletaInclusion']
       have n_le_n : n ≤ n := Nat.le.refl
       sorry
     map_comp := by
@@ -261,6 +261,8 @@ section
       sorry
 
   #eval [1, 2, 3, 4, 5].foldl (·*·) 1
+  #eval [1, 2, 3, 4, 5].foldr (·*·) 1
+  #check List.range'
   #check List.foldl_assoc
 end
 
