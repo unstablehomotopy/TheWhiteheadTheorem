@@ -228,11 +228,12 @@ def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1
 -- Does mathlib have that?
 def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
     X.sk n ⟶ X.sk m :=
-  if h : n < m then
-    CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m (by linarith)
-  else by
-    rw [<- (eq_of_le_of_not_lt n_le_m h)]
+  if h : n = m then by
+    rw [<- h]
     exact 𝟙 (X.sk n)
+  else by
+    have : n < m := Nat.lt_of_le_of_ne n_le_m h
+    exact CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m this
   termination_by m - n
 
 #print CWComplexSkeletaInclusion
@@ -251,10 +252,28 @@ section
   def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
     obj n := X.sk n
     map := @fun n m n_le_m => CWComplexSkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
-    map_id := by simp [CWComplexSkeletaInclusion', Nat.not_lt.mpr Nat.le.refl]
+    map_id := by simp [CWComplexSkeletaInclusion']
     map_comp := by
+      let rec p (n m l : ℕ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
+          CWComplexSkeletaInclusion' X n l n_le_l =
+          CWComplexSkeletaInclusion' X n m n_le_m ≫
+          CWComplexSkeletaInclusion' X m l m_le_l :=
+        if hnm : n = m then
+          if hml : m = l then by
+            unfold CWComplexSkeletaInclusion'
+            simp [hnm, hml]
+          else by
+            have h1  : m < l := Nat.lt_of_le_of_ne m_le_l hml
+            have h1' : ¬ m = l := Nat.ne_of_lt h1
+            have h2  : n < l := by linarith
+            have h2' : ¬ n = l := Nat.ne_of_lt h2
+            unfold CWComplexSkeletaInclusion'
+            simp [hnm, h1', h2']
+            aesop
+        else by
+          sorry
       intro n m l f g
-      simp
+      dsimp
       sorry
 
   #eval [1, 2, 3, 4, 5].foldl (·*·) 1
