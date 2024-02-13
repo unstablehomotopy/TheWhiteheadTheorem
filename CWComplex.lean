@@ -250,16 +250,22 @@ section
   def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
     obj n := X.sk n
     map := @fun n m f => by
-      dsimp
-      have : n ≤ m := Quiver.Hom.le f
-      exact CWComplexSkeletaInclusion' X n m this
+      rw [<- Nat.add_sub_of_le <| Quiver.Hom.le f]
+      exact CWComplexSkeletaInclusion' X n (m - n)
     map_id := by
       intro n
       dsimp
+      have hzero : n - n = 0 := Nat.sub_self n
+      -- rw [this]
+      simp
+      have h : CWComplexSkeletaInclusion' X n 0 = 𝟙 (X.sk n) := rfl
       dsimp [CWComplexSkeletaInclusion']
+      aesop
       have n_le_n : n ≤ n := Nat.le.refl
       sorry
     map_comp := by
+      intro n m l f g
+      dsimp
       aesop
       sorry
 
