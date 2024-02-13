@@ -284,7 +284,7 @@ def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
         simp [hml]
         conv => lhs; unfold CWComplexSkeletaInclusion'
         simp [hml]
-    termination_by l - n
+      termination_by l - n
     intro n m l n_le_m m_le_l
     have n_le_m := Quiver.Hom.le n_le_m
     have m_le_l := Quiver.Hom.le m_le_l
