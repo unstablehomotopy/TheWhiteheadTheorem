@@ -276,9 +276,40 @@ section
   #print id_n_minus_n
   def id_n_minus_n' (X : CWComplex) (n : ℕ) : (X.sk n) ⟶ X.sk (n + (n - n)) :=
     Eq.mpr (n_add_n_minus_n X n) (𝟙 (X.sk n))
-  -- example : CWComplexSkeletaInclusion' X n (n - n) = 𝟙 (X.sk n) := by -- type error!
-  --   sorry
+  -- example : CWComplexSkeletaInclusion' X n (n - n) = 𝟙 (X.sk n) := sorry -- type error!
 
+  theorem X_0_id (X : CWComplex) :
+      Eq.mp (n_add_n_minus_n X 0) (CWComplexSkeletaInclusion' X 0 (0 - 0)) = 𝟙 (X.sk 0) := rfl
+  #print X_0_id
+  theorem X_1_id (X : CWComplex) :
+    Eq.mp (n_add_n_minus_n X 1) (CWComplexSkeletaInclusion' X 1 (1 - 1)) = 𝟙 (X.sk 1) := rfl
+  #print X_1_id
+  theorem X_n_id (X : CWComplex) : (n : ℕ) ->
+      Eq.mp (n_add_n_minus_n X n) (CWComplexSkeletaInclusion' X n (n - n))
+      = 𝟙 (X.sk n)
+    | 0     => by
+      simp
+      rfl
+    | 1     => by
+      simp
+      rfl
+    | 100     => by
+      simp
+      rfl
+    | n + 1 => by
+      simp
+      rfl
+      sorry
+  theorem X_n_id' (X : CWComplex) : (n : ℕ) ->
+      (n_add_n_minus_n X n) ▸ (CWComplexSkeletaInclusion' X n (n - n))
+      = 𝟙 (X.sk n) := by
+    --simp
+    intro n
+    unfold CWComplexSkeletaInclusion'
+    sorry
+
+  #check CategoryTheory.eqToHom
+  #check cast
 
   def my_functor (X : CWComplex) : ℕ ⥤ TopCat where
     obj n := X.sk n
@@ -289,7 +320,7 @@ section
     map_id := by
       intro n
       dsimp
-      unfold CWComplexSkeletaInclusion'' CWComplexSkeletaInclusion'
+      unfold CWComplexSkeletaInclusion''-- CWComplexSkeletaInclusion'
 
       -- conv =>
       --   lhs; rhs;
