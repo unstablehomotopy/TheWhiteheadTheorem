@@ -11,7 +11,10 @@ import Mathlib.Topology.Order
 import Mathlib.Topology.MetricSpace.Basic
 import Mathlib.CategoryTheory.Limits.Shapes.Products
 import Mathlib.CategoryTheory.Limits.Shapes.Pullbacks
+import Mathlib.CategoryTheory.Category.Preorder
 import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
+
+open CategoryTheory
 
 #check TopCat.sigmaIsoSigma
 #check EuclideanSpace ℝ (Fin 3)
@@ -122,11 +125,28 @@ noncomputable section
   #check Continuous.sigma_map
   #check continuous_inclusion
   --theorem continuous_sumS1_to_sumD2 : Continuous sumS1_to_sumD2 := by
+
+  #check @CategoryTheory.Limits.pushout TopCat _
+  #check CategoryTheory.Limits.HasPushout
+end
+
+section
+  #check CategoryTheory.Limits.colimit
+
+  --set_option trace.Meta.synthInstance true
+  #check (Functor ℕ ℕ)
+  #check (Preorder.smallCategory ℕ)
+
+  #check Eq.mpr
+  #check CategoryTheory.eqToHom
+  #check cast
+
+  #eval [1, 2, 3, 4, 5].foldl (·*·) 1
+  #eval [1, 2, 3, 4, 5].foldr (·*·) 1
+  #check List.range'
+  #check List.foldl_assoc
 end
 end tmp_namespace_2
-
-#check CategoryTheory.Limits.pushout
-
 
 ----------------------------------------------------------
 
@@ -190,7 +210,7 @@ structure AttachCells (X X' : TopCat) (n : ℕ) where
   /- The index type over n-cells -/
   cells : Type
   attach_maps : cells → ContinuousMap (𝕊 n) X
-  iso_pushout : X' ≅ CategoryTheory.Limits.pushout
+  iso_pushout : X' ≅ Limits.pushout
     (BundledSigmaCellBorderInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
 
@@ -202,6 +222,9 @@ structure AttachCells (X X' : TopCat) (n : ℕ) where
 --   /- For n ≥ 0, the (n-1)-skeleton is obtained from the n-skeleton by attaching n-cells. -/
 --   attach_cells : (n : ℕ) → AttachCells (sk (n - 1)) (sk n) n
 
+--variable {X : Type}
+
+--class CWComplex (X : Type u) where
 structure CWComplex where
   /- Skeleta -/
   sk : ℕ → TopCat
@@ -209,6 +232,64 @@ structure CWComplex where
   discrete_sk_zero : DiscreteTopology (sk 0)
   /- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-cells. -/
   attach_cells : (n : ℕ) → AttachCells (sk n) (sk (n + 1)) (n + 1)
-  --closure_finite
+
+-- The inclusion map from X to X', given that X' is obtained from X by attaching n-cells
+def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : X ⟶ X'
+  := @Limits.pushout.inr TopCat _ _ _ X
+      (BundledSigmaCellBorderInclusion n att.cells)
+      (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
+
+-- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
+def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+  AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
+
+-- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
+-- Note: A dependently-typed `List` with `List.range'` and `List.foldl_assoc` could help here.
+-- Does mathlib have that?
+def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
+    X.sk n ⟶ X.sk m :=
+  if h : n = m then by
+    rw [<- h]
+    exact 𝟙 (X.sk n)
+  else by
+    have : n < m := Nat.lt_of_le_of_ne n_le_m h
+    exact CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m this
+  termination_by m - n
+
+def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
+  obj := X.sk
+  map := @fun n m n_le_m => CWComplexSkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
+  map_id := by simp [CWComplexSkeletaInclusion']
+  map_comp := by
+    let rec p (n m l : ℕ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
+        CWComplexSkeletaInclusion' X n l n_le_l =
+        CWComplexSkeletaInclusion' X n m n_le_m ≫
+        CWComplexSkeletaInclusion' X m l m_le_l :=
+      if hnm : n = m then by
+        unfold CWComplexSkeletaInclusion'
+        aesop
+      else by
+        have h1 : n < m := Nat.lt_of_le_of_ne n_le_m hnm
+        have h2 : n < l := by linarith
+        unfold CWComplexSkeletaInclusion'
+        simp [hnm, Nat.ne_of_lt h2]
+        rcases em (m = l) with hml | hml
+        . aesop
+        congr
+        rw [p (n + 1) m l h1 m_le_l h2]
+        congr
+        simp [hml]
+        conv => lhs; unfold CWComplexSkeletaInclusion'
+        simp [hml]
+      termination_by l - n
+    intro n m l n_le_m m_le_l
+    have n_le_m := Quiver.Hom.le n_le_m
+    have m_le_l := Quiver.Hom.le m_le_l
+    exact p n m l n_le_m m_le_l (Nat.le_trans n_le_m m_le_l)
+
+-- The topology on a CW-complex.
+-- reference: https://www.moogle.ai/search/raw?q=ring%20topology
+--instance instTopologicalSpaceCWComplex {X : CWComplex} : TopologicalSpace X := sorry
+def CWComplexToTopCat (X : CWComplex) : TopCat := Limits.colimit (CWComplexColimitDiagram X)
 
 end
