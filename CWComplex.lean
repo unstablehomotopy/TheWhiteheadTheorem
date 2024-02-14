@@ -267,11 +267,6 @@ def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
         CWComplexSkeletaInclusion' X m l m_le_l :=
       if hnm : n = m then by
         unfold CWComplexSkeletaInclusion'
-        rcases em (m = l) with hml | hml
-        . simp [hnm, hml]
-        have h1 : m < l := Nat.lt_of_le_of_ne m_le_l hml
-        have h2 : n < l := by linarith
-        simp [hnm, Nat.ne_of_lt h1, Nat.ne_of_lt h2]
         aesop
       else by
         have h1 : n < m := Nat.lt_of_le_of_ne n_le_m hnm
@@ -279,8 +274,7 @@ def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
         unfold CWComplexSkeletaInclusion'
         simp [hnm, Nat.ne_of_lt h2]
         rcases em (m = l) with hml | hml
-        . simp [hml]
-          aesop
+        . aesop
         congr
         rw [p (n + 1) m l h1 m_le_l h2]
         congr
