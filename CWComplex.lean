@@ -290,6 +290,6 @@ def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
 -- The topology on a CW-complex.
 -- reference: https://www.moogle.ai/search/raw?q=ring%20topology
 --instance instTopologicalSpaceCWComplex {X : CWComplex} : TopologicalSpace X := sorry
-def CWComplexToCopCat (X : CWComplex) : TopCat := Limits.colimit (CWComplexColimitDiagram X)
+def CWComplexToTopCat (X : CWComplex) : TopCat := Limits.colimit (CWComplexColimitDiagram X)
 
 end
