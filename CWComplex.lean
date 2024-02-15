@@ -16,11 +16,9 @@ import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
 
 open CategoryTheory
 
-#check TopCat.sigmaIsoSigma
-#check EuclideanSpace ℝ (Fin 3)
-#check Metric.sphere (0 : EuclideanSpace ℝ (Fin 3)) 1
-#check Metric.ball (0 : EuclideanSpace ℝ (Fin 3)) 1 -- open ball
-#check TopologicalSpace (Metric.ball (0 : EuclideanSpace ℝ (Fin 3)) 1)
+namespace CWComplex
+
+noncomputable section
 
 /- sphere in ℝⁿ with radius 1 -/
 notation:0 "𝕊" n => Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
@@ -28,129 +26,6 @@ notation:0 "𝕊" n => Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
 notation:0 "𝔹" n => Metric.ball (0 : EuclideanSpace ℝ <| Fin n) 1
 /- closed ball (disc) in ℝⁿ with radius 1 -/
 notation:0 "𝔻" n => Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
-
-set_option trace.Meta.synthInstance true in
-#check TopologicalSpace (Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| 0) 1) -- S (-1) is empty
-#check TopologicalSpace (𝕊 0)
-#check TopologicalSpace (𝕊 1)
-#check TopologicalSpace <| Set.Elem (𝕊 1)
-#check TopologicalSpace (𝔻 2)
-#check TopCat.of (𝕊 1)
-#check TopCat.sigmaIsoSigma
-#check TopCat
-
-namespace tmp_namespace_1
-  variable (X : Type) [TopologicalSpace X]
-  set_option trace.Meta.synthInstance true in
-  #check TopologicalSpace { x : X | true } -- subset
-  --#check TopologicalSpace { x : X // true } -- subtype
-
-  universe u v w
-  def sigmaIsoSigma₁ {ι : Type u} (α : ι → TopCatMax.{u, v}) : ∐ α ≅ TopCat.of (Σi, α i) := sorry
-  #check sigmaIsoSigma₁
-  #check (cells : Type u) → (α : cells → TopCatMax.{u, v}) → ∐ α ≅ TopCat.of (Σi, α i)
-  -- #check (cells : Type v) → (α : cells → TopCatMax.{u, v}) → ∐ α ≅ TopCat.of (Σi, α i) -- fail
-  def sigmaIsoSigma₂ {ι : Type*} (α : ι → TopCat) : TopCat.of (Σi, α i) := sorry
-  #check sigmaIsoSigma₂
-  def sigmaIsoSigma₃ {ι : Type*} (α : ι → TopCat) : (∐ α : TopCat) := sorry
-  #check sigmaIsoSigma₃
-  def sigmaIsoSigma₄ {ι : Type*} (α : ι → TopCat) : ∐ α ≅ TopCat.of (Σi, α i) := sorry
-  #check sigmaIsoSigma₄
-
-  --set_option trace.Meta.synthInstance true in
-  --#check {cells : Type*} → (α : cells → TopCat) → (∀ i, α i = TopCat.of (𝕊 1)) → (∐ α : TopCat) --???
-  #check {cells : Type*} → TopCat.of (Σ (_ : cells), 𝕊 1)
-
-  variable (cells : Type)
-  noncomputable def S1 := TopCat.of (𝕊 1) -- noncomputable because of ENNReal.instCanonicallyOrderedCommSemiringENNReal
-  noncomputable def sumS := TopCat.of (Σ (_ : cells), 𝕊 1)
-  noncomputable def sumD := TopCat.of (Σ (_ : cells), 𝔻 2)
-end tmp_namespace_1
-
-namespace tmp_namespace_2
-noncomputable section
-  def S1_to_D2_₁ : (𝕊 1) → (𝔻 2) := by
-    intro ⟨pt, hpt⟩ -- pt is in ℝ 2; hpt says the distance from x to 0 is 1
-    simp [Metric.sphere] at hpt
-    have x : ℝ := pt 0 -- x coordinate of the point
-    have y : ℝ := pt 1
-    use pt
-    simp [Metric.closedBall]
-    exact le_of_eq hpt
-  def S1_to_D2 : (𝕊 1) → (𝔻 2) := fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
-  theorem continuous_S1_to_D2 : Continuous S1_to_D2 := ⟨by
-    intro s hs
-    rw [isOpen_induced_iff] at *
-    obtain ⟨t, ht, ht'⟩ := hs
-    use t, ht
-    rw [ht'.symm]
-    -- note: the two occurences of "Subtype.val" are not of the same type, so we can't apply Eq.trans ht'
-    ext ⟨xval, xprop⟩
-    repeat
-      rw [Set.mem_preimage]
-    constructor
-    repeat
-      intro h
-      dsimp [S1_to_D2] at *
-      exact h
-  ⟩
-
-  variable (cells : Type)
-  def sumS1 := TopCat.of (Σ (_ : cells), 𝕊 1)
-  def sumD2 := TopCat.of (Σ (_ : cells), 𝔻 2)
-  def sumS1' := (Σ (_ : cells), 𝕊 1)
-  def sumD2' := (Σ (_ : cells), 𝔻 2)
-  -- def sumS1_to_sumD2 :
-  --   TopCat.of (Σ (_ : cells), 𝕊 1) → TopCat.of (Σ (_ : cells), 𝔻 2) :=
-  --   fun ⟨i, x⟩ => ⟨i, S1_to_D2 x⟩
-  -- def sumS1_to_sumD2' :
-  --   (Σ (_ : cells), 𝕊 1) → (Σ (_ : cells), 𝔻 2) :=
-  --   fun ⟨i, x⟩ => ⟨i, S1_to_D2 x⟩
-  -- #check sumS1_to_sumD2
-  -- #check sumS1_to_sumD2'
-  -- theorem continuous_sumS1_to_sumD2 : Continuous <| sumS1_to_sumD2 cells := by
-  --   apply continuous_sigma
-  --   intro i
-  --   dsimp [sumS1_to_sumD2]
-  --   sorry
-  def sumS1_to_sumD2:
-    TopCat.of (Σ (_ : cells), 𝕊 1) → TopCat.of (Σ (_ : cells), 𝔻 2) :=
-    Sigma.map id fun (_ : cells) (x : 𝕊 1) => S1_to_D2 x
-  theorem continuous_sumS1_to_sumD2 : Continuous <| sumS1_to_sumD2 cells := by
-    apply Continuous.sigma_map
-    intro _
-    apply continuous_S1_to_D2
-  #check continuous_sigmaMk
-  #check continuous_sigma_map
-  #check Continuous.sigma_map
-  #check continuous_inclusion
-  --theorem continuous_sumS1_to_sumD2 : Continuous sumS1_to_sumD2 := by
-
-  #check @CategoryTheory.Limits.pushout TopCat _
-  #check CategoryTheory.Limits.HasPushout
-end
-
-section
-  #check CategoryTheory.Limits.colimit
-
-  --set_option trace.Meta.synthInstance true
-  #check (Functor ℕ ℕ)
-  #check (Preorder.smallCategory ℕ)
-
-  #check Eq.mpr
-  #check CategoryTheory.eqToHom
-  #check cast
-
-  #eval [1, 2, 3, 4, 5].foldl (·*·) 1
-  #eval [1, 2, 3, 4, 5].foldr (·*·) 1
-  #check List.range'
-  #check List.foldl_assoc
-end
-end tmp_namespace_2
-
-----------------------------------------------------------
-
-noncomputable section
 
 --universe u v w x
 --variable {F : Type*} {X : Type u} {X' : Type v} {Y : Type w} {Z : Type x} {ι : Type*}
@@ -240,38 +115,38 @@ def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : 
       (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
 -- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
-def CWComplexSkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+def SkeletaInclusion (X : CWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
 -- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
 -- Note: A dependently-typed `List` with `List.range'` and `List.foldl_assoc` could help here.
 -- Does mathlib have that?
-def CWComplexSkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
+def SkeletaInclusion' (X : CWComplex) (n : ℕ) (m : ℕ) (n_le_m : n ≤ m) :
     X.sk n ⟶ X.sk m :=
   if h : n = m then by
     rw [<- h]
     exact 𝟙 (X.sk n)
   else by
     have : n < m := Nat.lt_of_le_of_ne n_le_m h
-    exact CWComplexSkeletaInclusion X n ≫ CWComplexSkeletaInclusion' X (n + 1) m this
+    exact SkeletaInclusion X n ≫ SkeletaInclusion' X (n + 1) m this
   termination_by m - n
 
-def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
+def ColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
   obj := X.sk
-  map := @fun n m n_le_m => CWComplexSkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
-  map_id := by simp [CWComplexSkeletaInclusion']
+  map := @fun n m n_le_m => SkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
+  map_id := by simp [SkeletaInclusion']
   map_comp := by
     let rec p (n m l : ℕ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
-        CWComplexSkeletaInclusion' X n l n_le_l =
-        CWComplexSkeletaInclusion' X n m n_le_m ≫
-        CWComplexSkeletaInclusion' X m l m_le_l :=
+        SkeletaInclusion' X n l n_le_l =
+        SkeletaInclusion' X n m n_le_m ≫
+        SkeletaInclusion' X m l m_le_l :=
       if hnm : n = m then by
-        unfold CWComplexSkeletaInclusion'
+        unfold SkeletaInclusion'
         aesop
       else by
         have h1 : n < m := Nat.lt_of_le_of_ne n_le_m hnm
         have h2 : n < l := by linarith
-        unfold CWComplexSkeletaInclusion'
+        unfold SkeletaInclusion'
         simp [hnm, Nat.ne_of_lt h2]
         rcases em (m = l) with hml | hml
         . aesop
@@ -279,7 +154,7 @@ def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
         rw [p (n + 1) m l h1 m_le_l h2]
         congr
         simp [hml]
-        conv => lhs; unfold CWComplexSkeletaInclusion'
+        conv => lhs; unfold SkeletaInclusion'
         simp [hml]
       termination_by l - n
     intro n m l n_le_m m_le_l
@@ -290,6 +165,8 @@ def CWComplexColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
 -- The topology on a CW-complex.
 -- reference: https://www.moogle.ai/search/raw?q=ring%20topology
 --instance instTopologicalSpaceCWComplex {X : CWComplex} : TopologicalSpace X := sorry
-def CWComplexToTopCat (X : CWComplex) : TopCat := Limits.colimit (CWComplexColimitDiagram X)
+def toTopCat (X : CWComplex) : TopCat := Limits.colimit (ColimitDiagram X)
 
 end
+
+end CWComplex
