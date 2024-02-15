@@ -13,11 +13,12 @@ import Mathlib.CategoryTheory.Limits.Shapes.Products
 import Mathlib.CategoryTheory.Limits.Shapes.Pullbacks
 import Mathlib.CategoryTheory.Category.Preorder
 import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
+import Mathlib.Init.Set
 
 open CategoryTheory
 
-namespace CWComplex
 
+namespace CWComplex
 noncomputable section
 
 /- sphere in ℝⁿ with radius 1 -/
@@ -89,6 +90,9 @@ structure AttachCells (X X' : TopCat) (n : ℕ) where
     (BundledSigmaCellBorderInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
 
+end
+end CWComplex
+
 -- structure CWComplex where
 --   /- Skeleta -/
 --   sk : ℤ → TopCat
@@ -106,7 +110,11 @@ structure CWComplex where
   /- The 0-skeleton is a discrete topological space. -/
   discrete_sk_zero : DiscreteTopology (sk 0)
   /- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-cells. -/
-  attach_cells : (n : ℕ) → AttachCells (sk n) (sk (n + 1)) (n + 1)
+  attach_cells : (n : ℕ) → CWComplex.AttachCells (sk n) (sk (n + 1)) (n + 1)
+
+
+namespace CWComplex
+noncomputable section
 
 -- The inclusion map from X to X', given that X' is obtained from X by attaching n-cells
 def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : X ⟶ X'
@@ -163,10 +171,13 @@ def ColimitDiagram (X : CWComplex) : ℕ ⥤ TopCat where
     exact p n m l n_le_m m_le_l (Nat.le_trans n_le_m m_le_l)
 
 -- The topology on a CW-complex.
--- reference: https://www.moogle.ai/search/raw?q=ring%20topology
---instance instTopologicalSpaceCWComplex {X : CWComplex} : TopologicalSpace X := sorry
 def toTopCat (X : CWComplex) : TopCat := Limits.colimit (ColimitDiagram X)
 
-end
+instance : Coe CWComplex TopCat where coe X := toTopCat X
 
+end
 end CWComplex
+
+
+variable {X : CWComplex}
+#check (X : TopCat)
