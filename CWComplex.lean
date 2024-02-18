@@ -36,19 +36,12 @@ def SphereInclusion (n : ℕ) : (𝕊 n) → (𝔻 n + 1) := fun ⟨pt, hpt⟩ =
 
 theorem continuous_SphereInclusion (n : ℕ) : Continuous (SphereInclusion n) :=
   ⟨by
-    intro s hs
+    intro _ ⟨t, ht, ht'⟩
     rw [isOpen_induced_iff] at *
-    obtain ⟨t, ht, ht'⟩ := hs
     use t, ht
     rw [ht'.symm]
-    ext ⟨xval, xprop⟩
-    repeat
-      rw [Set.mem_preimage]
-    constructor
-    repeat
-      intro h
-      dsimp [SphereInclusion] at *
-      exact h
+    ext _
+    constructor <;> tauto
   ⟩
 
 def SigmaSphereInclusion (n : ℕ) (cells : Type) :
