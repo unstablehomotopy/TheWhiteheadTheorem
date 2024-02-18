@@ -32,9 +32,9 @@ notation:0 "𝔻" n => Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
 --variable {F : Type*} {X : Type u} {X' : Type v} {Y : Type w} {Z : Type x} {ι : Type*}
 --variable [TopologicalSpace X] [TopologicalSpace X'] [TopologicalSpace Y]
 
-def CellBorderInclusion (n : ℕ) : (𝕊 n) → (𝔻 n + 1) := fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
+def SphereInclusion (n : ℕ) : (𝕊 n) → (𝔻 n + 1) := fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
 
-theorem continuous_cellBorderInclusion (n : ℕ) : Continuous (CellBorderInclusion n) :=
+theorem continuous_SphereInclusion (n : ℕ) : Continuous (SphereInclusion n) :=
   ⟨by
     intro s hs
     rw [isOpen_induced_iff] at *
@@ -47,23 +47,23 @@ theorem continuous_cellBorderInclusion (n : ℕ) : Continuous (CellBorderInclusi
     constructor
     repeat
       intro h
-      dsimp [CellBorderInclusion] at *
+      dsimp [SphereInclusion] at *
       exact h
   ⟩
 
-def SigmaCellBorderInclusion (n : ℕ) (cells : Type) :
+def SigmaSphereInclusion (n : ℕ) (cells : Type) :
     (Σ (_ : cells), 𝕊 n) → (Σ (_ : cells), 𝔻 n + 1) :=
-  Sigma.map id fun _ x => CellBorderInclusion n x
+  Sigma.map id fun _ x => SphereInclusion n x
 
-theorem continuous_sigmaCellBorderInclusion (n : ℕ) (cells : Type) :
-    Continuous (SigmaCellBorderInclusion n cells) := by
+theorem continuous_sigmaSphereInclusion (n : ℕ) (cells : Type) :
+    Continuous (SigmaSphereInclusion n cells) := by
   apply Continuous.sigma_map
   intro _
-  apply continuous_cellBorderInclusion
+  apply continuous_SphereInclusion
 
-def BundledSigmaCellBorderInclusion (n : ℕ) (cells : Type) :
+def BundledSigmaSphereInclusion (n : ℕ) (cells : Type) :
     ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of (Σ (_ : cells), 𝔻 n + 1)) :=
-  ⟨SigmaCellBorderInclusion n cells, continuous_sigmaCellBorderInclusion n cells⟩
+  ⟨SigmaSphereInclusion n cells, continuous_sigmaSphereInclusion n cells⟩
 
 def SigmaAttachMap (X : TopCat) (n : ℕ) (cells : Type)
     (attach_maps : cells → ContinuousMap (𝕊 n) X) :
@@ -87,7 +87,7 @@ structure AttachCells (X X' : TopCat) (n : ℕ) where
   cells : Type
   attach_maps : cells → ContinuousMap (𝕊 n) X
   iso_pushout : X' ≅ Limits.pushout
-    (BundledSigmaCellBorderInclusion n cells)
+    (BundledSigmaSphereInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
 
 end
@@ -119,7 +119,7 @@ noncomputable section
 -- The inclusion map from X to X', given that X' is obtained from X by attaching n-cells
 def AttachCellsInclusion (X X' : TopCat) (n : ℕ) (att : AttachCells X X' n) : X ⟶ X'
   := @Limits.pushout.inr TopCat _ _ _ X
-      (BundledSigmaCellBorderInclusion n att.cells)
+      (BundledSigmaSphereInclusion n att.cells)
       (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
 -- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
