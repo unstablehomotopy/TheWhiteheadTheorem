@@ -37,11 +37,10 @@ def SphereInclusion (n : ℕ) : (𝕊 n) → (𝔻 n + 1) := fun ⟨pt, hpt⟩ =
 theorem continuous_SphereInclusion (n : ℕ) : Continuous (SphereInclusion n) :=
   ⟨by
     intro _ ⟨t, ht, ht'⟩
-    rw [isOpen_induced_iff] at *
+    rw [isOpen_induced_iff]
     use t, ht
     rw [ht'.symm]
-    ext _
-    constructor <;> tauto
+    tauto
   ⟩
 
 def SigmaSphereInclusion (n : ℕ) (cells : Type) :
