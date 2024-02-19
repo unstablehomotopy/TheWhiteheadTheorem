@@ -17,16 +17,6 @@ import Mathlib.Init.Set
 
 open CategoryTheory
 
-namespace tmp1
-  --set_option trace.Meta.synthInstance true
-  #check (TopCat.of Empty)
-  #check ∅
-  --#check (TopCat.of ∅)
-  example (x : ℤ) (h : x ≥ 0) : ℕ := Int.toNat x
-  example (x : ℤ) (h : x ≥ 0) : Int.toNat x = x := by
-    exact Int.toNat_of_nonneg h
-end tmp1
-
 
 namespace CWComplex
 noncomputable section
@@ -138,6 +128,41 @@ def SkeletaInclusion' (X : CWComplex) (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) :
     simp_wf
     rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h')]
     linarith
+
+def ColimitDiagram (X : CWComplex) : ℤ ⥤ TopCat where
+  obj := X.sk
+  map := @fun n m n_le_m => SkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
+  map_id := by simp [SkeletaInclusion']
+  map_comp := by
+    let rec p (n m l : ℤ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
+        SkeletaInclusion' X n l n_le_l =
+        SkeletaInclusion' X n m n_le_m ≫
+        SkeletaInclusion' X m l m_le_l :=
+      if hnm : n = m then by
+        unfold SkeletaInclusion'
+        aesop
+      else by
+        have h1 : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, hnm⟩
+        have h2 : n < l := by linarith
+        unfold SkeletaInclusion'
+        simp [hnm, Int.ne_of_lt h2]
+        rcases em (m = l) with hml | hml
+        . aesop
+        congr
+        rw [p (n + 1) m l h1 m_le_l h2]
+        congr
+        simp [hml]
+        conv => lhs; unfold SkeletaInclusion'
+        simp [hml]
+      termination_by Int.toNat (l - n)
+      decreasing_by
+        simp_wf
+        rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h2)]
+        linarith
+    intro n m l n_le_m m_le_l
+    have n_le_m := Quiver.Hom.le n_le_m
+    have m_le_l := Quiver.Hom.le m_le_l
+    exact p n m l n_le_m m_le_l (Int.le_trans n_le_m m_le_l)
 
 end
 end CWComplex
