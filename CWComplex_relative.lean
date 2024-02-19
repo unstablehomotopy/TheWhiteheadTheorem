@@ -22,12 +22,12 @@ namespace CWComplex
 noncomputable section
 
 def Sphere : ℤ → TopCat
-  | Int.ofNat n => TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
-  | _           => TopCat.of Empty
+  | (n : ℕ) => TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
+  | _       => TopCat.of Empty
 
 def ClosedBall : ℤ → TopCat
-  | Int.ofNat n => TopCat.of <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
-  | _           => TopCat.of Empty
+  | (n : ℕ) => TopCat.of <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
+  | _       => TopCat.of Empty
 
 notation:0 "𝕊 "n => Sphere n
 notation:0 "𝔻 "n => ClosedBall n
