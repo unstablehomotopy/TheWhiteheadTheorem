@@ -18,10 +18,13 @@ import Mathlib.Init.Set
 open CategoryTheory
 
 namespace tmp1
-  set_option trace.Meta.synthInstance true
+  --set_option trace.Meta.synthInstance true
   #check (TopCat.of Empty)
   #check ∅
   --#check (TopCat.of ∅)
+  example (x : ℤ) (h : x ≥ 0) : ℕ := Int.toNat x
+  example (x : ℤ) (h : x ≥ 0) : Int.toNat x = x := by
+    exact Int.toNat_of_nonneg h
 end tmp1
 
 
@@ -122,17 +125,19 @@ def SkeletaInclusion (X : CWComplex) (n : ℤ) : X.sk n ⟶ X.sk (n + 1) :=
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
 -- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
--- Note: A dependently-typed `List` with `List.range'` and `List.foldl_assoc` could help here.
--- Does mathlib have that?
 def SkeletaInclusion' (X : CWComplex) (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) :
     X.sk n ⟶ X.sk m :=
   if h : n = m then by
     rw [<- h]
     exact 𝟙 (X.sk n)
   else by
-    have : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, h⟩
-    exact SkeletaInclusion X n ≫ SkeletaInclusion' X (n + 1) m this
-  termination_by m - n
+    have h' : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, h⟩
+    exact SkeletaInclusion X n ≫ SkeletaInclusion' X (n + 1) m h'
+  termination_by Int.toNat (m - n)
+  decreasing_by
+    simp_wf
+    rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h')]
+    linarith
 
 end
 end CWComplex
