@@ -91,13 +91,15 @@ end CWComplex
 
 
 
-structure CWComplex where
+structure RelativeCWComplex (A : TopCat) where
   /- Skeleta -/
   sk : ℤ → TopCat
-  /- Every n-skeleton for n < 0 is empty. -/
-  sk_neg_empty : ∀ n < 0, sk n = Empty
+  /- A is isomorphic to the (-1)-skeleton. -/
+  iso_sk_neg_one : A ≅ sk (-1)
   /- The (n + 1)-skeleton is obtained from the n-skeleton by attaching (n + 1)-cells. -/
   attach_cells : (n : ℤ) → CWComplex.AttachCells (sk n) (sk (n + 1)) (n + 1)
+
+abbrev CWComplex := RelativeCWComplex (TopCat.of Empty)
 
 
 
@@ -111,12 +113,12 @@ def AttachCellsInclusion (X X' : TopCat) (n : ℤ) (att : AttachCells X X' n) : 
       (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
 -- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
-def SkeletaInclusion (X : CWComplex) (n : ℤ) : X.sk n ⟶ X.sk (n + 1) :=
+def SkeletaInclusion {A : TopCat} (X : RelativeCWComplex A) (n : ℤ) : X.sk n ⟶ X.sk (n + 1) :=
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
 -- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
-def SkeletaInclusion' (X : CWComplex) (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) :
-    X.sk n ⟶ X.sk m :=
+def SkeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
+    (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) : X.sk n ⟶ X.sk m :=
   if h : n = m then by
     rw [<- h]
     exact 𝟙 (X.sk n)
@@ -129,7 +131,7 @@ def SkeletaInclusion' (X : CWComplex) (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) :
     rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h')]
     linarith
 
-def ColimitDiagram (X : CWComplex) : ℤ ⥤ TopCat where
+def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
   obj := X.sk
   map := @fun n m n_le_m => SkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
   map_id := by simp [SkeletaInclusion']
@@ -164,5 +166,15 @@ def ColimitDiagram (X : CWComplex) : ℤ ⥤ TopCat where
     have m_le_l := Quiver.Hom.le m_le_l
     exact p n m l n_le_m m_le_l (Int.le_trans n_le_m m_le_l)
 
+-- The topology on a CW-complex.
+def toTopCat {A : TopCat} (X : RelativeCWComplex A) : TopCat :=
+  Limits.colimit (ColimitDiagram X)
+
+instance : Coe CWComplex TopCat where coe X := toTopCat X
+
 end
 end CWComplex
+
+
+variable {X : CWComplex}
+#check (X : TopCat)
