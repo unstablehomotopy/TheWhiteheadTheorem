@@ -93,6 +93,7 @@ end CWComplex
 
 structure RelativeCWComplex (A : TopCat) where
   /- Skeleta -/
+  -- might need this: https://math.stackexchange.com/questions/650279/pushout-from-initial-object-isomorphic-to-coproduct
   sk : ℤ → TopCat
   /- A is isomorphic to the (-1)-skeleton. -/
   iso_sk_neg_one : A ≅ sk (-1)
