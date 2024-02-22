@@ -58,30 +58,30 @@ theorem continuous_sigmaSphereInclusion (n : ℤ) (cells : Type) :
   apply continuous_SphereInclusion
 
 def BundledSigmaSphereInclusion (n : ℤ) (cells : Type) :
-    ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) (TopCat.of (Σ (_ : cells), 𝔻 n + 1)) :=
+    C(TopCat.of (Σ (_ : cells), 𝕊 n), TopCat.of (Σ (_ : cells), 𝔻 n + 1)) :=
   ⟨SigmaSphereInclusion n cells, continuous_sigmaSphereInclusion n cells⟩
 
 def SigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (𝕊 n) X) :
+    (attach_maps : cells → C(𝕊 n, X)) :
     (Σ (_ : cells), 𝕊 n) → X :=
   fun ⟨i, x⟩ => attach_maps i x
 
 theorem continuous_sigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (𝕊 n) X) :
+    (attach_maps : cells → C(𝕊 n, X)) :
     Continuous (SigmaAttachMap X n cells attach_maps) := by
   apply continuous_sigma
   exact fun i => (attach_maps i).continuous_toFun
 
 def BundledSigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
-    (attach_maps : cells → ContinuousMap (𝕊 n) X) :
-    ContinuousMap (TopCat.of (Σ (_ : cells), 𝕊 n)) X :=
+    (attach_maps : cells → C(𝕊 n, X)) :
+    C(TopCat.of (Σ (_ : cells), 𝕊 n), X) :=
   ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
 
 -- A type witnessing that X' is obtained from X by attaching n-cells
 structure AttachCells (X X' : TopCat) (n : ℤ) where
   /- The index type over n-cells -/
   cells : Type
-  attach_maps : cells → ContinuousMap (𝕊 n) X
+  attach_maps : cells → C(𝕊 n, X)
   iso_pushout : X' ≅ Limits.pushout
     (BundledSigmaSphereInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
