@@ -216,6 +216,7 @@ theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclu
       have H' : (𝔻 Int.negSucc n') × I → Y := fun (x, _) => Empty.rec x
       have H' : (𝔻 Int.negSucc n' + 1) × I → Y := by
         intro (x, _)
+        unfold ClosedBall at x
         sorry
       sorry
 
