@@ -193,8 +193,8 @@ def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpac
   ∀ Y : Type, [TopologicalSpace Y] → ∀ f : C(X, Y), ∀ H : C(A × I, Y), f ∘ i = H ∘ (., 0) →
   ∃ H' : C(X × I, Y), f = H' ∘ (., 0) ∧ H = H' ∘ Prod.map i id
 
---theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (BundledSphereInclusion n) :=
-theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
+theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (BundledSphereInclusion n) :=
+--theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
   match n with
   | (n : ℕ) => sorry
   | Int.negSucc n' => -- n = -(n' + 1)
@@ -210,29 +210,49 @@ theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclu
       tauto -- Empty.rec x
     else by
       have h_neg_one : n' > 0 := Nat.pos_of_ne_zero h_neg_one
+      have h_neg_one₁ : Int.negSucc n' < 0 := Int.negSucc_lt_zero n'
+      have h_neg_one₂ : Int.negSucc n' < 0 := Int.negSucc_lt_zero n'
+      have h_neg_one' : Int.negSucc n' + 1 < 0 := by
+        sorry
       intro Y _ f H hcomp
       -- have H' : Empty → Y := Empty.rec
       -- have H' : (𝔻 (Int.negSucc n)) → Y := Empty.rec
-      have H' : (𝔻 Int.negSucc n') × I → Y := fun (x, _) => Empty.rec x
-      have H' : (𝔻 Int.negSucc n' + 1) × I → Y := by
+      let H' : (𝔻 Int.negSucc n') × I → Y := fun (x, _) => Empty.rec x
+      let H' : (𝔻 Int.negSucc n' + 1) × I → Y := by
         intro (x, _)
         unfold ClosedBall at x
         sorry
       sorry
 
 theorem hep_sphereInclusion' (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
-  if h_neg_one : n = -1 then by
-    rw [h_neg_one]
+  if h1 : n = -1 then by
+    rw [h1]
     intro Y _ f H hcomp
-    --have H' : C((𝔻 0) × I, Y) := ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
-    --use H'
     use ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
     simp
     constructor
     . ext x
       simp
+    ext ⟨x, _⟩
+    tauto
+  else if h2 : n + 1 < 0 then by
+    have ⟨m, hm⟩ := Int.eq_negSucc_of_lt_zero h2
+    intro Y _ f H hcomp
+    --rw [hm] at f
+    let φ (n : ℕ) : C(𝔻 Int.negSucc n, Y) := ⟨Empty.rec, by tauto⟩
+    let φ' (n : ℕ) : C((𝔻 Int.negSucc n) × I, Y) :=
+      ⟨fun (x, _) => φ n x, Continuous.fst' (φ n).continuous_toFun⟩
+    let H' : C((𝔻 n + 1) × I, Y) := by rw [hm]; exact φ' m
+    use H'
+    constructor
+    . ext x
+      dsimp
+      sorry
+    ext ⟨x, z⟩
+    simp
     sorry
   else by
+    have h3 : n ≥ 0 := by contrapose! h2; contrapose! h1; linarith
     sorry
 
 end
