@@ -38,7 +38,7 @@ def SphereInclusion (n : ℤ) : (𝕊 n) → (𝔻 n + 1) :=
   | Int.ofNat _   => fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
   | Int.negSucc _ => Empty.rec
 
-theorem continuous_SphereInclusion (n : ℤ) : Continuous (SphereInclusion n) :=
+theorem continuous_sphereInclusion (n : ℤ) : Continuous (SphereInclusion n) :=
   match n with
   | Int.ofNat _ => ⟨by
       intro _ ⟨t, ht, ht'⟩
@@ -56,7 +56,7 @@ theorem continuous_sigmaSphereInclusion (n : ℤ) (cells : Type) :
     Continuous (SigmaSphereInclusion n cells) := by
   apply Continuous.sigma_map
   intro _
-  apply continuous_SphereInclusion
+  apply continuous_sphereInclusion
 
 def BundledSigmaSphereInclusion (n : ℤ) (cells : Type) :
     TopCat.of (Σ (_ : cells), 𝕊 n) ⟶ TopCat.of (Σ (_ : cells), 𝔻 n + 1) :=
@@ -180,15 +180,17 @@ open unitInterval
 -- def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 -- def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
 --   ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
--- def homotopyExtensionProperty {A X : TopCat} (i : A ⟶ X) : Prop :=
+-- def HomotopyExtensionProperty {A X : TopCat} (i : A ⟶ X) : Prop :=
 --   ∀ Y : TopCat, ∀ f : X ⟶ Y, ∀ H : TopCat.of (A × I) ⟶ Y, i ≫ f = j0 ≫ H →
 --   ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
-def homotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X] (i : C(A, X)) : Prop :=
+def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X] (i : C(A, X)) : Prop :=
   ∀ Y : Type, [TopologicalSpace Y] → ∀ f : C(X, Y), ∀ H : C(A × I, Y), f ∘ i = H ∘ (., 0) →
   ∃ H' : C(X × I, Y), f = H' ∘ (., 0) ∧ H = H' ∘ Prod.map i id
+
+theorem hep_SphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩:= sorry
 
 end
 end CWComplex
