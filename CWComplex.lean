@@ -177,22 +177,18 @@ instance : Coe CWComplex TopCat where coe X := toTopCat X
 
 open unitInterval
 
-def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
-def j1 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 1), Continuous.Prod.mk_left 1⟩
-def j0' {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
-def j1' {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 1), Continuous.Prod.mk_left 1⟩
-def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
-  ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
-def prod_map' {W X Y Z : Type} [TopologicalSpace W] [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z]
-  (f : C(W, X)) (g : C(Y, Z)) : C(W × Y, X × Z) := ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
+-- def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
+-- def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
+--   ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
+-- def homotopyExtensionProperty {A X : TopCat} (i : A ⟶ X) : Prop :=
+--   ∀ Y : TopCat, ∀ f : X ⟶ Y, ∀ H : TopCat.of (A × I) ⟶ Y, i ≫ f = j0 ≫ H →
+--   ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
 
-def homotopyExtensionProperty {A X : TopCat} (i : A ⟶ X) : Prop :=
-  ∀ Y : TopCat, ∀ f : X ⟶ Y, ∀ H : TopCat.of (A × I) ⟶ Y, i ≫ f = j0 ≫ H →
-  ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
+-- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
-def homotopyExtensionProperty' {A X : Type} [TopologicalSpace A] [TopologicalSpace X] (i : C(A, X)) : Prop :=
-  ∀ Y : Type, [TopologicalSpace Y] → ∀ f : C(X, Y), ∀ H : C(A × I, Y), f ∘ i = H ∘ j0' →
-  ∃ H' : C(X × I, Y), f = H' ∘ j0' ∧ H = H' ∘ Prod.map i id
+def homotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X] (i : C(A, X)) : Prop :=
+  ∀ Y : Type, [TopologicalSpace Y] → ∀ f : C(X, Y), ∀ H : C(A × I, Y), f ∘ i = H ∘ (., 0) →
+  ∃ H' : C(X × I, Y), f = H' ∘ (., 0) ∧ H = H' ∘ Prod.map i id
 
 end
 end CWComplex
