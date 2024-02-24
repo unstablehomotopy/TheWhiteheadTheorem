@@ -201,17 +201,13 @@ theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclu
     if h_neg_one : n' = 0 then by
       rw [h_neg_one]
       intro Y _ f H hcomp
-      have H' : C((𝔻 Int.negSucc 0 + 1) × I, Y) := ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
-      use H'
+      use ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
       simp
       constructor
-      ext x
-      simp
-      have : H' (x, 0) = f x := by
-        unfold ClosedBall at x
-        sorry
-      sorry
-      sorry
+      . ext x
+        simp
+      ext ⟨x, _⟩
+      tauto -- Empty.rec x
     else by
       have h_neg_one : n' > 0 := Nat.pos_of_ne_zero h_neg_one
       intro Y _ f H hcomp
@@ -227,15 +223,13 @@ theorem hep_sphereInclusion' (n : ℤ) : HomotopyExtensionProperty ⟨SphereIncl
   if h_neg_one : n = -1 then by
     rw [h_neg_one]
     intro Y _ f H hcomp
-    have H' : C((𝔻 0) × I, Y) := ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
-    use H'
+    --have H' : C((𝔻 0) × I, Y) := ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
+    --use H'
+    use ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
     simp
     constructor
     . ext x
-      have : -1 + 1 = 0 := by rfl
-      rw [this] at x
       simp
-      sorry
     sorry
   else by
     sorry
