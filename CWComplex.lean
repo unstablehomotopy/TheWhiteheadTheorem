@@ -174,36 +174,13 @@ def toTopCat {A : TopCat} (X : RelativeCWComplex A) : TopCat :=
 
 instance : Coe CWComplex TopCat where coe X := toTopCat X
 
-section
-  variable {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y]
-  set_option trace.Meta.synthInstance true
-  #check C(X × Y, X × Y)
-  --#check C(X ×ˢ Y, X ×ˢ Y)
-  open unitInterval
-  #check C(X, X × I)
-  #check (TopCat.of (X × I))
-  --#check (X × TopCat.of I : TopCat)
-end
 
 open unitInterval
 
 def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 def j1 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 1), Continuous.Prod.mk_left 1⟩
-
 def j0' {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 def j1' {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 1), Continuous.Prod.mk_left 1⟩
-
-def tmp {X Y : TopCat} (f : X ⟶ Y) : TopCat.of (X × I) ⟶ TopCat.of (Y × I) :=
-  ⟨fun (x, z) => (f x, z), Continuous.prod_map f.continuous_toFun continuous_id⟩
-def tmp₁ {X Y : TopCat} (f : X ⟶ Y) : TopCat.of (X × I) ⟶ TopCat.of (Y × I) :=
-  ⟨Prod.map f id, Continuous.prod_map f.continuous_toFun continuous_id⟩
-def tmp' {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y]
-  (f : C(X, Y)) : C(X × I, Y × I) := ⟨fun (x, z) => (f x, z),
-    Continuous.prod_map f.continuous_toFun continuous_id⟩
-def tmp'' {X Y X' Y' : Type} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace X'] [TopologicalSpace Y']
-  (f : C(X, Y)) (g : C(X', Y')) : C(X × X', Y × Y') := ⟨fun (x, y) => (f x, g y), Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
-#print tmp'
-
 def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
   ⟨fun (w, y) => (f w, g y), Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
 def prod_map' {W X Y Z : Type} [TopologicalSpace W] [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z]
@@ -212,7 +189,6 @@ def prod_map' {W X Y Z : Type} [TopologicalSpace W] [TopologicalSpace X] [Topolo
 def homotopyExtensionProperty {A X : TopCat} (i : A ⟶ X) : Prop :=
   ∀ Y : TopCat, ∀ f : X ⟶ Y, ∀ H : TopCat.of (A × I) ⟶ Y, i ≫ f = j0 ≫ H →
   ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
-
 def homotopyExtensionProperty' {A X : Type} [TopologicalSpace A] [TopologicalSpace X]
     (i : C(A, X)) : Prop :=
   ∀ Y : Type, [TopologicalSpace Y] → ∀ f : C(X, Y), ∀ H : C(A × I, Y), f ∘ i = H ∘ j0' →
