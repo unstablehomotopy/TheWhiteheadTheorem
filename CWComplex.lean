@@ -208,7 +208,9 @@ theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclu
       ext x
       simp
       have : H' (x, 0) = f x := by
+        unfold ClosedBall at x
         sorry
+      sorry
       sorry
     else by
       have h_neg_one : n' > 0 := Nat.pos_of_ne_zero h_neg_one
@@ -221,7 +223,22 @@ theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclu
         sorry
       sorry
 
-#check Continuous.prod_map
+theorem hep_sphereInclusion' (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
+  if h_neg_one : n = -1 then by
+    rw [h_neg_one]
+    intro Y _ f H hcomp
+    have H' : C((𝔻 0) × I, Y) := ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
+    use H'
+    simp
+    constructor
+    . ext x
+      have : -1 + 1 = 0 := by rfl
+      rw [this] at x
+      simp
+      sorry
+    sorry
+  else by
+    sorry
 
 end
 end CWComplex
