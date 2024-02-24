@@ -48,6 +48,9 @@ theorem continuous_sphereInclusion (n : ℤ) : Continuous (SphereInclusion n) :=
       tauto⟩
   | Int.negSucc n => ⟨by tauto⟩
 
+def BundledSphereInclusion (n : ℤ) : TopCat.of (𝕊 n) ⟶ TopCat.of (𝔻 n + 1) :=
+  ⟨SphereInclusion n, continuous_sphereInclusion n⟩
+
 def SigmaSphereInclusion (n : ℤ) (cells : Type) :
     (Σ (_ : cells), 𝕊 n) → (Σ (_ : cells), 𝔻 n + 1) :=
   Sigma.map id fun _ x => SphereInclusion n x
@@ -190,7 +193,10 @@ def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpac
   ∀ Y : Type, [TopologicalSpace Y] → ∀ f : C(X, Y), ∀ H : C(A × I, Y), f ∘ i = H ∘ (., 0) →
   ∃ H' : C(X × I, Y), f = H' ∘ (., 0) ∧ H = H' ∘ Prod.map i id
 
-theorem hep_SphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩:= sorry
+theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (BundledSphereInclusion n) :=
+  match n with
+  | (n : ℕ) => sorry
+  | _       => sorry
 
 end
 end CWComplex
