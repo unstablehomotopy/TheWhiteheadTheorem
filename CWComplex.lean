@@ -193,10 +193,35 @@ def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpac
   ∀ Y : Type, [TopologicalSpace Y] → ∀ f : C(X, Y), ∀ H : C(A × I, Y), f ∘ i = H ∘ (., 0) →
   ∃ H' : C(X × I, Y), f = H' ∘ (., 0) ∧ H = H' ∘ Prod.map i id
 
-theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (BundledSphereInclusion n) :=
+--theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (BundledSphereInclusion n) :=
+theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
   match n with
   | (n : ℕ) => sorry
-  | _       => sorry
+  | Int.negSucc n' => -- n = -(n' + 1)
+    if h_neg_one : n' = 0 then by
+      rw [h_neg_one]
+      intro Y _ f H hcomp
+      have H' : C((𝔻 Int.negSucc 0 + 1) × I, Y) := ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
+      use H'
+      simp
+      constructor
+      ext x
+      simp
+      have : H' (x, 0) = f x := by
+        sorry
+      sorry
+    else by
+      have h_neg_one : n' > 0 := Nat.pos_of_ne_zero h_neg_one
+      intro Y _ f H hcomp
+      -- have H' : Empty → Y := Empty.rec
+      -- have H' : (𝔻 (Int.negSucc n)) → Y := Empty.rec
+      have H' : (𝔻 Int.negSucc n') × I → Y := fun (x, _) => Empty.rec x
+      have H' : (𝔻 Int.negSucc n' + 1) × I → Y := by
+        intro (x, _)
+        sorry
+      sorry
+
+#check Continuous.prod_map
 
 end
 end CWComplex
