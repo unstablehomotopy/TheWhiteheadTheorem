@@ -255,6 +255,8 @@ theorem hep_sphereInclusion' (n : ℤ) : HomotopyExtensionProperty ⟨SphereIncl
     have h3 : n ≥ 0 := by contrapose! h2; contrapose! h1; linarith
     sorry
 
+#check ContinuousMap.liftCover -- gluing lemma
+
 end
 end CWComplex
 
