@@ -277,16 +277,15 @@ section
 
   variable {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
 
-  variable {n : ℕ} (S : Fin n → Set α) (φ : ∀ i : Fin n, C(S i, β))
+  variable {ι : Type*} [Finite ι] (S : ι → Set α) (φ : ∀ i : ι, C(S i, β))
   (hφ : ∀ (i j) (x : α) (hxi : x ∈ S i) (hxj : x ∈ S j), φ i ⟨x, hxi⟩ = φ j ⟨x, hxj⟩)
-  (hS_cover : ∀ x : α, ∃ i, x ∈ S i)
-  (hS_closed : ∀ i, IsClosed (S i))
+  (hS_cover : ∀ x : α, ∃ i, x ∈ S i) (hS_closed : ∀ i, IsClosed (S i))
 
   noncomputable def liftCover_closed : C(α, β) :=
     have H : ⋃ i, S i = Set.univ := Set.iUnion_eq_univ_iff.2 hS_cover
     let Φ := Set.liftCover S (fun i ↦ φ i) hφ H
     ContinuousMap.mk Φ <| continuous_iff_isClosed.mpr fun Y hY ↦ by
-      have h1 : ∀ i, φ i ⁻¹' Y = S i ∩ Φ ⁻¹' Y := fun i ↦ by
+      have : ∀ i, φ i ⁻¹' Y = S i ∩ Φ ⁻¹' Y := fun i ↦ by
         ext x
         simp
         constructor
@@ -298,14 +297,16 @@ section
           use hxi
           have : Φ x = φ i ⟨x, hxi⟩ := Set.liftCover_of_mem hxi
           rwa [← this]
-      have h2 : Φ ⁻¹' Y = ⋃ i, Subtype.val '' (φ i ⁻¹' Y) := by
-        conv => rhs; ext x; arg 1; ext i; rw [h1]
+      have : Φ ⁻¹' Y = ⋃ i, Subtype.val '' (φ i ⁻¹' Y) := by
+        conv => rhs; ext x; arg 1; ext i; rw [this]
         conv => rhs; ext x; rw [← Set.iUnion_inter, H]; simp
-      have h3 : ∀ i, IsClosed <| Subtype.val '' (φ i ⁻¹' Y) := fun i ↦
+      rw [this]
+      exact isClosed_iUnion_of_finite fun i ↦
         IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
-      rw [h2]
-      exact isClosed_iUnion_of_finite h3
 
+  #check Set.iUnionLift
+  #check Set.liftCover
+  #check ContinuousMap.liftCover
   #check Set.mem_image_val_of_mem
   #check Set.liftCover_of_mem
   #check Set.iUnion
