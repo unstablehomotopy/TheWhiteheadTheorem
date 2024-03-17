@@ -15,6 +15,7 @@ import Mathlib.CategoryTheory.Limits.Shapes.Pullbacks
 import Mathlib.CategoryTheory.Category.Preorder
 import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
 import Mathlib.Init.Set
+--import Mathlib.Data.Finset.Basic
 
 open CategoryTheory
 
@@ -255,10 +256,62 @@ theorem hep_sphereInclusion' (n : ℤ) : HomotopyExtensionProperty ⟨SphereIncl
     have h3 : n ≥ 0 := by contrapose! h2; contrapose! h1; linarith
     sorry
 
-#check ContinuousMap.liftCover -- gluing lemma
-
 end
 end CWComplex
+
+section
+  variable {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y]
+
+  #check ContinuousMap.liftCover -- gluing lemma
+
+  #check continuous_of_discreteTopology
+  #check ContinuousMap
+  #check Continuous -- isOpen_preimage : ∀ s, IsOpen s → IsOpen (f ⁻¹' s)
+
+  example (f : X → Y) (isClosed_preimage : ∀ s, IsClosed s → IsClosed (f ⁻¹' s)) : Continuous f := by
+    exact continuous_iff_isClosed.mpr isClosed_preimage
+end
+
+section
+  #check Finset
+
+  variable {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
+
+  variable {n : ℕ} (S : Fin n → Set α) (φ : ∀ i : Fin n, C(S i, β))
+  (hφ : ∀ (i j) (x : α) (hxi : x ∈ S i) (hxj : x ∈ S j), φ i ⟨x, hxi⟩ = φ j ⟨x, hxj⟩)
+  (hS_cover : ∀ x : α, ∃ i, x ∈ S i)
+  (hS_closed : ∀ i, IsClosed (S i))
+
+  noncomputable def liftCover_closed : C(α, β) :=
+    have H : ⋃ i, S i = Set.univ := Set.iUnion_eq_univ_iff.2 hS_cover
+    let Φ := Set.liftCover S (fun i ↦ φ i) hφ H
+    ContinuousMap.mk Φ <| continuous_iff_isClosed.mpr fun Y hY ↦ by
+      have h1 : ∀ i, φ i ⁻¹' Y = S i ∩ Φ ⁻¹' Y := fun i ↦ by
+        ext x
+        simp
+        constructor
+        . intro ⟨hxi, hφx⟩
+          have : Φ x = φ i ⟨x, hxi⟩ := Set.liftCover_of_mem hxi
+          rw [← this] at hφx
+          trivial
+        . intro ⟨hxi, hφx⟩
+          use hxi
+          have : Φ x = φ i ⟨x, hxi⟩ := Set.liftCover_of_mem hxi
+          rwa [← this]
+      have h2 : Φ ⁻¹' Y = ⋃ i, Subtype.val '' (φ i ⁻¹' Y) := by
+        conv => rhs; ext x; arg 1; ext i; rw [h1]
+        conv => rhs; ext x; rw [← Set.iUnion_inter, H]; simp
+      have h3 : ∀ i, IsClosed <| Subtype.val '' (φ i ⁻¹' Y) := fun i ↦
+        IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
+      rw [h2]
+      exact isClosed_iUnion_of_finite h3
+
+  #check Set.mem_image_val_of_mem
+  #check Set.liftCover_of_mem
+  #check Set.iUnion
+  #check Set.iUnion_inter
+  #check isClosed_iUnion_of_finite
+end
 
 
 -- variable {X : CWComplex}
