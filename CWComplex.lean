@@ -365,7 +365,14 @@ section
         rw [← abs_div, le_abs, sub_div]; simp
         exact Or.inl hxy⟩
       continuous_toFun := by
-        refine Continuous.subtype_mk this ?_
+        conv at this =>
+          arg 1
+          ext x
+        conv =>
+          arg 1
+          ext x
+          whnf
+        -- refine Continuous.subtype_mk this ?_
 
     }
 
