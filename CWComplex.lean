@@ -337,20 +337,25 @@ section
     -- have : (n : ℕ) → (x : EuclideanSpace ℝ (Fin n)) → (r : ℝ)
     --   → ‖r • x‖ = ‖r‖ * ‖x‖ := fun n x r ↦ norm_smul _ _
 
-    have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ x := continuous_fst.comp continuous_id
-    have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ Prod.mk y x := continuous_swap
-    have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ Prod.mk y.val x.val :=
-      continuous_swap.comp (Continuous.prod_map continuous_subtype_val continuous_subtype_val)
-    have : Continuous fun (⟨x, y⟩ : ℝ × (EuclideanSpace ℝ <| Fin 1)) ↦ x • y :=
-      continuous_smul
-    have : Continuous fun (⟨y, x⟩ : I × (𝔻 1)) ↦ Prod.mk y.val x.val :=
-      (Continuous.prod_map continuous_subtype_val continuous_subtype_val)
-    have : Continuous fun (⟨y, x⟩ : I × (𝔻 1)) ↦ y.val • x.val :=
-      (Continuous.prod_map continuous_subtype_val continuous_subtype_val).comp'
-        (@continuous_smul ℝ (EuclideanSpace ℝ <| Fin 1) _ _ _ _)
+    -- have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ x := continuous_fst.comp continuous_id
+    -- have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ Prod.mk y x := continuous_swap
+    -- have : Continuous fun (⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I) ↦ Prod.mk y x :=
+    --    continuous_swap.comp (Continuous.prod_map continuous_subtype_val continuous_subtype_val)
+    -- have : Continuous fun (⟨x, y⟩ : ℝ × (EuclideanSpace ℝ <| Fin 1)) ↦ x • y := continuous_smul
+    -- have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ y.val • x.val := continuous_smul.comp <|
+    --   continuous_swap.comp <| Continuous.prod_map continuous_subtype_val continuous_subtype_val
+    -- have : Continuous fun (x : {x : ℝ | x ≠ 0}) ↦ (1 : ℝ) / x :=
+    --   continuous_const.div continuous_subtype_val fun x ↦ unitsEquivNeZero.proof_2 ℝ x
 
-    let H'0 : C(X0, (𝔻 1)) := ⟨
-      fun ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ ↦ ⟨(2 / (2 - y)) • x, by
+    have : Continuous fun (y : ℝ) ↦ 2 - y := by continuity
+    have : Continuous fun (⟨y, _⟩ : I) ↦ 2 / (2 - y) := continuous_const.div
+      (this.comp continuous_subtype_val) fun ⟨y, hy⟩ ↦ by simp; obtain ⟨_, _⟩ := hy; linarith
+    have : Continuous fun (⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I) ↦ (2 / (2 - y)) • x :=
+      continuous_smul.comp <| continuous_swap.comp <| continuous_subtype_val.prod_map this
+    have : Continuous fun (⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ : X0) ↦ (2 / (2 - y)) • x :=
+      this.comp continuous_subtype_val
+    let H'0 : C(X0, (𝔻 1)) := {
+      toFun := fun ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ ↦ ⟨ (2 / (2 - y)) • x, by
         simp [norm_smul]
         simp at hx
         --change ‖x‖ ≤ 1 - y / 2 at hxy
@@ -358,10 +363,11 @@ section
         rw [← le_div_iff' (div_pos (by linarith) this)]; simp
         nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by linarith)]
         rw [← abs_div, le_abs, sub_div]; simp
-        exact Or.inl hxy⟩,
-      by
-        --refine continuous_subtype_val.comp' ?_
-        sorry⟩
+        exact Or.inl hxy⟩
+      continuous_toFun := by
+        refine Continuous.subtype_mk this ?_
+
+    }
 
     -- have : Continuous fun (x : ℝ) ↦ ‖x‖ := continuous_norm
     --have : Continuous fun (⟨x, _⟩ : 𝔻 1) ↦ ‖x‖ := continuous_subtype_val.norm
@@ -375,13 +381,13 @@ section
     -- let Z2 := Metric.closedBall (0 : EuclideanSpace ℝ <| Fin 2) 1
     -- have : IsClosed Z2 := Metric.isClosed_ball
 
-    have hy_cont : Continuous fun (y : ℝ) ↦ 1 - y / 2 := by continuity
+    have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := by continuity
     have hX0 : IsClosed X0 := continuous_iff_isClosed.mp
       (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
-      isClosed_le continuous_fst <| hy_cont.comp <| continuous_subtype_val.comp continuous_snd
+      isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
     have hX1 : IsClosed X1 := continuous_iff_isClosed.mp
       (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
-      isClosed_le (hy_cont.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
+      isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
     sorry
 
@@ -391,6 +397,22 @@ section
     simp
     intro Y instY f H hf
     sorry
+
+  #check unitsEquivNeZero
+  #check ContinuousDiv
+  #check Continuous.div
+  #check Continuous.div'
+  #check continuous_div'
+  #check continuous_inv
+  #check Continuous.comp
+  #check Continuous.comp'
+  #check (fun (⟨x, hx⟩ : 𝔻 1) ↦ ‖x‖)
+  #check continuous_swap
+  #check ContinuousSMul
+  #check ContinuousConstSMul
+  #check Prod.continuousSMul
+  #check Prod.continuousConstSMul
+  #check Ring.uniformContinuousConstSMul
 
   #check norm_smul
   #check norm_div
@@ -414,16 +436,6 @@ section
   #check OrderClosedTopology I
   set_option trace.Meta.synthInstance true in
   #check OrderClosedTopology ℝ
-
-  #check Continuous.comp
-  #check Continuous.comp'
-  #check (fun (⟨x, hx⟩ : 𝔻 1) ↦ ‖x‖)
-  #check continuous_swap
-  #check ContinuousSMul
-  #check ContinuousConstSMul
-  #check Prod.continuousSMul
-  #check Prod.continuousConstSMul
-  #check Ring.uniformContinuousConstSMul
 end
 
 
