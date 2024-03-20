@@ -302,16 +302,16 @@ section
       exact isClosed_iUnion_of_finite fun i ↦
         IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
 
-  #check Finset
-  #check Finite
-  #check Set.iUnionLift
-  #check Set.liftCover
-  #check ContinuousMap.liftCover
-  #check Set.mem_image_val_of_mem
-  #check Set.liftCover_of_mem
-  #check Set.iUnion
-  #check Set.iUnion_inter
-  #check isClosed_iUnion_of_finite
+  -- #check Finset
+  -- #check Finite
+  -- #check Set.iUnionLift
+  -- #check Set.liftCover
+  -- #check ContinuousMap.liftCover
+  -- #check Set.mem_image_val_of_mem
+  -- #check Set.liftCover_of_mem
+  -- #check Set.iUnion
+  -- #check Set.iUnion_inter
+  -- #check isClosed_iUnion_of_finite
 end
 
 section
@@ -321,22 +321,69 @@ section
   open unitInterval
 
   theorem hep_0' : HomotopyExtensionProperty' (BundledSphereInclusion 0) := by
-      unfold HomotopyExtensionProperty'
-      --unfold BundledSphereInclusion SphereInclusion
-      simp
-      intro Y f H hf
-      -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
-      let X1 := {⟨⟨x, hx⟩, ⟨y, hy⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
-      let X2 := {⟨⟨x, hx⟩, ⟨y, hy⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
-      have : IsClosed X1 := isOpen_compl_iff.mp <|
-        isOpen_prod_iff.mpr fun ⟨x, hx⟩ ⟨y, hy⟩ h => by
-          let x' := ‖x‖ - (‖x‖ - (1 - y / 2)) / 4
-          let y' := y - (y - (2 - 2 * ‖x‖)) / 4
-          sorry
+    unfold HomotopyExtensionProperty'
+    --unfold BundledSphereInclusion SphereInclusion
+    simp
+    intro Y f H hf
+    -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
+    let X0 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
+    let X1 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
 
-      have Z1 := Metric.closedBall (0 : EuclideanSpace ℝ <| Fin 2) 1
-      have : IsClosed Z1 := by sorry
-      sorry
+    -- have : (x y z : ℝ) → (hx : x > 0) → (h : x * y ≤ z) → (y ≤ z / x) :=
+    --   fun x y z hx h ↦ by
+    --     exact (le_div_iff' hx).mpr h
+    -- have : (x : ℝ) → (h1 : 0 < x) → 0 < 2 / x := fun x h1 ↦ div_pos (by linarith) h1
+    -- have : 3 < 5 := by decide
+    -- have : (n : ℕ) → (x : EuclideanSpace ℝ (Fin n)) → (r : ℝ)
+    --   → ‖r • x‖ = ‖r‖ * ‖x‖ := fun n x r ↦ norm_smul _ _
+
+    have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ x := continuous_fst.comp continuous_id
+    have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ Prod.mk y x := continuous_swap
+    have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ Prod.mk y.val x.val :=
+      continuous_swap.comp (Continuous.prod_map continuous_subtype_val continuous_subtype_val)
+    have : Continuous fun (⟨x, y⟩ : ℝ × (EuclideanSpace ℝ <| Fin 1)) ↦ x • y :=
+      continuous_smul
+    have : Continuous fun (⟨y, x⟩ : I × (𝔻 1)) ↦ Prod.mk y.val x.val :=
+      (Continuous.prod_map continuous_subtype_val continuous_subtype_val)
+    have : Continuous fun (⟨y, x⟩ : I × (𝔻 1)) ↦ y.val • x.val :=
+      (Continuous.prod_map continuous_subtype_val continuous_subtype_val).comp'
+        (@continuous_smul ℝ (EuclideanSpace ℝ <| Fin 1) _ _ _ _)
+
+    let H'0 : C(X0, (𝔻 1)) := ⟨
+      fun ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ ↦ ⟨(2 / (2 - y)) • x, by
+        simp [norm_smul]
+        simp at hx
+        --change ‖x‖ ≤ 1 - y / 2 at hxy
+        have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
+        rw [← le_div_iff' (div_pos (by linarith) this)]; simp
+        nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by linarith)]
+        rw [← abs_div, le_abs, sub_div]; simp
+        exact Or.inl hxy⟩,
+      by
+        --refine continuous_subtype_val.comp' ?_
+        sorry⟩
+
+    -- have : Continuous fun (x : ℝ) ↦ ‖x‖ := continuous_norm
+    --have : Continuous fun (⟨x, _⟩ : 𝔻 1) ↦ ‖x‖ := continuous_subtype_val.norm
+    -- have : Continuous (id : ℝ → ℝ) := continuous_id
+    -- let Z1 := {⟨x, y⟩ : ℝ × ℝ | x ≤ 1 - y / 2}
+    -- let Z1' := {⟨x, ⟨y, hy⟩⟩ : ℝ × I | x ≤ 1 - y / 2}
+    -- let Z1'' := {⟨⟨x, hx⟩, ⟨y, hy⟩⟩ : I × I | x ≤ 1 - y / 2}
+    -- have : IsClosed Z1 := isClosed_le continuous_fst (by continuity)
+    -- have : IsClosed Z1' := isClosed_le continuous_fst (by continuity)
+    -- have : IsClosed Z1'' := isClosed_le (continuous_subtype_val.comp' continuous_fst) (by continuity)
+    -- let Z2 := Metric.closedBall (0 : EuclideanSpace ℝ <| Fin 2) 1
+    -- have : IsClosed Z2 := Metric.isClosed_ball
+
+    have hy_cont : Continuous fun (y : ℝ) ↦ 1 - y / 2 := by continuity
+    have hX0 : IsClosed X0 := continuous_iff_isClosed.mp
+      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
+      isClosed_le continuous_fst <| hy_cont.comp <| continuous_subtype_val.comp continuous_snd
+    have hX1 : IsClosed X1 := continuous_iff_isClosed.mp
+      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
+      isClosed_le (hy_cont.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
+
+    sorry
 
   theorem hep_0 : HomotopyExtensionProperty (BundledSphereInclusion 0) := by
     unfold HomotopyExtensionProperty
@@ -345,12 +392,38 @@ section
     intro Y instY f H hf
     sorry
 
+  #check norm_smul
+  #check norm_div
+  #check abs_eq_self
+  #check abs_div
+  #check le_abs
+  #check add_div
+  #check sub_div
+  #check Real.norm_eq_abs
+  #check abs_ne_zero.mpr
+  #check one_div_pos
+
   #check isClosed_compl_iff
   #check isOpen_prod_iff
   #check isOpen_prod_iff'
   #check Metric.isClosed_ball
   #check isClosed_Iic
   #check isClosed_le
+  #check OrderClosedTopology
+  set_option trace.Meta.synthInstance true in
+  #check OrderClosedTopology I
+  set_option trace.Meta.synthInstance true in
+  #check OrderClosedTopology ℝ
+
+  #check Continuous.comp
+  #check Continuous.comp'
+  #check (fun (⟨x, hx⟩ : 𝔻 1) ↦ ‖x‖)
+  #check continuous_swap
+  #check ContinuousSMul
+  #check ContinuousConstSMul
+  #check Prod.continuousSMul
+  #check Prod.continuousConstSMul
+  #check Ring.uniformContinuousConstSMul
 end
 
 
