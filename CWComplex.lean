@@ -181,12 +181,12 @@ instance : Coe CWComplex TopCat where coe X := toTopCat X
 
 open unitInterval
 
--- def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
--- def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
---   ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
--- def HomotopyExtensionProperty {A X : TopCat} (i : A ⟶ X) : Prop :=
---   ∀ Y : TopCat, ∀ f : X ⟶ Y, ∀ H : TopCat.of (A × I) ⟶ Y, i ≫ f = j0 ≫ H →
---   ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
+def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
+def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
+  ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
+def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
+  ∀ Y : TopCat, ∀ f : X ⟶ Y, ∀ H : TopCat.of (A × I) ⟶ Y, i ≫ f = j0 ≫ H →
+  ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
@@ -273,8 +273,6 @@ section
 end
 
 section
-  #check Finset
-
   variable {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
 
   variable {ι : Type*} [Finite ι] (S : ι → Set α) (φ : ∀ i : ι, C(S i, β))
@@ -304,6 +302,8 @@ section
       exact isClosed_iUnion_of_finite fun i ↦
         IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
 
+  #check Finset
+  #check Finite
   #check Set.iUnionLift
   #check Set.liftCover
   #check ContinuousMap.liftCover
@@ -312,6 +312,45 @@ section
   #check Set.iUnion
   #check Set.iUnion_inter
   #check isClosed_iUnion_of_finite
+end
+
+section
+  #check liftCover_closed
+
+  open CWComplex
+  open unitInterval
+
+  theorem hep_0' : HomotopyExtensionProperty' (BundledSphereInclusion 0) := by
+      unfold HomotopyExtensionProperty'
+      --unfold BundledSphereInclusion SphereInclusion
+      simp
+      intro Y f H hf
+      -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
+      let X1 := {⟨⟨x, hx⟩, ⟨y, hy⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
+      let X2 := {⟨⟨x, hx⟩, ⟨y, hy⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
+      have : IsClosed X1 := isOpen_compl_iff.mp <|
+        isOpen_prod_iff.mpr fun ⟨x, hx⟩ ⟨y, hy⟩ h => by
+          let x' := ‖x‖ - (‖x‖ - (1 - y / 2)) / 4
+          let y' := y - (y - (2 - 2 * ‖x‖)) / 4
+          sorry
+
+      have Z1 := Metric.closedBall (0 : EuclideanSpace ℝ <| Fin 2) 1
+      have : IsClosed Z1 := by sorry
+      sorry
+
+  theorem hep_0 : HomotopyExtensionProperty (BundledSphereInclusion 0) := by
+    unfold HomotopyExtensionProperty
+    --unfold BundledSphereInclusion SphereInclusion
+    simp
+    intro Y instY f H hf
+    sorry
+
+  #check isClosed_compl_iff
+  #check isOpen_prod_iff
+  #check isOpen_prod_iff'
+  #check Metric.isClosed_ball
+  #check isClosed_Iic
+  #check isClosed_le
 end
 
 
