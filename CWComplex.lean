@@ -360,8 +360,8 @@ section
         simp at hx
         --change ‖x‖ ≤ 1 - y / 2 at hxy
         have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
-        rw [← le_div_iff' (div_pos (by linarith) this)]; simp
-        nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by linarith)]
+        rw [← le_div_iff' (div_pos (by norm_num) this)]; simp
+        nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
         rw [← abs_div, le_abs, sub_div]; simp
         exact Or.inl hxy⟩
       continuous_toFun := by
