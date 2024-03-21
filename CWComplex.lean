@@ -351,12 +351,10 @@ section
       toFun := fun pt ↦ {
         -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
         val := match pt with
-               | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
+          | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
         property := by
-          obtain ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ := pt
+          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
           simp [norm_smul]
-          simp at hx
-          --change ‖x‖ ≤ 1 - y / 2 at hxy
           have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
           rw [← le_div_iff' (div_pos (by norm_num) this)]; simp
           nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
@@ -365,11 +363,40 @@ section
       }
       continuous_toFun := by
         have : Continuous fun (y : ℝ) ↦ 2 - y := by continuity
-        have : Continuous fun (⟨y, _⟩ : I) ↦ 2 / (2 - y) := continuous_const.div
-          (this.comp continuous_subtype_val) fun ⟨y, hy⟩ ↦ by simp; obtain ⟨_, _⟩ := hy; linarith
-        have : Continuous fun (⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I) ↦ (2 / (2 - y)) • x :=
-          continuous_smul.comp <| continuous_swap.comp <| continuous_subtype_val.prod_map this
-        exact (this.comp continuous_subtype_val).subtype_mk _
+        exact ((continuous_smul.comp <| continuous_swap.comp <| continuous_subtype_val.prod_map <|
+          continuous_const.div (this.comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
+            simp; linarith).comp continuous_subtype_val).subtype_mk _
+    }
+
+    let H'1_x : C(X1, (𝕊 0)) := {
+      toFun := fun pt ↦ {
+        val := match pt with
+          | ⟨⟨⟨x, hx⟩, ⟨y, hy⟩⟩, hxy⟩ => (1 / ‖x‖) • x
+        property := by
+          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+          simp [norm_smul]
+          change ‖x‖ ≥ 1 - y / 2 at hxy
+          exact inv_mul_cancel (by linarith)
+      }
+      continuous_toFun := by
+        refine Continuous.subtype_mk ?_ _
+        exact continuous_smul.comp <| (Continuous.div continuous_const (continuous_norm.comp <|
+          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val) fun pt ↦ by
+            obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+            simp; change x ≠ 0; rw [← norm_ne_zero_iff]
+            change ‖x‖ ≥ 1 - y / 2 at hxy
+            linarith).prod_mk <|
+          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val
+    }
+
+    let H'1 : C(X1, (𝕊 0) × I) := {
+      toFun := fun pt ↦ match pt with
+        | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => ⟨
+            ⟨(1 / ‖x‖) • x, by sorry⟩,
+            ⟨(y - 2) / ‖x‖ + 2, sorry⟩
+          ⟩,
+      continuous_toFun := by
+        sorry
     }
 
     -- have : Continuous fun (x : ℝ) ↦ ‖x‖ := continuous_norm
