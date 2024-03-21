@@ -346,12 +346,11 @@ section
       continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
         continuous_subtype_val.prod_map <| continuous_const.div
           ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
-            simp; linarith).comp continuous_subtype_val).subtype_mk _
+            dsimp; linarith).comp continuous_subtype_val).subtype_mk _
     }
 
-    have hX1_x_ne_zero : ∀ (pt : X1), ‖pt.val.fst.val‖ ≠ 0 := fun pt ↦ by
-      obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
-      simp; change x ≠ 0; rw [← norm_ne_zero_iff]
+    have hX1_x_ne_zero : ∀ (pt : X1), ‖pt.val.fst.val‖ ≠ 0 := fun ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ ↦ by
+      conv => lhs; arg 1; dsimp
       change ‖x‖ ≥ 1 - y / 2 at hxy
       linarith
 
@@ -396,10 +395,8 @@ section
           hX1_x_ne_zero
     }
 
-    let H'1 : C(X1, (𝕊 0) × I) := {
-      toFun := fun pt ↦ (H'1_x pt, H'1_y pt)
-      continuous_toFun := H'1_x.continuous_toFun.prod_mk H'1_y.continuous_toFun
-    }
+    let H'1 : C(X1, (𝕊 0) × I) := ⟨fun pt ↦ (H'1_x pt, H'1_y pt),
+      H'1_x.continuous_toFun.prod_mk H'1_y.continuous_toFun⟩
 
     have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
     have hX0 : IsClosed X0 := continuous_iff_isClosed.mp
