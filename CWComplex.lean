@@ -329,24 +329,6 @@ section
     let X0 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
     let X1 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
 
-    -- have : (x y z : ℝ) → (hx : x > 0) → (h : x * y ≤ z) → (y ≤ z / x) :=
-    --   fun x y z hx h ↦ by
-    --     exact (le_div_iff' hx).mpr h
-    -- have : (x : ℝ) → (h1 : 0 < x) → 0 < 2 / x := fun x h1 ↦ div_pos (by linarith) h1
-    -- have : 3 < 5 := by decide
-    -- have : (n : ℕ) → (x : EuclideanSpace ℝ (Fin n)) → (r : ℝ)
-    --   → ‖r • x‖ = ‖r‖ * ‖x‖ := fun n x r ↦ norm_smul _ _
-
-    -- have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ x := continuous_fst.comp continuous_id
-    -- have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ Prod.mk y x := continuous_swap
-    -- have : Continuous fun (⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I) ↦ Prod.mk y x :=
-    --    continuous_swap.comp (Continuous.prod_map continuous_subtype_val continuous_subtype_val)
-    -- have : Continuous fun (⟨x, y⟩ : ℝ × (EuclideanSpace ℝ <| Fin 1)) ↦ x • y := continuous_smul
-    -- have : Continuous fun (⟨x, y⟩ : (𝔻 1) × I) ↦ y.val • x.val := continuous_smul.comp <|
-    --   continuous_swap.comp <| Continuous.prod_map continuous_subtype_val continuous_subtype_val
-    -- have : Continuous fun (x : {x : ℝ | x ≠ 0}) ↦ (1 : ℝ) / x :=
-    --   continuous_const.div continuous_subtype_val fun x ↦ unitsEquivNeZero.proof_2 ℝ x
-
     let H'0 : C(X0, 𝔻 1) := {
       toFun := fun pt ↦ {
         -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
@@ -415,26 +397,9 @@ section
     }
 
     let H'1 : C(X1, (𝕊 0) × I) := {
-      toFun := fun pt ↦ match pt with
-        | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => ⟨
-            ⟨(1 / ‖x‖) • x, by sorry⟩,
-            ⟨(y - 2) / ‖x‖ + 2, sorry⟩
-          ⟩,
-      continuous_toFun := by
-        sorry
+      toFun := fun pt ↦ (H'1_x pt, H'1_y pt)
+      continuous_toFun := H'1_x.continuous_toFun.prod_mk H'1_y.continuous_toFun
     }
-
-    -- have : Continuous fun (x : ℝ) ↦ ‖x‖ := continuous_norm
-    --have : Continuous fun (⟨x, _⟩ : 𝔻 1) ↦ ‖x‖ := continuous_subtype_val.norm
-    -- have : Continuous (id : ℝ → ℝ) := continuous_id
-    -- let Z1 := {⟨x, y⟩ : ℝ × ℝ | x ≤ 1 - y / 2}
-    -- let Z1' := {⟨x, ⟨y, hy⟩⟩ : ℝ × I | x ≤ 1 - y / 2}
-    -- let Z1'' := {⟨⟨x, hx⟩, ⟨y, hy⟩⟩ : I × I | x ≤ 1 - y / 2}
-    -- have : IsClosed Z1 := isClosed_le continuous_fst (by continuity)
-    -- have : IsClosed Z1' := isClosed_le continuous_fst (by continuity)
-    -- have : IsClosed Z1'' := isClosed_le (continuous_subtype_val.comp' continuous_fst) (by continuity)
-    -- let Z2 := Metric.closedBall (0 : EuclideanSpace ℝ <| Fin 2) 1
-    -- have : IsClosed Z2 := Metric.isClosed_ball
 
     have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
     have hX0 : IsClosed X0 := continuous_iff_isClosed.mp
