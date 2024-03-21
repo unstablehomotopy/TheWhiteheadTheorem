@@ -347,7 +347,7 @@ section
     -- have : Continuous fun (x : {x : ℝ | x ≠ 0}) ↦ (1 : ℝ) / x :=
     --   continuous_const.div continuous_subtype_val fun x ↦ unitsEquivNeZero.proof_2 ℝ x
 
-    let H'0 : C(X0, (𝔻 1)) := {
+    let H'0 : C(X0, 𝔻 1) := {
       toFun := fun pt ↦ {
         -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
         val := match pt with
@@ -361,17 +361,22 @@ section
           rw [← abs_div, le_abs, sub_div]; simp
           exact Or.inl hxy
       }
-      continuous_toFun := by
-        have : Continuous fun (y : ℝ) ↦ 2 - y := by continuity
-        exact ((continuous_smul.comp <| continuous_swap.comp <| continuous_subtype_val.prod_map <|
-          continuous_const.div (this.comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
+      continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
+        continuous_subtype_val.prod_map <| continuous_const.div
+          ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
             simp; linarith).comp continuous_subtype_val).subtype_mk _
     }
 
-    let H'1_x : C(X1, (𝕊 0)) := {
+    have hX1_x_ne_zero : ∀ (pt : X1), ‖pt.val.fst.val‖ ≠ 0 := fun pt ↦ by
+      obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+      simp; change x ≠ 0; rw [← norm_ne_zero_iff]
+      change ‖x‖ ≥ 1 - y / 2 at hxy
+      linarith
+
+    let H'1_x : C(X1, 𝕊 0) := {
       toFun := fun pt ↦ {
         val := match pt with
-          | ⟨⟨⟨x, hx⟩, ⟨y, hy⟩⟩, hxy⟩ => (1 / ‖x‖) • x
+          | ⟨⟨⟨x, _⟩, _⟩, _⟩ => (1 / ‖x‖) • x
         property := by
           obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
           simp [norm_smul]
@@ -381,12 +386,32 @@ section
       continuous_toFun := by
         refine Continuous.subtype_mk ?_ _
         exact continuous_smul.comp <| (Continuous.div continuous_const (continuous_norm.comp <|
-          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val) fun pt ↦ by
-            obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
-            simp; change x ≠ 0; rw [← norm_ne_zero_iff]
-            change ‖x‖ ≥ 1 - y / 2 at hxy
-            linarith).prod_mk <|
+          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val)
+          hX1_x_ne_zero).prod_mk <|
           continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val
+    }
+
+    let H'1_y : C(X1, I) := {
+      toFun := fun pt ↦ {
+        val := match pt with
+          | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (y - 2) / ‖x‖ + 2
+        property := by
+          obtain ⟨⟨⟨x, hx⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+          simp; simp at hx
+          change ‖x‖ ≥ 1 - y / 2 at hxy
+          have : ‖x‖ > 0 := by linarith
+          constructor
+          all_goals rw [← add_le_add_iff_right (-2)]
+          . rw [← neg_le_neg_iff]; simp
+            rw [← neg_div, neg_sub, div_le_iff (by assumption)]; linarith
+          . rw [add_assoc, add_right_neg, add_zero, div_le_iff (by assumption)]; linarith
+      }
+      continuous_toFun := by
+        refine Continuous.subtype_mk ?_ _
+        exact (continuous_add_right _).comp <| Continuous.div
+          ((continuous_sub_right _).comp <| continuous_subtype_val.comp <| continuous_snd.comp <| continuous_subtype_val)
+          (continuous_norm.comp <| continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val)
+          hX1_x_ne_zero
     }
 
     let H'1 : C(X1, (𝕊 0) × I) := {
@@ -411,7 +436,7 @@ section
     -- let Z2 := Metric.closedBall (0 : EuclideanSpace ℝ <| Fin 2) 1
     -- have : IsClosed Z2 := Metric.isClosed_ball
 
-    have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := by continuity
+    have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
     have hX0 : IsClosed X0 := continuous_iff_isClosed.mp
       (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
       isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
