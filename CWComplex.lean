@@ -352,29 +352,37 @@ section
       (this.comp continuous_subtype_val) fun ⟨y, hy⟩ ↦ by simp; obtain ⟨_, _⟩ := hy; linarith
     have : Continuous fun (⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I) ↦ (2 / (2 - y)) • x :=
       continuous_smul.comp <| continuous_swap.comp <| continuous_subtype_val.prod_map this
-    have : Continuous fun (⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ : X0) ↦ (2 / (2 - y)) • x :=
-      this.comp continuous_subtype_val
-    let H'0 : C(X0, (𝔻 1)) := {
-      toFun := fun ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ ↦ ⟨ (2 / (2 - y)) • x, by
+    -- have : Continuous fun (⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ : X0) ↦ (2 / (2 - y)) • x :=
+    --   this.comp continuous_subtype_val
+    --let f1 : X0 → EuclideanSpace ℝ (Fin 1) := fun ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ ↦ (2 / (2 - y)) • x
+    --let H'0_fun : X0 → (𝔻 1) := fun pt ↦ ⟨(fun ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ ↦ (2 / (2 - y)) • x) pt, by
+    let H'0_fun : X0 → (𝔻 1) := fun pt ↦ ⟨match pt with
+      | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x, by
+        obtain ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ := pt
+        change (2 / (2 - y)) • x ∈ Metric.closedBall 0 1
         simp [norm_smul]
         simp at hx
-        --change ‖x‖ ≤ 1 - y / 2 at hxy
+        change ‖x‖ ≤ 1 - y / 2 at hxy
         have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
         rw [← le_div_iff' (div_pos (by norm_num) this)]; simp
         nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
         rw [← abs_div, le_abs, sub_div]; simp
         exact Or.inl hxy⟩
-      continuous_toFun := by
-        conv at this =>
-          arg 1
-          ext x
-        conv =>
-          arg 1
-          ext x
-          whnf
-        -- refine Continuous.subtype_mk this ?_
-
-    }
+    have : Continuous H'0_fun := (this.comp continuous_subtype_val).subtype_mk _
+    -- let H'0 : C(X0, (𝔻 1)) := {
+    --   toFun := fun pt ↦ ⟨match pt with
+    --   | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x, by
+    --     simp [norm_smul]
+    --     simp at hx
+    --     --change ‖x‖ ≤ 1 - y / 2 at hxy
+    --     have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
+    --     rw [← le_div_iff' (div_pos (by norm_num) this)]; simp
+    --     nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
+    --     rw [← abs_div, le_abs, sub_div]; simp
+    --     exact Or.inl hxy⟩
+    --   continuous_toFun := by
+    --     -- refine Continuous.subtype_mk this ?_
+    -- }
 
     -- have : Continuous fun (x : ℝ) ↦ ‖x‖ := continuous_norm
     --have : Continuous fun (⟨x, _⟩ : 𝔻 1) ↦ ‖x‖ := continuous_subtype_val.norm
@@ -443,6 +451,9 @@ section
   #check OrderClosedTopology I
   set_option trace.Meta.synthInstance true in
   #check OrderClosedTopology ℝ
+  set_option trace.Meta.synthInstance true in
+  #check Continuous fun (x : ℝ) ↦ x * x
+  #check Continuous.mul
 end
 
 
