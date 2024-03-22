@@ -427,7 +427,9 @@ section
       apply liftCover_closed S φ
       . intro i j x hxi hxj
         by_cases hij : i = j
-        . sorry
+        . congr <;> (try rw [hij])
+          rw [hij] at hxi
+          sorry
         . sorry
       sorry
       sorry
