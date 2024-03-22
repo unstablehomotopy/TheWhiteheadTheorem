@@ -3,6 +3,8 @@ import Mathlib.Topology.ContinuousFunction.Basic
 import Mathlib.Topology.Order
 import Mathlib.Topology.MetricSpace.Basic -- [TopologicalSpace ℝ]
 import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
+import Mathlib.Data.Fin.Tuple.Basic
+import Mathlib.Data.Fin.Tuple.Reflection
 
 def NZReal := {x : ℝ | x ≠ 0}
 
@@ -80,6 +82,7 @@ example (x : ℝ) (_ : ¬ x = 0) : x ≠ 0 := by apply?
 
 example (a b c : ℝ) : (a ≤ b ↔ a + c ≤ b + c) := Iff.symm (add_le_add_iff_right c)
 example (a b : ℝ) : (a ≤ b ↔ -a ≥ -b) := Iff.symm neg_le_neg_iff
+example (a : ℝ) : (a + (-a) = 0) := by exact add_right_neg a
 example (a : ℝ) : (a - a = 0) := sub_eq_zero_of_eq rfl
 
 #check div_le_div
@@ -90,3 +93,16 @@ example (a : ℝ) : (a - a = 0) := sub_eq_zero_of_eq rfl
 #check div_one
 #check div_le_iff
 #check add_neg_cancel_comm
+
+#check continuous_sub_right
+#check continuous_add_right
+
+example : Continuous fun (y : ℝ) => y / 2 := by apply?
+
+#check List
+#check Vector
+#check Array
+#check Fin.cases
+#check Fin.cons
+#check Fin.tuple0_le
+#check FinVec.seq

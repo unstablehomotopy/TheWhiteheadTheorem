@@ -326,6 +326,7 @@ section
     simp
     intro Y f H hf
     -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
+
     let X0 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
     let X1 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
 
@@ -398,13 +399,40 @@ section
     let H'1 : C(X1, (𝕊 0) × I) := ⟨fun pt ↦ (H'1_x pt, H'1_y pt),
       H'1_x.continuous_toFun.prod_mk H'1_y.continuous_toFun⟩
 
+    let f_comp_H'0 : C(X0, Y) := ContinuousMap.comp f H'0
+    let H_comp_H'1 : C(X1, Y) := ContinuousMap.comp H H'1
+    -- let f_comp_H'0_bundled : TopCat.of X0 ⟶ Y := f_comp_H'0
+    -- let H_comp_H'1_bundled : TopCat.of X1 ⟶ Y := H_comp_H'1
+
+    let S : Fin 2 → Set ((𝔻 1) × I) := ![X0, X1]
+    -- let S' : Fin 2 → Set ((𝔻 1) × I) := fun ⟨n, hn⟩ ↦ by
+    --   interval_cases n
+    --   exact X0
+    --   exact X1
+
+    -- Notation for Fin.cons?
+    let φ : ∀ i, C(S i, Y) := Fin.cons f_comp_H'0 <| Fin.cons H_comp_H'1 finZeroElim
+
+
+
     have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
-    have hX0 : IsClosed X0 := continuous_iff_isClosed.mp
+    have hX0_closed : IsClosed X0 := continuous_iff_isClosed.mp
       (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
       isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
-    have hX1 : IsClosed X1 := continuous_iff_isClosed.mp
+    have hX1_closed : IsClosed X1 := continuous_iff_isClosed.mp
       (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
       isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
+
+    let H' : C((𝔻 1) × I, Y) := by
+      apply liftCover_closed S φ
+      . intro i j x hxi hxj
+        by_cases hij : i = j
+        . sorry
+        . sorry
+      sorry
+      sorry
+    let H'_bundled : TopCat.of ((𝔻 1) × I) ⟶ Y := H'
+    use H'_bundled
 
     sorry
 
