@@ -108,7 +108,8 @@ example : Continuous fun (y : ℝ) => y / 2 := by apply?
 #check FinVec.seq
 
 example (n : ℕ) : ¬ n < 0 := by exact Nat.not_lt_zero n
-example (x y : ℝ) (h1 : x ≤ y) (h2 : x ≥ y) : x = y := by apply?
+-- example (x y : ℝ) (h1 : x ≤ y) (h2 : x ≥ y) : x = y := by exact
+--   Real.partialOrder.proof_4 x y h1 h2
 
 #check div_mul_comm
 #check div_mul_eq_mul_div
@@ -123,5 +124,9 @@ example (a b c : ℝ) : a * b / c = a / c * b := by exact mul_div_right_comm a b
 
 #check div_self
 
-example (f g : ℝ → ℝ) (x : ℝ) : f (g (x)) = (f ∘ g) x := by apply?
+example (f g : ℝ → ℝ) (x : ℝ) : f (g (x)) = (f ∘ g) x := by exact rfl
 #check Eq.trans
+
+#check div_eq_div_iff
+
+example (a b c : ℝ) (h : a + b = c) : a = c - b := eq_sub_of_add_eq h

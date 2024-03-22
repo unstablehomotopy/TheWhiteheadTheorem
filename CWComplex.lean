@@ -427,30 +427,42 @@ section
       (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
       isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
+    -- (hφ : ∀ (i j) (x : α) (hxi : x ∈ S i) (hxj : x ∈ S j), φ i ⟨x, hxi⟩ = φ j ⟨x, hxj⟩)
     let H' : C((𝔻 1) × I, Y) := by
       apply liftCover_closed S φ
-      . intro ⟨i, hi⟩ ⟨j, hj⟩ ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hpi hpj
-        interval_cases i <;> (interval_cases j <;> (try simp))
-        . change f (H'0 _) = H (H'1 _)
-          change ‖x‖ ≤ 1 - y / 2 at hpi
-          change ‖x‖ ≥ 1 - y / 2 at hpj
+      have hφ : ∀ (p : (𝔻 1) × I) (hp0 : p ∈ S 0) (hp1 : p ∈ S 1), φ 0 ⟨p, hp0⟩ = φ 1 ⟨p, hp1⟩ :=
+        fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
+          change f (H'0 _) = H (H'1 _)
+          change ‖x‖ ≤ 1 - y / 2 at hp0
+          change ‖x‖ ≥ 1 - y / 2 at hp1
           have : ‖x‖ = 1 - y / 2 := by linarith
-          let q : 𝕊 0 := {
-            val := (2 / (2 - y)) • x
-            property := by
-              simp [norm_smul]
-              rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
-              rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul]
-          }
+          let q : 𝕊 0 := ⟨ (2 / (2 - y)) • x, by
+            simp [norm_smul]
+            rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
+            rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul] ⟩
           conv in H'0 _ => equals BundledSphereInclusion 0 q =>
             unfold_let H'0 q
             unfold BundledSphereInclusion SphereInclusion
             conv => rhs; dsimp
           conv in H'1 _ => equals @j0 (𝕊 0) q =>
-            sorry
+            unfold_let H'1 H'1_x H'1_y q
+            unfold j0
+            dsimp
+            conv => rhs; change (q, ⟨0, by norm_num, by norm_num⟩)
+            congr 2
+            . congr 1
+              rw [this, div_eq_div_iff (by linarith) (by linarith)]
+              rw [one_mul, mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul]
+            . rw [this, ← eq_sub_iff_add_eq, zero_sub, div_eq_iff (by linarith), mul_sub, mul_one]
+              rw [mul_div, mul_div_right_comm, neg_div_self (by norm_num), ← neg_eq_neg_one_mul]
+              rw [sub_neg_eq_add, add_comm]; rfl
           change (f ∘ (BundledSphereInclusion 0)) q = (H ∘ j0) q
           rw [hf_toFun]
-        sorry
+      intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
+      interval_cases i <;> (interval_cases j <;> (try simp))
+      . exact hφ p hpi hpj
+      . exact Eq.symm <| hφ p hpj hpi
+
       sorry
       sorry
 
