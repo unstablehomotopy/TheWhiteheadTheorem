@@ -15,19 +15,16 @@ import Mathlib.CategoryTheory.Limits.Shapes.Pullbacks
 import Mathlib.CategoryTheory.Category.Preorder
 import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
 import Mathlib.Init.Set
---import Mathlib.Data.Finset.Basic
 
 open CategoryTheory
 
-
 namespace CWComplex
-noncomputable section
 
-def Sphere : ℤ → TopCat
+noncomputable def Sphere : ℤ → TopCat
   | (n : ℕ) => TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
   | _       => TopCat.of Empty
 
-def ClosedBall : ℤ → TopCat
+noncomputable def ClosedBall : ℤ → TopCat
   | (n : ℕ) => TopCat.of <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
   | _       => TopCat.of Empty
 
@@ -91,10 +88,7 @@ structure AttachCells (X X' : TopCat) (n : ℤ) where
     (BundledSigmaSphereInclusion n cells)
     (BundledSigmaAttachMap X n cells attach_maps)
 
-end
 end CWComplex
-
-
 
 structure RelativeCWComplex (A : TopCat) where
   /- Skeleta -/
@@ -107,10 +101,9 @@ structure RelativeCWComplex (A : TopCat) where
 
 abbrev CWComplex := RelativeCWComplex (TopCat.of Empty)
 
-
-
 namespace CWComplex
-noncomputable section
+
+noncomputable section Topology
 
 -- The inclusion map from X to X', given that X' is obtained from X by attaching n-cells
 def AttachCellsInclusion (X X' : TopCat) (n : ℤ) (att : AttachCells X X' n) : X ⟶ X'
@@ -176,14 +169,55 @@ def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
 def toTopCat {A : TopCat} (X : RelativeCWComplex A) : TopCat :=
   Limits.colimit (ColimitDiagram X)
 
+-- TODO: Coe RelativeCWComplex ?
 instance : Coe CWComplex TopCat where coe X := toTopCat X
 
+end Topology -- noncomputable section
+
+section GluingLemma
+
+#check ContinuousMap.liftCover -- gluing lemma for an open cover
+
+variable {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
+
+variable {ι : Type*} [Finite ι] (S : ι → Set α) (φ : ∀ i : ι, C(S i, β))
+(hφ : ∀ (i j) (x : α) (hxi : x ∈ S i) (hxj : x ∈ S j), φ i ⟨x, hxi⟩ = φ j ⟨x, hxj⟩)
+(hS_cover : ∀ x : α, ∃ i, x ∈ S i) (hS_closed : ∀ i, IsClosed (S i))
+
+noncomputable def liftCover_closed : C(α, β) :=
+  have H : ⋃ i, S i = Set.univ := Set.iUnion_eq_univ_iff.2 hS_cover
+  let Φ := Set.liftCover S (fun i ↦ φ i) hφ H
+  ContinuousMap.mk Φ <| continuous_iff_isClosed.mpr fun Y hY ↦ by
+    have : ∀ i, φ i ⁻¹' Y = S i ∩ Φ ⁻¹' Y := fun i ↦ by
+      ext x
+      simp
+      constructor
+      . intro ⟨hxi, hφx⟩
+        have : Φ x = φ i ⟨x, hxi⟩ := Set.liftCover_of_mem hxi
+        rw [← this] at hφx
+        trivial
+      . intro ⟨hxi, hφx⟩
+        use hxi
+        have : Φ x = φ i ⟨x, hxi⟩ := Set.liftCover_of_mem hxi
+        rwa [← this]
+    have : Φ ⁻¹' Y = ⋃ i, Subtype.val '' (φ i ⁻¹' Y) := by
+      conv => rhs; ext x; arg 1; ext i; rw [this]
+      conv => rhs; ext x; rw [← Set.iUnion_inter, H]; simp
+    rw [this]
+    exact isClosed_iUnion_of_finite fun i ↦
+      IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
+
+end GluingLemma
+
+section HEP
 
 open unitInterval
 
 def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
+
 def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
   ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
+
 def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
   ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = j0 ≫ H →
   ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
@@ -194,249 +228,211 @@ def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpac
   ∀ (Y : Type) [TopologicalSpace Y] (f : C(X, Y)) (H : C(A × I, Y)), f ∘ i = H ∘ (., 0) →
   ∃ H' : C(X × I, Y), f = H' ∘ (., 0) ∧ H = H' ∘ Prod.map i id
 
-theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (BundledSphereInclusion n) :=
---theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
-  match n with
-  | (n : ℕ) => sorry
-  | Int.negSucc n' => -- n = -(n' + 1)
-    if h_neg_one : n' = 0 then by
-      rw [h_neg_one]
-      intro Y _ f H hcomp
-      use ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
-      simp
-      constructor
-      . ext x
-        simp
-      ext ⟨x, _⟩
-      tauto -- Empty.rec x
-    else by
-      have h_neg_one : n' > 0 := Nat.pos_of_ne_zero h_neg_one
-      have h_neg_one₁ : Int.negSucc n' < 0 := Int.negSucc_lt_zero n'
-      have h_neg_one₂ : Int.negSucc n' < 0 := Int.negSucc_lt_zero n'
-      have h_neg_one' : Int.negSucc n' + 1 < 0 := by
-        sorry
-      intro Y _ f H hcomp
-      -- have H' : Empty → Y := Empty.rec
-      -- have H' : (𝔻 (Int.negSucc n)) → Y := Empty.rec
-      let H' : (𝔻 Int.negSucc n') × I → Y := fun (x, _) => Empty.rec x
-      let H' : (𝔻 Int.negSucc n' + 1) × I → Y := by
-        intro (x, _)
-        unfold ClosedBall at x
-        sorry
-      sorry
+-- theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (BundledSphereInclusion n) :=
+--   match n with
+--   | (n : ℕ) => sorry
+--   | Int.negSucc n' => -- n = -(n' + 1)
+--     if h_neg_one : n' = 0 then by
+--       rw [h_neg_one]
+--       intro Y _ f H hcomp
+--       use ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
+--       simp
+--       constructor
+--       . ext x
+--         simp
+--       ext ⟨x, _⟩
+--       tauto -- Empty.rec x
+--     else by
+--       have h_neg_one : n' > 0 := Nat.pos_of_ne_zero h_neg_one
+--       have h_neg_one₁ : Int.negSucc n' < 0 := Int.negSucc_lt_zero n'
+--       have h_neg_one₂ : Int.negSucc n' < 0 := Int.negSucc_lt_zero n'
+--       have h_neg_one' : Int.negSucc n' + 1 < 0 := by
+--         sorry
+--       intro Y _ f H hcomp
+--       -- have H' : Empty → Y := Empty.rec
+--       -- have H' : (𝔻 (Int.negSucc n)) → Y := Empty.rec
+--       let H' : (𝔻 Int.negSucc n') × I → Y := fun (x, _) => Empty.rec x
+--       let H' : (𝔻 Int.negSucc n' + 1) × I → Y := by
+--         intro (x, _)
+--         unfold ClosedBall at x
+--         sorry
+--       sorry
 
-theorem hep_sphereInclusion' (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
-  if h1 : n = -1 then by
-    rw [h1]
-    intro Y _ f H hcomp
-    use ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
-    simp
-    constructor
-    . ext x
-      simp
-    ext ⟨x, _⟩
-    tauto
-  else if h2 : n + 1 < 0 then by
-    have ⟨m, hm⟩ := Int.eq_negSucc_of_lt_zero h2
-    intro Y _ f H hcomp
-    --rw [hm] at f
-    let φ (n : ℕ) : C(𝔻 Int.negSucc n, Y) := ⟨Empty.rec, by tauto⟩
-    let φ' (n : ℕ) : C((𝔻 Int.negSucc n) × I, Y) :=
-      ⟨fun (x, _) => φ n x, Continuous.fst' (φ n).continuous_toFun⟩
-    let H' : C((𝔻 n + 1) × I, Y) := by rw [hm]; exact φ' m
-    use H'
-    constructor
-    . ext x
-      dsimp
-      sorry
-    ext ⟨x, z⟩
-    simp
-    sorry
-  else by
-    have h3 : n ≥ 0 := by contrapose! h2; contrapose! h1; linarith
-    sorry
+-- theorem hep_sphereInclusion' (n : ℤ) : HomotopyExtensionProperty ⟨SphereInclusion n, continuous_sphereInclusion n⟩ :=
+--   if h1 : n = -1 then by
+--     rw [h1]
+--     intro Y _ f H hcomp
+--     use ⟨fun (x, _) => f x, Continuous.fst' f.continuous_toFun⟩ -- f ∘ Prod.fst
+--     simp
+--     constructor
+--     . ext x
+--       simp
+--     ext ⟨x, _⟩
+--     tauto
+--   else if h2 : n + 1 < 0 then by
+--     have ⟨m, hm⟩ := Int.eq_negSucc_of_lt_zero h2
+--     intro Y _ f H hcomp
+--     --rw [hm] at f
+--     let φ (n : ℕ) : C(𝔻 Int.negSucc n, Y) := ⟨Empty.rec, by tauto⟩
+--     let φ' (n : ℕ) : C((𝔻 Int.negSucc n) × I, Y) :=
+--       ⟨fun (x, _) => φ n x, Continuous.fst' (φ n).continuous_toFun⟩
+--     let H' : C((𝔻 n + 1) × I, Y) := by rw [hm]; exact φ' m
+--     use H'
+--     constructor
+--     . ext x
+--       dsimp
+--       sorry
+--     ext ⟨x, z⟩
+--     simp
+--     sorry
+--   else by
+--     have h3 : n ≥ 0 := by contrapose! h2; contrapose! h1; linarith
+--     sorry
 
-end
+end HEP
+
 end CWComplex
 
-
 section
-  #check ContinuousMap.liftCover -- gluing lemma for an open cover
+open CWComplex
+open unitInterval
 
-  variable {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
+-- noncomputable def he_0'_BundledSphereInclusion
+--     (f : TopCat.of (𝔻 1) ⟶ Y) (H: TopCat.of ((𝕊 0) × I) ⟶ Y)
+--     (hf: BundledSphereInclusion 0 ≫ f = j0 ≫ H) : TopCat.of ((𝔻 1) × I) ⟶ Y := by
+--   let X0 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
+--   let X1 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
+--   let H'0 : C(X0, 𝔻 1) := {
+--     toFun := fun pt ↦ {
+--       -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
+--       val := match pt with
+--         | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
+--       property := by
+--         obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+--         simp [norm_smul]
+--         have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
+--         rw [← le_div_iff' (div_pos (by norm_num) this)]; simp
+--         nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
+--         rw [← abs_div, le_abs, sub_div]; simp
+--         exact Or.inl hxy
+--     }
+--     continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
+--       continuous_subtype_val.prod_map <| continuous_const.div
+--         ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
+--           dsimp; linarith).comp continuous_subtype_val).subtype_mk _
+--   }
+--   have : ∀ (pt : X1), ‖pt.val.fst.val‖ ≠ 0 := fun ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ ↦ by
+--     conv => lhs; arg 1; dsimp
+--     change ‖x‖ ≥ 1 - y / 2 at hxy
+--     linarith
+--   let H'1_x : C(X1, 𝕊 0) := {
+--     toFun := fun pt ↦ {
+--       val := match pt with
+--         | ⟨⟨⟨x, _⟩, _⟩, _⟩ => (1 / ‖x‖) • x
+--       property := by
+--         obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+--         simp [norm_smul]
+--         change ‖x‖ ≥ 1 - y / 2 at hxy
+--         exact inv_mul_cancel (by linarith)
+--     }
+--     continuous_toFun := by
+--       refine Continuous.subtype_mk ?_ _
+--       exact continuous_smul.comp <| (Continuous.div continuous_const (continuous_norm.comp <|
+--         continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val)
+--         this).prod_mk <|
+--         continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val
+--   }
+--   let H'1_y : C(X1, I) := {
+--     toFun := fun pt ↦ {
+--       val := match pt with
+--         | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (y - 2) / ‖x‖ + 2
+--       property := by
+--         obtain ⟨⟨⟨x, hx⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+--         simp; simp at hx
+--         change ‖x‖ ≥ 1 - y / 2 at hxy
+--         have : ‖x‖ > 0 := by linarith
+--         constructor
+--         all_goals rw [← add_le_add_iff_right (-2)]
+--         . rw [← neg_le_neg_iff]; simp
+--           rw [← neg_div, neg_sub, div_le_iff (by assumption)]; linarith
+--         . rw [add_assoc, add_right_neg, add_zero, div_le_iff (by assumption)]; linarith
+--     }
+--     continuous_toFun := by
+--       refine Continuous.subtype_mk ?_ _
+--       exact (continuous_add_right _).comp <| Continuous.div
+--         ((continuous_sub_right _).comp <| continuous_subtype_val.comp <|
+--           continuous_snd.comp <| continuous_subtype_val)
+--         (continuous_norm.comp <| continuous_subtype_val.comp <|
+--           continuous_fst.comp <| continuous_subtype_val) this
+--   }
+--   let H'1 : C(X1, (𝕊 0) × I) := ⟨fun pt ↦ (H'1_x pt, H'1_y pt),
+--     H'1_x.continuous_toFun.prod_mk H'1_y.continuous_toFun⟩
+--   let S : Fin 2 → Set ((𝔻 1) × I) := ![X0, X1]
+--   -- Notation for Fin.cons?
+--   let φ : ∀ i, C(S i, Y) := Fin.cons (f.comp H'0) <| Fin.cons (H.comp H'1) finZeroElim
+--   let hφ : ∀ (p : (𝔻 1) × I) (hp0 : p ∈ S 0) (hp1 : p ∈ S 1), φ 0 ⟨p, hp0⟩ = φ 1 ⟨p, hp1⟩ :=
+--     fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
+--       change f (H'0 _) = H (H'1 _)
+--       change ‖x‖ ≤ 1 - y / 2 at hp0
+--       change ‖x‖ ≥ 1 - y / 2 at hp1
+--       have : ‖x‖ = 1 - y / 2 := by linarith
+--       let q : 𝕊 0 := ⟨ (2 / (2 - y)) • x, by
+--         simp [norm_smul]
+--         rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
+--         rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul] ⟩
+--       conv in H'0 _ => equals BundledSphereInclusion 0 q =>
+--         unfold_let H'0 q
+--         unfold BundledSphereInclusion SphereInclusion
+--         conv => rhs; dsimp
+--       conv in H'1 _ => equals @j0 (𝕊 0) q =>
+--         unfold_let H'1 H'1_x H'1_y q
+--         unfold j0
+--         dsimp
+--         conv => rhs; change (q, ⟨0, by norm_num, by norm_num⟩)
+--         congr 2
+--         . congr 1
+--           rw [this, div_eq_div_iff (by linarith) (by linarith)]
+--           rw [one_mul, mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul]
+--         . rw [this, ← eq_sub_iff_add_eq, zero_sub, div_eq_iff (by linarith), mul_sub, mul_one]
+--           rw [mul_div, mul_div_right_comm, neg_div_self (by norm_num), ← neg_eq_neg_one_mul]
+--           rw [sub_neg_eq_add, add_comm]; rfl
+--       change (BundledSphereInclusion 0 ≫ f).toFun q = (j0 ≫ H).toFun q
+--       rw [hf]
+--   apply liftCover_closed S φ
+--   . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
+--     interval_cases i <;> (interval_cases j <;> (try simp))
+--     . exact hφ p hpi hpj
+--     . exact Eq.symm <| hφ p hpj hpi
+--   . intro ⟨⟨x, _⟩, ⟨y, _⟩⟩
+--     by_cases h : ‖x‖ ≤ 1 - y / 2
+--     . use 0; exact h
+--     . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
+--   have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
+--   intro ⟨i, hi⟩; interval_cases i
+--   exact continuous_iff_isClosed.mp
+--     (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
+--     isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
+--   exact continuous_iff_isClosed.mp
+--     (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
+--     isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
-  variable {ι : Type*} [Finite ι] (S : ι → Set α) (φ : ∀ i : ι, C(S i, β))
-  (hφ : ∀ (i j) (x : α) (hxi : x ∈ S i) (hxj : x ∈ S j), φ i ⟨x, hxi⟩ = φ j ⟨x, hxj⟩)
-  (hS_cover : ∀ x : α, ∃ i, x ∈ S i) (hS_closed : ∀ i, IsClosed (S i))
+-- theorem hep_0' : HomotopyExtensionProperty' (BundledSphereInclusion 0) := by
+--   unfold HomotopyExtensionProperty'
+--   --unfold BundledSphereInclusion SphereInclusion
+--   --simp
+--   intro Y f H hf
+--   -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
+--   use he_0'_BundledSphereInclusion f H hf
+--   constructor
+--   .
+--     sorry
+--   . sorry
 
-  noncomputable def liftCover_closed : C(α, β) :=
-    have H : ⋃ i, S i = Set.univ := Set.iUnion_eq_univ_iff.2 hS_cover
-    let Φ := Set.liftCover S (fun i ↦ φ i) hφ H
-    ContinuousMap.mk Φ <| continuous_iff_isClosed.mpr fun Y hY ↦ by
-      have : ∀ i, φ i ⁻¹' Y = S i ∩ Φ ⁻¹' Y := fun i ↦ by
-        ext x
-        simp
-        constructor
-        . intro ⟨hxi, hφx⟩
-          have : Φ x = φ i ⟨x, hxi⟩ := Set.liftCover_of_mem hxi
-          rw [← this] at hφx
-          trivial
-        . intro ⟨hxi, hφx⟩
-          use hxi
-          have : Φ x = φ i ⟨x, hxi⟩ := Set.liftCover_of_mem hxi
-          rwa [← this]
-      have : Φ ⁻¹' Y = ⋃ i, Subtype.val '' (φ i ⁻¹' Y) := by
-        conv => rhs; ext x; arg 1; ext i; rw [this]
-        conv => rhs; ext x; rw [← Set.iUnion_inter, H]; simp
-      rw [this]
-      exact isClosed_iUnion_of_finite fun i ↦
-        IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
-end
-
-section
-  open CWComplex
-  open unitInterval
-
-  noncomputable def he_0'_BundledSphereInclusion
-      (f : TopCat.of (𝔻 1) ⟶ Y) (H: TopCat.of ((𝕊 0) × I) ⟶ Y)
-      (hf: BundledSphereInclusion 0 ≫ f = j0 ≫ H) : TopCat.of ((𝔻 1) × I) ⟶ Y := by
-    let X0 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
-    let X1 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
-    let H'0 : C(X0, 𝔻 1) := {
-      toFun := fun pt ↦ {
-        -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
-        val := match pt with
-          | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
-        property := by
-          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
-          simp [norm_smul]
-          have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
-          rw [← le_div_iff' (div_pos (by norm_num) this)]; simp
-          nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
-          rw [← abs_div, le_abs, sub_div]; simp
-          exact Or.inl hxy
-      }
-      continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
-        continuous_subtype_val.prod_map <| continuous_const.div
-          ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
-            dsimp; linarith).comp continuous_subtype_val).subtype_mk _
-    }
-    have : ∀ (pt : X1), ‖pt.val.fst.val‖ ≠ 0 := fun ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ ↦ by
-      conv => lhs; arg 1; dsimp
-      change ‖x‖ ≥ 1 - y / 2 at hxy
-      linarith
-    let H'1_x : C(X1, 𝕊 0) := {
-      toFun := fun pt ↦ {
-        val := match pt with
-          | ⟨⟨⟨x, _⟩, _⟩, _⟩ => (1 / ‖x‖) • x
-        property := by
-          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
-          simp [norm_smul]
-          change ‖x‖ ≥ 1 - y / 2 at hxy
-          exact inv_mul_cancel (by linarith)
-      }
-      continuous_toFun := by
-        refine Continuous.subtype_mk ?_ _
-        exact continuous_smul.comp <| (Continuous.div continuous_const (continuous_norm.comp <|
-          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val)
-          this).prod_mk <|
-          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val
-    }
-    let H'1_y : C(X1, I) := {
-      toFun := fun pt ↦ {
-        val := match pt with
-          | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (y - 2) / ‖x‖ + 2
-        property := by
-          obtain ⟨⟨⟨x, hx⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
-          simp; simp at hx
-          change ‖x‖ ≥ 1 - y / 2 at hxy
-          have : ‖x‖ > 0 := by linarith
-          constructor
-          all_goals rw [← add_le_add_iff_right (-2)]
-          . rw [← neg_le_neg_iff]; simp
-            rw [← neg_div, neg_sub, div_le_iff (by assumption)]; linarith
-          . rw [add_assoc, add_right_neg, add_zero, div_le_iff (by assumption)]; linarith
-      }
-      continuous_toFun := by
-        refine Continuous.subtype_mk ?_ _
-        exact (continuous_add_right _).comp <| Continuous.div
-          ((continuous_sub_right _).comp <| continuous_subtype_val.comp <|
-            continuous_snd.comp <| continuous_subtype_val)
-          (continuous_norm.comp <| continuous_subtype_val.comp <|
-            continuous_fst.comp <| continuous_subtype_val) this
-    }
-    let H'1 : C(X1, (𝕊 0) × I) := ⟨fun pt ↦ (H'1_x pt, H'1_y pt),
-      H'1_x.continuous_toFun.prod_mk H'1_y.continuous_toFun⟩
-    let S : Fin 2 → Set ((𝔻 1) × I) := ![X0, X1]
-    -- Notation for Fin.cons?
-    let φ : ∀ i, C(S i, Y) := Fin.cons (f.comp H'0) <| Fin.cons (H.comp H'1) finZeroElim
-    let hφ : ∀ (p : (𝔻 1) × I) (hp0 : p ∈ S 0) (hp1 : p ∈ S 1), φ 0 ⟨p, hp0⟩ = φ 1 ⟨p, hp1⟩ :=
-      fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
-        change f (H'0 _) = H (H'1 _)
-        change ‖x‖ ≤ 1 - y / 2 at hp0
-        change ‖x‖ ≥ 1 - y / 2 at hp1
-        have : ‖x‖ = 1 - y / 2 := by linarith
-        let q : 𝕊 0 := ⟨ (2 / (2 - y)) • x, by
-          simp [norm_smul]
-          rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
-          rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul] ⟩
-        conv in H'0 _ => equals BundledSphereInclusion 0 q =>
-          unfold_let H'0 q
-          unfold BundledSphereInclusion SphereInclusion
-          conv => rhs; dsimp
-        conv in H'1 _ => equals @j0 (𝕊 0) q =>
-          unfold_let H'1 H'1_x H'1_y q
-          unfold j0
-          dsimp
-          conv => rhs; change (q, ⟨0, by norm_num, by norm_num⟩)
-          congr 2
-          . congr 1
-            rw [this, div_eq_div_iff (by linarith) (by linarith)]
-            rw [one_mul, mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul]
-          . rw [this, ← eq_sub_iff_add_eq, zero_sub, div_eq_iff (by linarith), mul_sub, mul_one]
-            rw [mul_div, mul_div_right_comm, neg_div_self (by norm_num), ← neg_eq_neg_one_mul]
-            rw [sub_neg_eq_add, add_comm]; rfl
-        change (BundledSphereInclusion 0 ≫ f).toFun q = (j0 ≫ H).toFun q
-        rw [hf]
-    apply liftCover_closed S φ
-    . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
-      interval_cases i <;> (interval_cases j <;> (try simp))
-      . exact hφ p hpi hpj
-      . exact Eq.symm <| hφ p hpj hpi
-    . intro ⟨⟨x, _⟩, ⟨y, _⟩⟩
-      by_cases h : ‖x‖ ≤ 1 - y / 2
-      . use 0; exact h
-      . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
-    have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
-    intro ⟨i, hi⟩; interval_cases i
-    exact continuous_iff_isClosed.mp
-      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
-      isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
-    exact continuous_iff_isClosed.mp
-      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
-      isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
-
-  theorem hep_0' : HomotopyExtensionProperty' (BundledSphereInclusion 0) := by
-    unfold HomotopyExtensionProperty'
-    --unfold BundledSphereInclusion SphereInclusion
-    --simp
-    intro Y f H hf
-    -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
-    use he_0'_BundledSphereInclusion f H hf
-    constructor
-    .
-      sorry
-    . sorry
-
-  theorem hep_0 : HomotopyExtensionProperty (BundledSphereInclusion 0) := by
-    unfold HomotopyExtensionProperty
-    --unfold BundledSphereInclusion SphereInclusion
-    simp
-    intro Y instY f H hf
-    sorry
+-- theorem hep_0 : HomotopyExtensionProperty (BundledSphereInclusion 0) := by
+--   unfold HomotopyExtensionProperty
+--   --unfold BundledSphereInclusion SphereInclusion
+--   simp
+--   intro Y instY f H hf
+--   sorry
 
 end
-
-
--- variable {X : CWComplex}
--- #check (X : TopCat)
