@@ -425,12 +425,28 @@ section
 
     let H' : C((𝔻 1) × I, Y) := by
       apply liftCover_closed S φ
-      . intro i j x hxi hxj
-        by_cases hij : i = j
-        . congr <;> (try rw [hij])
-          rw [hij] at hxi
+      . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
+        interval_cases i <;> (interval_cases j <;> (try simp))
+        . change f (H'0 _) = H (H'1 _)
+          have q : 𝕊 0 := sorry
+          have : H'0 ⟨p, hpi⟩ = BundledSphereInclusion 0 q := sorry
+          rw [this]
+          have : H'1 ⟨p, hpj⟩ = @j0 (𝕊 0) q := sorry
+          rw [this]
+          -- unfold_let H'0 H'1 H'1_x H'1_y
+          -- dsimp
+          obtain ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ := p
+          change ‖x‖ ≤ 1 - y / 2 at hpi
+          change ‖x‖ ≥ 1 - y / 2 at hpj
+          have : ‖x‖ = 1 - y / 2 := by linarith
+          let x' := (2 / (2 - y)) • x
+          have : x' ∈ Metric.sphere 0 1 := by
+            unfold_let x'; simp [norm_smul]
+            rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
+            rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul]
+
           sorry
-        . sorry
+        sorry
       sorry
       sorry
     let H'_bundled : TopCat.of ((𝔻 1) × I) ⟶ Y := H'
