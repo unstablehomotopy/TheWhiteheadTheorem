@@ -326,10 +326,7 @@ section
     simp
     intro Y f H hf
     have hf_toFun : (BundledSphereInclusion 0 ≫ f).toFun = (j0 ≫ H).toFun := by rw [hf]
-    --have : (BundledSphereInclusion 0 ≫ f).toFun = f.toFun ∘ BundledSphereInclusion 0 := rfl
     change f ∘ BundledSphereInclusion 0 = H ∘ j0 at hf_toFun
-
-    -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
 
     let X0 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
     let X1 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≥ 1 - y / 2}
@@ -403,17 +400,10 @@ section
     let H'1 : C(X1, (𝕊 0) × I) := ⟨fun pt ↦ (H'1_x pt, H'1_y pt),
       H'1_x.continuous_toFun.prod_mk H'1_y.continuous_toFun⟩
 
-    let f_comp_H'0 : C(X0, Y) := ContinuousMap.comp f H'0
-    let H_comp_H'1 : C(X1, Y) := ContinuousMap.comp H H'1
-    -- let f_comp_H'0_bundled : TopCat.of X0 ⟶ Y := f_comp_H'0
-    -- let H_comp_H'1_bundled : TopCat.of X1 ⟶ Y := H_comp_H'1
-
-    let S : Fin 2 → Set ((𝔻 1) × I) := ![X0, X1]
-
-    -- Notation for Fin.cons?
-    let φ : ∀ i, C(S i, Y) := Fin.cons f_comp_H'0 <| Fin.cons H_comp_H'1 finZeroElim
-
     let H' : C((𝔻 1) × I, Y) := by
+      let S : Fin 2 → Set ((𝔻 1) × I) := ![X0, X1]
+      -- Notation for Fin.cons?
+      let φ : ∀ i, C(S i, Y) := Fin.cons (f.comp H'0) <| Fin.cons (H.comp H'1) finZeroElim
       apply liftCover_closed S φ
       have hφ : ∀ (p : (𝔻 1) × I) (hp0 : p ∈ S 0) (hp1 : p ∈ S 1), φ 0 ⟨p, hp0⟩ = φ 1 ⟨p, hp1⟩ :=
         fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
@@ -462,8 +452,7 @@ section
         (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
         isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
-    --let H'_bundled : TopCat.of ((𝔻 1) × I) ⟶ Y := H'
-    --use H'_bundled
+    -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
     use H'
     constructor
     .
