@@ -294,8 +294,6 @@ section
 end
 
 section
-  #check liftCover_closed
-
   open CWComplex
   open unitInterval
 
@@ -400,24 +398,23 @@ section
             rw [sub_neg_eq_add, add_comm]; rfl
         change (BundledSphereInclusion 0 ≫ f).toFun q = (j0 ≫ H).toFun q
         rw [hf]
-    exact by
-      apply liftCover_closed S φ
-      . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
-        interval_cases i <;> (interval_cases j <;> (try simp))
-        . exact hφ p hpi hpj
-        . exact Eq.symm <| hφ p hpj hpi
-      . intro ⟨⟨x, _⟩, ⟨y, _⟩⟩
-        by_cases h : ‖x‖ ≤ 1 - y / 2
-        . use 0; exact h
-        . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
-      have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
-      intro ⟨i, hi⟩; interval_cases i
-      exact continuous_iff_isClosed.mp
-        (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
-        isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
-      exact continuous_iff_isClosed.mp
-        (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
-        isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
+    apply liftCover_closed S φ
+    . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
+      interval_cases i <;> (interval_cases j <;> (try simp))
+      . exact hφ p hpi hpj
+      . exact Eq.symm <| hφ p hpj hpi
+    . intro ⟨⟨x, _⟩, ⟨y, _⟩⟩
+      by_cases h : ‖x‖ ≤ 1 - y / 2
+      . use 0; exact h
+      . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
+    have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
+    intro ⟨i, hi⟩; interval_cases i
+    exact continuous_iff_isClosed.mp
+      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
+      isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
+    exact continuous_iff_isClosed.mp
+      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
+      isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
   theorem hep_0' : HomotopyExtensionProperty' (BundledSphereInclusion 0) := by
     unfold HomotopyExtensionProperty'
