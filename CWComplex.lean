@@ -442,17 +442,14 @@ section
               rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
               rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul]
           }
-          have hq0 : H'0 ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hpi⟩ = BundledSphereInclusion 0 q := by
+          conv in H'0 _ => equals BundledSphereInclusion 0 q =>
             unfold_let H'0 q
             unfold BundledSphereInclusion SphereInclusion
             conv => rhs; dsimp
-          have hq1 : H'1 ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hpj⟩ = @j0 (𝕊 0) q := by
+          conv in H'1 _ => equals @j0 (𝕊 0) q =>
             sorry
-          rw [hq0, hq1]
           change (f ∘ (BundledSphereInclusion 0)) q = (H ∘ j0) q
           rw [hf_toFun]
-          -- unfold_let H'0 H'1 H'1_x H'1_y
-          -- dsimp
         sorry
       sorry
       sorry

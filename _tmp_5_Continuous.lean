@@ -106,3 +106,22 @@ example : Continuous fun (y : ℝ) => y / 2 := by apply?
 #check Fin.cons
 #check Fin.tuple0_le
 #check FinVec.seq
+
+example (n : ℕ) : ¬ n < 0 := by exact Nat.not_lt_zero n
+example (x y : ℝ) (h1 : x ≤ y) (h2 : x ≥ y) : x = y := by apply?
+
+#check div_mul_comm
+#check div_mul_eq_mul_div
+#check eq_mul_inv_iff_mul_eq₀
+#check mul_inv_eq_iff_eq_mul
+#check div_eq_iff
+#check abs_ne_zero
+
+example (x : ℝ) (h : x > 0) : |x| = x := by exact abs_of_pos h
+example (a b c : ℝ) : a * (b / c) = a / c * b := by exact (mul_comm_div a c b).symm
+example (a b c : ℝ) : a * b / c = a / c * b := by exact mul_div_right_comm a b c
+
+#check div_self
+
+example (f g : ℝ → ℝ) (x : ℝ) : f (g (x)) = (f ∘ g) x := by apply?
+#check Eq.trans
