@@ -409,25 +409,10 @@ section
     -- let H_comp_H'1_bundled : TopCat.of X1 ⟶ Y := H_comp_H'1
 
     let S : Fin 2 → Set ((𝔻 1) × I) := ![X0, X1]
-    -- let S' : Fin 2 → Set ((𝔻 1) × I) := fun ⟨n, hn⟩ ↦ by
-    --   interval_cases n
-    --   exact X0
-    --   exact X1
 
     -- Notation for Fin.cons?
     let φ : ∀ i, C(S i, Y) := Fin.cons f_comp_H'0 <| Fin.cons H_comp_H'1 finZeroElim
 
-
-
-    have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
-    have hX0_closed : IsClosed X0 := continuous_iff_isClosed.mp
-      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
-      isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
-    have hX1_closed : IsClosed X1 := continuous_iff_isClosed.mp
-      (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
-      isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
-
-    -- (hφ : ∀ (i j) (x : α) (hxi : x ∈ S i) (hxj : x ∈ S j), φ i ⟨x, hxi⟩ = φ j ⟨x, hxj⟩)
     let H' : C((𝔻 1) × I, Y) := by
       apply liftCover_closed S φ
       have hφ : ∀ (p : (𝔻 1) × I) (hp0 : p ∈ S 0) (hp1 : p ∈ S 1), φ 0 ⟨p, hp0⟩ = φ 1 ⟨p, hp1⟩ :=
@@ -463,13 +448,27 @@ section
       . exact hφ p hpi hpj
       . exact Eq.symm <| hφ p hpj hpi
 
-      sorry
-      sorry
+      intro ⟨⟨x, _⟩, ⟨y, _⟩⟩
+      by_cases h : ‖x‖ ≤ 1 - y / 2
+      . use 0; exact h
+      . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
 
-    let H'_bundled : TopCat.of ((𝔻 1) × I) ⟶ Y := H'
-    use H'_bundled
+      have : Continuous fun (y : ℝ) ↦ 1 - y / 2 := (continuous_sub_left _).comp <| continuous_mul_right _
+      intro ⟨i, hi⟩; interval_cases i
+      exact continuous_iff_isClosed.mp
+        (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <|
+        isClosed_le continuous_fst <| this.comp <| continuous_subtype_val.comp continuous_snd
+      exact continuous_iff_isClosed.mp
+        (continuous_subtype_val.norm.prod_map continuous_id) {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <|
+        isClosed_le (this.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
-    sorry
+    --let H'_bundled : TopCat.of ((𝔻 1) × I) ⟶ Y := H'
+    --use H'_bundled
+    use H'
+    constructor
+    .
+      sorry
+    . sorry
 
   theorem hep_0 : HomotopyExtensionProperty (BundledSphereInclusion 0) := by
     unfold HomotopyExtensionProperty
