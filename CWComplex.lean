@@ -325,6 +325,10 @@ section
     --unfold BundledSphereInclusion SphereInclusion
     simp
     intro Y f H hf
+    have hf_toFun : (BundledSphereInclusion 0 ≫ f).toFun = (j0 ≫ H).toFun := by rw [hf]
+    --have : (BundledSphereInclusion 0 ≫ f).toFun = f.toFun ∘ BundledSphereInclusion 0 := rfl
+    change f ∘ BundledSphereInclusion 0 = H ∘ j0 at hf_toFun
+
     -- ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
 
     let X0 := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 1) × I | ‖x‖ ≤ 1 - y / 2}
@@ -425,30 +429,34 @@ section
 
     let H' : C((𝔻 1) × I, Y) := by
       apply liftCover_closed S φ
-      . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
+      . intro ⟨i, hi⟩ ⟨j, hj⟩ ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hpi hpj
         interval_cases i <;> (interval_cases j <;> (try simp))
         . change f (H'0 _) = H (H'1 _)
-          have q : 𝕊 0 := sorry
-          have : H'0 ⟨p, hpi⟩ = BundledSphereInclusion 0 q := sorry
-          rw [this]
-          have : H'1 ⟨p, hpj⟩ = @j0 (𝕊 0) q := sorry
-          rw [this]
-          -- unfold_let H'0 H'1 H'1_x H'1_y
-          -- dsimp
-          obtain ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ := p
           change ‖x‖ ≤ 1 - y / 2 at hpi
           change ‖x‖ ≥ 1 - y / 2 at hpj
           have : ‖x‖ = 1 - y / 2 := by linarith
-          let x' := (2 / (2 - y)) • x
-          have : x' ∈ Metric.sphere 0 1 := by
-            unfold_let x'; simp [norm_smul]
-            rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
-            rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul]
-
-          sorry
+          let q : 𝕊 0 := {
+            val := (2 / (2 - y)) • x
+            property := by
+              simp [norm_smul]
+              rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
+              rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul]
+          }
+          have hq0 : H'0 ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hpi⟩ = BundledSphereInclusion 0 q := by
+            unfold_let H'0 q
+            unfold BundledSphereInclusion SphereInclusion
+            conv => rhs; dsimp
+          have hq1 : H'1 ⟨⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩, hpj⟩ = @j0 (𝕊 0) q := by
+            sorry
+          rw [hq0, hq1]
+          change (f ∘ (BundledSphereInclusion 0)) q = (H ∘ j0) q
+          rw [hf_toFun]
+          -- unfold_let H'0 H'1 H'1_x H'1_y
+          -- dsimp
         sorry
       sorry
       sorry
+
     let H'_bundled : TopCat.of ((𝔻 1) × I) ⟶ Y := H'
     use H'_bundled
 
