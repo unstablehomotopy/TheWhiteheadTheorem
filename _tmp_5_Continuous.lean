@@ -5,6 +5,8 @@ import Mathlib.Topology.MetricSpace.Basic -- [TopologicalSpace ℝ]
 import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
 import Mathlib.Data.Fin.Tuple.Basic
 import Mathlib.Data.Fin.Tuple.Reflection
+import Mathlib.CategoryTheory.Category.Basic
+import Mathlib.Topology.Category.TopCat.Basic
 
 def NZReal := {x : ℝ | x ≠ 0}
 
@@ -130,3 +132,25 @@ example (f g : ℝ → ℝ) (x : ℝ) : f (g (x)) = (f ∘ g) x := by exact rfl
 #check div_eq_div_iff
 
 example (a b c : ℝ) (h : a + b = c) : a = c - b := eq_sub_of_add_eq h
+example (a b c : ℝ) : a + b = c ↔ a = c - b := by exact Iff.symm eq_sub_iff_add_eq
+#check div_eq_iff
+#check zero_sub
+#check mul_div_right_comm
+example (a : ℝ) (h : a ≠ 0) : -a / a = -1 := by exact neg_div_self h
+example (a : ℝ) : -1 * a = -a := by exact (neg_eq_neg_one_mul a).symm
+#check sub_neg_eq_add
+example (a b : ℝ) : (a - b = a + -b) := by apply?
+
+-------------------------------------------------------------
+
+#check ContinuousMap.comp
+
+section
+
+open CategoryTheory
+
+variable {α β : Type} [TopologicalSpace α] [TopologicalSpace β]
+
+example (f : C(α, β)) : TopCat.of α ⟶ TopCat.of β := ↑f
+
+end

@@ -20,23 +20,23 @@ open CategoryTheory
 
 namespace CWComplex
 
-noncomputable def Sphere : ℤ → TopCat
+noncomputable def sphere : ℤ → TopCat
   | (n : ℕ) => TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
   | _       => TopCat.of Empty
 
-noncomputable def ClosedBall : ℤ → TopCat
+noncomputable def closedBall : ℤ → TopCat
   | (n : ℕ) => TopCat.of <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
   | _       => TopCat.of Empty
 
-notation:0 "𝕊 "n => Sphere n
-notation:0 "𝔻 "n => ClosedBall n
+notation:0 "𝕊 "n => sphere n
+notation:0 "𝔻 "n => closedBall n
 
-def SphereInclusion (n : ℤ) : (𝕊 n) → (𝔻 n + 1) :=
+def sphereInclusion (n : ℤ) : (𝕊 n) → (𝔻 n + 1) :=
   match n with
   | Int.ofNat _   => fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
   | Int.negSucc _ => Empty.rec
 
-theorem continuous_sphereInclusion (n : ℤ) : Continuous (SphereInclusion n) :=
+theorem continuous_sphereInclusion (n : ℤ) : Continuous (sphereInclusion n) :=
   match n with
   | Int.ofNat _ => ⟨by
       intro _ ⟨t, ht, ht'⟩
@@ -46,38 +46,38 @@ theorem continuous_sphereInclusion (n : ℤ) : Continuous (SphereInclusion n) :=
       tauto⟩
   | Int.negSucc n => ⟨by tauto⟩
 
-def BundledSphereInclusion (n : ℤ) : TopCat.of (𝕊 n) ⟶ TopCat.of (𝔻 n + 1) :=
-  ⟨SphereInclusion n, continuous_sphereInclusion n⟩
+def bundledSphereInclusion (n : ℤ) : TopCat.of (𝕊 n) ⟶ TopCat.of (𝔻 n + 1) :=
+  ⟨sphereInclusion n, continuous_sphereInclusion n⟩
 
-def SigmaSphereInclusion (n : ℤ) (cells : Type) :
+def sigmaSphereInclusion (n : ℤ) (cells : Type) :
     (Σ (_ : cells), 𝕊 n) → (Σ (_ : cells), 𝔻 n + 1) :=
-  Sigma.map id fun _ x => SphereInclusion n x
+  Sigma.map id fun _ x => sphereInclusion n x
 
 theorem continuous_sigmaSphereInclusion (n : ℤ) (cells : Type) :
-    Continuous (SigmaSphereInclusion n cells) := by
+    Continuous (sigmaSphereInclusion n cells) := by
   apply Continuous.sigma_map
   intro _
   apply continuous_sphereInclusion
 
-def BundledSigmaSphereInclusion (n : ℤ) (cells : Type) :
+def bundledSigmaSphereInclusion (n : ℤ) (cells : Type) :
     TopCat.of (Σ (_ : cells), 𝕊 n) ⟶ TopCat.of (Σ (_ : cells), 𝔻 n + 1) :=
-  ⟨SigmaSphereInclusion n cells, continuous_sigmaSphereInclusion n cells⟩
+  ⟨sigmaSphereInclusion n cells, continuous_sigmaSphereInclusion n cells⟩
 
-def SigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
+def sigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
     (attach_maps : cells → C(𝕊 n, X)) :
     (Σ (_ : cells), 𝕊 n) → X :=
   fun ⟨i, x⟩ => attach_maps i x
 
 theorem continuous_sigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
     (attach_maps : cells → C(𝕊 n, X)) :
-    Continuous (SigmaAttachMap X n cells attach_maps) := by
+    Continuous (sigmaAttachMap X n cells attach_maps) := by
   apply continuous_sigma
   exact fun i => (attach_maps i).continuous_toFun
 
-def BundledSigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
+def bundledSigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
     (attach_maps : cells → C(𝕊 n, X)) :
     TopCat.of (Σ (_ : cells), 𝕊 n) ⟶ X :=
-  ⟨SigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
+  ⟨sigmaAttachMap X n cells attach_maps, continuous_sigmaAttachMap X n cells attach_maps⟩
 
 -- A type witnessing that X' is obtained from X by attaching n-cells
 structure AttachCells (X X' : TopCat) (n : ℤ) where
@@ -85,8 +85,8 @@ structure AttachCells (X X' : TopCat) (n : ℤ) where
   cells : Type
   attach_maps : cells → C(𝕊 n, X)
   iso_pushout : X' ≅ Limits.pushout
-    (BundledSigmaSphereInclusion n cells)
-    (BundledSigmaAttachMap X n cells attach_maps)
+    (bundledSigmaSphereInclusion n cells)
+    (bundledSigmaAttachMap X n cells attach_maps)
 
 end CWComplex
 
@@ -108,22 +108,22 @@ noncomputable section Topology
 -- The inclusion map from X to X', given that X' is obtained from X by attaching n-cells
 def AttachCellsInclusion (X X' : TopCat) (n : ℤ) (att : AttachCells X X' n) : X ⟶ X'
   := @Limits.pushout.inr TopCat _ _ _ X
-      (BundledSigmaSphereInclusion n att.cells)
-      (BundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
+      (bundledSigmaSphereInclusion n att.cells)
+      (bundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
 -- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
-def SkeletaInclusion {A : TopCat} (X : RelativeCWComplex A) (n : ℤ) : X.sk n ⟶ X.sk (n + 1) :=
+def skeletaInclusion {A : TopCat} (X : RelativeCWComplex A) (n : ℤ) : X.sk n ⟶ X.sk (n + 1) :=
   AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
 -- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
-def SkeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
+def skeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
     (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) : X.sk n ⟶ X.sk m :=
   if h : n = m then by
     rw [<- h]
     exact 𝟙 (X.sk n)
   else by
     have h' : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, h⟩
-    exact SkeletaInclusion X n ≫ SkeletaInclusion' X (n + 1) m h'
+    exact skeletaInclusion X n ≫ skeletaInclusion' X (n + 1) m h'
   termination_by Int.toNat (m - n)
   decreasing_by
     simp_wf
@@ -132,20 +132,20 @@ def SkeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
 
 def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
   obj := X.sk
-  map := @fun n m n_le_m => SkeletaInclusion' X n m <| Quiver.Hom.le n_le_m
-  map_id := by simp [SkeletaInclusion']
+  map := @fun n m n_le_m => skeletaInclusion' X n m <| Quiver.Hom.le n_le_m
+  map_id := by simp [skeletaInclusion']
   map_comp := by
     let rec p (n m l : ℤ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
-        SkeletaInclusion' X n l n_le_l =
-        SkeletaInclusion' X n m n_le_m ≫
-        SkeletaInclusion' X m l m_le_l :=
+        skeletaInclusion' X n l n_le_l =
+        skeletaInclusion' X n m n_le_m ≫
+        skeletaInclusion' X m l m_le_l :=
       if hnm : n = m then by
-        unfold SkeletaInclusion'
+        unfold skeletaInclusion'
         aesop
       else by
         have h1 : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, hnm⟩
         have h2 : n < l := by linarith
-        unfold SkeletaInclusion'
+        unfold skeletaInclusion'
         simp [hnm, Int.ne_of_lt h2]
         rcases em (m = l) with hml | hml
         . aesop
@@ -153,7 +153,7 @@ def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
         rw [p (n + 1) m l h1 m_le_l h2]
         congr
         simp [hml]
-        conv => lhs; unfold SkeletaInclusion'
+        conv => lhs; unfold skeletaInclusion'
         simp [hml]
       termination_by Int.toNat (l - n)
       decreasing_by
@@ -213,14 +213,17 @@ section HEP
 
 open unitInterval
 
-def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
+def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) :=
+  --⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
+  (ContinuousMap.id _).prodMk (ContinuousMap.const _ 0)
 
-def prod_map {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
-  ⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
+def prodMap {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
+  --⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
+  f.prodMap g
 
 def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
   ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = j0 ≫ H →
-  ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prod_map i (𝟙 (TopCat.of I)) ≫ H'
+  ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prodMap i (𝟙 (TopCat.of I)) ≫ H'
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
