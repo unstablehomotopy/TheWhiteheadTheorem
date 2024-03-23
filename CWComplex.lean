@@ -362,6 +362,54 @@ noncomputable def jarRimProjSnd (n : ℤ) : C(jarRim n, I) :=
 noncomputable def jarRimProj (n : ℤ) : C(jarRim n, (𝕊 n) × I) :=
   ContinuousMap.prodMk (jarRimProjFst n) (jarRimProjSnd n)
 
+variable (n : ℤ) {Y : TopCat}
+  (f : TopCat.of (𝔻 n + 1) ⟶ Y) (H: TopCat.of ((𝕊 n) × I) ⟶ Y)
+  (hf: bundledSphereInclusion n ≫ f = inc₀ ≫ H)
+
+noncomputable def jarHomotopyExtension : ∀ i, C(jarClosedCover n i, Y) :=
+  Fin.cons (f.comp (jarMidProj n)) <| Fin.cons (H.comp (jarRimProj n)) finZeroElim
+
+lemma jarHomotopyExtension_compatible : ∀ (p : (𝔻 n + 1) × I)
+    (hp0 : p ∈ jarClosedCover n 0) (hp1 : p ∈ jarClosedCover n 1),
+    jarHomotopyExtension n f H 0 ⟨p, hp0⟩ = jarHomotopyExtension n f H 1 ⟨p, hp1⟩ :=
+  match n with
+  | Int.ofNat n => fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
+      change f (jarMidProj n _) = H (jarRimProj n _)
+      change ‖x‖ ≤ 1 - y / 2 at hp0
+      change ‖x‖ ≥ 1 - y / 2 at hp1
+      have : ‖x‖ = 1 - y / 2 := by linarith
+      let q : 𝕊 n := ⟨ (2 / (2 - y)) • x, by
+        simp [norm_smul]
+        rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
+        rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul] ⟩
+      conv in jarMidProj n _ => equals bundledSphereInclusion n q =>
+        unfold bundledSphereInclusion sphereInclusion
+        conv => rhs; dsimp
+      conv in jarRimProj n _ => equals @inc₀ (𝕊 n) q =>
+        unfold jarRimProj jarRimProjFst jarRimProjSnd
+        unfold inc₀
+        dsimp
+        conv => rhs; change (q, ⟨0, by norm_num, by norm_num⟩)
+        congr 2
+        . congr 1
+          rw [this, div_eq_div_iff (by linarith) (by linarith)]
+          rw [one_mul, mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul]
+        . rw [this, ← eq_sub_iff_add_eq, zero_sub, div_eq_iff (by linarith), mul_sub, mul_one]
+          rw [mul_div, mul_div_right_comm, neg_div_self (by norm_num), ← neg_eq_neg_one_mul]
+          rw [sub_neg_eq_add, add_comm]; rfl
+      change (bundledSphereInclusion (Int.ofNat n) ≫ f).toFun q = (inc₀ ≫ H).toFun q
+      rw [hf]
+  | Int.negSucc 0 => fun p hp0 hp1 ↦ by
+      change p ∈ jarRim (-1) at hp1
+      have : Empty := by
+        apply emptyFromJarRimNegOne
+        sorry
+      -- change ‖x‖ ≥ 1 - y / 2 at hp1
+      -- rw [Subsingleton.eq_zero x, norm_zero] at hp1
+      sorry
+  | Int.negSucc (m + 1) => by
+      sorry
+
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
 def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X] (i : C(A, X)) : Prop :=
