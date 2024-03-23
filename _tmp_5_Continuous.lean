@@ -139,11 +139,13 @@ example (a b c : ℝ) : a + b = c ↔ a = c - b := by exact Iff.symm eq_sub_iff_
 example (a : ℝ) (h : a ≠ 0) : -a / a = -1 := by exact neg_div_self h
 example (a : ℝ) : -1 * a = -a := by exact (neg_eq_neg_one_mul a).symm
 #check sub_neg_eq_add
-example (a b : ℝ) : (a - b = a + -b) := by apply?
+example (a b : ℝ) : (a - b = a + -b) := rfl
 
 -------------------------------------------------------------
 
 #check ContinuousMap.comp
+#check Continuous.Prod.mk_left
+#check ContinuousMap.prodMk
 
 section
 

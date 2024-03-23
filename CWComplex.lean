@@ -213,17 +213,61 @@ section HEP
 
 open unitInterval
 
-def j0 {X : TopCat} : X ⟶ TopCat.of (X × I) :=
-  --⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
-  (ContinuousMap.id _).prodMk (ContinuousMap.const _ 0)
-
 def prodMap {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
   --⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
   f.prodMap g
 
+def prodMkLeft {X Y : TopCat} (y : Y) : X ⟶ TopCat.of (X × Y) :=
+  (ContinuousMap.id _).prodMk (ContinuousMap.const _ y)
+
+def inc₀ {X : TopCat} : X ⟶ TopCat.of (X × I) :=
+  --⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
+  --@prodMkLeft X (TopCat.of I) ⟨0, by norm_num, by norm_num⟩
+  (ContinuousMap.id _).prodMk (ContinuousMap.const _ 0)
+
+def continuousMapFromEmpty {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y] (empty : X → Empty) :
+  C(X, Y) := {
+    toFun := fun x ↦ Empty.rec <| empty x
+    continuous_toFun := ⟨fun _ _ ↦ isOpen_iff_nhds.mpr fun x ↦ Empty.rec <| empty x⟩
+  }
+
 def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
-  ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = j0 ≫ H →
-  ∃ H' : TopCat.of (X × I) ⟶ Y, f = j0 ≫ H' ∧ H = prodMap i (𝟙 (TopCat.of I)) ≫ H'
+  ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = inc₀ ≫ H →
+  ∃ H' : TopCat.of (X × I) ⟶ Y, f = inc₀ ≫ H' ∧ H = prodMap i (𝟙 (TopCat.of I)) ≫ H'
+
+def jar_mid (n : ℤ) : Set ((𝔻 n) × I) :=
+  match n with
+  | Int.ofNat n   => {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 n) × I | ‖x‖ ≤ 1 - y / 2}
+  | Int.negSucc _ => Set.univ
+
+def jar_rim (n : ℤ) : Set ((𝔻 n) × I) :=
+  match n with
+  | Int.ofNat n   => {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 n) × I | ‖x‖ ≥ 1 - y / 2}
+  | Int.negSucc _ => Set.univ
+
+noncomputable def jar_mid_proj (n : ℤ) : C(jar_mid n, 𝔻 n) :=
+  match n with
+  | Int.ofNat n   => {
+      toFun := fun pt ↦ {
+        -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
+        val := match pt with
+          | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
+        property := by
+          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+          dsimp; rw [Metric.mem_closedBall]
+          rw [dist_zero_right, norm_smul, norm_div, IsROrC.norm_ofNat, Real.norm_eq_abs]
+          have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
+          rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
+          nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
+          rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
+          exact Or.inl hxy
+      }
+      continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
+        continuous_subtype_val.prod_map <| continuous_const.div
+          ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
+            dsimp; linarith).comp continuous_subtype_val).subtype_mk _
+    }
+  | Int.negSucc _ => continuousMapFromEmpty fun p ↦ p.val.fst
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
