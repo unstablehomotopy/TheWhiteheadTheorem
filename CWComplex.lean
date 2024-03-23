@@ -152,9 +152,9 @@ def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
         congr
         rw [p (n + 1) m l h1 m_le_l h2]
         congr
-        simp [hml]
+        simp only [hml, ↓reduceDite]
         conv => lhs; unfold skeletaInclusion'
-        simp [hml]
+        simp only [hml, ↓reduceDite]
       termination_by Int.toNat (l - n)
       decreasing_by
         simp_wf
@@ -278,7 +278,8 @@ noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
           | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
         property := by
           obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
-          dsimp; rw [Metric.mem_closedBall]
+          dsimp only [Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq]
+          rw [Metric.mem_closedBall]
           rw [dist_zero_right, norm_smul, norm_div, IsROrC.norm_ofNat, Real.norm_eq_abs]
           have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
           rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
@@ -289,7 +290,7 @@ noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
       continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
         continuous_subtype_val.prod_map <| continuous_const.div
           ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
-            dsimp; linarith).comp continuous_subtype_val).subtype_mk _
+            rw [Function.comp_apply]; linarith).comp continuous_subtype_val).subtype_mk _
     }
   | Int.negSucc _ => continuousMapFromEmpty fun p ↦ p.val.fst
 
