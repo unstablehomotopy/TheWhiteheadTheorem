@@ -279,7 +279,7 @@ lemma jarRim_fst_ne_zero (n : ℕ) : ∀ p : jarRim n, ‖p.val.fst.val‖ ≠ 0
     linarith
 
 -- Note that `𝔻 0` is a singleton in `jarRim (-1) : Set ((𝔻 0) × I)`.
-lemma jarRim_neg_one_is_empty : jarRim (-1) → Empty :=
+def emptyFromJarRimNegOne : jarRim (-1) → Empty :=
   fun ⟨⟨⟨x, _⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ ↦ by
     change ‖x‖ ≥ 1 - y / 2 at hxy
     change EuclideanSpace ℝ (Fin 0) at x
@@ -305,7 +305,7 @@ noncomputable def jarRimProjFst (n : ℤ) : C(jarRim n, 𝕊 n) :=
           jarRim_fst_ne_zero n).prod_mk <|
           continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val
     }
-  | Int.negSucc 0 => continuousMapFromEmpty jarRim_neg_one_is_empty
+  | Int.negSucc 0 => continuousMapFromEmpty emptyFromJarRimNegOne
   | Int.negSucc (_ + 1) => continuousMapFromEmpty fun p ↦ p.val.fst
 
 noncomputable def jarRimProjSnd (n : ℤ) : C(jarRim n, I) :=
@@ -333,7 +333,7 @@ noncomputable def jarRimProjSnd (n : ℤ) : C(jarRim n, I) :=
           (continuous_norm.comp <| continuous_subtype_val.comp <|
             continuous_fst.comp <| continuous_subtype_val) <| jarRim_fst_ne_zero n
     }
-  | Int.negSucc 0 => continuousMapFromEmpty jarRim_neg_one_is_empty
+  | Int.negSucc 0 => continuousMapFromEmpty emptyFromJarRimNegOne
   | Int.negSucc (_ + 1) => continuousMapFromEmpty fun p ↦ p.val.fst
 
 noncomputable def jarRimProj (n : ℤ) : C(jarRim n, (𝕊 n) × I) :=

@@ -176,9 +176,12 @@ example (x : Empty) : α := Empty.rec x
 #check EuclideanSpace ℝ (Fin 0)
 
 example (α : Fin 0 → Sort u) : Unique (∀ i : Fin 0, α i) := by infer_instance
-example (x : EuclideanSpace ℝ (Fin 0)) : x = 0 := by
-  have unique : Unique (EuclideanSpace ℝ (Fin 0)) := by infer_instance
-  sorry
+example (x : EuclideanSpace ℝ (Fin 0)) : x = 0 := Subsingleton.eq_zero x
+example (x : EuclideanSpace ℝ Empty) : x = 0 := Subsingleton.eq_zero x
+-- example (x : EuclideanSpace ℝ (Fin 0)) : x = 0 := by
+--   have u : Unique (EuclideanSpace ℝ (Fin 0)) := by infer_instance
+--   have : x = default := u.uniq x
+--   sorry
 
 end
 
