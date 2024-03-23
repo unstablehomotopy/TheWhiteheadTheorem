@@ -315,7 +315,7 @@ noncomputable def jarRimProjFst (n : ℤ) : C(jarRim n, 𝕊 n) :=
           | ⟨⟨⟨x, _⟩, _⟩, _⟩ => (1 / ‖x‖) • x
         property := by
           obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
-          simp [norm_smul]
+          simp only [one_div, mem_sphere_iff_norm, sub_zero, norm_smul, norm_inv, norm_norm]
           change ‖x‖ ≥ 1 - y / 2 at hxy
           exact inv_mul_cancel (by linarith)
       }
@@ -337,12 +337,13 @@ noncomputable def jarRimProjSnd (n : ℤ) : C(jarRim n, I) :=
           | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (y - 2) / ‖x‖ + 2
         property := by
           obtain ⟨⟨⟨x, hx⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
-          simp; simp at hx
+          simp only [Set.mem_Icc]
+          rw [Metric.mem_closedBall, dist_zero_right] at hx
           change ‖x‖ ≥ 1 - y / 2 at hxy
           have : ‖x‖ > 0 := by linarith
           constructor
           all_goals rw [← add_le_add_iff_right (-2)]
-          . rw [← neg_le_neg_iff]; simp
+          . rw [← neg_le_neg_iff, add_neg_cancel_right, zero_add, neg_neg]
             rw [← neg_div, neg_sub, div_le_iff (by assumption)]; linarith
           . rw [add_assoc, add_right_neg, add_zero, div_le_iff (by assumption)]; linarith
       }
