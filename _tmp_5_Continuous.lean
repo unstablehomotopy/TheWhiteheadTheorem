@@ -155,4 +155,31 @@ variable {α β : Type} [TopologicalSpace α] [TopologicalSpace β]
 
 example (f : C(α, β)) : TopCat.of α ⟶ TopCat.of β := ↑f
 
+example (x : Empty) : α := by tauto
+example (x : Empty) : α := Empty.rec x
+
+--example (x : Empty)
+
+#check isOpen_iff_forall_mem_open
+#check isOpen_iff_mem_nhds
+#check isOpen_iff_nhds
+
+#check continuousOn_empty
+#check continuousOn_singleton
+#check Set.Subsingleton.continuousOn
+
+#check IsEmpty
+#check Singleton
+#check Fin.elim0
+#check Fin.elim0_append
+#check finZeroElim
+#check EuclideanSpace ℝ (Fin 0)
+
+example (α : Fin 0 → Sort u) : Unique (∀ i : Fin 0, α i) := by infer_instance
+example (x : EuclideanSpace ℝ (Fin 0)) : x = 0 := by
+  have unique : Unique (EuclideanSpace ℝ (Fin 0)) := by infer_instance
+  sorry
+
 end
+
+-------------------------------------------------------------

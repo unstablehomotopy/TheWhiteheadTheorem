@@ -235,25 +235,28 @@ def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
   ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = inc₀ ≫ H →
   ∃ H' : TopCat.of (X × I) ⟶ Y, f = inc₀ ≫ H' ∧ H = prodMap i (𝟙 (TopCat.of I)) ≫ H'
 
-def jar_mid (n : ℤ) : Set ((𝔻 n) × I) :=
-  match n with
-  | Int.ofNat n   => {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 n) × I | ‖x‖ ≤ 1 - y / 2}
-  | Int.negSucc _ => Set.univ
+-- def jar (n : ℤ) := (𝔻 n + 1) × I
 
-def jar_rim (n : ℤ) : Set ((𝔻 n) × I) :=
-  match n with
-  | Int.ofNat n   => {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 n) × I | ‖x‖ ≥ 1 - y / 2}
-  | Int.negSucc _ => Set.univ
+def jarMid (n : ℤ) : Set ((𝔻 n + 1) × I) :=
+  match n + 1 with
+  | Int.ofNat m   => {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 m) × I | ‖x‖ ≤ 1 - y / 2}
+  | Int.negSucc _ => ∅
 
-noncomputable def jar_mid_proj (n : ℤ) : C(jar_mid n, 𝔻 n) :=
-  match n with
-  | Int.ofNat n   => {
-      toFun := fun pt ↦ {
+def jarRim (n : ℤ) : Set ((𝔻 n + 1) × I) :=
+  match n + 1 with
+  | Int.ofNat m   => {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 m) × I | ‖x‖ ≥ 1 - y / 2}
+  | Int.negSucc _ => ∅
+
+noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
+  unfold jarMid
+  exact match n + 1 with
+  | Int.ofNat m => {
+      toFun := fun p ↦ {
         -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
-        val := match pt with
+        val := match p with
           | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
         property := by
-          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
           dsimp; rw [Metric.mem_closedBall]
           rw [dist_zero_right, norm_smul, norm_div, IsROrC.norm_ofNat, Real.norm_eq_abs]
           have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
@@ -268,6 +271,73 @@ noncomputable def jar_mid_proj (n : ℤ) : C(jar_mid n, 𝔻 n) :=
             dsimp; linarith).comp continuous_subtype_val).subtype_mk _
     }
   | Int.negSucc _ => continuousMapFromEmpty fun p ↦ p.val.fst
+
+lemma jarRim_fst_ne_zero (n : ℕ) : ∀ p : jarRim n, ‖p.val.fst.val‖ ≠ 0 :=
+  fun ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ ↦ by
+    conv => lhs; arg 1; dsimp
+    change ‖x‖ ≥ 1 - y / 2 at hxy
+    linarith
+
+-- Note that `𝔻 0` is a singleton in `jarRim (-1) : Set ((𝔻 0) × I)`.
+lemma jarRim_neg_one_is_empty : jarRim (-1) → Empty :=
+  fun ⟨⟨⟨x, _⟩, ⟨y, hy0, hy1⟩⟩, hxy⟩ ↦ by
+    change ‖x‖ ≥ 1 - y / 2 at hxy
+    change EuclideanSpace ℝ (Fin 0) at x
+    rw [Subsingleton.eq_zero x, norm_zero] at hxy
+    linarith
+
+noncomputable def jarRimProjFst (n : ℤ) : C(jarRim n, 𝕊 n) :=
+  match n with
+  | Int.ofNat n => {
+      toFun := fun p ↦ {
+        val := match p with
+          | ⟨⟨⟨x, _⟩, _⟩, _⟩ => (1 / ‖x‖) • x
+        property := by
+          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
+          simp [norm_smul]
+          change ‖x‖ ≥ 1 - y / 2 at hxy
+          exact inv_mul_cancel (by linarith)
+      }
+      continuous_toFun := by
+        refine Continuous.subtype_mk ?_ _
+        exact continuous_smul.comp <| (Continuous.div continuous_const (continuous_norm.comp <|
+          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val) <|
+          jarRim_fst_ne_zero n).prod_mk <|
+          continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val
+    }
+  | Int.negSucc 0 => continuousMapFromEmpty jarRim_neg_one_is_empty
+  | Int.negSucc (_ + 1) => continuousMapFromEmpty fun p ↦ p.val.fst
+
+noncomputable def jarRimProjSnd (n : ℤ) : C(jarRim n, I) :=
+  match n with
+  | Int.ofNat n => {
+      toFun := fun pt ↦ {
+        val := match pt with
+          | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (y - 2) / ‖x‖ + 2
+        property := by
+          obtain ⟨⟨⟨x, hx⟩, ⟨y, _, _⟩⟩, hxy⟩ := pt
+          simp; simp at hx
+          change ‖x‖ ≥ 1 - y / 2 at hxy
+          have : ‖x‖ > 0 := by linarith
+          constructor
+          all_goals rw [← add_le_add_iff_right (-2)]
+          . rw [← neg_le_neg_iff]; simp
+            rw [← neg_div, neg_sub, div_le_iff (by assumption)]; linarith
+          . rw [add_assoc, add_right_neg, add_zero, div_le_iff (by assumption)]; linarith
+      }
+      continuous_toFun := by
+        refine Continuous.subtype_mk ?_ _
+        exact (continuous_add_right _).comp <| Continuous.div
+          ((continuous_sub_right _).comp <| continuous_subtype_val.comp <|
+            continuous_snd.comp <| continuous_subtype_val)
+          (continuous_norm.comp <| continuous_subtype_val.comp <|
+            continuous_fst.comp <| continuous_subtype_val) <| jarRim_fst_ne_zero n
+    }
+  | Int.negSucc 0 => continuousMapFromEmpty jarRim_neg_one_is_empty
+  | Int.negSucc (_ + 1) => continuousMapFromEmpty fun p ↦ p.val.fst
+
+noncomputable def jarRimProj (n : ℤ) : C(jarRim n, (𝕊 n) × I) :=
+  ContinuousMap.prodMk (jarRimProjFst n) (jarRimProjSnd n)
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
