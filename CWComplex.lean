@@ -235,7 +235,7 @@ def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
   ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = inc₀ ≫ H →
   ∃ H' : TopCat.of (X × I) ⟶ Y, f = inc₀ ≫ H' ∧ H = prodMap i (𝟙 (TopCat.of I)) ≫ H'
 
--- def jar (n : ℤ) := (𝔻 n + 1) × I
+-- def Jar (n : ℤ) := (𝔻 n + 1) × I
 
 def jarMid (n : ℤ) : Set ((𝔻 n + 1) × I) :=
   match n + 1 with
@@ -246,6 +246,27 @@ def jarRim (n : ℤ) : Set ((𝔻 n + 1) × I) :=
   match n + 1 with
   | Int.ofNat m   => {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 m) × I | ‖x‖ ≥ 1 - y / 2}
   | Int.negSucc _ => ∅
+
+lemma continuous_sub_div_two : Continuous fun (y : ℝ) ↦ 1 - y / 2 :=
+  (continuous_sub_left _).comp <| continuous_mul_right _
+
+lemma isClosed_jarMid (n : ℤ) : IsClosed (jarMid n) := by
+  unfold jarMid
+  exact match n + 1 with
+  | Int.ofNat m => continuous_iff_isClosed.mp (continuous_subtype_val.norm.prod_map continuous_id)
+      {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <| isClosed_le continuous_fst <|
+      continuous_sub_div_two.comp <| continuous_subtype_val.comp continuous_snd
+  | Int.negSucc _ => isClosed_empty
+
+lemma isClosed_jarRim (n : ℤ) : IsClosed (jarRim n) := by
+  unfold jarRim
+  exact match n + 1 with
+  | Int.ofNat m => continuous_iff_isClosed.mp (continuous_subtype_val.norm.prod_map continuous_id)
+      {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <| isClosed_le
+      (continuous_sub_div_two.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
+  | Int.negSucc _ => isClosed_empty
+
+def jarClosedCover (n : ℤ) : Fin 2 → Set ((𝔻 n + 1) × I) := ![jarMid n, jarRim n]
 
 noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
   unfold jarMid
