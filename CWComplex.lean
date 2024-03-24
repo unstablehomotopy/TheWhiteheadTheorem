@@ -141,14 +141,17 @@ def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
         skeletaInclusion' X m l m_le_l :=
       if hnm : n = m then by
         unfold skeletaInclusion'
-        aesop
+        subst hnm
+        simp only [eq_mpr_eq_cast, ↓reduceDite, cast_eq, Category.id_comp]
       else by
         have h1 : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, hnm⟩
         have h2 : n < l := by linarith
         unfold skeletaInclusion'
         simp [hnm, Int.ne_of_lt h2]
         rcases em (m = l) with hml | hml
-        . aesop
+        . subst hml
+          simp only [↓reduceDite]
+          rw [cast_eq, Category.comp_id]
         congr
         rw [p (n + 1) m l h1 m_le_l h2]
         congr
