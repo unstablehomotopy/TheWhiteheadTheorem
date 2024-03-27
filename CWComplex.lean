@@ -187,7 +187,7 @@ variable {ι : Type*} [Finite ι] (S : ι → Set α) (φ : ∀ i : ι, C(S i, �
 (hφ : ∀ (i j) (x : α) (hxi : x ∈ S i) (hxj : x ∈ S j), φ i ⟨x, hxi⟩ = φ j ⟨x, hxj⟩)
 (hS_cover : ∀ x : α, ∃ i, x ∈ S i) (hS_closed : ∀ i, IsClosed (S i))
 
-noncomputable def liftCover_closed : C(α, β) :=
+noncomputable def liftCoverClosed : C(α, β) :=
   have H : ⋃ i, S i = Set.univ := Set.iUnion_eq_univ_iff.2 hS_cover
   let Φ := Set.liftCover S (fun i ↦ φ i) hφ H
   ContinuousMap.mk Φ <| continuous_iff_isClosed.mpr fun Y hY ↦ by
