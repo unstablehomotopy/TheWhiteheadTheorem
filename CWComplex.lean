@@ -402,16 +402,8 @@ lemma jarHomotopyExtension_compatible : ∀ (p : (𝔻 n + 1) × I)
           rw [sub_neg_eq_add, add_comm]; rfl
       change (bundledSphereInclusion (Int.ofNat n) ≫ f).toFun q = (inc₀ ≫ H).toFun q
       rw [hf]
-  | Int.negSucc 0 => fun p hp0 hp1 ↦ by
-      change p ∈ jarRim (-1) at hp1
-      have : Empty := by
-        apply emptyFromJarRimNegOne
-        sorry
-      -- change ‖x‖ ≥ 1 - y / 2 at hp1
-      -- rw [Subsingleton.eq_zero x, norm_zero] at hp1
-      sorry
-  | Int.negSucc (m + 1) => by
-      sorry
+  | Int.negSucc 0 => fun p _ hp1 ↦ Empty.rec <| emptyFromJarRimNegOne ⟨p, hp1⟩
+  | Int.negSucc (m + 1) => fun p _ _ ↦ Empty.rec p.fst
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
