@@ -271,6 +271,15 @@ lemma isClosed_jarRim (n : ℤ) : IsClosed (jarRim n) := by
 
 def jarClosedCover (n : ℤ) : Fin 2 → Set ((𝔻 n + 1) × I) := ![jarMid n, jarRim n]
 
+lemma jarClosedCover_is_cover (n : ℤ) : ∀ (p : (𝔻 n + 1) × I), ∃ i, p ∈ jarClosedCover n i := by
+  unfold jarClosedCover jarMid jarRim
+  exact match n + 1 with
+  | Int.ofNat m => fun ⟨⟨x, _⟩, ⟨y, _⟩⟩ ↦ by
+    by_cases h : ‖x‖ ≤ 1 - y / 2
+    . use 0; exact h
+    . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
+  | Int.negSucc _ => fun p ↦ Empty.rec p.fst
+
 noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
   unfold jarMid
   exact match n + 1 with
@@ -403,7 +412,17 @@ lemma jarProj_compatible : ∀ (p : (𝔻 n + 1) × I)
       change (bundledSphereInclusion (Int.ofNat n) ≫ f).toFun q = (inc₀ ≫ H).toFun q
       rw [hf]
   | Int.negSucc 0 => fun p _ hp1 ↦ Empty.rec <| emptyFromJarRimNegOne ⟨p, hp1⟩
-  | Int.negSucc (m + 1) => fun p _ _ ↦ Empty.rec p.fst
+  | Int.negSucc (_ + 1) => fun p _ _ ↦ Empty.rec p.fst
+
+noncomputable def jarHomotopyExtension : TopCat.of ((𝔻 n + 1) × I) ⟶ Y := by
+  refine liftCoverClosed (jarClosedCover n) (jarProj n f H) ?_ (jarClosedCover_is_cover n) ?_
+  . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
+    interval_cases i <;> (interval_cases j <;> (try simp only [Fin.zero_eta, Fin.mk_one]))
+    . exact jarProj_compatible n f H hf p hpi hpj
+    . exact Eq.symm <| jarProj_compatible n f H hf p hpj hpi
+  intro ⟨i, hi⟩; interval_cases i
+  exact isClosed_jarMid n
+  exact isClosed_jarRim n
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
