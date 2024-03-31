@@ -33,17 +33,12 @@ notation "𝔻 "n => closedBall n
 
 def sphereInclusion (n : ℤ) : (𝕊 n) → (𝔻 n + 1) :=
   match n with
-  | Int.ofNat _   => fun ⟨pt, hpt⟩ => ⟨pt, le_of_eq hpt⟩
+  | Int.ofNat _   => fun ⟨p, hp⟩ => ⟨p, le_of_eq hp⟩
   | Int.negSucc _ => Empty.rec
 
 theorem continuous_sphereInclusion (n : ℤ) : Continuous (sphereInclusion n) :=
   match n with
-  | Int.ofNat _ => ⟨by
-      intro _ ⟨t, ht, ht'⟩
-      rw [isOpen_induced_iff]
-      use t, ht
-      rw [ht'.symm]
-      tauto⟩
+  | Int.ofNat _   => ⟨fun _ ⟨s, _, hs⟩ ↦ by rw [isOpen_induced_iff, ← hs]; tauto⟩
   | Int.negSucc n => ⟨by tauto⟩
 
 def bundledSphereInclusion (n : ℤ) : TopCat.of (𝕊 n) ⟶ TopCat.of (𝔻 n + 1) :=
