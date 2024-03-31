@@ -36,10 +36,10 @@ def sphereInclusion (n : ℤ) : (𝕊 n) → (𝔻 n + 1) :=
   | Int.ofNat _   => fun ⟨p, hp⟩ => ⟨p, le_of_eq hp⟩
   | Int.negSucc _ => Empty.rec
 
-theorem continuous_sphereInclusion (n : ℤ) : Continuous (sphereInclusion n) :=
+lemma continuous_sphereInclusion (n : ℤ) : Continuous (sphereInclusion n) :=
   match n with
   | Int.ofNat _   => ⟨fun _ ⟨s, _, hs⟩ ↦ by rw [isOpen_induced_iff, ← hs]; tauto⟩
-  | Int.negSucc n => ⟨by tauto⟩
+  | Int.negSucc _ => ⟨by tauto⟩
 
 def bundledSphereInclusion (n : ℤ) : TopCat.of (𝕊 n) ⟶ TopCat.of (𝔻 n + 1) :=
   ⟨sphereInclusion n, continuous_sphereInclusion n⟩
@@ -48,7 +48,7 @@ def sigmaSphereInclusion (n : ℤ) (cells : Type) :
     (Σ (_ : cells), 𝕊 n) → (Σ (_ : cells), 𝔻 n + 1) :=
   Sigma.map id fun _ x => sphereInclusion n x
 
-theorem continuous_sigmaSphereInclusion (n : ℤ) (cells : Type) :
+lemma continuous_sigmaSphereInclusion (n : ℤ) (cells : Type) :
     Continuous (sigmaSphereInclusion n cells) := by
   apply Continuous.sigma_map
   intro _
@@ -63,7 +63,7 @@ def sigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
     (Σ (_ : cells), 𝕊 n) → X :=
   fun ⟨i, x⟩ => attach_maps i x
 
-theorem continuous_sigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
+lemma continuous_sigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type)
     (attach_maps : cells → C(𝕊 n, X)) :
     Continuous (sigmaAttachMap X n cells attach_maps) := by
   apply continuous_sigma
@@ -114,7 +114,7 @@ def skeletaInclusion {A : TopCat} (X : RelativeCWComplex A) (n : ℤ) : X.sk n �
 def skeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
     (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) : X.sk n ⟶ X.sk m :=
   if h : n = m then by
-    rw [<- h]
+    rw [← h]
     exact 𝟙 (X.sk n)
   else by
     have h' : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, h⟩
@@ -205,6 +205,14 @@ noncomputable def liftCoverClosed : C(α, β) :=
     exact isClosed_iUnion_of_finite fun i ↦
       IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
 
+theorem liftCoverClosed_coe {i : ι} (x : S i) :
+    liftCoverClosed S φ hφ hS_cover hS_closed x = φ i x := by
+  rw [liftCoverClosed, ContinuousMap.coe_mk, Set.liftCover_coe _]
+
+theorem liftCoverClosed_coe' {i : ι} (x : α) (hx : x ∈ S i) :
+    liftCoverClosed S φ hφ hS_cover hS_closed x = φ i ⟨x, hx⟩ := by
+  rw [← liftCoverClosed_coe]
+
 end GluingLemma
 
 section HEP
@@ -228,10 +236,6 @@ def continuousMapFromEmpty {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y
     toFun := fun x ↦ Empty.rec <| empty x
     continuous_toFun := ⟨fun _ _ ↦ isOpen_iff_nhds.mpr fun x ↦ Empty.rec <| empty x⟩
   }
-
-def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
-  ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = inc₀ ≫ H →
-  ∃ H' : TopCat.of (X × I) ⟶ Y, f = inc₀ ≫ H' ∧ H = prodMap i (𝟙 (TopCat.of I)) ≫ H'
 
 -- def Jar (n : ℤ) := (𝔻 n + 1) × I
 
@@ -265,15 +269,6 @@ lemma isClosed_jarRim (n : ℤ) : IsClosed (jarRim n) := by
   | Int.negSucc _ => isClosed_empty
 
 def jarClosedCover (n : ℤ) : Fin 2 → Set ((𝔻 n + 1) × I) := ![jarMid n, jarRim n]
-
-lemma jarClosedCover_is_cover (n : ℤ) : ∀ (p : (𝔻 n + 1) × I), ∃ i, p ∈ jarClosedCover n i := by
-  unfold jarClosedCover jarMid jarRim
-  exact match n + 1 with
-  | Int.ofNat m => fun ⟨⟨x, _⟩, ⟨y, _⟩⟩ ↦ by
-    by_cases h : ‖x‖ ≤ 1 - y / 2
-    . use 0; exact h
-    . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
-  | Int.negSucc _ => fun p ↦ Empty.rec p.fst
 
 noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
   unfold jarMid
@@ -409,15 +404,103 @@ lemma jarProj_compatible : ∀ (p : (𝔻 n + 1) × I)
   | Int.negSucc 0 => fun p _ hp1 ↦ Empty.rec <| emptyFromJarRimNegOne ⟨p, hp1⟩
   | Int.negSucc (_ + 1) => fun p _ _ ↦ Empty.rec p.fst
 
-noncomputable def jarHomotopyExtension : TopCat.of ((𝔻 n + 1) × I) ⟶ Y := by
-  refine liftCoverClosed (jarClosedCover n) (jarProj n f H) ?_ (jarClosedCover_is_cover n) ?_
-  . intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
-    interval_cases i <;> (interval_cases j <;> (try simp only [Fin.zero_eta, Fin.mk_one]))
-    . exact jarProj_compatible n f H hf p hpi hpj
-    . exact Eq.symm <| jarProj_compatible n f H hf p hpj hpi
-  intro ⟨i, hi⟩; interval_cases i
+lemma jarProj_compatible' : ∀ (i j) (p : (𝔻 n + 1) × I)
+    (hpi : p ∈ jarClosedCover n i) (hpj : p ∈ jarClosedCover n j),
+    jarProj n f H i ⟨p, hpi⟩ = jarProj n f H j ⟨p, hpj⟩ := by
+  intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
+  interval_cases i <;> (interval_cases j <;> (try simp only [Fin.zero_eta, Fin.mk_one]))
+  . exact jarProj_compatible n f H hf p hpi hpj
+  . exact Eq.symm <| jarProj_compatible n f H hf p hpj hpi
+
+lemma jarClosedCover_is_cover (n : ℤ) : ∀ (p : (𝔻 n + 1) × I), ∃ i, p ∈ jarClosedCover n i := by
+  unfold jarClosedCover jarMid jarRim
+  exact match n + 1 with
+  | Int.ofNat m => fun ⟨⟨x, _⟩, ⟨y, _⟩⟩ ↦ by
+      by_cases h : ‖x‖ ≤ 1 - y / 2
+      . use 0; exact h
+      . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
+  | Int.negSucc _ => fun p ↦ Empty.rec p.fst
+
+lemma jarClosedCover_isClosed : ∀ i, IsClosed (jarClosedCover n i) := fun ⟨i, hi⟩ ↦ by
+  interval_cases i
   exact isClosed_jarMid n
   exact isClosed_jarRim n
+
+noncomputable def jarHomotopyExtension : TopCat.of ((𝔻 n + 1) × I) ⟶ Y :=
+  liftCoverClosed (jarClosedCover n) (jarProj n f H) (jarProj_compatible' n f H hf)
+    (jarClosedCover_is_cover n) (jarClosedCover_isClosed n)
+
+#check ContinuousMap.coe_mk
+
+-- The triangle involving the bottom (i.e., `𝔻 n + 1`) of the jar commutes.
+lemma jarHomotopyExtension_bottom_commutes :
+    f = inc₀ ≫ jarHomotopyExtension n f H hf := by
+  ext p
+  change f p = jarHomotopyExtension n f H hf (inc₀ p)
+  exact match n with
+  | Int.ofNat n => by
+      have hp : inc₀ p ∈ jarClosedCover n 0 := by
+        obtain ⟨x, hx⟩ := p
+        change ‖x‖ ≤ 1 - 0 / 2
+        rw [zero_div, sub_zero]
+        exact mem_closedBall_zero_iff.mp hx
+      conv_rhs => equals (jarProj n f H 0) ⟨inc₀ p, hp⟩ => apply liftCoverClosed_coe'
+      simp [jarProj]
+      congr
+      simp [jarMidProj]
+      --simp [ContinuousMap.coe_mk]
+      sorry
+  | Int.negSucc 0 => sorry
+  | Int.negSucc (_ + 1) => Empty.rec p
+
+-- The triangle involving the wall (i.e., `𝕊 n × I`) of the jar commutes.
+lemma jarHomotopyExtension_wall_commutes :
+    H = prodMap i (𝟙 (TopCat.of I)) ≫ jarHomotopyExtension n f H hf := by
+  ext p
+  exact match n with
+  | Int.ofNat n => sorry
+  | Int.negSucc _ => Empty.rec p.fst
+
+def HomotopyExtensionProperty' {A X : TopCat} (i : A ⟶ X) : Prop :=
+  ∀ (Y : TopCat) (f : X ⟶ Y) (H : TopCat.of (A × I) ⟶ Y), i ≫ f = inc₀ ≫ H →
+  ∃ H' : TopCat.of (X × I) ⟶ Y, f = inc₀ ≫ H' ∧ H = prodMap i (𝟙 (TopCat.of I)) ≫ H'
+
+-- theorem homotopyExtensionProperty'_sphereInclusion (n : ℤ) :
+--     HomotopyExtensionProperty' (bundledSphereInclusion n) := fun Y f H hf ↦
+--   ⟨jarHomotopyExtension n f H hf, by
+--     unfold jarHomotopyExtension
+--     unfold jarClosedCover jarMid jarRim
+--     unfold jarProj jarMidProj jarRimProj
+--     simp only [TopCat.coe_of, Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq, id_eq,
+--       Fin.succ_zero_eq_one]
+--     exact match n + 1 with
+--     | Int.ofNat m => by
+--         sorry
+--     | Int.negSucc 0 => by
+--         sorry
+--     | Int.negSucc (_ + 1) => ⟨by ext x; exact Empty.rec x, by ext p; exact Empty.rec p.fst⟩
+--   ⟩
+
+theorem homotopyExtensionProperty'_sphereInclusion (n : ℤ) :
+    HomotopyExtensionProperty' (bundledSphereInclusion n) := fun Y f H hf ↦
+  ⟨jarHomotopyExtension n f H hf,
+    match n with
+    | Int.ofNat n => by
+        constructor
+        . ext x
+          change _ = jarHomotopyExtension n f H hf (inc₀ x)
+          have : inc₀ x ∈ jarMid n := by
+            unfold inc₀ jarMid
+            simp only [TopCat.coe_of, Int.ofNat_eq_coe]
+            sorry
+          sorry
+        sorry
+    | Int.negSucc 0 => ⟨by
+        ext x
+        sorry
+      , by ext p; exact Empty.rec p.fst⟩
+    | Int.negSucc (_ + 1) => ⟨by ext x; exact Empty.rec x, by ext p; exact Empty.rec p.fst⟩
+  ⟩
 
 -- def j0 {X : Type} [TopologicalSpace X] : C(X, X × I) := ⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
 
