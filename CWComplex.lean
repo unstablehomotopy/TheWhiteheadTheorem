@@ -447,16 +447,29 @@ lemma jarHomotopyExtension_bottom_commutes :
         rw [zero_div, sub_zero]
         exact mem_closedBall_zero_iff.mp hx
       conv_rhs => equals (jarProj n f H 0) ⟨inc₀ p, hp⟩ => apply liftCoverClosed_coe'
-      simp [jarProj]
+      simp only [Int.ofNat_eq_coe, jarProj, TopCat.coe_of, Fin.succ_zero_eq_one, Fin.cons_zero,
+        ContinuousMap.comp_apply]
       congr
+      change p = jarMidProjNontrivialToFun (n + 1) ⟨inc₀ p, hp⟩
       obtain ⟨x, hx⟩ := p
-      simp [jarMidProj, inc₀]
-      conv_rhs => arg 1; simp_match
-      --simp [ContinuousMap.prod_eval]
-      --simp [ContinuousMap.coe_mk]
-
-      sorry
-  | Int.negSucc 0 => sorry
+      conv in inc₀ _ => change ⟨⟨x, hx⟩, ⟨0, by norm_num, by norm_num⟩⟩
+      simp only [Int.ofNat_eq_coe, jarMidProjNontrivialToFun, sub_zero, ne_eq, OfNat.ofNat_ne_zero,
+        not_false_eq_true, div_self, one_smul]
+  | Int.negSucc 0 => by
+      have hp : inc₀ p ∈ jarClosedCover (Int.negSucc 0) 0 := by
+        obtain ⟨x, hx⟩ := p
+        change ‖x‖ ≤ 1 - 0 / 2
+        rw [zero_div, sub_zero]
+        exact mem_closedBall_zero_iff.mp hx
+      conv_rhs => equals (jarProj (Int.negSucc 0) f H 0) ⟨inc₀ p, hp⟩ => apply liftCoverClosed_coe'
+      simp only [Int.ofNat_eq_coe, jarProj, TopCat.coe_of, Fin.succ_zero_eq_one, Fin.cons_zero,
+        ContinuousMap.comp_apply]
+      congr
+      change p = jarMidProjNontrivialToFun 0 ⟨inc₀ p, hp⟩
+      obtain ⟨x, hx⟩ := p
+      conv in inc₀ _ => change ⟨⟨x, hx⟩, ⟨0, by norm_num, by norm_num⟩⟩
+      simp only [Int.ofNat_eq_coe, jarMidProjNontrivialToFun, sub_zero, ne_eq, OfNat.ofNat_ne_zero,
+        not_false_eq_true, div_self, one_smul]
   | Int.negSucc (_ + 1) => Empty.rec p
 
 -- The triangle involving the wall (i.e., `𝕊 n × I`) of the jar commutes.
