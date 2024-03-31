@@ -713,6 +713,8 @@ We will use six (strict) ``internal'' structures in addition to the standard str
 
 The book ``Galois theories" by Borceux and Janelidze contains the internal structures (iii), (iv), (v), and (vi), and the first two internal structures have fewer entries. That book details how to think about Galois theory using internal groupoids, internal G-presheaves, monadicity, comonadicity, and the constructions involved in Eilenberg-Moore theory.\\
 
+Some previous work done on these structures can be found at the thread \href{https://leanprover.zulipchat.com/#narrow/stream/116395-maths/topic/Internal.20categories}{here}.\\
+
 The six internal structures above arise here in relation to six functors:
 
 \begin{enumerate}[(I)]
@@ -891,6 +893,10 @@ These four established theorems and the eight novel ones form a good vignette fo
 In the work that ensues, we plan to take an approach which establishes the known results before the original ones, taking advantage of the predefined πₙ functors in $\texttt{Mathlib 4}$ in the process. This decision will also help to take an approach which is more gradual and incremental, and to start with smaller pull requests.\\
 
 
+\iffalse
+https://leanprover.zulipchat.com/#narrow/stream/116395-maths/topic/Internal.20categories
+\fi
+
 {
 \footnotesize
 \begin{center}
@@ -923,7 +929,7 @@ In the work that ensues, we plan to take an approach which establishes the known
 \multicolumn{2}{||c||}{Unitial} & \multicolumn{2}{||c||}{Actional} & \multicolumn{2}{||c||}{Unitial} & \multicolumn{2}{||c||}{Actional} \\
 \hline
 \hline
-$\texttt{InternalCategory : Cat → Cat}$ & $\texttt{InternalPresheaf : (C : Cat) → (InternalCategory C) → Cat}$ & $\texttt{OperadicCategory\_(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$ & OperadicPresheaf\_(-) : (X : ∞-Cat\_(-)) → ∞-Cat\_(-)}$ \\
+$\texttt{InternalCategory : Cat → Cat}$ & $\texttt{InternalPresheaf : (C : Cat) → (InternalCategory C) → Cat}$ & $\texttt{OperadicCategory\_(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$ & OperadicPresheaf\_(-) : (X : ∞-Cat\_(-)) → ∞-Cat\_{(-)} \\
 \hline
 $\texttt{InternalGroupoid\_(-) : Cat\_(-) → Cat\_(-)}$ & $\texttt{InternalGroupoidAction : (C : Cat) → (InternalGroupoid C) → Cat}$& $\texttt{OperadicGroupoid\_(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$ & OperadicGroupoidAction\_(-) : (OperadicGroupoid\_() C) → (InternalCategory C) → ∞-Cat\_(-) → ∞-Cat\_(-)}$ \\
 \hline
