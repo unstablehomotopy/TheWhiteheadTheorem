@@ -28,8 +28,8 @@ noncomputable def closedBall : ℤ → TopCat
   | (n : ℕ) => TopCat.of <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin n) 1
   | _       => TopCat.of Empty
 
-notation:0 "𝕊 "n => sphere n
-notation:0 "𝔻 "n => closedBall n
+notation "𝕊 "n => sphere n
+notation "𝔻 "n => closedBall n
 
 def sphereInclusion (n : ℤ) : (𝕊 n) → (𝔻 n + 1) :=
   match n with
