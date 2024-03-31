@@ -382,16 +382,16 @@ lemma jarHomotopyExtension_compatible : ∀ (p : (𝔻 n + 1) × I)
       change ‖x‖ ≥ 1 - y / 2 at hp1
       have : ‖x‖ = 1 - y / 2 := by linarith
       let q : 𝕊 n := ⟨ (2 / (2 - y)) • x, by
-        simp [norm_smul]
+        simp only [mem_sphere_iff_norm, sub_zero, norm_smul, norm_div, IsROrC.norm_ofNat,
+          Real.norm_eq_abs]
         rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
         rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul] ⟩
       conv in jarMidProj n _ => equals bundledSphereInclusion n q =>
         unfold bundledSphereInclusion sphereInclusion
-        conv => rhs; dsimp
+        conv => rhs; dsimp only [Int.ofNat_eq_coe, TopCat.coe_of]
       conv in jarRimProj n _ => equals @inc₀ (𝕊 n) q =>
-        unfold jarRimProj jarRimProjFst jarRimProjSnd
-        unfold inc₀
-        dsimp
+        unfold jarRimProj jarRimProjFst jarRimProjSnd inc₀
+        dsimp only [Int.ofNat_eq_coe, ContinuousMap.prod_eval, ContinuousMap.coe_mk]
         conv => rhs; change (q, ⟨0, by norm_num, by norm_num⟩)
         congr 2
         . congr 1
