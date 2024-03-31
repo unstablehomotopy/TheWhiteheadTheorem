@@ -270,6 +270,38 @@ lemma isClosed_jarRim (n : ℤ) : IsClosed (jarRim n) := by
 
 def jarClosedCover (n : ℤ) : Fin 2 → Set ((𝔻 n + 1) × I) := ![jarMid n, jarRim n]
 
+noncomputable def jarMidProjToFun (n : ℤ) : jarMid n → 𝔻 n + 1 := by
+  unfold jarMid
+  exact match n + 1 with
+  | Int.ofNat m => fun p ↦ {
+      -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
+      val := match p with
+        | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
+      property := by
+        obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
+        dsimp only [Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq]
+        rw [Metric.mem_closedBall]
+        rw [dist_zero_right, norm_smul, norm_div, IsROrC.norm_ofNat, Real.norm_eq_abs]
+        have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
+        rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
+        nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
+        rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
+        exact Or.inl hxy
+    }
+  | Int.negSucc _ => fun p ↦ Empty.rec p.val.fst
+
+lemma continuous_jarMidProjToFun (n : ℤ) : Continuous (jarMidProjToFun n) := by
+  unfold jarMidProjToFun jarMid
+  exact match n + 1 with
+  | Int.ofNat m => ((continuous_smul.comp <| continuous_swap.comp <|
+      continuous_subtype_val.prod_map <| continuous_const.div
+        ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
+          rw [Function.comp_apply]; linarith).comp continuous_subtype_val).subtype_mk _
+  | Int.negSucc _ => by sorry
+
+noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) :=
+  ⟨jarMidProjToFun n, continuous_jarMidProjToFun n⟩
+
 noncomputable def jarMidProjNontrivialToFun (n : ℕ)
     (p : {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 n) × I | ‖x‖ ≤ 1 - y / 2}) : 𝔻 n := {
   -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
@@ -286,17 +318,17 @@ noncomputable def jarMidProjNontrivialToFun (n : ℕ)
     rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
     exact Or.inl hxy}
 
-noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
-  unfold jarMid
-  exact match n + 1 with
-  | Int.ofNat m => {
-      toFun := jarMidProjNontrivialToFun m
-      continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
-        continuous_subtype_val.prod_map <| continuous_const.div
-          ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
-            rw [Function.comp_apply]; linarith).comp continuous_subtype_val).subtype_mk _
-    }
-  | Int.negSucc _ => continuousMapFromEmpty fun p ↦ p.val.fst
+-- noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
+--   unfold jarMid
+--   exact match n + 1 with
+--   | Int.ofNat m => {
+--       toFun := jarMidProjNontrivialToFun m
+--       continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
+--         continuous_subtype_val.prod_map <| continuous_const.div
+--           ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
+--             rw [Function.comp_apply]; linarith).comp continuous_subtype_val).subtype_mk _
+--     }
+--   | Int.negSucc _ => continuousMapFromEmpty fun p ↦ p.val.fst
 
 lemma jarRim_fst_ne_zero (n : ℕ) : ∀ p : jarRim n, ‖p.val.fst.val‖ ≠ 0 :=
   fun ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ ↦ by
@@ -432,10 +464,58 @@ noncomputable def jarHomotopyExtension : TopCat.of ((𝔻 n + 1) × I) ⟶ Y :=
   liftCoverClosed (jarClosedCover n) (jarProj n f H) (jarProj_compatible' n f H hf)
     (jarClosedCover_is_cover n) (jarClosedCover_isClosed n)
 
-#check ContinuousMap.coe_mk
+lemma inc₀_jarHomotopyExtension_bottom_mem_jarMid (n : ℤ) :
+    ∀ (p : 𝔻 n + 1), inc₀ p ∈ jarClosedCover n 0 := by
+  unfold jarClosedCover jarMid jarRim
+  exact match n + 1 with
+  | Int.ofNat m => fun ⟨x, hx⟩ ↦ by
+      change ‖x‖ ≤ 1 - 0 / 2
+      rw [zero_div, sub_zero]
+      exact mem_closedBall_zero_iff.mp hx
+  | Int.negSucc _ => Empty.rec
+
+-- -- The triangle involving the bottom (i.e., `𝔻 n + 1`) of the jar commutes.
+-- lemma jarHomotopyExtension_bottom_commutes :
+--     ∀ (f : TopCat.of (𝔻 n + 1) ⟶ Y) (H: TopCat.of ((𝕊 n) × I) ⟶ Y)
+--     (hf: bundledSphereInclusion n ≫ f = inc₀ ≫ H),
+--     f = inc₀ ≫ jarHomotopyExtension n f H hf := by
+--   unfold bundledSphereInclusion
+--   exact match n + 1 with
+--   | Int.ofNat m => by sorry
 
 -- The triangle involving the bottom (i.e., `𝔻 n + 1`) of the jar commutes.
-lemma jarHomotopyExtension_bottom_commutes :
+lemma jarHomotopyExtension_bottom_commutes_ :
+    f = inc₀ ≫ jarHomotopyExtension n f H hf := by
+  ext p
+  change f p = jarHomotopyExtension n f H hf (inc₀ p)
+  have hp := inc₀_jarHomotopyExtension_bottom_mem_jarMid n p
+  conv_rhs => equals (jarProj n f H 0) ⟨inc₀ p, hp⟩ => apply liftCoverClosed_coe'
+  simp only [Int.ofNat_eq_coe, jarProj, TopCat.coe_of, Fin.succ_zero_eq_one, Fin.cons_zero,
+    ContinuousMap.comp_apply]
+  congr
+  change p = jarMidProjToFun n ⟨inc₀ p, hp⟩
+  exact match n with
+  | Int.ofNat n => by
+      obtain ⟨x, hx⟩ := p
+      conv in inc₀ _ => change ⟨⟨x, hx⟩, ⟨0, by norm_num, by norm_num⟩⟩
+      simp only [Int.ofNat_eq_coe, jarMidProjToFun, sub_zero, ne_eq, OfNat.ofNat_ne_zero,
+        not_false_eq_true, div_self, one_smul]
+      sorry
+  | Int.negSucc 0 => by
+      obtain ⟨x, hx⟩ := p
+      conv in inc₀ _ => change ⟨⟨x, hx⟩, ⟨0, by norm_num, by norm_num⟩⟩
+      simp only [jarMidProjToFun, Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq,
+        Set.Icc.mk_zero, id_eq]
+      sorry
+  | Int.negSucc (_ + 1) => sorry
+  -- obtain ⟨x, hx⟩ := p
+  -- conv in inc₀ _ => change ⟨⟨x, hx⟩, ⟨0, by norm_num, by norm_num⟩⟩
+  -- simp only [Int.ofNat_eq_coe, jarMidProjNontrivialToFun, sub_zero, ne_eq, OfNat.ofNat_ne_zero,
+  --   not_false_eq_true, div_self, one_smul]
+  -- sorry
+
+-- The triangle involving the bottom (i.e., `𝔻 n + 1`) of the jar commutes.
+lemma jarHomotopyExtension_bottom_commutes__ :
     f = inc₀ ≫ jarHomotopyExtension n f H hf := by
   ext p
   change f p = jarHomotopyExtension n f H hf (inc₀ p)
