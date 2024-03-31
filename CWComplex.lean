@@ -369,12 +369,12 @@ variable (n : ℤ) {Y : TopCat}
   (f : TopCat.of (𝔻 n + 1) ⟶ Y) (H: TopCat.of ((𝕊 n) × I) ⟶ Y)
   (hf: bundledSphereInclusion n ≫ f = inc₀ ≫ H)
 
-noncomputable def jarHomotopyExtension : ∀ i, C(jarClosedCover n i, Y) :=
+noncomputable def jarProj : ∀ i, C(jarClosedCover n i, Y) :=
   Fin.cons (f.comp (jarMidProj n)) <| Fin.cons (H.comp (jarRimProj n)) finZeroElim
 
-lemma jarHomotopyExtension_compatible : ∀ (p : (𝔻 n + 1) × I)
+lemma jarProj_compatible : ∀ (p : (𝔻 n + 1) × I)
     (hp0 : p ∈ jarClosedCover n 0) (hp1 : p ∈ jarClosedCover n 1),
-    jarHomotopyExtension n f H 0 ⟨p, hp0⟩ = jarHomotopyExtension n f H 1 ⟨p, hp1⟩ :=
+    jarProj n f H 0 ⟨p, hp0⟩ = jarProj n f H 1 ⟨p, hp1⟩ :=
   match n with
   | Int.ofNat n => fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
       change f (jarMidProj n _) = H (jarRimProj n _)
