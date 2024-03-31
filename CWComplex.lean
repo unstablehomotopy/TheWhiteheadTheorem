@@ -270,25 +270,27 @@ lemma isClosed_jarRim (n : ℤ) : IsClosed (jarRim n) := by
 
 def jarClosedCover (n : ℤ) : Fin 2 → Set ((𝔻 n + 1) × I) := ![jarMid n, jarRim n]
 
+noncomputable def jarMidProjNontrivialToFun (n : ℕ)
+    (p : {⟨⟨x, _⟩, ⟨y, _⟩⟩ : (𝔻 n) × I | ‖x‖ ≤ 1 - y / 2}) : 𝔻 n := {
+  -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
+  val := match p with
+    | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
+  property := by
+    obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
+    dsimp only [Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq]
+    rw [Metric.mem_closedBall]
+    rw [dist_zero_right, norm_smul, norm_div, IsROrC.norm_ofNat, Real.norm_eq_abs]
+    have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
+    rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
+    nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
+    rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
+    exact Or.inl hxy}
+
 noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) := by
   unfold jarMid
   exact match n + 1 with
   | Int.ofNat m => {
-      toFun := fun p ↦ {
-        -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
-        val := match p with
-          | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
-        property := by
-          obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
-          dsimp only [Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq]
-          rw [Metric.mem_closedBall]
-          rw [dist_zero_right, norm_smul, norm_div, IsROrC.norm_ofNat, Real.norm_eq_abs]
-          have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
-          rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
-          nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
-          rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
-          exact Or.inl hxy
-      }
+      toFun := jarMidProjNontrivialToFun m
       continuous_toFun := ((continuous_smul.comp <| continuous_swap.comp <|
         continuous_subtype_val.prod_map <| continuous_const.div
           ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
@@ -447,8 +449,12 @@ lemma jarHomotopyExtension_bottom_commutes :
       conv_rhs => equals (jarProj n f H 0) ⟨inc₀ p, hp⟩ => apply liftCoverClosed_coe'
       simp [jarProj]
       congr
-      simp [jarMidProj]
+      obtain ⟨x, hx⟩ := p
+      simp [jarMidProj, inc₀]
+      conv_rhs => arg 1; simp_match
+      --simp [ContinuousMap.prod_eval]
       --simp [ContinuousMap.coe_mk]
+
       sorry
   | Int.negSucc 0 => sorry
   | Int.negSucc (_ + 1) => Empty.rec p
