@@ -101,7 +101,7 @@ def skeletaInclusion {A : TopCat} (X : RelativeCWComplex A) (n : ℤ) : X.sk n �
 def skeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
     (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) : X.sk n ⟶ X.sk m :=
   if h : n = m then by
-    rw [← h]
+    subst m
     exact 𝟙 (X.sk n)
   else by
     have h' : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, h⟩
@@ -130,10 +130,9 @@ def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
         have h2 : n < l := by linarith
         unfold skeletaInclusion'
         simp [hnm, Int.ne_of_lt h2]
-        rcases em (m = l) with hml | hml
+        by_cases hml : m = l
         . subst hml
-          simp only [↓reduceDite]
-          rw [cast_eq, Category.comp_id]
+          simp only [↓reduceDite, Category.comp_id]
         congr
         rw [p (n + 1) m l h1 m_le_l h2]
         congr
@@ -161,7 +160,7 @@ end Topology -- noncomputable section
 
 section GluingLemma
 
-#check ContinuousMap.liftCover -- gluing lemma for an open cover
+--#check ContinuousMap.liftCover -- gluing lemma for an open cover
 
 variable {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
 
@@ -199,24 +198,6 @@ end GluingLemma
 section HEP
 
 open unitInterval
-
--- def prodMap {W X Y Z : TopCat} (f : W ⟶ X) (g : Y ⟶ Z) : TopCat.of (W × Y) ⟶ TopCat.of (X × Z) :=
---   --⟨Prod.map f g, Continuous.prod_map f.continuous_toFun g.continuous_toFun⟩
---   f.prodMap g
-
--- def prodMkLeft {X Y : TopCat} (y : Y) : X ⟶ TopCat.of (X × Y) :=
---   (ContinuousMap.id _).prodMk (ContinuousMap.const _ y)
-
--- def inc₀ {X : TopCat} : X ⟶ TopCat.of (X × I) :=
---   --⟨fun x => (x, 0), Continuous.Prod.mk_left 0⟩
---   --@prodMkLeft X (TopCat.of I) ⟨0, by norm_num, by norm_num⟩
---   (ContinuousMap.id _).prodMk (ContinuousMap.const _ 0)
-
-def continuousMapFromEmpty {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y] (empty : X → Empty) :
-  C(X, Y) := {
-    toFun := fun x ↦ Empty.rec <| empty x
-    continuous_toFun := ⟨fun _ _ ↦ isOpen_iff_nhds.mpr fun x ↦ Empty.rec <| empty x⟩
-  }
 
 abbrev Jar (n : ℤ) := (𝔻 n + 1) × I
 def jarMid (n : ℤ) := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : Jar n | ‖x‖ ≤ 1 - y / 2}
@@ -409,9 +390,9 @@ lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace 
   let q := sphereInclusion n ⟨x, hx⟩
   change _ = jarHomotopyExtension n f H hf ⟨q, ⟨y, hy⟩⟩
   have hq : ⟨q, ⟨y, hy⟩⟩ ∈ jarClosedCover n 1 := by
-    obtain ⟨hy0, hy1⟩ := hy
     change ‖x‖ ≥ 1 - y / 2
     rw [mem_sphere_zero_iff_norm.mp hx]
+    obtain ⟨_, _⟩ := hy
     linarith
   conv_rhs => equals (jarProj n f H 1) ⟨⟨q, ⟨y, hy⟩⟩, hq⟩ => apply liftCoverClosed_coe'
   simp only [jarProj, Fin.succ_zero_eq_one, Fin.cons_one, Fin.cons_zero, ContinuousMap.comp_apply]
