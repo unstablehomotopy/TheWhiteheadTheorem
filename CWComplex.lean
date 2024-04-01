@@ -18,7 +18,7 @@ import Mathlib.Init.Set
 
 open CategoryTheory
 
-namespace CWComplex
+namespace CWComplex_old
 
 noncomputable def sphere : ℤ → TopCat
   | (n : ℕ) => TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| n + 1) 1
@@ -83,7 +83,7 @@ structure AttachCells (X X' : TopCat) (n : ℤ) where
     (bundledSigmaSphereInclusion n cells)
     (bundledSigmaAttachMap X n cells attach_maps)
 
-end CWComplex
+end CWComplex_old
 
 structure RelativeCWComplex (A : TopCat) where
   /- Skeleta -/
@@ -96,7 +96,7 @@ structure RelativeCWComplex (A : TopCat) where
 
 abbrev CWComplex := RelativeCWComplex (TopCat.of Empty)
 
-namespace CWComplex
+namespace CWComplex_old
 
 noncomputable section Topology
 
@@ -670,10 +670,10 @@ def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpac
 
 end HEP
 
-end CWComplex
+end CWComplex_old
 
 section
-open CWComplex
+open CWComplex_old
 open unitInterval
 
 -- noncomputable def he_0'_BundledSphereInclusion
