@@ -78,14 +78,14 @@ namespace CWComplex
 noncomputable section Topology
 
 -- The inclusion map from X to X', given that X' is obtained from X by attaching n-cells
-def AttachCellsInclusion (X X' : TopCat) (n : ℤ) (att : AttachCells X X' n) : X ⟶ X' :=
+def attachCellsInclusion (X X' : TopCat) (n : ℤ) (att : AttachCells X X' n) : X ⟶ X' :=
   @Limits.pushout.inr TopCat _ _ _ X
     (bundledSigmaSphereInclusion n att.cells)
     (bundledSigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
 -- The inclusion map from the n-skeleton to the (n+1)-skeleton of a CW-complex
 def skeletaInclusion {A : TopCat} (X : RelativeCWComplex A) (n : ℤ) : X.sk n ⟶ X.sk (n + 1) :=
-  AttachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
+  attachCellsInclusion (X.sk n) (X.sk (n + 1)) (n + 1) (X.attach_cells n)
 
 -- The inclusion map from the n-skeleton to the m-skeleton of a CW-complex
 def skeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
@@ -102,7 +102,7 @@ def skeletaInclusion' {A : TopCat} (X : RelativeCWComplex A)
     rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h')]
     linarith
 
-def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
+def colimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
   obj := X.sk
   map := @fun n m n_le_m => skeletaInclusion' X n m <| Quiver.Hom.le n_le_m
   map_id := by simp [skeletaInclusion']
@@ -141,7 +141,7 @@ def ColimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
 
 -- The topology on a CW-complex.
 def toTopCat {A : TopCat} (X : RelativeCWComplex A) : TopCat :=
-  Limits.colimit (ColimitDiagram X)
+  Limits.colimit (colimitDiagram X)
 
 -- TODO: Coe RelativeCWComplex ?
 instance : Coe CWComplex TopCat where coe X := toTopCat X
