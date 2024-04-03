@@ -216,7 +216,7 @@ noncomputable def jarMidProjToFun (n : ℤ) : jarMid n → 𝔻 n + 1 := fun p �
     obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
     dsimp only [Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq]
     rw [Metric.mem_closedBall]
-    rw [dist_zero_right, norm_smul, norm_div, IsROrC.norm_ofNat, Real.norm_eq_abs]
+    rw [dist_zero_right, norm_smul, norm_div, RCLike.norm_ofNat, Real.norm_eq_abs]
     have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
     rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
     nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
@@ -302,7 +302,7 @@ lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
     change ‖x‖ ≥ 1 - y / 2 at hp1
     have : ‖x‖ = 1 - y / 2 := by linarith
     let q : 𝕊 n := ⟨ (2 / (2 - y)) • x, by
-      simp only [mem_sphere_iff_norm, sub_zero, norm_smul, norm_div, IsROrC.norm_ofNat,
+      simp only [mem_sphere_iff_norm, sub_zero, norm_smul, norm_div, RCLike.norm_ofNat,
         Real.norm_eq_abs]
       rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
       rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul] ⟩
