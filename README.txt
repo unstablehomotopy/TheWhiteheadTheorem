@@ -1,1 +1,1 @@
-This repository is for the demonstration of three variations of the Whitehead theorem.
+This repository is for the demonstration of the Whitehead theorem and two variations of it.
