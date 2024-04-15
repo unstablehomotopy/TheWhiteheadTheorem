@@ -397,7 +397,7 @@ lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace 
 def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X]
     (i : C(A, X)) : Prop :=
   ∀ {Y : Type} [TopologicalSpace Y] (f : C(X, Y)) (H : C(A × I, Y)), f ∘ i = H ∘ (., 0) →
-  ∃ H' : C(X × I, Y), ⇑f = H' ∘ (., 0) ∧ ⇑H = H' ∘ Prod.map i id
+  ∃ H' : C(X × I, Y), ⇑f = ⇑H' ∘ (., 0) ∧ ⇑H = ⇑H' ∘ Prod.map i id
 
 theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (bundledSphereInclusion n) :=
   fun f H hf ↦ ⟨jarHomotopyExtension n f H hf,
