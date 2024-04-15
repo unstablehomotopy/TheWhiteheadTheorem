@@ -1,17 +1,42 @@
 \documentclass{book}
+\usepackage{fontspec}
+\setmainfont{STIX Two Text}
+
+%PACKAGES
+\iffalse
+Here are the packages that I use
+\fi
+
 \usepackage{blindtext, hyperref, verbatim, minted, graphicx, amssymb, textcomp, enumerate, tcolorbox, newunicodechar, textgreek, wasysym, tipa, eso-pic, lipsum, bbold, dsfont}
 \usepackage[margin=1.3in]{geometry}
 \usepackage{longtable}
-\usepackage{lmodern} % Add this line to use the Latin Modern font
-\renewcommand\familydefault{\sfdefault}
-\usepackage{fontspec}
 \usepackage{newunicodechar}
-
 \usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{tikz-cd}
 
-% Theorem styles
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{definition}[theorem]{Definition}
+
+
+
+%ENVIRONMENTS
+
+%Here I define some common environments. I use definitions, theorems, examples, and lemmas.
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}
+
+
+\newunicodechar{ₙ}{${}_{n}$}
+
+\newunicodechar{𝓓}{$\mathcal{D}$}
+\newunicodechar{∂}{\raisebox{-0.06cm}{$\partial$}}
+\newunicodechar{∇}{\raisebox{-0.05cm}{$\nabla$}}
+
+%\newunicodechar{π⃗}{$\stackrel{\arr}{\pi}$}
 
 \newunicodechar{×}{$\times$}
 \newunicodechar{→}{$\rightarrow$}
@@ -23,7 +48,6 @@
 \newunicodechar{∃}{$\exists$}
 \newunicodechar{∀}{$\forall$}
 \newunicodechar{¬}{$\neg$}
-
 \newunicodechar{ᵃ}{${}^{\texttt{a}}$}
 \newunicodechar{ᵇ}{${}^{\texttt{b}}$}
 \newunicodechar{ᶜ}{${}^{\texttt{c}}$}
@@ -39,7 +63,7 @@
 \newunicodechar{ᵐ}{${}^{\texttt{m}}$}
 \newunicodechar{ⁿ}{${}^{\texttt{n}}$}
 \newunicodechar{ᵒ}{${}^{\texttt{o}}$}
-\newunicodechar{ᵖ}{${}^{\texttt{p}}$}
+\newunicodechar{ᵖ}{${}^{\texttt{ω}}$}
 \newunicodechar{ʳ}{${}^{\texttt{r}}$}
 \newunicodechar{ˢ}{${}^{\texttt{s}}$}
 \newunicodechar{ᵗ}{${}^{\texttt{t}}$}
@@ -49,7 +73,6 @@
 \newunicodechar{ˣ}{${}^{\texttt{x}}$}
 \newunicodechar{ʸ}{${}^{\texttt{y}}$}
 \newunicodechar{ᶻ}{${}^{\texttt{z}}$}
-
 \newunicodechar{⁰}{${}^{\texttt{0}}$}
 \newunicodechar{¹}{${}^{\texttt{1}}$}
 \newunicodechar{²}{${}^{\texttt{2}}$}
@@ -60,15 +83,11 @@
 \newunicodechar{⁷}{${}^{\texttt{7}}$}
 \newunicodechar{⁸}{${}^{\texttt{8}}$}
 \newunicodechar{⁹}{${}^{\texttt{9}}$}
-
 \newunicodechar{⁻}{${}^{\texttt{-}}$}
-
 \newunicodechar{ᵒ}{${}^{\texttt{o}}$}
-\newunicodechar{ᵖ}{${}^{\texttt{p}}$}
-
+\newunicodechar{ᵖ}{${}^{\texttt{ω}}$}
 \newunicodechar{⁻}{${}^{\texttt{-}}$}
 \newunicodechar{¹}{${}^{\texttt{1}}$}
-
 \newunicodechar{₀}{${}_{\texttt{0}}$}
 \newunicodechar{₁}{${}_{\texttt{1}}$}
 \newunicodechar{₂}{${}_{\texttt{2}}$}
@@ -79,82 +98,205 @@
 \newunicodechar{₇}{${}_{\texttt{7}}$}
 \newunicodechar{₈}{${}_{\texttt{8}}$}
 \newunicodechar{₉}{${}_{\texttt{9}}$}
-
-\newunicodechar{𝚫}{$\Delta$}
-
 \newunicodechar{𝔸}{$\mathbb{A}$}
 \newunicodechar{𝔹}{$\mathbb{B}$}
 \newunicodechar{ℂ}{$\mathbb{C}$}
-%\newunicodechar{}{$\mathbb{D}$}
-%\newunicodechar{}{$\mathbb{E}$}
-%\newunicodechar{}{$\mathbb{F}$}
+\newunicodechar{𝔻}{$\mathbb{D}$}
+\newunicodechar{𝔼}{$\mathbb{E}$}
+\newunicodechar{𝔽}{$\mathbb{F}$}
 \newunicodechar{𝔾}{$\mathbb{G}$}
-%\newunicodechar{}{$\mathbb{H}$}
-%\newunicodechar{}{$\mathbb{I}$}
-%\newunicodechar{}{$\mathbb{J}$}
-%\newunicodechar{}{$\mathbb{K}$}
-%\newunicodechar{}{$\mathbb{L}$}
-%\newunicodechar{}{$\mathbb{M}$}
-\newunicodechar{ℕ}{$\mathbb{N}$}
-%\newunicodechar{}{$\mathbb{O}$}
+\newunicodechar{ℍ}{$\mathbb{H}$}
+\newunicodechar{𝕀}{$\mathbb{I}$}
+\newunicodechar{𝕁}{$\mathbb{J}$}
+\newunicodechar{𝕂}{$\mathbb{K}$}
+\newunicodechar{𝕃}{$\mathbb{L}$}
+\newunicodechar{𝕄}{$\mathbb{M}$}
+\newunicodechar{ℕ}{$\mathbb{N}$} 
+\newunicodechar{𝕆}{$\mathbb{O}$}
 \newunicodechar{ℙ}{$\mathbb{P}$}
-%\newunicodechar{}{$\mathbb{Q}$}
+\newunicodechar{ℚ}{$\mathbb{Q}$}
 \newunicodechar{ℝ}{$\mathbb{R}$}
 \newunicodechar{𝕊}{$\mathbb{S}$}
-%\newunicodechar{}{$\mathbb{T}$}
-%\newunicodechar{}{$\mathbb{U}$}
-%\newunicodechar{}{$\mathbb{V}$}
-%\newunicodechar{}{$\mathbb{W}$}
-%\newunicodechar{}{$\mathbb{X}$}
-%\newunicodechar{}{$\mathbb{Y}$}
+\newunicodechar{𝕋}{$\mathbb{T}$} 
+\newunicodechar{𝕌}{$\mathbb{U}$}
+\newunicodechar{𝕍}{$\mathbb{V}$}
+\newunicodechar{𝕎}{$\mathbb{W}$}
+\newunicodechar{𝕏}{$\mathbb{X}$}
+\newunicodechar{𝕐}{$\mathbb{Y}$}
 \newunicodechar{ℤ}{$\mathbb{Z}$}
 \newunicodechar{𝕒}{$\mathbb{a}$}
 \newunicodechar{𝕓}{$\mathbb{b}$}
-%\newunicodechar{}{$\mathbb{c}$}
+\newunicodechar{𝕔}{$\mathbb{c}$}
 \newunicodechar{𝕕}{$\mathbb{d}$}
 \newunicodechar{𝕖}{$\mathbb{e}$}
-%\newunicodechar{}{$\mathbb{f}$}
-%\newunicodechar{}{$\mathbb{g}$}
-%\newunicodechar{}{$\mathbb{h}$}
-%\newunicodechar{}{$\mathbb{i}$}
+\newunicodechar{𝕗}{$\mathbb{f}$}
+\newunicodechar{𝕘}{$\mathbb{g}$}
+\newunicodechar{𝕙}{$\mathbb{h}$}
+\newunicodechar{𝕚}{$\mathbb{i}$}
 \newunicodechar{𝕛}{$\mathbb{j}$}
-%\newunicodechar{}{$\mathbb{k}$}
-%\newunicodechar{}{$\mathbb{l}$}
-%\newunicodechar{}{$\mathbb{m}$}
-%\newunicodechar{}{$\mathbb{n}$}
+\newunicodechar{𝕜}{$\mathbb{k}$}%𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫
+\newunicodechar{𝕝}{$\mathbb{l}$} 
+\newunicodechar{𝕞}{$\mathbb{m}$}
+\newunicodechar{𝕟}{$\mathbb{n}$}
 \newunicodechar{𝕠}{$\mathbb{o}$}
 \newunicodechar{𝕡}{$\mathbb{p}$}
-%\newunicodechar{}{$\mathbb{q}$}
+\newunicodechar{𝕢}{$\mathbb{q}$}
 \newunicodechar{𝕣}{$\mathbb{r}$}
-%\newunicodechar{}{$\mathbb{s}$}
+\newunicodechar{𝕤}{$\mathbb{s}$}
 \newunicodechar{𝕥}{$\mathbb{t}$}
-%\newunicodechar{}{$\mathbb{u}$}
-%\newunicodechar{}{$\mathbb{v}$}
-%\newunicodechar{}{$\mathbb{w}$}
-%\newunicodechar{}{$\mathbb{x}$}
-%\newunicodechar{}{$\mathbb{y}$}
-%\newunicodechar{}{$\mathbb{z}$}
+\newunicodechar{𝕦}{$\mathbb{u}$}
+\newunicodechar{𝕧}{$\mathbb{v}$}
+\newunicodechar{𝕨}{$\mathbb{w}$}
+\newunicodechar{𝕩}{$\mathbb{x}$}
+\newunicodechar{𝕪}{$\mathbb{y}$}
+\newunicodechar{𝕫}{$\mathbb{z}$}
+\newunicodechar{𝚫}{$\Delta$}
+\newunicodechar{ʃ}{$\int$}
+\newunicodechar{∪}{$\cup$}
+\newunicodechar{∩}{$\cap$}
+\newunicodechar{±}{$\pm$}
+\newunicodechar{𝔄}{$\mathfrak{A}$}
+
+
+
+
+\newunicodechar{𝔅}{$\mathfrak{B}$}
+\newunicodechar{ℭ}{$\mathfrak{C}$}
+\newunicodechar{𝔇}{$\mathfrak{D}$}
+\newunicodechar{𝔈}{$\mathfrak{E}$}
+\newunicodechar{𝔉}{$\mathfrak{F}$}
+\newunicodechar{𝔊}{$\mathfrak{G}$}
+\newunicodechar{ℌ}{$\mathfrak{H}$}
+\newunicodechar{ℑ}{$\mathfrak{I}$}
+\newunicodechar{𝔍}{$\mathfrak{J}$}
+\newunicodechar{𝔎}{$\mathfrak{K}$}
+\newunicodechar{𝔏}{$\mathfrak{L}$}
+\newunicodechar{𝔐}{$\mathfrak{M}$}
+\newunicodechar{𝔑}{$\mathfrak{N}$}
+\newunicodechar{𝔒}{$\mathfrak{O}$}
+\newunicodechar{𝔓}{$\mathfrak{P}$}
+\newunicodechar{𝔔}{$\mathfrak{Q}$}
+\newunicodechar{ℜ}{$\mathfrak{R}$}
+\newunicodechar{𝔖}{$\mathfrak{S}$}
+\newunicodechar{𝔗}{$\mathfrak{T}$}
+\newunicodechar{𝔘}{$\mathfrak{U}$}
+\newunicodechar{𝔙}{$\mathfrak{V}$}
+\newunicodechar{𝔚}{$\mathfrak{W}$}
+\newunicodechar{𝔛}{$\mathfrak{X}$}
+\newunicodechar{𝔜}{$\mathfrak{Y}$}
+\newunicodechar{ℨ}{$\mathfrak{Z}$}
+
+\newunicodechar{𝔞}{$\mathfrak{a}$}
+\newunicodechar{𝔟}{$\mathfrak b$}
+\newunicodechar{𝔠}{$\mathfrak{c}$}
+\newunicodechar{𝔡}{$\mathfrak{d}$}
+\newunicodechar{𝔢}{$\mathfrak{e}$}
+\newunicodechar{𝔣}{$\mathfrak{f}$}
+\newunicodechar{𝔤}{$\mathfrak{g}$}
+\newunicodechar{𝔥}{$\mathfrak{h}$}
+\newunicodechar{𝔦}{$\mathfrak{i}$}
+\newunicodechar{𝔧}{$\mathfrak{j}$}
+\newunicodechar{𝔨}{$\mathfrak{k}$}
+\newunicodechar{𝔩}{$\mathfrak{l}$}
+\newunicodechar{𝔪}{$\mathfrak{m}$}
+\newunicodechar{𝔫}{$\mathfrak{n}$}
+\newunicodechar{𝔬}{$\mathfrak{o}$}
+\newunicodechar{𝔭}{$\mathfrak{ω}$}
+\newunicodechar{𝔮}{$\mathfrak{q}$}
+\newunicodechar{𝔯}{$\mathfrak{r}$}
+\newunicodechar{𝔰}{$\mathfrak{s}$}
+\newunicodechar{𝔱}{$\mathfrak{t}$}
+\newunicodechar{𝔲}{$\mathfrak{u}$}
+\newunicodechar{𝔳}{$\mathfrak{v}$}
+\newunicodechar{𝔴}{$\mathfrak{w}$}
+\newunicodechar{𝔵}{$\mathfrak{x}$}
+\newunicodechar{𝔶}{$\mathfrak{y}$}
+\newunicodechar{𝔷}{$\mathfrak{z}$}
+
+\newunicodechar{𝐀}{${\bf{A}}$}
+\newunicodechar{𝐁}{${\bf{B}}$}
+\newunicodechar{𝐂}{${\bf{C}}$}
+\newunicodechar{𝐃}{${\bf{D}}$}
+\newunicodechar{𝐄}{${\bf{E}}$}
+\newunicodechar{𝐅}{${\bf{F}}$}
+\newunicodechar{𝐆}{${\bf{G}}$}
+\newunicodechar{𝐇}{${\bf{H}}$}
+\newunicodechar{𝐈}{${\bf{I}}$}
+\newunicodechar{𝐉}{${\bf{J}}$}
+\newunicodechar{𝐊}{${\bf{K}}$}
+\newunicodechar{𝐋}{${\bf{L}}$}
+\newunicodechar{𝐌}{${\bf{M}}$}
+\newunicodechar{𝐍}{${\bf{N}}$}
+\newunicodechar{𝐎}{${\bf{O}}$}
+\newunicodechar{𝐏}{${\bf{P}}$}
+\newunicodechar{𝐐}{${\bf{Q}}$}
+\newunicodechar{𝐑}{${\bf{R}}$}
+\newunicodechar{𝐒}{${\bf{S}}$}
+\newunicodechar{𝐓}{${\bf{T}}$}
+\newunicodechar{𝐔}{${\bf{U}}$}
+\newunicodechar{𝐕}{${\bf{V}}$}
+\newunicodechar{𝐖}{${\bf{W}}$}
+\newunicodechar{𝐗}{${\bf{X}}$}
+\newunicodechar{𝐘}{${\bf{Y}}$}
+\newunicodechar{𝐙}{${\bf{Z}}$}
+
+\newunicodechar{𝐚}{${\bf{a}}$}
+\newunicodechar{𝐛}{${\bf{b}}$}
+\newunicodechar{𝐜}{${\bf{c}}$}
+\newunicodechar{𝐝}{${\bf{d}}$}
+\newunicodechar{𝐞}{${\bf{e}}$}
+\newunicodechar{𝐟}{${\bf{f}}$}
+\newunicodechar{𝐠}{${\bf{g}}$}
+\newunicodechar{𝐡}{${\bf{h}}$}
+\newunicodechar{𝐢}{${\bf{i}}$}
+\newunicodechar{𝐣}{${\bf{j}}$}
+\newunicodechar{𝐤}{${\bf{k}}$}
+\newunicodechar{𝐥}{${\bf{l}}$}
+\newunicodechar{𝐦}{${\bf{m}}$}
+\newunicodechar{𝐧}{${\bf{n}}$}
+\newunicodechar{𝐨}{${\bf{o}}$}
+\newunicodechar{𝐩}{${\bf{ω}}$}
+\newunicodechar{𝐪}{${\bf{q}}$}
+\newunicodechar{𝐫}{${\bf{r}}$}
+\newunicodechar{𝐬}{${\bf{s}}$}
+\newunicodechar{𝐭}{${\bf{t}}$}
+\newunicodechar{𝐮}{${\bf{u}}$}
+\newunicodechar{𝐯}{${\bf{v}}$}
+\newunicodechar{𝐰}{${\bf{w}}$}
+\newunicodechar{𝐱}{${\bf{x}}$}
+\newunicodechar{𝐲}{${\bf{y}}$}
+\newunicodechar{𝐳}{${\bf{z}}$}
 
 \newunicodechar{⊣}{\ensuremath{\dashv}}
-\newunicodechar{ॱ}{${}_{\cdot}$}
-\newunicodechar{𛲔}{${}^{\cdot}$}
+\newunicodechar{ॱ}{${}^{\cdot}$}
+\newunicodechar{𛲔}{${}_{\cdot}$}
+\newunicodechar{⋯}{$\cdots$}
 \newunicodechar{⇄}{$\rightleftarrows$}
 \newunicodechar{⇆}{$\leftrightarrows$}
 
 \newunicodechar{ꜝ}{$\raisebox{1ex}{\scalebox{0.5}{\texttt{!}}}$}
 \newunicodechar{ꜞ}{$\raisebox{1ex}{\scalebox{0.5}{\texttt{¡}}}$}
 
+
+
+%This is notation we will use for categories
+
+
 \newunicodechar{𝟙}{$\mathbb{1}$}
 \newunicodechar{∘}{$\circ$}
+
+%This is notation we will use for twocategories
+
 
 \newunicodechar{𝟏}{${\bold{1}}$}
 \newunicodechar{⭢}{$\longrightarrow$}
 \newunicodechar{•}{${\bullet}$}
 \newunicodechar{∙}{${\bullet}$}
 
-\newunicodechar{⇉}{$\rightrightarrows$}
-\newunicodechar{よ}{$\includegraphics[width=0.27cm,height=0.27cm]{yon.png}$}
+%This is notation we will use for ∞-ℂ𝕒𝕥
 
+\newunicodechar{よ}{$\includegraphics[width=0.27cm,height=0.27cm]{yon.png}$}
+\newunicodechar{⊥}{$\bot$}
 \newunicodechar{∼}{$\sim$}
 \newunicodechar{≃}{$\simeq$}
 \newunicodechar{≅}{$\cong$}
@@ -179,10 +321,11 @@
 \newunicodechar{υ}{$\upsilon$}
 \newunicodechar{φ}{$\phi$}
 \newunicodechar{ψ}{$\psi$}
+\newunicodechar{ξ}{$\xi$}
 \newunicodechar{χ}{$\chi$}
 \newunicodechar{ω}{$\omega$}
 
-
+\newunicodechar{⊗}{$\otimes$}
 
 \makeatletter
 \newcommand*{\shifttext}[2]{\settowidth{\@tempdima}{#2}\makebox[\@tempdima]{\hspace*{#1}#2}}
@@ -215,8 +358,7 @@
 \renewcommand{\subsection}[1]{\texttt{\thesubsectioncount . #1} \stepcounter{subsectioncount}}
 \renewcommand{\backslash}{\reflectbox{\texttt{/}}}
 
-
-
+\newcounter{chaptercount}
 \renewcommand{\chapter}[1]{
 \newpage
 {
@@ -231,6 +373,26 @@
 \ \\
 }
 
+\newcounter{partcount}
+\stepcounter{partcount}
+\renewcommand{\part}[1]{
+\newpage
+{
+\Huge 
+\begin{center}
+\ \\
+\ \\
+\ \\
+\ \\
+\ \\
+\ \\
+\thispagestyle{empty}
+\texttt{PART {\thepartcount}: #1}
+\stepcounter{partcount}
+\end{center}}
+\ \\
+\ \\
+}
 
 
 \begin{document}
@@ -287,11 +449,6 @@
 \end{center}
 \ \\
 
-\iffalse
-o⃗ : (C : ∞-Cat) → ∞-Cat⁄C ⭢ OperadicPresheaf (O⃗.obj C)
-o⃡ : (X : ∞-Grpd) → ∞-Grpd⁄X ⭢ OperadicGroupoidAction (O⃡.obj X)
-o : (X₀ : ∞-Grpd₀) → ∞-Grpd₀⁄X₀ ⭢ OperadicGroupAction (O.obj X₀)
-\fi
 
 \ \\
 %LEAN: 
@@ -307,12 +464,6 @@ o : (X₀ : ∞-Grpd₀) → ∞-Grpd₀⁄X₀ ⭢ OperadicGroupAction (O.obj X
 \end{tcolorbox}
 \end{center}
 
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=4.13in,colback={white},coltitle=white]
-\scalebox{1.5}{E. Dean Young and Jiazhen Xia}
-\end{tcolorbox}
-\end{center}
 
 
 \begin{center}
@@ -433,7 +584,7 @@ D(∞-Grpd₀/X₀) & The derived category of based connected ∞-groupoids over
  \hline \hline
   \multicolumn{2}{||c||}{\texttt{Chapter 2: }The Whitehead Theorem for Based Connected ∞-Groupoids} \\
 \hline \hline
-Globular Spaces & ...\\
+Globular Sets & ...\\
 \hline
 REP for based connected ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
 \hline
@@ -576,6 +727,12 @@ The Whitehead theorem for pairs of ∞-groupoids & ... \\
 \section{Introduction}
 
 \iffalse
+Even though univalence is just one line, elegant and convenient, it isn't the only approach to computerized homotopy or categories. Another approach, here the one taken in Mathlib 4, instead makes use of replacement for dependent types, facilitated by ```HEq''' and ```cast'''.\\
+
+- taking a 
+\fi
+
+\iffalse
 3 goals
 6 internal structures
 6 models
@@ -592,7 +749,7 @@ Adding in the operadic structures.
 "equivalence"
 \fi
 
-{\bf The main goal of this repository is to prove the Whitehead theorem and two variations of it}. It is important that initial pull requests stemming from our work remain basic and accessible; we hope to make progress which is gradual and incremental.\\
+{\bf The main goal of this repository is to prove the Whitehead theorem in Lean 4 using Mathlib 4's homotopy groups}. Two other subsequent goals are to state and prove two variations of the Whitehead theorem. It is important that initial pull requests stemming from our work remain basic and accessible; we hope to make progress which is gradual and incremental.\\
 
 Besides this goal, we have two others. Here are the three Whitehead Theorems which form our main three goals:
 
@@ -613,14 +770,7 @@ There is no base in the variations, and we instead consider an object with two b
 ({f : γ ⭢ A // T f t = T f s for each s, t}, {(f,g,x,y) : [γ,C] × [γ,C] × C × C // T f = (x,y), and T g = (x,y)})
 \fi
 
-\iffalse
-48 Models
-48 Constructions
-48 Theorems
-48 Results
 
-ℕ ⭢ 
-\fi
 
 These are stated in an order reversed from the order of its implementation. We have omitted in this project the proof that CW-complexes are compactly generated weak hausdorff topological spaces and that the category of compactly generated weak hausdorff topological spaces is cartesian closed with internal hom given by the compact-open topology. The compact-open topology will instead be covered in a future repository concerning geometric maps.\\
 
@@ -1096,12 +1246,14 @@ Of these, the characters $\texttt{ꜝ,ꜞ,𛲔,ॱ}$,${}^{\rightarrow}$, and ${}
 
 It is not possible to copy the from the pdf to the clipboard while preserving the integrity of the code. To see the official Lean 4 file please click the link on the top right of the front page or \href{https://github.com/linlib/ThreeWhiteheadTheorems}{this}.\\
 
-The conceptual difference between the first, second, and third Whitehead theorems. 
-
 \ \\
 \ \\
 \ \\
-
+\iffalse
+o⃗ : (C : ∞-Cat) → ∞-Cat⁄C ⭢ OperadicPresheaf (O⃗.obj C)
+o⃡ : (X : ∞-Grpd) → ∞-Grpd⁄X ⭢ OperadicGroupoidAction (O⃡.obj X)
+o : (X₀ : ∞-Grpd₀) → ∞-Grpd₀⁄X₀ ⭢ OperadicGroupAction (O.obj X₀)
+\fi
 
 \newpage
 \section{Introduction to \texttt{Lean 4}}
@@ -1203,22 +1355,50 @@ def pairwise {A : Type} {B : Type} (a₁ : A) (a₂ : A) (b₁ : B) (b₂ : B) (
 The tutorial \href{https://leanprover.github.io/theorem_proving_in_lean4/}{here} provides a great introduction to using the dependent type theory in Lean.\\
 
 
-
 \part{BASED CONNECTED ∞-GROUPOIDS}
-\newpage
+
 
 
 \chapter{Chapter 1: ∞\texttt{-Grpd₀}}
 
-Here we define the mentioned categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀) mentioned in the introduction.\\
+Here we define the categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀) using CW-complexes.\\
+
+\section{D(∞-Grpd₀)}
 
 
 
-\section{Ω}
+%LEAN: 
+\begin{center}
+\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
+\begin{minted}[breaklines, escapeinside=||]{lean}
 
-\section{ω}
+\end{minted}
+\end{tcolorbox}
+\end{center}
 
-\section{π₀}
+\section{D(∞-Grpd₀/X₀)}
+
+The derived category of based connected ∞-groupoids over X₀. \\
+
+\section{Ω : ∞-Grpd₀ ⭢ ∞-Grpd}
+
+
+
+\section{Σ : ∞-Grpd₀ ⭢ ∞-Grpd₀} 
+
+The based suspension functor
+
+\section{ω f : ∞-Grpd/D₀ ⭢ ∞-Grpd/C₀}
+
+The homotopy fiber
+
+\section{σ f : ∞-Grpd₀/C₀ ⭢ ∞-Grpd₀/D₀}
+
+Based homotopy pushout
+
+\section{πₙ : ∞-Grpd₀ ⭢ Set}
+
+The connected components functors
 
 \iffalse
 https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/Basic.html
@@ -1228,36 +1408,49 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/B
 
 \chapter{Chapter 2: The Whitehead Theorem}
 
-\section{Globular Spaces}
+\section{Globular Sets}
 
-...\\
+Globular sets 
 
+REP for based connected ∞-groupoids \& The replacement functor on ∞$\texttt{-Grpd}$₀
+
+HEP for based connected ∞-groupoids \& The homotopy extension property for ∞$\texttt{-Grpd}$₀
 
 In this chapter we prove the following (which we have called Whitehead Theorem (c)): ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G, where πₙ is notation for π n.\\
 
 This can be shown using CW-replacement and induction on n. Fibrant replacement of an object X entails replacing an object in ∞-Grpd₀ with a CW-object (an object made by successively glueing in higher and higher simplices along their boundaries obtaining a sequence Xₙ). Given an equality π${}_{n+1}(f) = $π${}_{n+1}(g)$ and a homotopy equivalence hₙ : Δ¹ × Xₙ ⭢ Y between $f|_{X_n}, g|_{X_n}$ : Xₙ ⭢ Y, we construct an extension of the homotopy equivalence Δ¹ × $X_{n+1}$ ⭢ Y.\\
 
+
+
 \section{HEP for based connected ∞-groupoids}
 
 Can the attaching map be 
 
+\begin{center}
+\includegraphics[width=3.5cm,height=7cm]{proj.png}
+\end{center}
+
+
+
 \section{The Whitehead theorem}
 
 Here we show the Whitehead theorem proper.\\
-
 
 \iffalse
 https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/HomotopyGroup.html
 \fi
 
 
+
 \chapter{Chapter 3: The Category of Pairs}
+
+In this section I would like to 
 
 
 
 \chapter{Chapter 4: Internal and Operadic Groups}
 
-\section{\texttt{Grp\_(Γ)}}
+\section{\texttt{InternalGroup}}
 
 %LEAN: internal_group
 \begin{center}
@@ -1283,175 +1476,27 @@ structure internal_group ... where
 \end{tcolorbox}
 \end{center}
 
-%LEAN: GrpdHom
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
 
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: GrpdIdn
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: GrpdCmp
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: GrpdId₁
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: GrpdId₂
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: GrpdAss
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- def InternalGroup (Γ : pulback_system) : 𝐂𝐚𝐭.Obj := sorry
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Green,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- notation "Grp_(" Γ  ")" => InternalGroup Γ
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-\section{\texttt{Act\_(Γ) G}}
+\section{\texttt{InternalGroupAction G}}
 
 Here we define internal group actions. These will be important when we talk about G-principal bundles (themselves defined as internal group actions in the derived category of an overcategory). 
 
-%LEAN: group action
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
 
-/-
-structure group_action (Γ : pullback_system) (G : internal_groupoid Γ) where
-  Obj : D(Γ).Obj
--- Mor : D(Γ).
--- ...
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: ActHom
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-/-
-def ActHom (Γ : pullback_system) (X : groupoid_action Γ)
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: ActIdn
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: ActCmp
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: ActId₁
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: ActId₂
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: ActAss
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-
-\section{Operadic Groups}
+\section{\texttt{OperadicGroup}}
 
 
 
-\section{Operadic Group Actions}
+
+\section{\texttt{OperadicGroupActions}}
 
 
 
-\section{The O and P Functors}
+\section{The \texttt{O} and \texttt{P} Functors}
 
 The internal group principal stems from the simple observation that the loop space forms a component of an internal group.\\
 
 
-\section{The o and p Functors}
+\section{The \texttt{o} and \texttt{p} Functors}
 
 The internal group actions principal stems from the simple observation that the homotopy fiber forms a component of an internal group action.\\
 
@@ -1460,6 +1505,8 @@ The internal group actions principal stems from the simple observation that the 
 
 
 \part{∞-GROUPOIDS}
+
+The Whitehead theorem is about the ways that spheres can get stuck in spaces (higher homotopy groups), and the last section established how these higher homotopy groups relate to maps in the homotopy category of based connected CW-complexes. There is the nuance that the base .\\
 
 
 \chapter{Chapter 5: ∞\texttt{-Grpd}}
@@ -1485,6 +1532,7 @@ The mentioned functors π⃡ₙ are designed with both Whitehead theorem (a) and
 
 
 \chapter{Chapter 6: The Whitehead Theorem for ∞-Groupoids}
+
 
 \section{Cubical Complexes}
 
@@ -1656,9 +1704,9 @@ After defining the category of internal categories D(Γ), we proceed to observe 
  \hline
  $\texttt{Section}$  &\ $\texttt{Description}$ \\
  \hline \hline
- $\texttt{InternalCategory Γ : Cat}$   &\ Internal categories \\ 
+ $\texttt{InternalGroupoid : Cat}$   &\ Internal categories \\ 
  \hline
- $\texttt{InternalPresheaf Γ C : Cat}$ &\ Internal C-presheaves \\ 
+ $\texttt{InternalGroupoidAction G : Cat}$ &\ Internal C-presheaves \\ 
  \hline
  The internal category principal &\ \texttt{f ×\_(B) f} forms an internal category\\
  \hline
@@ -1986,6 +2034,10 @@ The mentioned functors π⃗ₙ are designed with both Whitehead theorem (a) and
 
 
 \chapter{Chapter 10: The Whitehead Theorem for ∞-Categories}
+
+\iffalse
+https://mathoverflow.net/questions/368596/intuition-for-categorical-fibrations#:~:text=a%20left%2Fright%20fibration%20is,categories%20with%20correspondences%20between%20fibers.
+\fi
 
 
 \section{Directed Cubical Complexes}
@@ -2500,9 +2552,12 @@ Further reading:
 \item Chris Heunen, Jamie Vicary, and Stefan Wolf, ``Categories for Quantum Theory: An Introduction," Oxford Graduate Texts, Oxford University Press, Oxford, 2018.
 \item S. Eilenberg and J. C. Moore, ``Adjoint Functors and Triples," Proceedings of the Conference on Categorical Algebra, La Jolla, California, 1965, pp. 89-106.
 \item Daniel M. Kan, ``On Adjoints to Functors" (1958): In this paper, Kan further explored the theory of adjoint functors, focusing on the existence and uniqueness of adjoints. His work provided important insights into the fundamental aspects of adjoint functors and their role in category theory.
+\item \href{https://mathematicswithoutapologies.wordpress.com/2015/05/13/univalent-foundations-no-comment/}{A comment thread concerning Jacob Lurie's breakthrough prize and different approaches to homotopy on the computer}
+\item Arlin, Kevin David. "2-categorical Brown representability and the relation between derivators and infinity-categories." Doctoral dissertation, University of California, Los Angeles, 2020.
+\item 
 \end{enumerate}
 
-Lectures, Videos, and Stackexchange questions:
+Some lectures, videos, and Stackexchange questions:
 
 \begin{enumerate}
 \item \url{https://www.youtube.com/watch?v=Ob9tOgWumPI}
@@ -2510,20 +2565,16 @@ Lectures, Videos, and Stackexchange questions:
 \item \url{https://mathoverflow.net/questions/5901/do-the-signs-in-puppe-sequences-matter}
 \end{enumerate}
 
-Relevant discussions on the $\texttt{Lean 4}$ Zulip:
-
-\begin{enumerate}
-\item 
-\end{enumerate}
-
 \iffalse
 Maintainers:
 
 For a list containing more detailed information, see https://leanprover-community.github.io/teams/maintainers.html
 
-Patrick Massot (@patrickmassot): documentation, topology, geometry
-
-- https://en.wikipedia.org/wiki/Hamiltonian_mechanics
+https://www.youtube.com/watch?v=6FLmQwhQlwA
+https://www.youtube.com/watch?v=kjBDkH10OnQ
+https://www.birs.ca/events/2023/5-day-workshops/23w5124/videos/watch/202305241110-Riou.html
+https://github.com/ADedecker/gauss
+https://github.com/ADedecker/amenable
 
 \fi
 
