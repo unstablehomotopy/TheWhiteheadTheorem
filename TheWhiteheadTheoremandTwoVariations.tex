@@ -1554,11 +1554,9 @@ Can the attaching map be
 \end{center}
 }
 
-For 
-
-\iffalse
-other graphics
-\fi
+\begin{definition}
+...
+\end{definition}
 
 \iffalse
 \begin{definition}
@@ -1591,6 +1589,14 @@ Fix n : ℕ and let ∂ⁿ : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of
 \end{proof}
 
 
+\begin{theorem}
+Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\sum_{i = 1}^n x_i^2}$, and write ||-||${}_{2}$
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
 \section{HEP for based connected ∞-groupoids}
 
 In this section we prove the homotopy extension property for based connected ∞-groupoids, which we here model as CW-complexes.\\
@@ -1603,13 +1609,6 @@ The first and most common approach involves `shining a light ray down from above
 The second way to fill the jar
 
 
-\begin{theorem}
-Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\sum_{i = 1}^n x_i^2}$, and write ||-||${}_{2}$
-\end{theorem}
-
-\begin{proof}
-...
-\end{proof}
 
 \iffalse
 In what follows, it is possible to use cell complexes instead of CW-complexes. This reflects how the argument makes no use of the stronger condition associated to the CW-complexes that cells be attached in order of nondecreasing dimension.
@@ -1622,7 +1621,7 @@ Let X₋₁ be a connected CW-complex and let n : Nat be a natural number. The t
 \end{definition}
 
 \begin{theorem}
-Let X₋₁ be a connected CW-complex and let f : I ⭢ X₋₁ be a path, so that $\texttt{(trans\ n X₋₁ f) • (trans\ n X₋₁ f⁻¹)}$ has type $\texttt{πₙ (f 0) ⭢ πₙ (f 0)}$. Then
+Let X₋₁ be a connected CW-complex and let f : I ⭢ X₋₁ be a path, so that $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f)}$ has type $\texttt{πₙ (f 0) ⭢ πₙ (f 0)}$. Then
 \begin{center}
 $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 \end{center}
