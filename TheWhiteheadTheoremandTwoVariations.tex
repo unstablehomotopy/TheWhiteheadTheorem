@@ -63,7 +63,7 @@ Here are the packages that I use
 \newunicodechar{ᵐ}{${}^{\texttt{m}}$}
 \newunicodechar{ⁿ}{${}^{\texttt{n}}$}
 \newunicodechar{ᵒ}{${}^{\texttt{o}}$}
-\newunicodechar{ᵖ}{${}^{\texttt{ω}}$}
+\newunicodechar{ᵖ}{${}^{\texttt{p}}$}
 \newunicodechar{ʳ}{${}^{\texttt{r}}$}
 \newunicodechar{ˢ}{${}^{\texttt{s}}$}
 \newunicodechar{ᵗ}{${}^{\texttt{t}}$}
@@ -413,7 +413,7 @@ Here are the packages that I use
 
 \AddToShipoutPicture*
   {\put(470,752){
-    \href{https://github.com/linlib/ThreeWhiteheadTheoremsandThreePuppeSequences/ThreeWhiteheadTheoremsandThreePuppeSequences.tex}{\texttt{.tex file}}\\
+    \href{https://github.com/linlib/TheWhiteheadTheoremandTwoVariations/blob/main/TheWhiteheadTheoremandTwoVariations.tex}{\texttt{.tex file}}\\
 
   }}
 
@@ -421,13 +421,13 @@ Here are the packages that I use
 \AddToShipoutPicture*
   {\put(470,737){
 
-    \href{http://linearlibrary.net/ThreeWhiteheadTheoremsandThreePuppeSequences/ThreeWhiteheadTheoremsandThreePuppeSequences.pdf}{\texttt{.pdf file}}\\
+    \href{https://github.com/linlib/TheWhiteheadTheoremandTwoVariations/blob/main/TheWhiteheadTheoremandTwoVariations.pdf}{\texttt{.pdf file}}\\
 
   }}
 
   \AddToShipoutPicture*
   {\put(470,722){
-    \href{https://github.com/linlib/ThreeWhiteheadTheoremsandThreePuppeSequences/ThreeWhiteheadTheoremsandThreePuppeSequences.lean}{\texttt{.lean file}}
+    \href{https://github.com/linlib/TheWhiteheadTheoremandTwoVariations/blob/main/TheWhiteheadTheoremandTwoVariations.lean}{\texttt{.lean file}}
 
   }}
 
@@ -471,6 +471,8 @@ Here are the packages that I use
 \texttt{Whitehead theorem of homotopy groups in}\\
 \texttt{Lean 4, with extensive use of Mathlib 4}
 \end{center}
+\ \\
+\ \\
 
 
 \thispagestyle{empty}
@@ -478,6 +480,8 @@ Here are the packages that I use
 
 \newpage
 
+\ \\
+\ \\
 
 \begin{center}
 
@@ -500,9 +504,6 @@ Here are the packages that I use
 \ \\
 \ \\
 \thispagestyle{empty}
-\begin{center}
-Copyright\ \textcopyright \ October 19th 2023 Elliot Dean Young and Jiazhen Xia.\ All rights reserved.\\
-\end{center}
 \large %%%%%%%% HERE IS THE large LARGE size textsize set text size
 \newpage 
 \ \\
@@ -584,44 +585,95 @@ D(∞-Grpd₀/X₀) & The derived category of based connected ∞-groupoids over
  \hline \hline
   \multicolumn{2}{||c||}{\texttt{Chapter 2: }The Whitehead Theorem for Based Connected ∞-Groupoids} \\
 \hline \hline
-Globular Sets & ...\\
-\hline
-REP for based connected ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
+Globular Sets & Defining globular sets\\
 \hline
 HEP for based connected ∞-groupoids & The homotopy extension property for ∞$\texttt{-Grpd}$₀\\
  \hline 
+REP for based connected ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
+\hline
 Whitehead theorem (c) & A map $\texttt{F : D(}$∞$\texttt{-Grpd₀).Hom E₀ B₀}$ is determined by $\texttt{λ(n:Nat),πₙ F}$. \\
 \hline \hline
   \multicolumn{2}{||c||}{\texttt{Chapter 3: }The Category of Pairs} \\
 \hline \hline
-REP for pairs of based connected ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
-\hline
 HEP for pairs of based connected ∞-groupoids & The homotopy extension property for ∞$\texttt{-Grpd}$₀\\
  \hline 
+REP for pairs of based connected ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
+\hline
 The Whitehead theorem for pairs & ... \\
 \hline \hline
  \multicolumn{2}{||c||}{\texttt{Chapter 4: }Internal and Operadic Groups} \\
 \hline \hline
- $\texttt{InternalGroup Γ}$   & The category of internal groups in Γ  \\
+ $\texttt{InternalGroup}$   & The category of internal groups in Γ  \\
  \hline
- $\texttt{InternalGroupAction Γ G₀}$ & The category of internal G₀-actions in Γ   \\
+ $\texttt{InternalGroupAction G₀}$ & The category of internal G₀-actions in Γ   \\
  \hline
-  $\texttt{OperadicGroup Γ}$  & The category of operadic groups  \\
+  $\texttt{OperadicGroup}$  & The category of operadic groups  \\
  \hline
- $\texttt{OperadicGroupAction Γ}$  & The category of operadic group actions  \\
+ $\texttt{OperadicGroupAction}$  & The category of operadic group actions  \\
  \hline
   The $\texttt{P}$ and $\texttt{O}$ Functors & $\texttt{P = ? • O}$ \\
  \hline
  The $\texttt{p}$ and $\texttt{o}$ Functors & $\texttt{p = ? • o}$ \\
  \hline
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{PART II: } ∞-Groupoids} \\
-\hline \hline 
-\multicolumn{2}{||c||}{\texttt{Chapter 5: }∞\texttt{-Grpd}}\\
+\multicolumn{2}{||c||}{\texttt{PART II: } Based Connected ∞-Categories} \\
 \hline \hline
-D⃡(∞-Grpd) & The derived category of ∞-groupoids \\
+\multicolumn{2}{||c||}{\texttt{Chapter 5: }Based Connected ∞-Categories} \\
+\hline \hline
+D(∞-Cat₀) & The derived category of based connected ∞-categories \\
 \hline
-D⃡(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
+D(∞-Cat₀/X₀) & The derived category of based connected ∞-groupoids over X₀. \\
+\hline
+??? : ∞-Cat₀ ⭢ ∞-Cat & The loop space functor \\
+\hline
+??? : ∞-Cat₀ ⭢ ∞-Cat₀ & The based suspension functor \\
+\hline 
+??? f : ∞-Cat/D₀ ⭢ ∞-Cat/C₀ & The homotopy fiber\\
+\hline 
+??? f : ∞-Cat₀/C₀ ⭢ ∞-Cat₀/D₀ & Based homotopy pushout \\
+ \hline 
+??? : ∞-Cat₀ ⭢ Set & The connected components functors\\
+ \hline \hline
+  \multicolumn{2}{||c||}{\texttt{Chapter 6: }The Whitehead Theorem for Based Connected ∞-Categories} \\
+\hline \hline
+??? & ...\\
+\hline
+HEP for based connected ∞-categories & The homotopy extension property for ∞$\texttt{-Cat}$₀\\
+\hline
+REP for based connected ∞-categories & The replacement functor on ∞$\texttt{-Cat}$₀ \\
+ \hline 
+Whitehead theorem & A map $\texttt{F : D(}$∞$\texttt{-Grpd₀).Hom E₀ B₀}$ is determined by $\texttt{λ(n:Nat),πₙ F}$. \\
+\hline \hline
+  \multicolumn{2}{||c||}{\texttt{Chapter 7: }The Category of Pairs} \\
+\hline \hline
+HEP for pairs of based connected ∞-groupoids & The homotopy extension property for ∞$\texttt{-Cat}$₀\\
+ \hline
+REP for pairs of based connected ∞-groupoids & The replacement functor on ∞$\texttt{-Cat}$₀ \\
+\hline 
+The Whitehead theorem for pairs & ... \\
+\hline \hline
+ \multicolumn{2}{||c||}{\texttt{Chapter 8: }Internal and Operadic Groups} \\
+\hline \hline
+ $\texttt{InternalMonoid}$   & The category of internal groups in Γ  \\
+ \hline
+ $\texttt{InternalMonoidActionG₀}$ & The category of internal G₀-actions in Γ   \\
+ \hline
+  $\texttt{OperadicMonoid}$  & The category of operadic groups  \\
+ \hline
+ $\texttt{OperadicMonoidAction}$  & The category of operadic group actions  \\
+ \hline
+  The $\texttt{P}$ and $\texttt{O}$ Functors & $\texttt{P = ? • O}$ \\
+ \hline
+ The $\texttt{p}$ and $\texttt{o}$ Functors & $\texttt{p = ? • o}$ \\
+ \hline
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{PART III: } ∞-Groupoids} \\
+\hline \hline 
+\multicolumn{2}{||c||}{\texttt{Chapter 9: }∞\texttt{-Grpd}}\\
+\hline \hline
+D(∞-Grpd) & The derived category of ∞-groupoids \\
+\hline
+D(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
 \hline
 Ω⃡ : ∞-Grpd ⭢ ∞-Grpd & The directed path space functor \\
  \hline 
@@ -633,7 +685,7 @@ D⃡(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
  \hline 
 π⃡ₙ : ∞-Grpd ⭢ Set & The connected components functors\\
  \hline \hline
- \multicolumn{2}{||c||}{\texttt{Chapter 6: }The Whitehead Theorem for ∞-Groupoids} \\
+ \multicolumn{2}{||c||}{\texttt{Chapter 10: }The Whitehead Theorem for ∞-Groupoids} \\
 \hline \hline
 Cubical Complexes & ...\\
 \hline
@@ -644,7 +696,7 @@ HEP for ∞-groupoids & The homotopy extension property\\
 Whitehead theorem (b) & A map $\texttt{F : D(}$∞$\texttt{-Grpd).Hom E B}$ is determined by $\texttt{λ(n:Nat),}$π⃡ₙ
 $\texttt{F}$. \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 7: }The Category of Pairs of ∞-Groupoids} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 11: }The Category of Pairs of ∞-Groupoids} \\
 \hline \hline
 ... & ...\\
 \hline
@@ -654,7 +706,7 @@ HEP for pairs of ∞-groupoids & The homotopy extension property for ∞$\texttt
  \hline 
 The Whitehead theorem for pairs of ∞-groupoids & ... \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 8: }Internal and Operadic Groupoids and their Actions} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 12: }Internal and Operadic Groupoids and their Actions} \\
 \hline \hline
  $\texttt{InternalGroupoid Γ}$   & The category of internal groupoids in Γ \\
  \hline
@@ -668,9 +720,9 @@ The Whitehead theorem for pairs of ∞-groupoids & ... \\
  \hline
  The $\texttt{p⃡}$ and $\texttt{o⃡}$ Functors & $\texttt{p⃡ = ? • o⃡}$ \\
  \hline \hline
- \multicolumn{2}{||c||}{\texttt{PART III: } ∞-Categories} \\
+ \multicolumn{2}{||c||}{\texttt{PART IV: } ∞-Categories} \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 9: }∞\texttt{-Cat}} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 13: }∞\texttt{-Cat}} \\
 \hline \hline
 D(∞-Cat) & The derived category of ∞-categories \\
 \hline
@@ -686,7 +738,7 @@ D(∞-Cat⁄C) & The derived category of ∞-categories over C \\
  \hline 
 π⃗ₙ : ∞-Cat ⭢ Set & The connected components functors\\
  \hline \hline
- \multicolumn{2}{||c||}{\texttt{Chapter 10: }The Whitehead Theorem for ∞-Categories} \\
+ \multicolumn{2}{||c||}{\texttt{Chapter 14: }The Whitehead Theorem for ∞-Categories} \\
 \hline \hline
 Directed Cubical Complexes & ...\\
 \hline
@@ -696,7 +748,7 @@ HEP for ∞-categories & The directed homotopy extension property\\
 \hline 
 Whitehead theorem (a) & A map $\texttt{F : D(}$∞$\texttt{-Cat).Hom E B)}$ is determined by $\texttt{λ(n:Nat),}$π⃗ₙ$\texttt{F}$.\\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 11: }The Category of Pairs of ∞-Categories} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 15: }The Category of Pairs of ∞-Categories} \\
 \hline \hline
 REP for pairs of ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$ \\
 \hline
@@ -704,15 +756,15 @@ HEP for pairs of ∞-groupoids & The homotopy extension property for ∞$\texttt
  \hline 
 The Whitehead theorem for pairs of ∞-groupoids & ... \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 12: Internal Categories and Internal Sheaves}} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 16: Internal Categories and Internal Sheaves}} \\
 \hline \hline
- $\texttt{InternalCategory Γ C}$   & The category of internal categories \\
+ $\texttt{InternalCategory : ???}$   & The category of internal categories \\
  \hline
- $\texttt{InternalPresheaf Γ C X}$  & The category of internal presheaves \\
+ $\texttt{InternalPresheaf : ???}$  & The category of internal presheaves \\
  \hline
-  $\texttt{OperadicCategory Γ}$  & The category of operadic categories  \\
+  $\texttt{OperadicCategory : Cat → Cat}$  & The category of operadic categories  \\
  \hline
- $\texttt{OperadicPresheaf Γ}$   & The category of operadic presheaves  \\
+ $\texttt{OperadicPresheaf : Cat → Cat}$   & The category of operadic presheaves  \\
   \hline
   The $\texttt{P⃗}$ and $\texttt{O⃗}$ Functors & $\texttt{P⃗ = ? • O⃗}$ \\
  \hline
@@ -725,29 +777,6 @@ The Whitehead theorem for pairs of ∞-groupoids & ... \\
 
 \newpage
 \section{Introduction}
-
-\iffalse
-Even though univalence is just one line, elegant and convenient, it isn't the only approach to computerized homotopy or categories. Another approach, here the one taken in Mathlib 4, instead makes use of replacement for dependent types, facilitated by ```HEq''' and ```cast'''.\\
-
-- taking a 
-\fi
-
-\iffalse
-3 goals
-6 internal structures
-6 models
-6 derived models
-6 Ω's
-\fi
-
-
-\iffalse
-Adding in the operadic structures.
-\fi
-
-\iffalse
-"equivalence"
-\fi
 
 {\bf The main goal of this repository is to prove the Whitehead theorem in Lean 4 using Mathlib 4's homotopy groups}. Two other subsequent goals are to state and prove two variations of the Whitehead theorem. It is important that initial pull requests stemming from our work remain basic and accessible; we hope to make progress which is gradual and incremental.\\
 
@@ -769,8 +798,6 @@ We also maintain a fourth Whitehead theorem for Hilbert space:
 There is no base in the variations, and we instead consider an object with two bases when forming Ω⃗ and :
 ({f : γ ⭢ A // T f t = T f s for each s, t}, {(f,g,x,y) : [γ,C] × [γ,C] × C × C // T f = (x,y), and T g = (x,y)})
 \fi
-
-
 
 These are stated in an order reversed from the order of its implementation. We have omitted in this project the proof that CW-complexes are compactly generated weak hausdorff topological spaces and that the category of compactly generated weak hausdorff topological spaces is cartesian closed with internal hom given by the compact-open topology. The compact-open topology will instead be covered in a future repository concerning geometric maps.\\
 
@@ -817,6 +844,7 @@ In the course of the repository we will need the directed path space, path space
 \item Ω⃗ : ∞-Cat ⭢ ∞-Cat sends \iffalse C to a [(Sⁿ⁻¹,Dⁿ),(C,C)]\fi
 \item Ω⃡ : ∞-Grpd ⭢ ∞-Grpd is ...
 \item Ω is the loop space functor
+\item 
 \end{enumerate}
 
 \iffalse
@@ -1047,6 +1075,32 @@ These four established theorems and the eight novel ones form a good vignette fo
 In the work that ensues, we plan to take an approach which establishes the known results before the original ones, taking advantage of the predefined πₙ functors in $\texttt{Mathlib 4}$ in the process. This decision will also help to take an approach which is more gradual and incremental, and to start with smaller pull requests.\\
 
 
+
+\iffalse
+3 goals (and two extras for connected...)
+6 internal structures (and two extras for connected...)
+6 models (and two extras for connected...)
+6 derived models
+6 Ω's
+\fi
+
+\iffalse
+Interspersing one of the 6 omegas's in each of six operadic structures, which have the same number of entries as the six internal structures respectively. In the thirteen entry operadic category, one of the entries is an ordinary object in the category, analogous to the first of the thirteen entries of the internal category. The second entry, instead of featuring the ordinal 2 (the morphism component, which is the second of two entries in the category in question), features a sequence of objects in the category. The identity morphism Idn : Obj ⭢ Mor of the internal category with 13 entries (as opposed to the slightly more complex structure in which separate clauses assume the existence of the relevant pullbacks so as to create an endofunction of Cat) is analogous to a function also from O₀ to O₁, and two further entires are essentially shared by both as well: Dom and Cod. One difference occurs in the component of an internal category for the properties that Idn has, which in the operadic case is 
+\fi
+
+\iffalse
+J : Nat → ∞-Grpd
+\fi
+
+\iffalse
+Ω⃗, Ω⃡, Ω⃗₀, Ω⃡₀ are the ones I construct and Ω Mathlib's.
+\fi
+
+\iffalse
+Adding in the operadic structures.
+\fi
+
+
 \iffalse
 https://leanprover.zulipchat.com/#narrow/stream/116395-maths/topic/Internal.20categories
 \fi
@@ -1086,6 +1140,8 @@ https://leanprover.zulipchat.com/#narrow/stream/116395-maths/topic/Internal.20ca
 $\texttt{InternalCategory : Cat → Cat}$ & $\texttt{InternalPresheaf : (C : Cat) → (InternalCategory C) → Cat}$ & $\texttt{OperadicCategory\_(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$ & OperadicPresheaf\_(-) : (X : ∞-Cat\_(-)) → ∞-Cat\_{(-)} \\
 \hline
 $\texttt{InternalGroupoid\_(-) : Cat\_(-) → Cat\_(-)}$ & $\texttt{InternalGroupoidAction : (C : Cat) → (InternalGroupoid C) → Cat}$& $\texttt{OperadicGroupoid\_(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$ & OperadicGroupoidAction\_(-) : (OperadicGroupoid\_() C) → (InternalCategory C) → ∞-Cat\_(-) → ∞-Cat\_(-) \\
+\hline
+$\texttt{InternalMonoid\_(-) : Cat\_(-) → Cat\_(-)}$ & $\texttt{InternalMonoidAction : (C : Cat) → (InternalMonoid C) → Cat}$ & $\texttt{OperadicMonoid\_(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$ & $\texttt{OperadicMonoidAction}$\_$\texttt{(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$\\
 \hline
 $\texttt{InternalGroup\_(-) : Cat\_(-) → Cat\_(-)}$ & $\texttt{InternalGroupAction : (C : Cat) → (InternalGroup C) → Cat}$ & $\texttt{OperadicGroup\_(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$ & $\texttt{OperadicGroupAction}$\_$\texttt{(-) : ∞-Cat\_(-) → ∞-Cat\_(-)}$\\
  \hline
@@ -1127,7 +1183,15 @@ P : ∞-Grpd₋₁ ⭢ InternalGroup D(∞-Grpd₋₁) & p : (X₋₁ : ∞-Grpd
 
 
 
-
+\iffalse
+░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░   
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+ ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░
+\fi
 \newpage
 \section{Unicode}
 
@@ -1242,13 +1306,12 @@ ${}^{\rightarrow}$ & 20E1 &  & Homotopical operations on ∞-groupoids \\
 \end{tabular}
 \end{center}}
 
-Of these, the characters $\texttt{ꜝ,ꜞ,𛲔,ॱ}$,${}^{\rightarrow}$, and ${}^{\leftrightarrow}$ do not have VSCode shortcuts, and so we provide alternatives for them.\\
-
-It is not possible to copy the from the pdf to the clipboard while preserving the integrity of the code. To see the official Lean 4 file please click the link on the top right of the front page or \href{https://github.com/linlib/ThreeWhiteheadTheorems}{this}.\\
+Of these, the characters $\texttt{ꜝ,ꜞ,𛲔,ॱ}$,${}^{\rightarrow}$, and ${}^{\leftrightarrow}$ do not have VSCode shortcuts.\\
 
 \ \\
 \ \\
 \ \\
+
 \iffalse
 o⃗ : (C : ∞-Cat) → ∞-Cat⁄C ⭢ OperadicPresheaf (O⃗.obj C)
 o⃡ : (X : ∞-Grpd) → ∞-Grpd⁄X ⭢ OperadicGroupoidAction (O⃡.obj X)
@@ -1361,11 +1424,42 @@ The tutorial \href{https://leanprover.github.io/theorem_proving_in_lean4/}{here}
 
 \chapter{Chapter 1: ∞\texttt{-Grpd₀}}
 
-Here we define the categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀) using CW-complexes.\\
+\noindent\textcolor{Red}{\rule{16cm}{1mm}}
+\begin{center}
+\texttt{Implementation Progress}
+\end{center}
+\noindent\textcolor{Red}{\rule{16cm}{1mm}}
+
+\noindent\textcolor{Red}{\rule{16cm}{1mm}}
+\begin{center}
+\texttt{Writing Progress}
+\end{center}
+\noindent\textcolor{Red}{\rule{16cm}{1mm}}
+
+Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
 
 \section{D(∞-Grpd₀)}
 
-
+{\footnotesize
+\begin{center}
+\begin{tabular}{|| l || l || l || l ||} 
+\hline
+$\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use}$\\
+\hline
+\multicolumn{4}{||c||}{\texttt{Lean's Kernel}} \\
+\hline
+× & 2A2F & \backslash\texttt{times} & Product of types\\
+\hline
+→ & 2192 & \backslash\texttt{rightarrow}  & Hom of types\\
+\hline
+⊣ & 22A3 & \backslash\texttt{dashv}  & The condition that two functors are adjoint \\
+\hline
+?,¿ & 003F, 00BF & ?,\backslash\texttt{?}  & The corresponding (co)monad of an adjunction\\
+\hline
+∼ & 223C & \backslash\texttt{sim} & Homotopies \\
+\hline
+\end{tabular}
+\end{center}}
 
 %LEAN: 
 \begin{center}
@@ -1410,7 +1504,9 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/B
 
 \section{Globular Sets}
 
-Globular sets 
+\href{https://ncatlab.org/nlab/show/globular+set}{Globular sets} are functors from the globe category 𝔾 into the category of sets, and maps of globular sets are natural transformations between them.\\
+
+
 
 REP for based connected ∞-groupoids \& The replacement functor on ∞$\texttt{-Grpd}$₀
 
@@ -1419,22 +1515,138 @@ HEP for based connected ∞-groupoids \& The homotopy extension property for ∞
 In this chapter we prove the following (which we have called Whitehead Theorem (c)): ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G, where πₙ is notation for π n.\\
 
 This can be shown using CW-replacement and induction on n. Fibrant replacement of an object X entails replacing an object in ∞-Grpd₀ with a CW-object (an object made by successively glueing in higher and higher simplices along their boundaries obtaining a sequence Xₙ). Given an equality π${}_{n+1}(f) = $π${}_{n+1}(g)$ and a homotopy equivalence hₙ : Δ¹ × Xₙ ⭢ Y between $f|_{X_n}, g|_{X_n}$ : Xₙ ⭢ Y, we construct an extension of the homotopy equivalence Δ¹ × $X_{n+1}$ ⭢ Y.\\
+τ₀
+τ₁, τ₂,τ₃, τ₄
+
+\iffalse
+Can the attaching map be 
+\fi
 
 
 
 \section{HEP for based connected ∞-groupoids}
 
-Can the attaching map be 
+In this section we prove the homotopy extension property for based connected ∞-groupoids, which is here the object component of ∞-Grpd₀.\\
 
 \begin{center}
 \includegraphics[width=3.5cm,height=7cm]{proj.png}
 \end{center}
 
+\iffalse
+other graphics
+\fi
+
+{\bf Spheres and balls} Next we turn to defining spheres and balls:
+
+{
+\footnotesize
+\begin{center}
+\begin{tabular}{||l || l || l ||} 
+ \hline
+  & \multicolumn{2}{||c||}{\texttt{Spheres and Balls}} \\
+ \hline
+ Name of the $\texttt{X}$ value & \texttt{∂X ≅ Sⁿ} & \texttt{X ≅ Dⁿ} \\
+ \hline
+ \hline
+ p-norm unit ball for p = 1 & ∂B(1,1) & B(1,1) \\
+ \hline
+ p-norm unit ball for 1 < p < 2 & ∂B(p,1) & B(p,1) \\
+ \hline
+ p-norm unit ball for p = 2 & ∂B(2,1) & B(2,1) \\
+ \hline
+ p-norm unit ball for 2 < p < ∞ & ∂B(p,1) & B(p,1) \\
+ \hline
+ p-norm unit ball for p = ∞ & ∂B(∞,1) & B(∞,1) \\
+ \hline
+ The n-simplex & ∂Δⁿ & Δⁿ \\
+ \hline
+ \hline
+\end{tabular}
+\end{center}
+}
+
+
+\begin{theorem}
+Fix n : ℕ and let i : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of the following diagram is isomorphic to Sⁿ⁺¹:
+\begin{center}
+\includegraphics[scale=0.5]{pushout.png}
+\end{center}
+\end{theorem}
+
+
+{\bf Jar filling} Next we turn to defining `jar shapes' $\texttt{Jⁿ}$, which include into $\texttt{Dⁿ × I}$ $\texttt{iₙ : Jₙ ⭢ Dⁿ × I}$, after which we `fill' them by way of extension . The jar shape is 
+
+The first way to fill the jar
+
+
+The second way to fill the jar
+
+
+\begin{theorem}
+Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\sum_{i = 1}^n x_i^2}$, and write ||-||${}_{2}$
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
+
+\iffalse
+\begin{definition}
+Define a function d${}^{(n_1,...,n_k)} : $ D${}^{n_1}$ × $\cdots$ × D${}^{n_k}$ ⭢ D${}^{n_1 + \cdots + n_k}$ sending $(x_1,...,x_k)$...
+\end{definition}
+\fi
+
+\begin{theorem}
+i¹ : S⁰ ⭢ D¹ 
+\end{theorem}
+
+\begin{theorem}
+Dⁿ × D¹ ⭢ Dⁿ⁺¹
+\end{theorem}
+
+\begin{definition}
+Dⁿ ⭢ Dᵐ
+\end{definition}
+
+\iffalse
+In what follows, it is possible to use cell complexes instead of CW-complexes. This reflects how the argument makes no use of the stronger condition associated to the CW-complexes that cells be attached in order of nondecreasing dimension.
+\fi
+
+\begin{definition}
+Let X₋₁ be a connected CW-complex and let n : Nat be a natural number. The transport function $\texttt{trans\ n\ X₋₁ : (f : [I,X₋₁])  → πₙ (f 0) ⭢ πₙ (f 1)}$ is given by...
+\end{definition}
+
+\begin{theorem}
+Let X₋₁ be a connected CW-complex and let f : I ⭢ X₋₁ be a path, so that $\texttt{(trans\ n X₋₁ f) • (trans\ n X₋₁ f⁻¹)}$ has type $\texttt{πₙ (f 0) ⭢ πₙ (f 0)}$. Then
+\begin{center}
+$\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
+\end{center}
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
+that the based CW-complexes (X₋₁,x) and (X₋₁,y) are 
+
+\begin{theorem}
+
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
+
+\section{REP for based connected ∞-groupoids}
+
+In this section we use the notion of globular sets to replace a topological space with a CW-complex. Together with HEP (homotopy extension), this will complete the proof of the Whitehead theorem.
 
 
 \section{The Whitehead theorem}
 
-Here we show the Whitehead theorem proper.\\
+Here we show the Whitehead theorem.
 
 \iffalse
 https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/HomotopyGroup.html
@@ -1449,6 +1661,12 @@ In this section I would like to
 
 
 \chapter{Chapter 4: Internal and Operadic Groups}
+
+\iffalse
+An operadic group is an algebra for the little lines operad, which has ??? entries
+
+An operadic internal group in an ∞-category C is an algebra for the little lines internal operad, which has ??? entries.
+\fi
 
 \section{\texttt{InternalGroup}}
 
@@ -1503,13 +1721,168 @@ The internal group actions principal stems from the simple observation that the 
 
 
 
+\part{BASED CONNECTED ∞-MONOIDS}
+
+
+\chapter{Chapter 5: ∞\texttt{-Cat₀}}
+
+Here we define the categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀) using CW-complexes.\\
+
+\section{D(∞-Cat₀)}
+
+
+
+%LEAN: 
+\begin{center}
+\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
+\begin{minted}[breaklines, escapeinside=||]{lean}
+
+\end{minted}
+\end{tcolorbox}
+\end{center}
+
+\section{D(∞-Grpd₀/X₀)}
+
+The derived category of based connected ∞-groupoids over X₀. \\
+
+\section{Ω : ∞-Grpd₀ ⭢ ∞-Grpd}
+
+
+
+\section{Σ : ∞-Grpd₀ ⭢ ∞-Grpd₀} 
+
+The based suspension functor
+
+\section{ω f : ∞-Grpd/D₀ ⭢ ∞-Grpd/C₀}
+
+The homotopy fiber
+
+\section{σ f : ∞-Grpd₀/C₀ ⭢ ∞-Grpd₀/D₀}
+
+Based homotopy pushout
+
+\section{πₙ : ∞-Grpd₀ ⭢ Set}
+
+The connected components functors
+
+\iffalse
+https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/Basic.html
+\fi
+
+
+
+\chapter{Chapter 6: The Whitehead Theorem for ???}
+
+\section{???}
+
+Globular sets 
+
+REP for based connected ∞-groupoids \& The replacement functor on ∞$\texttt{-Grpd}$₀
+
+HEP for based connected ∞-groupoids \& The homotopy extension property for ∞$\texttt{-Grpd}$₀
+
+In this chapter we prove the following (which we have called Whitehead Theorem (c)): ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G, where πₙ is notation for π n.\\
+
+This can be shown using CW-replacement and induction on n. Fibrant replacement of an object X entails replacing an object in ∞-Grpd₀ with a CW-object (an object made by successively glueing in higher and higher simplices along their boundaries obtaining a sequence Xₙ). Given an equality π${}_{n+1}(f) = $π${}_{n+1}(g)$ and a homotopy equivalence hₙ : Δ¹ × Xₙ ⭢ Y between $f|_{X_n}, g|_{X_n}$ : Xₙ ⭢ Y, we construct an extension of the homotopy equivalence Δ¹ × $X_{n+1}$ ⭢ Y.\\
+
+
+
+\section{HEP for ???}
+
+Can the attaching map be 
+
+\begin{center}
+\includegraphics[width=3.5cm,height=7cm]{proj.png}
+\end{center}
+
+
+
+\section{The Whitehead theorem for ???}
+
+Here we show the Whitehead theorem proper.\\
+
+\iffalse
+https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/HomotopyGroup.html
+\fi
+
+
+
+\chapter{Chapter 7: The Category of Pairs}
+
+In this section I would like to 
+
+
+
+\chapter{Chapter 8: Internal and Operadic Groups}
+
+
+\iffalse
+An operadic group is an algebra for the little lines operad with 6 entries
+
+An operadic internal group in C is an algebra in C for the little lines internal operad with ??? entries
+\fi
+
+
+
+\section{\texttt{InternalMonoid}}
+
+%LEAN: internal_group
+\begin{center}
+\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
+\begin{minted}[breaklines, escapeinside=||]{lean}
+
+/-
+structure internal_group ... where
+  Obj := D(Γ).Obj
+-- Dom := 
+-- Cod
+-- Idn
+-- Fst
+-- Snd
+-- Cmp
+-- Id₁
+-- Id₂
+-- Ass
+-- Com
+-/
+
+\end{minted}
+\end{tcolorbox}
+\end{center}
+
+
+\section{\texttt{InternalMonoidAction G}}
+
+Here we define internal group actions. These will be important when we talk about G-principal bundles (themselves defined as internal group actions in the derived category of an overcategory). 
+
+
+\section{\texttt{OperadicMonoid}}
+
+
+
+
+\section{\texttt{OperadicMonoidActions}}
+
+
+
+\section{The ??? and ??? Functors}
+
+
+
+\section{The ??? and ??? Functors}
+
+
+
+
+
+
 
 \part{∞-GROUPOIDS}
 
 The Whitehead theorem is about the ways that spheres can get stuck in spaces (higher homotopy groups), and the last section established how these higher homotopy groups relate to maps in the homotopy category of based connected CW-complexes. There is the nuance that the base .\\
 
 
-\chapter{Chapter 5: ∞\texttt{-Grpd}}
+\chapter{Chapter 9: ∞\texttt{-Grpd}}
 
 
 \section{Ω⃡}
@@ -1531,7 +1904,7 @@ The mentioned functors π⃡ₙ are designed with both Whitehead theorem (a) and
 
 
 
-\chapter{Chapter 6: The Whitehead Theorem for ∞-Groupoids}
+\chapter{Chapter 10: The Whitehead Theorem for ∞-Groupoids}
 
 
 \section{Cubical Complexes}
@@ -1686,12 +2059,18 @@ The HEP in the last
 Imagine 
 
 
-\chapter{Chapter 7: The Category of Pairs of ∞-Groupoids}
+\chapter{Chapter 11: The Category of Pairs of ∞-Groupoids}
 
 
 
 
-\chapter{Chapter 8: Internal and Operadic Groupoids and their Actions}
+\chapter{Chapter 12: Internal and Operadic Groupoids and their Actions}
+
+\iffalse
+An operadic groupoid is an algebra for the little lines operoid with ??? entries
+
+An operadic internal groupoid in C is an algebra in C for the little lines internal operoid with ??? entries
+\fi
 
 In this chapter, we discuss internal categories and internal presheaves in a pullback system. We may keep in mind that internal categories and internal presheaves can be formed in any category with pullbacks, even though we focus on the case of pullback systems because of our interest in Whitehead theorem (a).\\
 
@@ -2003,7 +2382,7 @@ Next we mention the internal presheaf principal, which says that the pullback of
 
 \part{∞-CATEGORIES}
 
-\chapter{Chapter 9: ∞\texttt{-Cat}}
+\chapter{Chapter 13: ∞\texttt{-Cat}}
 
 This chapter and the next chapter are more technical and difficult than the rest of the book.\\
 
@@ -2033,7 +2412,7 @@ The mentioned functors π⃗ₙ are designed with both Whitehead theorem (a) and
 
 
 
-\chapter{Chapter 10: The Whitehead Theorem for ∞-Categories}
+\chapter{Chapter 14: The Whitehead Theorem for ∞-Categories}
 
 \iffalse
 https://mathoverflow.net/questions/368596/intuition-for-categorical-fibrations#:~:text=a%20left%2Fright%20fibration%20is,categories%20with%20correspondences%20between%20fibers.
@@ -2192,12 +2571,19 @@ The HEP in the last
 Imagine 
 
 
-\chapter{Chapter 11: The Category of Pairs of ∞-Categories}
+\chapter{Chapter 15: The Category of Pairs of ∞-Categories}
 
 ...\\
 
 
-\chapter{Chapter 12: Internal and Operadic Categories and their Presheaves}
+\chapter{Chapter 16: Internal and Operadic Categories and their Presheaves}
+
+\iffalse
+An operadic category is an algebra for the little rays operoid with 7 entries
+
+An operadic internal category in C is an algebra in C for the little rays internal operoid with 13 entries
+
+\fi
 
 In this chapter, we discuss internal categories and internal presheaves in a pullback system. We may keep in mind that internal categories and internal presheaves can be formed in any category with pullbacks, even though we focus on the case of pullback systems because of our interest in Whitehead theorem (a).\\
 
@@ -2216,7 +2602,7 @@ After defining the category of internal categories D(Γ), we proceed to observe 
  \hline
  The internal category principal &\ \texttt{f ×\_(B) f} forms an internal category\\
  \hline
- The internal presheaf principal &\ \texttt{f ×\_(B) f} forms an internal presheaf\\
+ The internal presheaf principal &\ \texttt{f ×\_(B) g} forms an internal presheaf\\
  \hline
  P⃗ C : InternalCategory D(∞-Cat) &\ Ω⃗ C forms a component of an internal category \\
  \hline
@@ -2225,6 +2611,18 @@ After defining the category of internal categories D(Γ), we proceed to observe 
 \end{tabular}
 \end{center}
 }
+
+
+
+\iffalse
+
+Definition of an operad ()
+Definition of an 
+Algebras for the little rays operoid
+Algebras for the little lines operoid
+Algebras for the little rays operad
+Algebras for the little lines operad
+\fi
 
 \section{\texttt{InternalCategory Γ}}
 
@@ -2613,7 +3011,6 @@ Jiazhen Xia is a graduate student at Zhejiang University, where he studies compu
 \newpage
 \ \\
 \thispagestyle{empty}
-\pagecolor{Yellow}
 
 
 
