@@ -1502,15 +1502,18 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/B
 
 \chapter{Chapter 2: The Whitehead Theorem}
 
+The proof of the Whitehead theorem divides into REP (replacement for based connected ∞-groupoids X : ∞-Grpd₀) and HEP (the homotopy extension property for weak equivalent maps of based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
+
+Globular sets are not a rich enough invariant for homotopy, but maps of globular sets bear a criticall difference because of 
+
+\begin{center}
+\texttt{∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G}
+\end{center}
+
 \section{Globular Sets}
 
 \href{https://ncatlab.org/nlab/show/globular+set}{Globular sets} are functors from the globe category 𝔾 into the category of sets, and maps of globular sets are natural transformations between them.\\
 
-
-
-REP for based connected ∞-groupoids \& The replacement functor on ∞$\texttt{-Grpd}$₀
-
-HEP for based connected ∞-groupoids \& The homotopy extension property for ∞$\texttt{-Grpd}$₀
 
 In this chapter we prove the following (which we have called Whitehead Theorem (c)): ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G, where πₙ is notation for π n.\\
 
@@ -1520,20 +1523,6 @@ This can be shown using CW-replacement and induction on n. Fibrant replacement o
 
 \iffalse
 Can the attaching map be 
-\fi
-
-
-
-\section{HEP for based connected ∞-groupoids}
-
-In this section we prove the homotopy extension property for based connected ∞-groupoids, which is here the object component of ∞-Grpd₀.\\
-
-\begin{center}
-\includegraphics[width=3.5cm,height=7cm]{proj.png}
-\end{center}
-
-\iffalse
-other graphics
 \fi
 
 {\bf Spheres and balls} Next we turn to defining spheres and balls:
@@ -1565,31 +1554,11 @@ other graphics
 \end{center}
 }
 
+For 
 
-\begin{theorem}
-Fix n : ℕ and let i : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of the following diagram is isomorphic to Sⁿ⁺¹:
-\begin{center}
-\includegraphics[scale=0.5]{pushout.png}
-\end{center}
-\end{theorem}
-
-
-{\bf Jar filling} Next we turn to defining `jar shapes' $\texttt{Jⁿ}$, which include into $\texttt{Dⁿ × I}$ $\texttt{iₙ : Jₙ ⭢ Dⁿ × I}$, after which we `fill' them by way of extension . The jar shape is 
-
-The first way to fill the jar
-
-
-The second way to fill the jar
-
-
-\begin{theorem}
-Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\sum_{i = 1}^n x_i^2}$, and write ||-||${}_{2}$
-\end{theorem}
-
-\begin{proof}
-...
-\end{proof}
-
+\iffalse
+other graphics
+\fi
 
 \iffalse
 \begin{definition}
@@ -1609,12 +1578,47 @@ Dⁿ × D¹ ⭢ Dⁿ⁺¹
 Dⁿ ⭢ Dᵐ
 \end{definition}
 
+
+\begin{theorem}
+Fix n : ℕ and let ∂ⁿ : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of the following diagram is isomorphic to Sⁿ⁺¹:
+\begin{center}
+\includegraphics[scale=0.5]{pushout.png}
+\end{center}
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+
+\section{HEP for based connected ∞-groupoids}
+
+In this section we prove the homotopy extension property for based connected ∞-groupoids, which we here model as CW-complexes.\\
+
+
+{\bf Jar filling} Next we turn to defining `jar shapes' $\texttt{Jⁿ}$, which include into $\texttt{Dⁿ × I}$ $\texttt{iₙ : Jⁿ ⭢ Dⁿ × I}$, after which we `fill' them (i.e. demonstrate that any continuous map f : Jⁿ ⭢ X extends to a continuous map g : Dⁿ × I ⭢ X).\\
+
+The first and most common approach involves `shining a light ray down from above the jar', i.e. projection. We obtain a formula for .\\
+
+The second way to fill the jar
+
+
+\begin{theorem}
+Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\sum_{i = 1}^n x_i^2}$, and write ||-||${}_{2}$
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
 \iffalse
 In what follows, it is possible to use cell complexes instead of CW-complexes. This reflects how the argument makes no use of the stronger condition associated to the CW-complexes that cells be attached in order of nondecreasing dimension.
 \fi
 
+{\bf Change of Base} Jar filling leaves the question
+
 \begin{definition}
-Let X₋₁ be a connected CW-complex and let n : Nat be a natural number. The transport function $\texttt{trans\ n\ X₋₁ : (f : [I,X₋₁])  → πₙ (f 0) ⭢ πₙ (f 1)}$ is given by...
+Let X₋₁ be a connected CW-complex and let n : Nat be a natural number. The transport function $\texttt{trans\ n\ X₋₁ : (f : [I,X₋₁])  → πₙ (f 0) ⭢ πₙ (f 1)}$ is 
 \end{definition}
 
 \begin{theorem}
@@ -1628,6 +1632,12 @@ $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 ...
 \end{proof}
 
+The proof in the above can be depicted like so, as a `painting with two concentric frames':
+
+\begin{center}
+\includegraphics[scale=0.5]{windowframe.png}
+\end{center}
+
 that the based CW-complexes (X₋₁,x) and (X₋₁,y) are 
 
 \begin{theorem}
@@ -1637,6 +1647,13 @@ that the based CW-complexes (X₋₁,x) and (X₋₁,y) are
 \begin{proof}
 ...
 \end{proof}
+
+\begin{center}
+\includegraphics[width=3.5cm,height=5cm]{proj.png}
+\end{center}
+
+ 
+
 
 
 \section{REP for based connected ∞-groupoids}
@@ -1652,6 +1669,7 @@ Here we show the Whitehead theorem.
 https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/HomotopyGroup.html
 \fi
 
+In proving the Whitehead theorem formally, \textit{we make use of a line} as well as, in essence, the structure of a \textit{groupoid} $\texttt{G}_{\texttt{X}}$ where $\texttt{Hom}{}_{\texttt{G}}\texttt{(x,x)}$ is taken to be πₙ(X,x). This interesting feature of the proof relates to the other two Whitehead theorems featuring categories π⃗ₙ and groupoids π⃡ₙ.\\
 
 
 \chapter{Chapter 3: The Category of Pairs}
