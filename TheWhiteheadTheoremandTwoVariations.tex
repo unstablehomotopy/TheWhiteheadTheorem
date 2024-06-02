@@ -33,7 +33,7 @@ Here are the packages that I use
 \newunicodechar{ₙ}{${}_{n}$}
 
 \newunicodechar{𝓓}{$\mathcal{D}$}
-\newunicodechar{∂}{\raisebox{-0.06cm}{$\partial$}}
+\newunicodechar{∂}{$\partial$}
 \newunicodechar{∇}{\raisebox{-0.05cm}{$\nabla$}}
 
 %\newunicodechar{π⃗}{$\stackrel{\arr}{\pi}$}
@@ -783,20 +783,21 @@ The Whitehead theorem for pairs of ∞-groupoids & ... \\
 Besides this goal, we have two others. Here are the three Whitehead Theorems which form our main three goals:
 
 \begin{enumerate}[(a)]
-\item (The Whitehead theorem for ∞-categories) ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G, where π⃗ₙ is notation for π⃗ n.
+\item (The Whitehead theorem) ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n.
 \item (The Whitehead theorem for ∞-groupoids) ∀(E:D(∞-Grpd)),∀(B:D(∞-Grpd)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃡ₙ F = π⃡ₙ G)) → F = G, where π⃡ₙ is notation for π⃡ n.
-\item (The Whitehead theorem for based connected ∞-groupoids) ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n.
+\item (The Whitehead theorem for ∞-categories) ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G, where π⃗ₙ is notation for π⃗ n.
 \end{enumerate}
 
-We also maintain a fourth Whitehead theorem for Hilbert space:
-
+Here are a few comments on these theorems:
 \begin{enumerate}
-\item (The Whitehead theorem for Hilbert space) ∀(v:l₂),∀(w:l₂),∀(n:Nat),∀(a:πᵢ(v)),∀(b:πⱼ(v)), where πᵢ : l₂ ⭢ ℂ is notation for ⟨eᵢ,-⟩
+\item The first Whitehead theorem reflects the known one, which dates back to a paper that can be found in defined on Mathlib 4's homotopy groups, which make use of cubes Iⁿ and their boundaries ∂Iⁿ. There is also a fourth Whitehead theorem concerning ∞-Cat₀, but which is ommited; it is less general than the third while the first is present for its use of Mathlib 4's predefined πₙ's.
+\item The unicode symbol ⭢ (U+2B62) reflects a notation not present in Mathlib 4
+\item 
 \end{enumerate}
+
 
 \iffalse
-There is no base in the variations, and we instead consider an object with two bases when forming Ω⃗ and :
-({f : γ ⭢ A // T f t = T f s for each s, t}, {(f,g,x,y) : [γ,C] × [γ,C] × C × C // T f = (x,y), and T g = (x,y)})
+Note: ⭢ is here a notation 
 \fi
 
 These are stated in an order reversed from the order of its implementation. We have omitted in this project the proof that CW-complexes are compactly generated weak hausdorff topological spaces and that the category of compactly generated weak hausdorff topological spaces is cartesian closed with internal hom given by the compact-open topology. The compact-open topology will instead be covered in a future repository concerning geometric maps.\\
@@ -844,7 +845,6 @@ In the course of the repository we will need the directed path space, path space
 \item Ω⃗ : ∞-Cat ⭢ ∞-Cat sends \iffalse C to a [(Sⁿ⁻¹,Dⁿ),(C,C)]\fi
 \item Ω⃡ : ∞-Grpd ⭢ ∞-Grpd is ...
 \item Ω is the loop space functor
-\item 
 \end{enumerate}
 
 \iffalse
@@ -1512,14 +1512,17 @@ Globular sets are not a rich enough invariant for homotopy, but maps of globular
 
 \section{Globular Sets}
 
-\href{https://ncatlab.org/nlab/show/globular+set}{Globular sets} are functors from the globe category 𝔾 into the category of sets, and maps of globular sets are natural transformations between them.\\
+The globe category 𝔾 is the category
 
+\begin{center}
+\includegraphics[scale=0.5]{globecat.png}
+\end{center}
+
+\href{https://ncatlab.org/nlab/show/globular+set}{Globular sets} are functors from the opposite category of the globe category 𝔾 into the category of sets, and maps of globular sets are natural transformations between them.\\
 
 In this chapter we prove the following (which we have called Whitehead Theorem (c)): ∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G, where πₙ is notation for π n.\\
 
 This can be shown using CW-replacement and induction on n. Fibrant replacement of an object X entails replacing an object in ∞-Grpd₀ with a CW-object (an object made by successively glueing in higher and higher simplices along their boundaries obtaining a sequence Xₙ). Given an equality π${}_{n+1}(f) = $π${}_{n+1}(g)$ and a homotopy equivalence hₙ : Δ¹ × Xₙ ⭢ Y between $f|_{X_n}, g|_{X_n}$ : Xₙ ⭢ Y, we construct an extension of the homotopy equivalence Δ¹ × $X_{n+1}$ ⭢ Y.\\
-τ₀
-τ₁, τ₂,τ₃, τ₄
 
 \iffalse
 Can the attaching map be 
