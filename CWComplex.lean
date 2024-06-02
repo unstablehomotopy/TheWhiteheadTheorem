@@ -392,7 +392,7 @@ lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace 
     (hf: f ∘ sphereInclusion n = H ∘ (., 0)) :
     ⇑H = jarHomotopyExtension n f H hf ∘ Prod.map (sphereInclusion n) id := by
   ext ⟨⟨x, hx⟩, ⟨y, hy⟩⟩
-  let q := sphereInclusion n ⟨x, hx⟩
+  let q := (sphereInclusion n).toFun ⟨x, hx⟩
   change _ = jarHomotopyExtension n f H hf ⟨q, ⟨y, hy⟩⟩
   have hq : ⟨q, ⟨y, hy⟩⟩ ∈ jarClosedCover n 1 := by
     change ‖x‖ ≥ 1 - y / 2
@@ -403,10 +403,8 @@ lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace 
   simp only [jarProj, Fin.succ_zero_eq_one, Fin.cons_one, Fin.cons_zero, ContinuousMap.comp_apply]
   congr
   . dsimp only [jarRimProjFst, sphereInclusion, ContinuousMap.coe_mk, jarRimProjFstToFun, one_div, q]
-    congr
     rw [mem_sphere_zero_iff_norm.mp hx, div_one, one_smul]
   . dsimp only [sphereInclusion, q]
-    congr
     rw [mem_sphere_zero_iff_norm.mp hx, div_one, sub_add_cancel]
 
 def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X]
