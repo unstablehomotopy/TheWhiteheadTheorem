@@ -614,7 +614,6 @@ The Whitehead theorem for pairs & ... \\
   The $\texttt{P}$ and $\texttt{O}$ Functors & $\texttt{P = ? • O}$ \\
  \hline
  The $\texttt{p}$ and $\texttt{o}$ Functors & $\texttt{p = ? • o}$ \\
- \hline
 \hline \hline
 \multicolumn{2}{||c||}{\texttt{PART II: } Based Connected ∞-Categories} \\
 \hline \hline
@@ -665,7 +664,6 @@ The Whitehead theorem for pairs & ... \\
   The $\texttt{P}$ and $\texttt{O}$ Functors & $\texttt{P = ? • O}$ \\
  \hline
  The $\texttt{p}$ and $\texttt{o}$ Functors & $\texttt{p = ? • o}$ \\
- \hline
 \hline \hline
 \multicolumn{2}{||c||}{\texttt{PART III: } ∞-Groupoids} \\
 \hline \hline 
@@ -791,33 +789,26 @@ Besides this goal, we have two others. Here are the three Whitehead Theorems whi
 Here are a few comments on these theorems:
 \begin{enumerate}
 \item The first Whitehead theorem reflects the known one, which dates back to a paper that can be found in defined on Mathlib 4's homotopy groups, which make use of cubes Iⁿ and their boundaries ∂Iⁿ. There is also a fourth Whitehead theorem concerning ∞-Cat₀, but which is ommited; it is less general than the third while the first is present for its use of Mathlib 4's predefined πₙ's.
-\item The unicode symbol ⭢ (U+2B62) reflects a notation not present in Mathlib 4
-\item 
+\item The unicode symbol ⭢ (U+2B62) reflects a notation not present in Mathlib 4, and which we will make local or scoped.
+\item The three theorems above are stated in an order reversed from the order of their implementation.
 \end{enumerate}
-
-
-\iffalse
-Note: ⭢ is here a notation 
-\fi
-
-These are stated in an order reversed from the order of its implementation. We have omitted in this project the proof that CW-complexes are compactly generated weak hausdorff topological spaces and that the category of compactly generated weak hausdorff topological spaces is cartesian closed with internal hom given by the compact-open topology. The compact-open topology will instead be covered in a future repository concerning geometric maps.\\
 
 We will use two models of each of the following categories in the theorems above:
 
 \begin{enumerate}[(i)]
-\item We model ∞-Cat : Cat firstly as the category of categories enriched over a convenient category of topological spaces, and secondly as the category of quasicategories.
-\item We model ∞-Grpd : Cat firstly as a convenient category of topological spaces, and secondly as the category of Kan complexes.
-\item We model ∞-Grpd₀ : Cat firstly as the based connected objects of a convenient category of topological spaces, and secondly as the category of based connected Kan complexes.
+\item We model ∞-Cat : Cat firstly as the category of categories enriched over Mathlib 4's topological spaces, and secondly as the category of quasicategories.
+\item We model ∞-Grpd : Cat firstly as a Mathlib 4's topological spaces, and secondly as the category of Kan complexes.
+\item We model ∞-Grpd₀ : Cat firstly as the based connected objects using Mathlib 4's topological spaces, and secondly as the category of based connected Kan complexes.
 \end{enumerate}
 
-This choice accords with the standard approach to the third theorem, in which one typically chooses both a combinatorial and point-set model, with the former featuring a geometric realization functor into the latter ($\texttt{Mathlib}$ already has this).\\
+This choice accords with the standard approach to the third theorem, in which one typically chooses both a combinatorial and point-set model, with the former featuring a \href{https://github.com/leanprover-community/mathlib4/blob/8666bd82efec40b8b3a5abca02dc9b24bbdf2652/Mathlib/AlgebraicTopology/SimplicialSet.lean#L235-L236}{geometric realization functor} into the latter.\\
 
 We will make heavy use of $\texttt{Mathlib 4}$'s material on category theory, particularly their categories, functors, and natural transformations:
 
 \begin{enumerate}
-\item Categories (see Mathlib's $\texttt{Category X}$ here; these can be bundled into $\texttt{category}$)
-\item Functors (see Mathlib's $\texttt{Functor C D}$ here; these can be bundled into $\texttt{functor}$)
-\item Natural transformations (see Mathlib's $\texttt{NatTrans F G}$ here; these can be bundled into $\texttt{natural\_transform}$)
+\item Categories (see Mathlib's $\texttt{Category X}$)
+\item Functors (see Mathlib's $\texttt{Functor C D}$)
+\item Natural transformations (see Mathlib's $\texttt{NatTrans F G}$)
 \item Equations between natural transformations (see Mathlib's $\texttt{NatExt}$ here; these are related to our $\texttt{equation}$)
 \end{enumerate}
 
@@ -851,8 +842,11 @@ In the course of the repository we will need the directed path space, path space
 The choice of ∞-Cat\_(A) as a model is complementary to our discussion of operadic structures. In this 
 \fi
 
+We develop two models of (∞,1)-categories, one combinatorial in nature and another point-set in nature. 
 
-We develop two models of (∞,1)-categories, which we call model A⃗ and model B⃗. Model B⃗ features a deformation retraction γ⃗ ↔ γ⃗².\\
+\iffalse
+The latter, developed first, features a deformation retraction γ⃗ $\leftrightarrow$ γ⃗² between the directed unit interval and its cartesian product with itself.\\
+\fi
 
 The third theorem (c), is the one from Whitehead's original papers.\\
 
@@ -991,7 +985,7 @@ It may happen that a given object in the codomain of these six functors lies in 
 
 The functors above will be defined as certain homotopy colimits, themselves certain coequilizers. On the condition that an internal category is internally filtered and internally cofiltered, we can further construct the B⃗.\\
 
-We will make extensive use of Mathlib's \href{https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Category/Cat.html#CategoryTheory.Cat.bicategory}{bicategory of categories} and material on \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4//Mathlib/AlgebraicTopology/SimplicialSet.lean#L47-L48}{simplicial sets}. We further use Mathlib's pullbacks and \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Products/Basic.lean}{categorical products}, as well as their \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Monad/Algebra.lean}{Eilenberg-Moore theory constructions}. I'd like to extend my appreciation to Scott Morison, Eric Wieser, Floris Van Doorn, and all the contributors who have put their efforts into creating these robust features for Mathlib 4.\\
+We will make extensive use of Mathlib's \href{https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Category/Cat.html#CategoryTheory.Cat.bicategory}{bicategory of categories} and material on \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4//Mathlib/AlgebraicTopology/SimplicialSet.lean#L47-L48}{simplicial sets}. We further use Mathlib's pullbacks and \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Products/Basic.lean}{categorical products}, as well as their \href{https://github.com/leanprover-community/mathlib4/blob/bd3e369b6f82c874de0f318c71d7e0595f8a3aa4/Mathlib/CategoryTheory/Monad/Algebra.lean}{Eilenberg-Moore theory constructions}.\\
 
 Altogether, the project gets the following ``periodic table" of 30 functors featured on the front cover:\\
 
@@ -1415,14 +1409,21 @@ def pairwise {A : Type} {B : Type} (a₁ : A) (a₂ : A) (b₁ : B) (b₂ : B) (
 \end{tcolorbox}
 \end{center}
 
-The tutorial \href{https://leanprover.github.io/theorem_proving_in_lean4/}{here} provides a great introduction to using the dependent type theory in Lean.\\
+Here are some introductions to Lean 4 and Mathlib 4:
+
+\begin{enumerate}
+\item The tutorial \href{https://leanprover.github.io/theorem_proving_in_lean4/}{here} gives an introduction to using the dependent type theory in Lean.
+\item 
+\end{enumerate}
 
 
 \part{BASED CONNECTED ∞-GROUPOIDS}
 
+In this first section we prove the standard Whitehead theorem.\\
 
 
 \chapter{Chapter 1: ∞\texttt{-Grpd₀}}
+
 
 \noindent\textcolor{Red}{\rule{16cm}{1mm}}
 \begin{center}
@@ -1435,6 +1436,8 @@ The tutorial \href{https://leanprover.github.io/theorem_proving_in_lean4/}{here}
 \texttt{Writing Progress}
 \end{center}
 \noindent\textcolor{Red}{\rule{16cm}{1mm}}
+
+
 
 Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
 
