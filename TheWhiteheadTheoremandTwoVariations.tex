@@ -1236,6 +1236,61 @@ In this first section we prove the standard Whitehead theorem.\\
 \end{center}
 \noindent\textcolor{Red}{\rule{16cm}{1mm}}
 
+
+%LEAN: CWComplex
+\begin{center}
+\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
+\begin{minted}[breaklines, escapeinside=||||]{lean}
+
+/-- A relative CW-complex contains an expanding sequence of subspaces `sk i`
+(called the `i`-skeleta) for `i ≥ -1`, where `sk (-1)` is an arbitrary topological space,
+isomorphic to `A`, and each `sk (n+1)` is obtained from `sk n` by attaching (n+1)-disks. -/
+structure RelativeCWComplex (A : TopCat) where
+  /-- Skeleta -/
+  sk : ℤ → TopCat
+  /-- A is isomorphic to the (-1)-skeleton. -/
+  iso_sk_neg_one : A ≅ sk (-1)
+  /-- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-disks. -/
+  attach_cells : (n : ℤ) → CWComplex.AttachCells (sk n) (sk (n + 1)) n
+
+/-- A CW-complex is a relative CW-complex whose (-1)-skeleton is empty. -/
+abbrev CWComplex := RelativeCWComplex (TopCat.of Empty)
+
+\end{minted}
+\end{tcolorbox}
+\end{center}
+
+%LEAN: CWComplexCat (topology)
+\begin{center}
+\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
+\begin{minted}[breaklines, escapeinside=||||]{lean}
+
+/-- The topology on a relative CW-complex -/
+def toTopCat {A : TopCat} (X : RelativeCWComplex A) : TopCat :=
+  Limits.colimit (colimitDiagram X)
+
+instance : Coe CWComplex TopCat where coe X := toTopCat X
+
+\end{minted}
+\end{tcolorbox}
+\end{center}
+
+
+%LEAN: CWComplexCat (category of CW complexes)
+\begin{center}
+\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
+\begin{minted}[breaklines, escapeinside=||||]{lean}
+
+def IsCWComplex (X : TopCat) : Prop := ∃ Y : CWComplex, Nonempty (↑Y ≅ X)
+
+def CWComplexCat := FullSubcategory IsCWComplex
+
+\end{minted}
+\end{tcolorbox}
+\end{center}
+
+
+
 \noindent\textcolor{Red}{\rule{16cm}{1mm}}
 \begin{center}
 \texttt{Writing Progress}
