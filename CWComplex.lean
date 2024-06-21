@@ -418,3 +418,12 @@ theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (sphereInclusi
     jarHomotopyExtension_wall_commutes n f H hf⟩
 
 end HEP
+
+end CWComplex
+
+
+def IsCWComplex (X : TopCat) : Prop := ∃ Y : CWComplex, Nonempty (↑Y ≅ X)
+
+def CWComplexCat := FullSubcategory IsCWComplex
+
+#check [Category CWComplexCat]
