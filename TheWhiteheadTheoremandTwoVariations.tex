@@ -1828,7 +1828,7 @@ After defining the category of internal categories D(Γ), we proceed to observe 
 \end{center}
 }
 
-\section{\texttt{InternalGroupoid Γ}}
+\section{\texttt{Internal Groupoids}}
 
 In this chapter I define an \href{https://ncatlab.org/nlab/show/internal+category}{internal category}. Internal categories are most commonly defined on categories with enough pullbacks, but here I may also like to keep in mind that it is valuable to be able to iterate $\texttt{InternalGroupoid}$ in the way of composition.\\
 
@@ -2090,10 +2090,10 @@ Next we approach the internal category principal and internal presheaf principal
 
 
 
-\section{Operadic Groupoid}
+\section{Operadic Groupoids}
 
 
-\section{Operadic Groupoid Action}
+\section{Operadic Groupoid Actions}
 
 
 
@@ -2353,9 +2353,55 @@ Algebras for the little rays operad
 Algebras for the little lines operad
 \fi
 
-\section{\texttt{InternalCategory Γ}}
+\section{\texttt{Internal Categories}}
 
-In this chapter I define an \href{https://ncatlab.org/nlab/show/internal+category}{internal category}. Internal categories are most commonly defined on categories with enough pullbacks, but here I may also like to keep in mind that it is valuable to be able to iterate $\texttt{InternalCategory}$ in the way of composition.\\
+In this section I define an \href{https://ncatlab.org/nlab/show/internal+category}{internal category}, which structure plays a central role in \href{https://github.com/linlib/TheWhiteheadTheoremandTwoVariations/blob/main/Galois%20Theories%20Chapter%207%20(Janelidze%20and%20Borceux).pdf}{$\textit{Galois Theories}$} by Janelidze and Borceux.\\
+
+Recall that, for a category C, with objects X${}_1$, X${}_2$, Y : C and morphisms $f_1$ : C.Hom X${}_1$ Y and $f_2$ : C.Hom X${}_2$ Y a pullback consists of:
+
+\begin{definition}[Pullback] 
+\begin{enumerate}
+\item An object $\texttt{(pullback f_1 f_2).Obj : C}$
+\item A morphism $\texttt{Pr}_1$ $\texttt{C.Hom (pullback f_1 f_2).Obj X}$${}_1$ 
+\item A morphism $\texttt{Pr}_2$ $\texttt{C.Hom (pullback f_1 f_2).Obj X}$${}_2$ 
+\item An equality $\texttt{Eqn :} \texttt{Pr}_1 \texttt{f}_1 = \texttt{Pr}_2 \texttt{f}_2$
+\item A  of type 
+\end{enumerate}
+such that, for each object $\texttt{X : C}$ and each pair of morphisms $\texttt{g}_1 : C.Hom X X_1$, $\texttt{g}_1 : C.Hom X X_2$ such that $\texttt{f}_1 • \texttt{g}_1 = \texttt{f}_2 • \texttt{g}_2$, there is a unique $\texttt{h : C.Hom X (pullback f g).Obj}$ such that:
+\begin{enumerate}
+\item 
+\item
+\end{enumerate}
+\end{enumerate}
+
+In $\texttt{Categories and Hilbert Spaces}$, this was implemented as :
+
+
+
+Let C be a category. An internal category ℂ consists of:
+
+\begin{definition}[Internal Category] 
+\begin{enumerate}
+\item An object $\texttt{ℂ.Obj : ℂ}$
+\item An object $\texttt{ℂ.Mor : ℂ}$ 
+\item A morphism $\texttt{ℂ.Cod : C.Hom ℂ.Mor ℂ.Obj}$
+\item A morphism $\texttt{ℂ.Dom : C.Hom ℂ.Mor ℂ.Obj}$
+\item A morphism $\texttt{ℂ.Idn : C.Hom ℂ.Obj ℂ.Mor}$
+\item A term $\texttt{X : (pullback ℂ.Dom ℂ.Cod)}$
+\item A morphism $\texttt{ℂ.Mul : C.Hom X.Obj ℂ.Mul}$
+\end{enumerate}
+such that, writing $\texttt{g ∘\_(C) f}$ for $\texttt{C.Cmp X Y Z f g}$ and $\texttt{𝟙\_(X)}$ for $\texttt{C.Idn X}$,
+\begin{enumerate}
+\item $\texttt{∀(X:Obj),∀(Y:Obj),∀(f:Hom X Y),}$
+\[\texttt{f ∘\_(C) (Idn X)\ =\ f}\]
+\item $\texttt{∀(X:Obj),∀(Y:Obj),∀(f:Hom X Y),}$
+\[\texttt{(Idn X) ∘\_(C) f\ =\ f}\]
+\item $\texttt{∀(W:Obj),∀(X:Obj),∀(Y:Obj),∀(Z:Obj),}$ $\texttt{∀(f:Hom W X),}$ $\texttt{∀(g:Hom X Y),}$\\ $\texttt{∀(h:Hom Y Z),}$
+\[\texttt{ f ∘\_(C) (g ∘\_(C) h) = (f ∘\_(C) g) ∘\_(C) h} \]
+\end{enumerate}
+\end{definition}
+
+Discounting those entries of the internal category structure which assume the existence of pullbacks, an internal category has 13 entries. Internal categories are often defined on categories with $\textit{all pullbacks}$, but here we take an approach in which $\texttt{InternalCategory}$ has type $\texttt{Cat → Cat}$, so that it can be iterated. This entails separate entries assuming the existence of particular pullbacks.\\
 
 %LEAN: definition of an internal category in a pullback system
 \begin{center}
@@ -2487,131 +2533,34 @@ def InternalCategory (Γ : pulback_system) : 𝐂𝐚𝐭.Obj := {Obj := interna
 \end{tcolorbox}
 \end{center}
 
-\section{\texttt{InternalPresheaf Γ C}}
+\section{\texttt{Internal Presheaves}}
 
-The mentioned book $\textit{Galois Theories}$ by Janelidze and Borceux features a definition of internal presheaves for an internal groupoid in chapter 7 which makes a good reference for the present discussion.\\
+An internal presheaf consists of:
 
-%LEAN: internal C-presheaves
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
+\iffalse
+\begin{definition}[Internal Presheaf]
+  \begin{enumerate}
+  \item A class $\texttt{C.Obj}$ of objects
+  \item For each pair of objects $\texttt{X,Y:Obj}$, a class 
+  \[ \texttt{C.Hom X,Y} \] 
+  whose elements are called maps or morphisms. 
+  \item For each object $\texttt{X}$, a morphism 
+  \[ \texttt{C.Idn X} \]
+  \item For each triple of objects $\texttt{X, Y, Z : Obj}$, a function 
+  \[ \texttt{C.Cmp X Y Z : (C.Hom X Y) → (C.Hom Y Z) → (C.Hom X Z)} \]
+  \end{enumerate}
+  such that, writing $\texttt{g ∘\_(C) f}$ for $\texttt{C.Cmp X Y Z f g}$ and $\texttt{𝟙\_(X)}$ for $\texttt{C.Idn X}$,
+  \begin{enumerate}
+  \item $\texttt{∀(X:Obj),∀(Y:Obj),∀(f:Hom X Y),}$
+  \[\texttt{f ∘\_(C) (Idn X)\ =\ f}\]
+  \item $\texttt{∀(X:Obj),∀(Y:Obj),∀(f:Hom X Y),}$
+  \[\texttt{(Idn X) ∘\_(C) f\ =\ f}\]
+  \item $\texttt{∀(W:Obj),∀(X:Obj),∀(Y:Obj),∀(Z:Obj),}$ $\texttt{∀(f:Hom W X),}$ $\texttt{∀(g:Hom X Y),}$\\ $\texttt{∀(h:Hom Y Z),}$
+  \[\texttt{ f ∘\_(C) (g ∘\_(C) h) = (f ∘\_(C) g) ∘\_(C) h} \]
+  \end{enumerate}
+  \end{definition}
+\fi
 
--- internal C-presheaves
--- def internal_presheaf (C : (InternalCategory C).Obj) : Type := sorry
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: defining an internal functor between internal C-presheaves
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- defining an internal functor between internal C-presheaves
-/-
-def Shfhom (C : (InternalCategory Γ).Obj) (F : internal_presheaf Γ C) (G : internal_presheaf Γ C) : Type := sorry
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: defining the identity internal functor of an internal C-sheaf
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- defining the identity internal functor of an internal C-sheaf
-/-
-def Shfidn (Γ : pullback_system) (C : (InternalCategory Γ).Obj) (F : internal_presheaf Γ C) : ShfHom Γ C F F := sorry
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: defining the composition of internal functors
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- defining the composition of internal functors
-def Shfcmp (Γ : pullback_system) (C : (InternalCategory Γ).Obj) (F : internal_presheaf Γ C) (G : internal_presheaf Γ C) (H : internal_presheaf Γ C) (f : ShfHom Γ C F G)  (g : ShfHom Γ C G H) : ShfHom Γ C F H := sorry
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: proving the first identity law for internal functors
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- proving the first identity law for internal functors
-/-
-def Shf... (Γ : pullback_system) (C : (InternalCategory Γ).Obj) (X : internal_presheaf Γ C) (Y : internal_presheaf Γ C) (f : ShfHom Γ C X Y) : ((ShfCmp Γ C X Y Y f (ShfIdn Γ C Y)) = f) := sorry
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: proving the second identity law for internal functors
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- proving the second identity law for internal functors
-/-
-def ShfId₂ (Γ : pullback_system) (C : (InternalCategory Γ).Obj) (X : internal_presheaf Γ C) (Y : internal_presheaf Γ C) (f : ShfHom Γ C X Y) : ((ShfCmp Γ C X X Y (ShfIdn Γ C X) f) = f) := sorry
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: proving the associativity law for internal functors
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
--- proving the associativity law for internal functors
-/-
-def ShfAss (Γ : pullback_system) (C : (InternalCategory Γ).Obj) (W : internal_presheaf Γ C) (X : internal_presheaf Γ C) (Y : internal_presheaf Γ C) (Z : internal_presheaf Γ C) (f : ShfHom Γ C W X) (g : ShfHom Γ C X Y) (h : ShfHom Γ C Y Z) : (ShfCmp Γ C) W X Z f ((ShfCmp Γ C) X Y Z g h) = (ShfCmp Γ C) W Y Z ((ShfCmp Γ C) W X Y f g) h := sorry
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-/-
-def InternalPresheaf (Γ : pullback_system) (C : (InternalCategory Γ).Obj) : 𝐂𝐚𝐭.Obj := {Obj := internal_presheaf Γ C, Hom := ShfHom Γ C, Idn := ShfIdn Γ C, Cmp := ShfCmp Γ C, Id₁ := ShfId₁ Γ C, Id₂ := ShfId₂ Γ C, Ass := ShfAss Γ C}
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-/-
-notation : 2000 "Shf_(" Γ ")" => InternalPresheaf Γ
--/
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-Next we approach the internal category principal and internal presheaf principals, which concern how (directed) homotopy pullback can produce internal categories and internal presheaves.\\
 
 
 \section{The P⃗ and O⃗ Functors}
