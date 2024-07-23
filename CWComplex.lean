@@ -130,7 +130,7 @@ def colimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
       if hnm : n = m then by
         unfold skeletaInclusion'
         subst hnm
-        simp only [eq_mpr_eq_cast, ↓reduceDite, cast_eq, Category.id_comp]
+        simp only [↓reduceDIte, Category.id_comp]
       else by
         have h1 : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, hnm⟩
         have h2 : n < l := by linarith
@@ -138,13 +138,13 @@ def colimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
         simp [hnm, Int.ne_of_lt h2]
         by_cases hml : m = l
         · subst hml
-          simp only [↓reduceDite, Category.comp_id]
+          simp only [↓reduceDIte, Category.comp_id]
         congr
         rw [p (n + 1) m l h1 m_le_l h2]
         congr
-        simp only [hml, ↓reduceDite]
+        simp only [hml, ↓reduceDIte]
         conv => lhs; unfold skeletaInclusion'
-        simp only [hml, ↓reduceDite]
+        simp only [hml, ↓reduceDIte]
       termination_by Int.toNat (l - n)
       decreasing_by
         simp_wf
@@ -283,9 +283,9 @@ noncomputable def jarRimProjSndToFun (n : ℤ) : jarRim n → I := fun p ↦ {
     have : ‖x‖ > 0 := by linarith
     constructor
     all_goals rw [← add_le_add_iff_right (-2)]
-    . rw [← neg_le_neg_iff, add_neg_cancel_right, zero_add, neg_neg]
+    · rw [← neg_le_neg_iff, add_neg_cancel_right, zero_add, neg_neg]
       rw [← neg_div, neg_sub, div_le_iff (by assumption)]; linarith
-    . rw [add_assoc, add_right_neg, add_zero, div_le_iff (by assumption)]; linarith}
+    · rw [add_assoc, add_right_neg, add_zero, div_le_iff (by assumption)]; linarith}
 
 lemma continuous_jarRimProjSndToFun (n : ℤ) : Continuous (jarRimProjSndToFun n) := by
   refine Continuous.subtype_mk ?_ _
@@ -308,7 +308,7 @@ noncomputable def jarProj (n : ℤ) {Y : Type} [TopologicalSpace Y]
 
 lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
     (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
-    (hf: f ∘ sphereInclusion n = H ∘ (., 0)) :
+    (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ∀ (p : Jar n) (hp0 : p ∈ jarClosedCover n 0) (hp1 : p ∈ jarClosedCover n 1),
     jarProj n f H 0 ⟨p, hp0⟩ = jarProj n f H 1 ⟨p, hp1⟩ :=
   fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
@@ -322,37 +322,38 @@ lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
       rw [this, abs_of_pos (by linarith), div_mul_eq_mul_div, div_eq_iff (by linarith)]
       rw [mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul, one_mul] ⟩
     conv in jarMidProj n _ => equals sphereInclusion n q =>
-      unfold sphereInclusion
-      conv => rhs; dsimp only [Int.ofNat_eq_coe, TopCat.coe_of]
+      unfold sphereInclusion jarMidProj jarMidProjToFun
+      simp only [Fin.isValue, ContinuousMap.coe_mk]
+      rw [← ContinuousMap.toFun_eq_coe]
     conv in jarRimProj n _ => equals (q, 0) =>
       unfold jarRimProj jarRimProjFst jarRimProjFstToFun jarRimProjSnd jarRimProjSndToFun
       dsimp only [Int.ofNat_eq_coe, ContinuousMap.prod_eval, ContinuousMap.coe_mk]
       conv => rhs; change (q, ⟨0, by norm_num, by norm_num⟩)
       congr 2
-      . congr 1
+      · congr 1
         rw [this, div_eq_div_iff (by linarith) (by linarith)]
         rw [one_mul, mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul]
-      . rw [this, ← eq_sub_iff_add_eq, zero_sub, div_eq_iff (by linarith), mul_sub, mul_one]
+      · rw [this, ← eq_sub_iff_add_eq, zero_sub, div_eq_iff (by linarith), mul_sub, mul_one]
         rw [mul_div, mul_div_right_comm, neg_div_self (by norm_num), ← neg_eq_neg_one_mul]
         rw [sub_neg_eq_add, add_comm]; rfl
-    change (f ∘ sphereInclusion n) q = (H ∘ (., 0)) q
+    change (f ∘ sphereInclusion n) q = (H ∘ (·, 0)) q
     rw [hf]
 
 lemma jarProj_compatible' (n : ℤ) {Y : Type} [TopologicalSpace Y]
     (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
-    (hf: f ∘ sphereInclusion n = H ∘ (., 0)) :
+    (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ∀ (i j) (p : Jar n) (hpi : p ∈ jarClosedCover n i) (hpj : p ∈ jarClosedCover n j),
     jarProj n f H i ⟨p, hpi⟩ = jarProj n f H j ⟨p, hpj⟩ := by
   intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
   interval_cases i <;> (interval_cases j <;> (try simp only [Fin.zero_eta, Fin.mk_one]))
-  . exact jarProj_compatible n f H hf p hpi hpj
-  . exact Eq.symm <| jarProj_compatible n f H hf p hpj hpi
+  · exact jarProj_compatible n f H hf p hpi hpj
+  · exact Eq.symm <| jarProj_compatible n f H hf p hpj hpi
 
 lemma jarClosedCover_is_cover (n : ℤ) : ∀ (p : Jar n), ∃ i, p ∈ jarClosedCover n i :=
   fun ⟨⟨x, _⟩, ⟨y, _⟩⟩ ↦ by
     by_cases h : ‖x‖ ≤ 1 - y / 2
-    . use 0; exact h
-    . use 1; change ‖x‖ ≥ 1 - y / 2; linarith
+    · use 0; exact h
+    · use 1; change ‖x‖ ≥ 1 - y / 2; linarith
 
 lemma jarClosedCover_isClosed (n : ℤ) : ∀ i, IsClosed (jarClosedCover n i) := fun ⟨i, hi⟩ ↦ by
   interval_cases i
@@ -361,15 +362,15 @@ lemma jarClosedCover_isClosed (n : ℤ) : ∀ i, IsClosed (jarClosedCover n i) :
 
 noncomputable def jarHomotopyExtension (n : ℤ) {Y : Type} [TopologicalSpace Y]
     (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
-    (hf: f ∘ sphereInclusion n = H ∘ (., 0)) : C((Jar n), Y) :=
+    (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) : C((Jar n), Y) :=
   liftCoverClosed (jarClosedCover n) (jarProj n f H) (jarProj_compatible' n f H hf)
     (jarClosedCover_is_cover n) (jarClosedCover_isClosed n)
 
 -- The triangle involving the bottom (i.e., `𝔻 n + 1`) of the jar commutes.
 lemma jarHomotopyExtension_bottom_commutes (n : ℤ) {Y : Type} [TopologicalSpace Y]
     (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
-    (hf: f ∘ sphereInclusion n = H ∘ (., 0)) :
-    ⇑f = jarHomotopyExtension n f H hf ∘ (., 0) := by
+    (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
+    ⇑f = jarHomotopyExtension n f H hf ∘ (·, 0) := by
   ext p
   change _ = jarHomotopyExtension n f H hf (p, 0)
   have hp : (p, 0) ∈ jarClosedCover n 0 := by
@@ -389,7 +390,7 @@ lemma jarHomotopyExtension_bottom_commutes (n : ℤ) {Y : Type} [TopologicalSpac
 -- The triangle involving the wall (i.e., `𝕊 n × I`) of the jar commutes.
 lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace Y]
     (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
-    (hf: f ∘ sphereInclusion n = H ∘ (., 0)) :
+    (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ⇑H = jarHomotopyExtension n f H hf ∘ Prod.map (sphereInclusion n) id := by
   ext ⟨⟨x, hx⟩, ⟨y, hy⟩⟩
   let q := (sphereInclusion n).toFun ⟨x, hx⟩
@@ -402,15 +403,15 @@ lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace 
   conv_rhs => equals (jarProj n f H 1) ⟨⟨q, ⟨y, hy⟩⟩, hq⟩ => apply liftCoverClosed_coe'
   simp only [jarProj, Fin.succ_zero_eq_one, Fin.cons_one, Fin.cons_zero, ContinuousMap.comp_apply]
   congr
-  . dsimp only [jarRimProjFst, sphereInclusion, ContinuousMap.coe_mk, jarRimProjFstToFun, one_div, q]
+  · dsimp only [jarRimProjFst, sphereInclusion, ContinuousMap.coe_mk, jarRimProjFstToFun, one_div, q]
     rw [mem_sphere_zero_iff_norm.mp hx, div_one, one_smul]
-  . dsimp only [sphereInclusion, q]
+  · dsimp only [sphereInclusion, q]
     rw [mem_sphere_zero_iff_norm.mp hx, div_one, sub_add_cancel]
 
 def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X]
     (i : C(A, X)) : Prop :=
-  ∀ {Y : Type} [TopologicalSpace Y] (f : C(X, Y)) (H : C(A × I, Y)), f ∘ i = H ∘ (., 0) →
-  ∃ H' : C(X × I, Y), ⇑f = ⇑H' ∘ (., 0) ∧ ⇑H = ⇑H' ∘ Prod.map i id
+  ∀ {Y : Type} [TopologicalSpace Y] (f : C(X, Y)) (H : C(A × I, Y)), f ∘ i = H ∘ (·, 0) →
+  ∃ H' : C(X × I, Y), ⇑f = ⇑H' ∘ (·, 0) ∧ ⇑H = ⇑H' ∘ Prod.map i id
 
 theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (sphereInclusion n) :=
   fun f H hf ↦ ⟨jarHomotopyExtension n f H hf,
