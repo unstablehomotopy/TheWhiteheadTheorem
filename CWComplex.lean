@@ -422,6 +422,7 @@ end HEP
 
 end CWComplex
 
+-----------------------------------------------------------------
 
 def IsCWComplex (X : TopCat) : Prop := ∃ Y : CWComplex, Nonempty (↑Y ≅ X)
 
