@@ -1,9 +1,14 @@
+-- import LeanCopilot
+
 import Mathlib.CategoryTheory.Square
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Square
 import Mathlib.CategoryTheory.MorphismProperty.Factorization
 import Mathlib.CategoryTheory.SmallObject.Construction
 
 -----------------------------------------------------------------
+
+-- example (a b c : Nat) : a + b + c = a + c + b := by
+--   suggest_tactics "rw"
 
 open CategoryTheory
 
