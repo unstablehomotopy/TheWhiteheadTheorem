@@ -3,6 +3,11 @@ open Lake DSL
 
 package «threeWhiteheadTheoremsandThreePuppeSequences» {
   -- add any package configuration options here
+
+    moreLinkArgs := #[
+    "-L./.lake/packages/LeanCopilot/.lake/build/lib", -- LeanCopilot
+    "-lctranslate2"                                   -- LeanCopilot
+  ]
 }
 
 require mathlib from git
@@ -11,7 +16,10 @@ require mathlib from git
 require batteries from git
   "https://github.com/leanprover-community/batteries" @ "main"
 
+require LeanCopilot from git  -- LeanCopilot
+  "https://github.com/lean-dojo/LeanCopilot.git" @ "v1.4.1"
+
 @[default_target]
-lean_lib «ThreeWhiteheadTheoremsandThreePuppeSequences» {
+lean_lib «CWComplex» {
   -- add any library configuration options here
 }
