@@ -36,7 +36,7 @@ Here are the packages that I use
 \newunicodechar{∂}{$\partial$}
 \newunicodechar{∇}{\raisebox{-0.05cm}{$\nabla$}}
 
-%\newunicodechar{π⃗}{$\stackrel{\arr}{\pi}$}
+%\newunicodechar{Π⃗}{$\stackrel{\arr}{\pi}$}
 
 \newunicodechar{×}{$\times$}
 \newunicodechar{→}{$\rightarrow$}
@@ -455,9 +455,9 @@ Here are the packages that I use
 \begin{center}
 \begin{tcolorbox}[width=6in,colback={white}]
 \begin{center}
-\scalebox{0.85}{∀(C:D(∞-Cat)),∀(D:D(∞-Cat)),∀(F:D(∞-Cat).Hom C D),∀(G:D(∞-Cat).Hom C D),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G}\\
+\scalebox{0.85}{∀(C:D(∞-Cat)),∀(D:D(∞-Cat)),∀(F:D(∞-Cat).Hom C D),∀(G:D(∞-Cat).Hom C D),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) → F = G}\\
 \ \\
-\scalebox{0.85}{∀(X:D(∞-Grpd)),∀(Y:D(∞-Grpd)),∀(f:D(∞-Grpd).Hom X Y),∀(g:D(∞-Grpd).Hom X Y),(∀(n:Nat),(π⃡ₙ f = π⃡ₙ g)) → f = g}\\
+\scalebox{0.85}{∀(X:D(∞-Grpd)),∀(Y:D(∞-Grpd)),∀(f:D(∞-Grpd).Hom X Y),∀(g:D(∞-Grpd).Hom X Y),(∀(n:Nat),(Πₙ f = Πₙ g)) → f = g}\\
 \ \\
 \scalebox{0.85}{∀(X:D(∞-Grpd₋₁)),∀(Y:D(∞-Grpd₋₁)),∀(f:D(∞-Grpd₋₁).Hom X Y),∀(g:D(∞-Grpd₋₁).Hom X Y),(∀(n:Nat),(πₙ f = πₙ g)) → f = g}\\
 \end{center}
@@ -612,7 +612,7 @@ D(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
 \hline 
 σ⃡ f : ∞-Grpd/C ⭢ ∞-Grpd/D & Homotopy pushout with a point \\
  \hline 
-π⃡ₙ : ∞-Grpd ⭢ Set & The connected components functors\\
+Πₙ : ∞-Grpd ⭢ Set & The connected components functors\\
  \hline \hline
  \multicolumn{2}{||c||}{\texttt{Chapter 5: }The Whitehead Theorem for ∞-Groupoids} \\
 \hline \hline
@@ -622,7 +622,7 @@ REP for ∞-groupoids & The cofibrant replacement functor for ∞-groupoids\\
 \hline
 HEP for ∞-groupoids & The homotopy extension property\\
 \hline
-Whitehead theorem (b) & A map $\texttt{F : D(}$∞$\texttt{-Grpd).Hom E B}$ is determined by $\texttt{λ(n:Nat),}$π⃡ₙ
+Whitehead theorem (b) & A map $\texttt{F : D(}$∞$\texttt{-Grpd).Hom E B}$ is determined by $\texttt{λ(n:Nat),}$Πₙ
 $\texttt{F}$. \\
 \hline \hline
 \multicolumn{2}{||c||}{\texttt{Chapter 6: }The Category of Maps of ∞-Groupoids} \\
@@ -651,7 +651,7 @@ D(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
 \hline 
 σ⃡ f : ∞-Grpd/C ⭢ ∞-Grpd/D & Homotopy pushout with a point \\
  \hline 
-π⃡ₙ : ∞-Grpd ⭢ Set & The connected components functors\\
+Πₙ : ∞-Grpd ⭢ Set & The connected components functors\\
  \hline \hline
  \multicolumn{2}{||c||}{\texttt{Chapter 5: }The Whitehead Theorem for ∞-Groupoids} \\
 \hline \hline
@@ -661,7 +661,7 @@ REP for ∞-groupoids & The cofibrant replacement functor for ∞-groupoids\\
 \hline
 HEP for ∞-groupoids & The homotopy extension property\\
 \hline
-Whitehead theorem (b) & A map $\texttt{F : D(}$∞$\texttt{-Grpd).Hom E B}$ is determined by $\texttt{λ(n:Nat),}$π⃡ₙ
+Whitehead theorem (b) & A map $\texttt{F : D(}$∞$\texttt{-Grpd).Hom E B}$ is determined by $\texttt{λ(n:Nat),}$Πₙ
 $\texttt{F}$. \\
 \hline \hline
 \multicolumn{2}{||c||}{\texttt{Chapter 6: }The Category of Maps of ∞-Groupoids} \\
@@ -690,7 +690,7 @@ D(∞-Cat⁄C) & The derived category of ∞-categories over C \\
  \hline 
  σ⃗ f : ∞-Cat/C ⭢ ∞-Cat/D & The directed homotopy pushout \\
  \hline 
-π⃗ₙ : ∞-Cat ⭢ Set & The connected components functors\\
+Π⃗ₙ : ∞-Cat ⭢ Set & The connected components functors\\
  \hline \hline
  \multicolumn{2}{||c||}{\texttt{Chapter 8: }The Whitehead Theorem for ∞-Categories} \\
 \hline \hline
@@ -700,7 +700,7 @@ REP for ∞-categories & The cofibrant replacement functor for ∞-categories\\
 \hline
 HEP for ∞-categories & The directed homotopy extension property\\
 \hline 
-Whitehead theorem (a) & A map $\texttt{F : D(}$∞$\texttt{-Cat).Hom E B)}$ is determined by $\texttt{λ(n:Nat),}$π⃗ₙ$\texttt{F}$.\\
+Whitehead theorem (a) & A map $\texttt{F : D(}$∞$\texttt{-Cat).Hom E B)}$ is determined by $\texttt{λ(n:Nat),}$Π⃗ₙ$\texttt{F}$.\\
 \hline \hline
 \multicolumn{2}{||c||}{\texttt{Chapter 9: }The Category of Maps of ∞-Categories} \\
 \hline \hline
@@ -718,6 +718,234 @@ The Whitehead theorem for Maps of ∞-groupoids & ... \\
 \hline \hline
  & \\
 \hline \hline
+\multicolumn{2}{||c||}{\texttt{PART I: } ∞-SPACES} \\
+\hline \hline
+ \multicolumn{2}{||c||}{\texttt{Chapter 1: }Abelian Groups} \\
+\hline \hline
+abeliangroup & The type of abelian groups \\
+\hline
+Maps of abelian groups & Constructing homomorphisms of abelian groups \\
+\hline
+Negation & \\
+\hline
+The Eckman-Hilton Argument & \\
+\hline
+AbelianGroup ⭢ Group & The forgetful functor from abelian groups to groups \\
+\hline
+Eilenberg-Maclane Spaces & \\
+\hline
+Chain Complexes & \\
+\hline
+Realization of Chain Complexes & \\
+\hline
+Tensor Product of Chain Complexes & \\
+\hline \hline
+ \multicolumn{2}{||c||}{\texttt{Chapter 2: }∞-Spaces} \\
+\hline \hline
+∞-space & The type of ∞-spaces \\
+\hline
+Maps of ∞-spaces & Constructing maps of ∞-spaces \\
+\hline
+Negation & \\
+\hline
+The Eckman-Hilton Argument & \\
+\hline
+OperadicGroup OperadicGroup ∞-Grpd₋₁ ⭢ OperadicGroup ∞-Grpd₋₁ & \\
+\hline
+B¹ and Bⁿ & \\
+\hline
+[E⃗.obj ℕ, -] & Internal Complexes \\
+\hline
+Realization of Chain Complexes & \\
+\hline
+Tensor Product of Chain Complexes & \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 3: }Tensor Product of Abelian Groups} \\
+\hline \hline
+- ⊗\_(AbelianGroups) - & Mathlib's tensor product of abelian groups \\
+\hline
+[-,-]\_(AbelianGroups) & Mathlib's hom of abelian groups\\
+\hline
+AbelianGroup & The symmetric monoidal category of abelian groups\\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 4: }Tensor Product of ∞-Spaces} \\
+\hline \hline
+- ⊗\_(∞-Space) - &  \\
+\hline
+[-,-]\_(∞-Space) &  \\
+\hline
+∞-Space & The symmetric monoidal category of ∞-spaces \\
+\hline \hline
+ \multicolumn{2}{||c||}{\texttt{Chapter 5: }Set₋₁ ⇄ AbelianGroups} \\
+\hline \hline
+??? & The free abelian group functor \\
+ \hline
+??? & The forgetful functor from abelian groups to pointed sets \\
+ \hline
+??? : Set₋₁ ⇄ AbelianGroup : ??? & The adjunction between pointed sets and abelian groups \\
+\hline \hline
+ \multicolumn{2}{||c||}{\texttt{Chapter 6: }∞-Grpd₋₁ ⇄ ∞-Space} \\
+\hline \hline
+??? & The free ∞-space given a based ∞-groupoid \\
+\hline
+??? & The forgetul functor from ∞-spaces to ∞-groupoids \\
+\hline
+??? : ∞-Grpd₋₁ ⇄ ∞-Space : ??? & The ??? between ∞-Grpd₋₁ and ∞-Spaces \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{PART II: } RINGS, COMMUTATIVE RINGS, A${}^{\infty}$-RINGS, AND E${}^{\infty}$-RINGS} \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 7: }Rings and Commutative Rings} \\
+\hline \hline
+ring & The type of rings \\
+ \hline
+Ring & The category of rings \\
+\hline
+commutative\_ring & The type of commutative rings  \\
+\hline
+CommutativeRing & The category of commutative rings \\
+ \hline \hline
+  \multicolumn{2}{||c||}{\texttt{Chapter 8: }A${}^{\infty}$-Rings and E${}^{\infty}$-Rings} \\
+\hline \hline
+A${}^{\infty}$-ring & The type of A${}^{\infty}$-rings \\
+\hline
+A${}^{\infty}$-Ring & The category of A${}^{\infty}$-Rings \\
+ \hline
+E${}^{\infty}$-ring  & The type of E${}^{\infty}$-rings \\
+ \hline
+E${}^{\infty}$-Ring  & The category of E${}^{\infty}$-Rings \\
+ \hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 9: }Modules and Modules over Commutative Rings} \\
+\hline \hline
+ &  \\
+ \hline
+ &  \\
+ \hline
+InternalMonoidAction (InternalMonoid C) ≅ InternalMonoid (InteralMonoidAction C) & The ??? theorem \\ 
+\hline
+CommutativeAlgebra : CommutativeRing → Cat & The category of commutative algebras \\
+\hline
+Maps (Algebra A) : Cat & The category of maps of commutative A-algebras \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 10: }A${}^{\infty}$-Modules and E${}^{\infty}$-Modules} \\
+\hline \hline
+ &  \\
+\hline
+ &  \\
+\hline
+$A{}^{\infty}$-RingAction ($A{}^{\infty}$-Ring C) ≅ $A{}^{\infty}$-Ring ($A{}^{\infty}$-RingAction C) & The ??? theorem \\ 
+\hline
+Maps A${}^{\infty}$-Algebras & \\
+ \hline \hline
+\multicolumn{2}{||c||}{\texttt{PART III: } DERIVATIONS AND CONNECTIONS} \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 11: }Lie Algebras} \\
+\hline \hline
+lie\_algebra & The type of Lie-algebras \\
+\hline
+LieAlgebra & The category of Lie-algebras \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 12: }Derivations} \\
+\hline \hline
+InternalAbelianGroup (Maps (Algebra A)) ≅ MonoidActionObject A & ??? \\
+\hline
+??? : (Maps (Algebra A)) ⇄ InternalAbelianGroup (Maps (Algebra A)) : ??? & The free abelian group functor for (Maps (Algebra A)) \\
+\hline
+Λ : ??? ⇄ ??? : FstDeg & \\ 
+\hline
+??? : (Algebra A) ⇄ [E⃗.obj ℕ, (Algebra A)] : ??? & The free DGA functor \\
+\hline 
+derivation & Definition of a derivation \\
+\hline
+Der : () ⇄ (InternalMonoidAction A) : ??? & A derivation is a primitive element \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 13: }L${}^{\infty}$ Algebras} \\
+\hline \hline
+Lⁱⁿᶠ\_algebra & The type of L${}^{\infty}$-algebras  \\
+\hline
+L${}^{\infty}$Algebra &  \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 14: }∞-Derivations} \\
+\hline \hline
+OperadicAbelianGroup (Maps (∞-Algebra A)) ≅ E${}^{\infty}$-MonoidAction A & ??? \\
+\hline
+??? : $A{}^{\infty}$-Algebras ⇄ ???  & The free abelian group \\
+\hline
+Λ : ??? ⇄ ??? : FstDeg &  \\ 
+\hline
+??? : (???) ⇄ (???) : ??? & The free ??? \\
+\hline
+∞-derivation & Definition of an ∞-derivation \\
+\hline
+∞-Der : () ⇄ () : ??? & A derivation is an ∞-primitive element \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 15: }Tensor Product of Lie Algebras} \\
+\hline \hline
+- ⊗\_() - &  \\
+\hline
+LieAlgebra : ??? & The monoidal category of Lie algebras\\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 16: }Tensor Product of L${}^{\infty}$-Algebras} \\
+\hline \hline
+- ⊗\_() - & \\ 
+ \hline
+ : ??? & The symmetric monoidal category of L${}^{\infty}$-algebras \\
+ \hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 17: }Lie Algebra Representations} \\
+\hline \hline
+ & \\
+\hline
+ & \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 18: }Connections} \\
+\hline \hline
+??? & The ??? equivalence \\
+\hline
+??? & The free internal abelian group action functor \\
+\hline
+??? & The first degree of the free E${}^{\infty}$-DGM on an algebra is s\_() \\
+\hline
+???   & ??? \\
+\hline
+connection & Definition of a connection \\
+\hline
+??? & A connection is a d-action \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 19: }L${}^{\infty}$-Representations} \\
+\hline \hline
+ & \\
+\hline
+ & \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 20: }∞-Connections} \\
+\hline \hline
+??? & The ??? equivalence \\
+\hline
+??? & The free operadic abelian group action functor \\
+\hline
+??? & The first degree of the free E${}^{\infty}$-DGM on an algebra is sⁱⁿᶠ\_() \\
+\hline
+???  & ??? \\
+\hline
+connection & Definition of a connection \\
+\hline
+??? & A connection is a dⁱⁿᶠ-action\\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 21: }Tensor Product of Lie-Algebra Representations} \\
+\hline \hline
+- ⊗\_() - &  \\
+\hline
+[-,-]\_() &  \\
+\hline
+??? & The symmetric monoidal closed category of Lie-algebra representations \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 22: }Tensor Product of L${}^{\infty}$-Algebra Representations} \\
+\hline \hline
+- ⊗\_() -  &  \\
+ \hline
+[-,-]\_() - &  \\
+ \hline
+??? & The symmetric monoidal closed category of L${}^{\infty}$-algebra representations\\
+ \hline \hline
 \end{longtable}
 }
 
@@ -731,30 +959,26 @@ The Whitehead theorem for Maps of ∞-groupoids & ... \\
 Besides this goal, we have three others. Here are the four heorems which will form our main goals:
 
 \begin{enumerate}[(a)]
-\item (The Whitehead theorem) ∀(E:D(∞-Grpd₋₁)),∀(B:D(∞-Grpd₀)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n.
-\item (The Whitehead theorem for ∞-groupoids) ∀(E:D(∞-Grpd)),∀(B:D(∞-Grpd)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃡ₙ F = π⃡ₙ G)) → F = G, where π⃡ₙ is notation for π⃡ n.
-\item (The Whitehead theorem) ∀(E:D(∞-Cat₋₁)),∀(B:D(∞-Grpd₀)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n.
-\item (The Whitehead theorem for ∞-categories) ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G, where π⃗ₙ is notation for π⃗ n.
+\item (The Whitehead theorem for based ∞-groupoids) ∀(E:D(∞-Grpd₋₁)),∀(B:D(∞-Grpd₋₁)),∀(F:D(∞-Grpd₋₁).Hom E B),∀(G:D(∞-Grpd₋₁).Hom E B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n, where π n : Functor D(∞-Grpd₋₁) Set.
+\item (The Whitehead theorem for ∞-groupoids) ∀(E:D(∞-Grpd)),∀(B:D(∞-Grpd)),∀(F:D(∞-Grpd).Hom E B),∀(G:D(∞-Grpd).Hom E B),(∀(n:Nat),(Πₙ F = Πₙ G)) → F = G, where Πₙ is notation for Π n, where Π n : Functor D(∞-Grpd) Set.
+\item (The Whitehead theorem for based ) ∀(E:D(∞-Cat₋₁)),∀(B:D(∞-Cat₋₁)),∀(F:D(∞-Cat₋₁).Hom E B),∀(G:D(∞-Cat₋₁).Hom E B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G, where π⃗ₙ is notation for π⃗ n, where π⃗ n : Functor D(∞-Cat₋₁) Set.
+\item (The Whitehead theorem for ∞-categories) ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:D(∞-Cat).Hom E B),∀(G:D(∞-Cat).Hom E B),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) → F = G, where Π⃗ₙ is notation for Π⃗ n, where Π⃗ n : Functor D(∞-Cat₋₁) Set.
 \end{enumerate}
 
-Here are a few comments on these theorems:
-\begin{enumerate}
-\item The first Whitehead theorem reflects the known one, which dates back to a paper that can be found in defined on Mathlib 4's homotopy groups, which make use of cubes Iⁿ and their boundaries ∂Iⁿ. There is also a fourth Whitehead theorem concerning ∞-Cat₀, but which is ommited; it is less general than the third while the first is present for its use of Mathlib 4's predefined πₙ's.
-\item The unicode symbol ⭢ (U+2B62) reflects a notation not present in Mathlib 4, and which we will make local or scoped.
-\item The three theorems above are stated in an order reversed from the order of their implementation.
-\end{enumerate}
+(a) in the above reflects the known Whitehead theorem, which dates back to Whitehead's two papers titled `Combinatorial Homotopy I' and `Combinatorial Homotopy II'. There is also a fourth Whitehead theorem.\\
 
 We will use two models of each of the following categories in the theorems above:
 
 \begin{enumerate}[(i)]
-\item We model ∞-Cat : Cat firstly as the category of categories enriched over Mathlib 4's topological spaces, and secondly as the category of quasicategories.
-\item We model ∞-Grpd : Cat firstly as a Mathlib 4's topological spaces, and secondly as the category of Kan complexes.
-\item We model ∞-Grpd₀ : Cat firstly as the BASED objects using Mathlib 4's topological spaces, and secondly as the category of BASED Kan complexes.
+\item We model ∞-Grpd₋₁ : Cat using based CW-complexes.
+\item We model ∞-Grpd : Cat using CW-complexes.
+\item We model ∞-Cat₋₁ : Cat using based directed CW-complexes.
+\item We model ∞-Cat : Cat using directed CW-complexes.
 \end{enumerate}
 
 This choice accords with the standard approach to the third theorem, in which one typically chooses both a combinatorial and point-set model, with the former featuring a \href{https://github.com/leanprover-community/mathlib4/blob/8666bd82efec40b8b3a5abca02dc9b24bbdf2652/Mathlib/AlgebraicTopology/SimplicialSet.lean#L235-L236}{geometric realization functor} into the latter.\\
 
-We will make heavy use of $\texttt{Mathlib 4}$'s material on category theory, particularly their categories, functors, and natural transformations:
+We will use $\texttt{Mathlib 4}$'s category theory, particularly
 
 \begin{enumerate}
 \item Categories (see Mathlib's $\texttt{Category X}$)
@@ -763,46 +987,40 @@ We will make heavy use of $\texttt{Mathlib 4}$'s material on category theory, pa
 \item Equations between natural transformations (see Mathlib's $\texttt{NatExt}$ here; these are related to our $\texttt{equation}$)
 \end{enumerate}
 
-While the functors πₙ occuring in the main theorems above are already defined in $\texttt{Mathlib}$ for the desired point-set model, the functors π⃗ₙ and π⃡ₙ are not, and their definition will require great care. Here are their types:
+While the functors πₙ occuring in the main theorems above are already defined in $\texttt{Mathlib 4}$ for the desired point-set model, the functors πₙ, Πₙ, and Π⃗ₙ are not. The existence of a base point makes πₙ relatively straightforward to define. Here are their types:
 
 \begin{enumerate}[(i)]
-\item π⃗ₙ : Functor ∞-Cat Set
-\item π⃡ₙ : Functor ∞-Grpd Set
-\item πₙ : Functor ∞-Grpd₀ Set
+\item πₙ : Functor D(∞-Grpd₋₁) Set (???)
+\item π⃗ₙ : Functor D(∞-Cat₋₁) Set
+\item Πₙ : Functor D(∞-Grpd) Set
+\item Π⃗ₙ : Functor D(∞-Cat) Set
 \end{enumerate}
 
-We may wish to modify these types out of convenience and to accord with the pre-existing functors πₙ in $\texttt{Mathlib 4}$.\\
-
-The existence of a base point makes πₙ relatively straightforward to define, while π⃗ₙ and π⃡ₙ `grow' as n does. We also form their derived functors:
+ We also form their derived functors:
 
 \begin{enumerate}[(i)]
-\item D(π⃗ₙ) : D(∞-Cat) ⭢ D(Set) ≃ Set
-\item D(π⃡ₙ) : D(∞-Grpd) ⭢ D(Set) ≃ Set
-\item D(πₙ) : D(∞-Grpd₀) ⭢ D(Set) ≃ Set
+\item D(πₙ) : Functor D(∞-Grpd₋₁) Set
+\item D(π⃗ₙ) : Functor D(∞-Cat₋₁) Set
+\item D(Πₙ) : Functor D(∞-Grpd) (Glb →$\_(Cat)$ Sets)
+\item D(Π⃗ₙ) : Functor D(∞-Cat) (Glb →$\_(Cat)$ Sets)
 \end{enumerate}
 
-In the course of the repository we will need the directed path space, path space, and loop space functors as well, which fit with the analogy formed by the Whitehead theorem and its two variations:
+Where Glb →$\_(Cat)$ Sets is the category of globular sets. In the course of the repository we will need the directed path space, path space, and loop space functors as well, which fit with the analogy formed by the Whitehead theorem and its two variations:
 
 \begin{enumerate}
-\item Ω⃗ : ∞-Cat ⭢ ∞-Cat sends \iffalse C to a [(Sⁿ⁻¹,Dⁿ),(C,C)]\fi
-\item Ω⃡ : ∞-Grpd ⭢ ∞-Grpd is ...
-\item Ω is the loop space functor
+\item Ω : Functor ∞-Grpd₋₁ ∞-Grpd₋₁
+\item Ω⃗ : Functor ∞-Cat₋₁ ∞-Cat₋₁
+\item [γ,-] : Functor ∞-Grpd ∞-Grpd
+\item [γ⃗,-] : Functor ∞-Grpd ∞-Grpd
 \end{enumerate}
 
-\iffalse
-The choice of ∞-Cat\_(A) as a model is complementary to our discussion of operadic structures. In this 
-\fi
-
-We develop two models of (∞,1)-categories, one combinatorial in nature and another point-set in nature. 
+Where γ is the unit interval and γ⃗ is the directed unit interval.\\
 
 \iffalse
 The latter, developed first, features a deformation retraction γ⃗ $\leftrightarrow$ γ⃗² between the directed unit interval and its cartesian product with itself.\\
 \fi
 
-The third theorem (c), is the one from Whitehead's original papers.\\
-
-With the choice of quasicategories as a combinatorial model, we hope to give good integration with Mathlib's existing features (though technically only the inner horns and simplices are defined, not even the category of quasicategories itself).\\
-
+\iffalse
 In the directed context, a homotopy between two maps in ∞-Cat⁄C consists of a sequence of compatible directed homotopies with the odd morphisms in the sequence formed from reversed copies of Δ¹. Really we have two such categories, one of which consists of formal words, and another which involves ∞-categories and ∞-functors in the image of $\texttt{repl}$).\\
 
 The main technical feature in the proofs of these theorems concerns a lifting property which successively lifts a homotopy along a single attachment of Δⁿ along its boundary ∂Δⁿ. A homotopy h : ∂Δⁿ × Δ¹ ⭢ Y between f, g : ∂Δⁿ ⭢ Y extends to a map H : Δⁿ × Δ¹ ⭢ Y. The directed case requires an extra technical feature. H(-,1) and g match on ∂Δⁿ, producing a map f : X ⭢ Y, where X consists of two copies of Δⁿ glued together at the boundary.\\
@@ -883,6 +1101,7 @@ We obtain six categorical equivalences witnessed by these twelve functors (along
 \end{enumerate}
 
 Above, the functors P⃗, P⃡, P, p⃗, p⃡, and p feature Ω⃗, Ω⃡, Ω, ω⃗, ω⃡, and ω in their components, and can be related to them using constructions from Eilenberg-Moore theory.\\
+\fi
 
 \iffalse
 Interspersing one of the 6 omegas's in each of six operadic structures, which have the same number of entries as the six internal structures respectively. In the thirteen entry operadic category, one of the entries is an ordinary object in the category, analogous to the first of the thirteen entries of the internal category. The second entry, instead of featuring the ordinal 2 (the morphism component, which is the second of two entries in the category in question), features a sequence of objects in the category. The identity morphism Idn : Obj ⭢ Mor of the internal category with 13 entries (as opposed to the slightly more complex structure in which separate clauses assume the existence of the relevant pullbacks so as to create an endofunction of Cat) is analogous to a function also from O₀ to O₁, and two further entires are essentially shared by both as well: Dom and Cod. One difference occurs in the component of an internal category for the properties that Idn has, which in the operadic case is 
@@ -926,6 +1145,8 @@ https://leanprover.zulipchat.com/#narrow/stream/116395-maths/topic/Internal.20ca
 \end{tabular}
 \end{center}
 }
+\fi
+
 \iffalse
 {\footnotesize
 \begin{center}
@@ -950,6 +1171,7 @@ $\texttt{InternalGroup\_(-) : Cat\_(-) → Cat\_(-)}$ & $\texttt{InternalGroupAc
 \end{center}}
 \fi
 
+\iffalse
 \ \\
 {\footnotesize
 \begin{center}
@@ -1148,11 +1370,11 @@ o : (X₀ : ∞-Grpd₀) → ∞-Grpd₀⁄X₀ ⭢ OperadicGroupAction (O.obj X
 
 I ≅ I² in ∞\_(∞-Grpd)/S₀
 
-Algebra for an A-infinity operad / Algebra for an A-infinity operoid
-Algebra for an E-infinity operad / Algebra for an E-infinity operoid
+A-infinity operad / A-infinity operoid
+E-infinity operad / E-infinity operoid
 
-Grouplike algebra for an A-infinity operad / Groupal algebra for an A-infinity operoid
-Grouplike algebra for an E-infinity operad / Groupal algebra for an E-infinity operoid
+Grouplike A-infinity operad with ... / Groupal A-infinity operoid
+Grouplike E-infinity operad / Groupal E-infinity operoid
 
 Monoid / Category
 Abelian Monoid / Strict Twocategory
@@ -1288,7 +1510,12 @@ Here are some introductions to Lean 4 and Mathlib 4:
 In this first section we prove the standard Whitehead theorem.\\
 
 
-\chapter{Chapter 1: ∞\texttt{-Grpd₀}}
+\chapter{Chapter 1: ∞\texttt{-Grpd₋₁}}
+
+\begin{definition}[CW-complex]
+Given a well order ω, a CW-complex ...
+\end{definition}
+
 
 
 \noindent\textcolor{Red}{\rule{16cm}{1mm}}
@@ -1362,7 +1589,7 @@ def CWComplexCat := FullSubcategory IsCWComplex
 
 Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
 
-\section{D(∞-Grpd₀)}
+\section{D(∞-Grpd₋₁)}
 
 {\footnotesize
 \begin{center}
@@ -1426,12 +1653,16 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/B
 
 \chapter{Chapter 2: The Whitehead Theorem}
 
-The proof of the Whitehead theorem divides into REP (replacement for BASED ∞-groupoids X : ∞-Grpd₀) and HEP (the homotopy extension property for weak equivalent maps of based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
+
+
+
+
+The proof of the Whitehead theorem divides into REP (replacement for based ∞-groupoids X : ∞-Grpd₋₁) and HEP (the homotopy extension property for weak equivalent maps of based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
 
 Globular sets are not a rich enough invariant for homotopy, but maps of globular sets bear a criticall difference because of 
 
 \begin{center}
-\texttt{∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G}
+\texttt{∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π₀ F = π₀ G)) ⭢ F = G}
 \end{center}
 
 \section{Globular Sets}
@@ -1464,15 +1695,15 @@ Can the attaching map be
  Name of the $\texttt{X}$ value & \texttt{∂X ≅ Sⁿ} & \texttt{X ≅ Dⁿ} \\
  \hline
  \hline
- p-norm unit ball for p = 1 & ∂B(1,1) & B(1,1) \\
+ p-norm unit ball for p = 1 & ∂B(1,n) & B(1,n) \\
  \hline
- p-norm unit ball for 1 < p < 2 & ∂B(p,1) & B(p,1) \\
+ p-norm unit ball for 1 < p < 2 & ∂B(p,n) & B(p,n) \\
  \hline
- p-norm unit ball for p = 2 & ∂B(2,1) & B(2,1) \\
+ p-norm unit ball for p = 2 & ∂B(2,n) & B(2,n) \\
  \hline
- p-norm unit ball for 2 < p < ∞ & ∂B(p,1) & B(p,1) \\
+ p-norm unit ball for 2 < p < ∞ & ∂B(p,n) & B(p,n) \\
  \hline
- p-norm unit ball for p = ∞ & ∂B(∞,1) & B(∞,1) \\
+ p-norm unit ball for p = ∞ & ∂B(∞,n) & B(∞,n) \\
  \hline
  The n-simplex & ∂Δⁿ & Δⁿ \\
  \hline
@@ -1481,7 +1712,26 @@ Can the attaching map be
 \end{center}
 }
 
-\begin{definition}
+While each of the above unit balls are homeomorphic, so that one has a choice of $p$-norm, the unit balls in [ℕ,ℝ] for different norms are not homeomorphic. Here are two lemmas we have for the 2-norm and ∞-norm unit balls in [ℕ,ℝ]:
+
+\begin{theorem}
+$\texttt{I × B ≅ B}$, where B is the unit ball in l₂ under the 2-norm.
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
+\begin{theorem}
+$\texttt{I × [ℕ,I] ≅ [ℕ,I]}$, where B is the unit ball in l₂ under the 2-norm.
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
+
+\begin{definition}[(a)]
 ...
 \end{definition}
 
@@ -1524,27 +1774,42 @@ Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\
 ...
 \end{proof}
 
-\section{HEP for BASED ∞-groupoids}
 
-In this section we prove the homotopy extension property for BASED ∞-groupoids, which we here model as CW-complexes.\\
+\section{HEP for based connected ∞-groupoids}
 
+In this section we prove the homotopy extension property for based ∞-groupoids, which we model as CW-complexes.
 
 {\bf Jar filling} Next we turn to defining `jar shapes' $\texttt{Jⁿ}$, which include into $\texttt{Dⁿ × I}$ $\texttt{iₙ : Jⁿ ⭢ Dⁿ × I}$, after which we `fill' them (i.e. demonstrate that any continuous map f : Jⁿ ⭢ X extends to a continuous map g : Dⁿ × I ⭢ X).\\
 
-The first and most common approach involves `shining a light ray down from above the jar', i.e. projection. We obtain a formula for .\\
+\begin{definition}
+We define the n-jar $\texttt{Jₙ := pushout (Sⁿ × d₀) ∂Dⁿ}$, where $\texttt{d₀ : * ⭢ I}$ sends the unique point $\texttt{* : *}$ to $\texttt{0}$. There is a continuous function $\texttt{jₙ}$ from $\texttt{Jₙ}$ to $\texttt{Dⁿ}$ arising from the functions $\texttt{∂Dⁿ × I : Sⁿ × I ⭢ Dⁿ × I}$ and $\texttt{}$
+\end{definition}
 
-The second way to fill the jar
+$\texttt{jₙ}$ in the above is injective. In the case where $\texttt{n = 3}$ we can depict it as the inclusion of the `empty jar shape' into the `filled jar shape' of $\texttt{D² × I}$. `Jar filling' then asserts that any continuous function f : Jₙ ⭢ X extends to a continuous function g : D² × I ⭢ X:
+
+\begin{theorem}[Jar filling]
+$\texttt{∀(f : Jₙ ⭢ X),∃(g : Dⁿ × I),g • jₙ = f}$.
+\end{theorem}
+
+The first approach I cover here involves `shining a light ray down from above the jar', i.e. projection. This divides into two steps, where in the first we define the projection onto the sides and bottom (seperately), and in the second we show that these continuous functions match on Sⁿ⁻¹ and that they assemble into a continuous function projₙ from Dⁿ × I to Jₙ.\\
+
+\begin{theorem}
+There is a continuous function $\texttt{proj}_{\texttt{n}} : Dⁿ × I \rightarrow Jₙ$ such that .
+\end{theorem}
+
+After this, we show that $\texttt{projₙ • jₙ = }1_{Jₙ}$.\\
+
 
 
 
 \iffalse
-In what follows, it is possible to use cell complexes instead of CW-complexes. This reflects how the argument makes no use of the stronger condition associated to the CW-complexes that cells be attached in order of nondecreasing dimension.
+In what follows, it is possible to use CW-complexes instead of CW-complexes. This reflects how the argument makes no use of the stronger condition associated to the CW-complexes that cells be attached in order of nondecreasing dimension.
 \fi
 
-{\bf Change of Base} Jar filling leaves the question
+{\bf Change of Base} Change of base demonstrates that πₙ(X,x) is isomorphic to πₙ(X,y) for a connected CW-complex X and two different points x and y in X given a path between them. This isomorphism depends on the choice of path.
 
 \begin{definition}
-Let X₋₁ be a connected CW-complex and let n : Nat be a natural number. The transport function $\texttt{trans\ n\ X₋₁ : (f : [I,X₋₁])  → πₙ (f 0) ⭢ πₙ (f 1)}$ is 
+Let X be a connected CW-complex and let n : Nat be a natural number. The transport function $\texttt{trans\ n\ X : (f : [I,X])  → πₙ (X,ev f 0) ⭢ πₙ (X, ev f 1)}$ ...
 \end{definition}
 
 \begin{theorem}
@@ -1564,7 +1829,7 @@ The proof in the above can be depicted like so, as a `painting with two concentr
 \includegraphics[scale=0.5]{windowframe.png}
 \end{center}
 
-that the based CW-complexes (X₋₁,x) and (X₋₁,y) are 
+that the based CW-complexes (X,x) and (X,y) are 
 
 \begin{theorem}
 
@@ -1580,37 +1845,84 @@ that the based CW-complexes (X₋₁,x) and (X₋₁,y) are
 
  
 
+ \iffalse
+- Base change for based connected CW-complexes
+- pushout ∂Dⁿ ∂Dⁿ ≅ Sⁿ, where ∂Dⁿ : Sⁿ ⭢ Dⁿ
+- The unit balls in ℝⁿ under the p norm are homotopic via ...
+- The unit balls ...
+- Lemma: Given φ : Dⁿ ⭢ X and f, g : X ⭢ Y such that f • φ • ∂Dⁿ = g • φ • ∂Dⁿ,
+- HEP (the homotopy extension property) given spaces X, Y, and continuous maps α : Sⁿ ⭢ X, f : pushout ∂Dⁿ⁺¹ α ⭢ Y, g : pushout ∂Dⁿ⁺¹ α ⭢ Y, H : homotopy (f • ?, g • ?), then f and g are homotopic.  
+- REP (the replacement property) given a space X, there is a CW-complex Y and a continuous map f : Y ⭢ X which is a weak equivalence.
+- (The Whitehead theorem) a weak equivalence of continuous functions f, g : X ⭢ Y with X a CW-complex is a homotopy equivalence.
+- Functor extensionality
+- Jar filling for Dⁿ and Sⁿ
+- Proving that the unit ball B in l₂(ℝ) is homeomorphic to B × B¹(ℝ)
+\fi
 
+the homotopy extension property
 
-\section{REP for BASED ∞-groupoids}
+\begin{theorem}[HEP] given spaces X, Y, and continuous maps α : Sⁿ ⭢ X, f : pushout ∂Dⁿ⁺¹ α ⭢ Y, g : pushout ∂Dⁿ⁺¹ α ⭢ Y, H : homotopy (f • ?, g • ?), then f and g are homotopic.  
+\end{theorem}
 
-In this section we use the notion of globular sets to replace a topological space with a CW-complex. Together with HEP (homotopy extension), this will complete the proof of the Whitehead theorem.
+\begin{proof}
 
+\end{proof}
+
+...\\
+
+\section{REP for based connected ∞-groupoids}
+
+In this section we use the notion of globular sets to replace a topological space with a CW-complex. Together with HEP (homotopy extension), this will complete the proof of the Whitehead theorem.\\
+
+In fact, we will construct more than this: an adjunction F ⊣ G between globular sets and topological spaces. For this we continue with the construction of G:\\
+
+\iffalse We want to use their hom! \fi
+
+\begin{definition}[The object component of the functor from topological spaces to globular sets]
+Fix a topological space X, and to form the object component of G.obj X, Gobj X : TGlb, we define (Gobj X).obj n to Top.Hom Dⁿ X. Defining Gobj X on morphisms is not much more difficult, and involves composition σₙ, τₙ : Dⁿ ⭢ Dⁿ⁺¹.
+\end{definition}
+
+\begin{definition}[The morphism component of the functor from topological spaces to globular sets]
+...
+\end{definition}
+
+\begin{definition}[Proving the identity for the functor from topological spaces to globular sets]
+...
+\end{definition}
+
+\begin{definition}[Proving the compositionality law for the functor from topological spaces to globular sets]
+...
+\end{definition}
+
+To construct F, we first construct a term of the CW-complex structure built from a globular set Φ.\\
+
+\iffalse
+Later: locales...
+\fi
 
 \section{The Whitehead theorem}
 
-Here we show the Whitehead theorem.
+Here we show the Whitehead theorem using the homotopy extension property and replacement.
 
 \iffalse
 https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/HomotopyGroup.html
 \fi
 
 \iffalse
-In proving the Whitehead theorem formally, \textit{we make use of a line} as well as, in essence, the structure of a \textit{groupoid} $\texttt{G}_{\texttt{X}}$ where $\texttt{Hom}{}_{\texttt{G}}\texttt{(x,x)}$ is taken to be πₙ(X,x). This interesting feature of the proof relates to the other two Whitehead theorems featuring categories π⃗ₙ and groupoids π⃡ₙ.\\
+In proving the Whitehead theorem formally, \textit{we make use of a line} as well as, in essence, the structure of a \textit{groupoid} $\texttt{G}_{\texttt{X}}$ where $\texttt{Hom}{}_{\texttt{G}}\texttt{(x,x)}$ is taken to be πₙ(X,x). This interesting feature of the proof relates to the other two Whitehead theorems featuring categories Π⃗ₙ and groupoids Πₙ.\\
 \fi
 
 
 \chapter{Chapter 3: The Category of Maps}
 
-In this section I would like to 
-
+In this section I cover the category of maps $\texttt{Map C}$ in a category $\texttt{C}$. After this I inductively form $\texttt{□ⁿ⁺¹ C}$ as $\texttt{Map (□ⁿ C)}$ and $\texttt{□ⁱⁿᶠ C}$ as the colimit of $\texttt{□ⁿ C}$.\\
 
 
 
 
 \part{∞-GROUPOIDS}
 
-The Whitehead theorem is about the ways that spheres can get stuck in spaces (higher homotopy groups), and the last section established how these higher homotopy groups relate to maps in the homotopy category of BASED CW-complexes. There is the nuance that the base .\\
+The Whitehead theorem is about the ways that spheres get trapped in spaces (higher homotopy groups), and the last section established how these higher homotopy groups relate to maps in the homotopy category of based CW-complexes.\\
 
 
 \chapter{Chapter 9: ∞\texttt{-Grpd}}
@@ -1628,9 +1940,9 @@ We will be interested in one formal model of D(∞-Cat) which consists of formal
 Ω⃗ is to internal categories as ω⃡ is to internal G-actions. It is also called directed homotopy pullback. These functors will later be used to produce functors P⃡ : D(∞-Grpd) ⭢ InternalCategory D(∞-Grpd) and p⃡ : D(∞-Grpd⁄C) ⭢ InternalPresheaf (P⃡ G) D(∞-Grpd⁄G).\\
 
 
-\section{π⃡ₙ}
+\section{Πₙ}
 
-The mentioned functors π⃡ₙ are designed with both Whitehead theorem (a) and Puppe sequence (a) in mind.\\
+
 
 
 
@@ -1647,14 +1959,14 @@ The mentioned functors π⃡ₙ are designed with both Whitehead theorem (a) and
 \iffalse
 In this chapter, we take on the objective of Whitehead theorem (a), out of which we will prove the other more concrete Whitehead theorems:\\
 
-\begin{center} ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) ⭢ F = G
+\begin{center} ∀(E:D(∞-Grpd)),∀(B:D(∞-Grpd)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(Πₙ F = Πₙ G)) ⭢ F = G
 \end{center}
 
 We can attempt to form a slightly different category, much like the above, called 𝓓(∞-Cat), at first, and in a formal way, so as to create a category whose object component 𝓓(∞-Cat).α matches the object component ∞-Cat.α while featuring the above theorem in a formal way. However, with this as our model of D(∞-Cat), we may then also be interested in the establishment of a model in which the Whitehead theorem is demonstrated, with the main idea being to prove two complementary concepts:
 
 \begin{enumerate}
 \item (REP) Establish ``weak equivalent fibrant replacement" R : ∞-Cat.α ⭢ ∞-Cat.α (.α gives the object component in Mathlib's category theory library), analogous to CW-complex replacement in Whitehead's original paper. It's especially nice if R forms the object component of a functor F : ∞-Cat ⭢ ∞-Cat. D(F) : D(∞-Cat) ⭢ D(∞-Cat) should be a categorical equivalence, and that is what we will do.
-\item (HEP) For the object R X, demonstrate that any F,G : (R X) ⭢ Y such that ∀(n:Nat),(π⃗ₙ F = π⃗ₙ G), there is a directed homotopy equivalence between F and G. Note that ``directed homotopy equivalence" consists of a composible sequence of simple directed homotopies Hᵢ : Δ¹ × (R X) ⭢ Y, 1 ≤ i ≤ n, with even Hᵢ running reverse to the odd Hᵢ.
+\item (HEP) For the object R X, demonstrate that any F,G : (R X) ⭢ Y such that ∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G), there is a directed homotopy equivalence between F and G. Note that ``directed homotopy equivalence" consists of a composible sequence of simple directed homotopies Hᵢ : Δ¹ × (R X) ⭢ Y, 1 ≤ i ≤ n, with even Hᵢ running reverse to the odd Hᵢ.
 \end{enumerate} 
 
 Both of these will use induction on Lean's $\texttt{Nat}$. The first of these could be called a REP (for REplacement Property, but this isn't usual terminology), and the second typically uses induction and a HEP (Homotopy Extension Property). Our REPa will consist of objects made out of particular kinds of pushouts called attaching maps, and can be made functorial. Proving the HEPa can be done by well-order induction on the attaching maps present in our choice of R, thereby reducing to the case of extending a homotopy along a single attachment.\\
@@ -1666,7 +1978,7 @@ Our HEPa (directed box filling) is similar to the HEP shown in Whitehead's origi
 \item The first Whitehead theorem on the front cover needs to hold.
 \end{enumerate}
 
-These two considerations determine our choice of π⃗ₙ, Ω⃗, and ω⃗. We take Ω⃗ to be (simply) the internal hom functor [Δ¹,-] (which requires showing that Ω⃗X has the inner-horn filling condition). ω⃗ is then defined as a certain pullback of Ω⃗, and π⃗ₙ is designed to produce a Puppe sequence with a meaningful notion of exactness by which we can demonstrate the goal of recognition theorems (i) and (ii). Specifically, it makes sense to use cubes in our definition of π⃗ₙ because of how they are representing objects of Ω⃗ⁿ. Meanwhile, it is also clear that the quotient producing π⃗ₙ is subtle in exactly how it requires fixing the endpoints of a sequence of alternating directed homotopies. We will define π⃗ₙ's by identifying those objects x, y: Ω⃗ⁿ X which are homotopic by a homotopy which restricts to a constant along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n-1}$ X (which correspond to Maps (n,b), where b : Bool).\\
+These two considerations determine our choice of Π⃗ₙ, Ω⃗, and ω⃗. We take Ω⃗ to be (simply) the internal hom functor [Δ¹,-] (which requires showing that Ω⃗X has the inner-horn filling condition). ω⃗ is then defined as a certain pullback of Ω⃗, and Π⃗ₙ is designed to produce a Puppe sequence with a meaningful notion of exactness by which we can demonstrate the goal of recognition theorems (i) and (ii). Specifically, it makes sense to use cubes in our definition of Π⃗ₙ because of how they are representing objects of Ω⃗ⁿ. Meanwhile, it is also clear that the quotient producing Π⃗ₙ is subtle in exactly how it requires fixing the endpoints of a sequence of alternating directed homotopies. We will define Π⃗ₙ's by identifying those objects x, y: Ω⃗ⁿ X which are homotopic by a homotopy which restricts to a constant along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n-1}$ X (which correspond to Maps (n,b), where b : Bool).\\
 
 Imagine for a moment the picture of a square shaped cusion; we might make such a cusion by first soeing together 6 squares of cloth and filling it with material, then "soeing the walls down to a square". Here we go with this:
 
@@ -1682,7 +1994,7 @@ The boundary of a cusion is a pouch, isomorphic to a pushout of two cubes glued 
 \item Define a simplicial pouch as the pushout of two boundary maps ∂(Δⁿ) ⭢ Δⁿ
 \end{enumerate}
 
-Notice that paths in Ω⃗ⁿX produce paths in Ω⃗${}^{n-1}$X in as many ways as there are face maps (Δ¹)${}^{n-1}$ ⭢ Δ¹${}^{n}$, these could be called restrictions and are no doubt related to the pouches and cusions we just defined. The cartesian closed structure on simplicial sets with the lifting condition clarifies the relationship between the two available definitions of π⃗ₙ:
+Notice that paths in Ω⃗ⁿX produce paths in Ω⃗${}^{n-1}$X in as many ways as there are face maps (Δ¹)${}^{n-1}$ ⭢ Δ¹${}^{n}$, these could be called restrictions and are no doubt related to the pouches and cusions we just defined. The cartesian closed structure on simplicial sets with the lifting condition clarifies the relationship between the two available definitions of Π⃗ₙ:
 
 \begin{enumerate}
 \item Homotopies of maps from a cube which are constant on the boundary
@@ -1690,7 +2002,7 @@ Notice that paths in Ω⃗ⁿX produce paths in Ω⃗${}^{n-1}$X in as many ways
 \item Maps from a pouch mod an equivalence relation (really we phrase this as a pushout!), namely the equivalence relation in which any two maps from a pouch that extend to maps from a cusion are identified.
 \end{enumerate}
 
-After we construct π⃗ₙ in the first section, we will be in a place to demonstrate that the natural transformation $\texttt{weak\_equivalence : repl ⭢ (𝟙 }$∞$\texttt{-Cat)}$ consists of weak equivalences (a fact which we call REP, which is short for REplacement Principal). This is covered in the section titled REP, which also constructs $\texttt{repl}$ and $\texttt{weak\_requivalence}$.\\
+After we construct Π⃗ₙ in the first section, we will be in a place to demonstrate that the natural transformation $\texttt{weak\_equivalence : repl ⭢ (𝟙 }$∞$\texttt{-Cat)}$ consists of weak equivalences (a fact which we call REP, which is short for REplacement Principal). This is covered in the section titled REP, which also constructs $\texttt{repl}$ and $\texttt{weak\_requivalence}$.\\
 
 In sum, the goal of the present chapter is to use similar insights to the proof of the Whitehead theorem featured Hatcher's textbook to prove Wa and Pa for the model of quasicategories, using Mathlib's predefined horns and simplices in its simplicial sets section. The main difference is that our work must take care to respect the directed nature of quasicategories.\\
 \fi
@@ -1758,21 +2070,21 @@ In the above, it may be easier if we make use of sub-simplicial sets and prove t
 
 The decomposition 
 
-A definition of π⃗ₙ which is consistent with our goals of Wa and Pa is one as a certain pushout involving (Ω⃗ⁿ X)-- one which amounts to taking an equivalence relation by paths in Ω⃗ⁿ X which restrict to constant paths along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗ⁿ X. Here, Ω⃗ is easy to define in the model of quasi-categories, and it amounts . Besides fullfilling our goal of the first Whitehead theorem and puppe sequence, this definition of π⃗ₙ strikes me as elegant because it uses all of the ways for Ω⃗ⁿ X to map into Ω⃗${}^{n+1}$ X.\\
+A definition of Π⃗ₙ which is consistent with our goals of Wa and Pa is one as a certain pushout involving (Ω⃗ⁿ X)-- one which amounts to taking an equivalence relation by paths in Ω⃗ⁿ X which restrict to constant paths along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗ⁿ X. Here, Ω⃗ is easy to define in the model of quasi-categories, and it amounts . Besides fullfilling our goal of the first Whitehead theorem and puppe sequence, this definition of Π⃗ₙ strikes me as elegant because it uses all of the ways for Ω⃗ⁿ X to map into Ω⃗${}^{n+1}$ X.\\
 
-The next symbols in the project's ``periodic table" that we construct, after Ω⃗ and π⃗ₙ, will be B⃗ and E⃗, which we feature in the chapter on Puppe sequence (a).\\
+The next symbols in the project's ``periodic table" that we construct, after Ω⃗ and Π⃗ₙ, will be B⃗ and E⃗, which we feature in the chapter on Puppe sequence (a).\\
 
 A useful thing for us to construct first is the boundary of a product of Δ¹'s and the boundary of a directed simplex. We might even like to expand on this later, but for now just consider for a moment how each might be made out of a glueing construction involving face maps.\\
 
-Even though the π⃗ₙ's can be defined using Ω⃗ⁿ X and various face maps f$\_(n,b)$ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n}$ X for $b : \{ 0, 1 \}$, it may be nice to have this as a result, with the definition one featuring two cubes glued together along their boundary.\\
+Even though the Π⃗ₙ's can be defined using Ω⃗ⁿ X and various face maps f$\_(n,b)$ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n}$ X for $b : \{ 0, 1 \}$, it may be nice to have this as a result, with the definition one featuring two cubes glued together along their boundary.\\
 
 This means that we want directed box filling in addition to directed prism filling (but which also uses directed prism filling in its proof).
 
 {\bf Box Filling (BF)} Let Y be a quasicategory, and let f, g : ∂Δⁿ ⭢ Y. A homotopy h : ∂Δⁿ × Δ¹ ⭢ Y between f, g : ∂Δⁿ ⭢ Y extends to a map H : Δⁿ × Δ¹ ⭢ Y; this follows from the condition that Y be a quasicategory. H(-,1) and g match on ∂Δⁿ, producing a map f : X ⭢ Y, where X consists of two copies of Δⁿ glued together at the boundary. Consider a space X' formed as a quotient of Δⁿ × Δ¹ by ∂Δⁿ × Δ¹. There is a map φ : X ⭢ X'. An induction hypothesis on f and g involving πₙ ensures that the aparent map X ⭢ Y lifts along φ, producing a map from Δⁿ × Δ¹ which is constant on ∂Δⁿ × Δ¹. Stacking this on top of H can be done using an isomorphism between Δ¹ and Δ¹ glued with itself along different endpoints. Altogether this produces a homotopy between f and g.\\
 
-This goes hand-in-hand with a definition of π⃗ₙ which suits (I) and (II) in the introduction to chapter (3). If we make sure to prove lemmas... 
+This goes hand-in-hand with a definition of Π⃗ₙ which suits (I) and (II) in the introduction to chapter (3). If we make sure to prove lemmas... 
 
-The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's introduction.\\
+The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of Π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's introduction.\\
 
 Breaking down BF further can be done conveniently using sub-simplicial sets, just like we used in the proof of prism filling. 
 
@@ -2060,9 +2372,6 @@ The second way to fill the jar
 
 
 
-\iffalse
-In what follows, it is possible to use cell complexes instead of CW-complexes. This reflects how the argument makes no use of the stronger condition associated to the CW-complexes that cells be attached in order of nondecreasing dimension.
-\fi
 
 {\bf Change of Base} Jar filling leaves the question
 
@@ -2121,7 +2430,7 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/H
 \fi
 
 \iffalse
-In proving the Whitehead theorem formally, \textit{we make use of a line} as well as, in essence, the structure of a \textit{groupoid} $\texttt{G}_{\texttt{X}}$ where $\texttt{Hom}{}_{\texttt{G}}\texttt{(x,x)}$ is taken to be πₙ(X,x). This interesting feature of the proof relates to the other two Whitehead theorems featuring categories π⃗ₙ and groupoids π⃡ₙ.\\
+In proving the Whitehead theorem formally, \textit{we make use of a line} as well as, in essence, the structure of a \textit{groupoid} $\texttt{G}_{\texttt{X}}$ where $\texttt{Hom}{}_{\texttt{G}}\texttt{(x,x)}$ is taken to be πₙ(X,x). This interesting feature of the proof relates to the other two Whitehead theorems featuring categories Π⃗ₙ and groupoids Πₙ.\\
 \fi
 
 
@@ -2160,9 +2469,9 @@ We will be interested in one formal model of D(∞-Cat) which consists of formal
 Ω⃗ is to internal categories as ω⃗ is to internal C-presheaves. It is also called directed homotopy pullback. These functors will later be used to produce functors P⃗ : D(∞-Cat) ⭢ InternalCategory D(∞-Cat) and p⃗ : D(∞-Cat⁄C) ⭢ InternalPresheaf (P⃗ C) D(∞-Cat⁄C).\\
 
 
-\section{π⃗ₙ}
+\section{Π⃗ₙ}
 
-The mentioned functors π⃗ₙ are designed with both Whitehead theorem (a) and Puppe sequence (a) in mind.
+The mentioned functors Π⃗ₙ are designed with both Whitehead theorem (a) and Puppe sequence (a) in mind.
 
 
 
@@ -2180,14 +2489,14 @@ https://mathoverflow.net/questions/368596/intuition-for-categorical-fibrations#:
 
 In this chapter, we take on the objective of Whitehead theorem (a), out of which we will prove the other more concrete Whitehead theorems:\\
 
-\begin{center} ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) ⭢ F = G
+\begin{center} ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) ⭢ F = G
 \end{center}
 
 We can attempt to form a slightly different category, much like the above, called 𝓓(∞-Cat), at first, and in a formal way, so as to create a category whose object component 𝓓(∞-Cat).α matches the object component ∞-Cat.α while featuring the above theorem in a formal way. However, with this as our model of D(∞-Cat), we may then also be interested in the establishment of a model in which the Whitehead theorem is demonstrated, with the main idea being to prove two complementary concepts:
 
 \begin{enumerate}
 \item (REP) Establish a kind of ``weak equivalent fibrant replacement" R : ∞-Cat.α ⭢ ∞-Cat.α (.α gives the object component in Mathlib's category theory library), analogous to CW-complex replacement in Whitehead's original paper. It's especially nice if R forms the object component of a functor F : ∞-Cat ⭢ ∞-Cat. D(F) : D(∞-Cat) ⭢ D(∞-Cat) should be a categorical equivalence, and that is what we will do.
-\item (HEP) For the object R X, demonstrate that any F,G : (R X) ⭢ Y such that ∀(n:Nat),(π⃗ₙ F = π⃗ₙ G), there is a directed homotopy equivalence between F and G. Note that ``directed homotopy equivalence" consists of a composible sequence of simple directed homotopies Hᵢ : Δ¹ × (R X) ⭢ Y, 1 ≤ i ≤ n, with even Hᵢ running reverse to the odd Hᵢ.
+\item (HEP) For the object R X, demonstrate that any F,G : (R X) ⭢ Y such that ∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G), there is a directed homotopy equivalence between F and G. Note that ``directed homotopy equivalence" consists of a composible sequence of simple directed homotopies Hᵢ : Δ¹ × (R X) ⭢ Y, 1 ≤ i ≤ n, with even Hᵢ running reverse to the odd Hᵢ.
 \end{enumerate} 
 
 Both of these will use induction on Lean's $\texttt{Nat}$. The first of these could be called a REP (for REplacement Property, but this isn't usual terminology), and the second typically uses induction and a HEP (Homotopy Extension Property). Our REPa will consist of objects made out of particular kinds of pushouts called attaching maps, and can be made functorial. Proving the HEPa can be done by well-order induction on the attaching maps present in our choice of R, thereby reducing to the case of extending a homotopy along a single attachment.\\
@@ -2199,7 +2508,7 @@ Our HEPa (directed box filling) is similar to the HEP shown in Whitehead's origi
 \item The first Whitehead theorem on the front cover needs to hold.
 \end{enumerate}
 
-These two considerations determine our choice of π⃗ₙ, Ω⃗, and ω⃗. We take Ω⃗ to be (simply) the internal hom functor [Δ¹,-] (which requires showing that Ω⃗X has the inner-horn filling condition). ω⃗ is then defined as a certain pullback of Ω⃗, and π⃗ₙ is designed to produce a Puppe sequence with a meaningful notion of exactness by which we can demonstrate the goal of recognition theorems (i) and (ii). Specifically, it makes sense to use cubes in our definition of π⃗ₙ because of how they are representing objects of Ω⃗ⁿ. Meanwhile, it is also clear that the quotient producing π⃗ₙ is subtle in exactly how it requires fixing the endpoints of a sequence of alternating directed homotopies. We will define π⃗ₙ's by identifying those objects x, y: Ω⃗ⁿ X which are homotopic by a homotopy which restricts to a constant along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n-1}$ X (which correspond to Maps (n,b), where b : Bool).\\
+These two considerations determine our choice of Π⃗ₙ, Ω⃗, and ω⃗. We take Ω⃗ to be (simply) the internal hom functor [Δ¹,-] (which requires showing that Ω⃗X has the inner-horn filling condition). ω⃗ is then defined as a certain pullback of Ω⃗, and Π⃗ₙ is designed to produce a Puppe sequence with a meaningful notion of exactness by which we can demonstrate the goal of recognition theorems (i) and (ii). Specifically, it makes sense to use cubes in our definition of Π⃗ₙ because of how they are representing objects of Ω⃗ⁿ. Meanwhile, it is also clear that the quotient producing Π⃗ₙ is subtle in exactly how it requires fixing the endpoints of a sequence of alternating directed homotopies. We will define Π⃗ₙ's by identifying those objects x, y: Ω⃗ⁿ X which are homotopic by a homotopy which restricts to a constant along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n-1}$ X (which correspond to Maps (n,b), where b : Bool).\\
 
 Imagine for a moment the picture of a square shaped cusion; we might make such a cusion by first soeing together 6 squares of cloth and filling it with material, then "soeing the walls down to a square". Here we go with this:
 
@@ -2215,7 +2524,7 @@ The boundary of a cusion is a pouch, isomorphic to a pushout of two cubes glued 
 \item Define a simplicial pouch as the pushout of two boundary maps ∂(Δⁿ) ⭢ Δⁿ
 \end{enumerate}
 
-Notice that paths in Ω⃗ⁿX produce paths in Ω⃗${}^{n-1}$X in as many ways as there are face maps (Δ¹)${}^{n-1}$ ⭢ Δ¹${}^{n}$, these could be called restrictions and are no doubt related to the pouches and cusions we just defined. The cartesian closed structure on simplicial sets with the lifting condition clarifies the relationship between the two available definitions of π⃗ₙ:
+Notice that paths in Ω⃗ⁿX produce paths in Ω⃗${}^{n-1}$X in as many ways as there are face maps (Δ¹)${}^{n-1}$ ⭢ Δ¹${}^{n}$, these could be called restrictions and are no doubt related to the pouches and cusions we just defined. The cartesian closed structure on simplicial sets with the lifting condition clarifies the relationship between the two available definitions of Π⃗ₙ:
 
 \begin{enumerate}
 \item Homotopies of maps from a cube which are constant on the boundary
@@ -2223,7 +2532,7 @@ Notice that paths in Ω⃗ⁿX produce paths in Ω⃗${}^{n-1}$X in as many ways
 \item Maps from a pouch mod an equivalence relation (really we phrase this as a pushout!), namely the equivalence relation in which any two maps from a pouch that extend to maps from a cusion are identified.
 \end{enumerate}
 
-After we construct π⃗ₙ in the first section, we will be in a place to demonstrate that the natural transformation $\texttt{weak\_equivalence : repl ⭢ (𝟙 }$∞$\texttt{-Cat)}$ consists of weak equivalences (a fact which we call REP, which is short for REplacement Principal). This is covered in the section titled REP, which also constructs $\texttt{repl}$ and $\texttt{weak\_requivalence}$.\\
+After we construct Π⃗ₙ in the first section, we will be in a place to demonstrate that the natural transformation $\texttt{weak\_equivalence : repl ⭢ (𝟙 }$∞$\texttt{-Cat)}$ consists of weak equivalences (a fact which we call REP, which is short for REplacement Principal). This is covered in the section titled REP, which also constructs $\texttt{repl}$ and $\texttt{weak\_requivalence}$.\\
 
 In sum, the goal of the present chapter is to use similar insights to the proof of the Whitehead theorem featured Hatcher's textbook to prove Wa and Pa for the model of quasicategories, using Mathlib's predefined horns and simplices in its simplicial sets section. The main difference is that our work must take care to respect the directed nature of quasicategories.\\
 
@@ -2286,21 +2595,21 @@ In the above, it may be easier if we make use of sub-simplicial sets and prove t
 
 The decomposition 
 
-A definition of π⃗ₙ which is consistent with our goals of Wa and Pa is one as a certain pushout involving (Ω⃗ⁿ X)-- one which amounts to taking an equivalence relation by paths in Ω⃗ⁿ X which restrict to constant paths along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗ⁿ X. Here, Ω⃗ is easy to define in the model of quasi-categories, and it amounts . Besides fullfilling our goal of the first Whitehead theorem and puppe sequence, this definition of π⃗ₙ strikes me as elegant because it uses all of the ways for Ω⃗ⁿ X to map into Ω⃗${}^{n+1}$ X.\\
+A definition of Π⃗ₙ which is consistent with our goals of Wa and Pa is one as a certain pushout involving (Ω⃗ⁿ X)-- one which amounts to taking an equivalence relation by paths in Ω⃗ⁿ X which restrict to constant paths along the face maps fᵢ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗ⁿ X. Here, Ω⃗ is easy to define in the model of quasi-categories, and it amounts . Besides fullfilling our goal of the first Whitehead theorem and puppe sequence, this definition of Π⃗ₙ strikes me as elegant because it uses all of the ways for Ω⃗ⁿ X to map into Ω⃗${}^{n+1}$ X.\\
 
-The next symbols in the project's ``periodic table" that we construct, after Ω⃗ and π⃗ₙ, will be B⃗ and E⃗, which we feature in the chapter on Puppe sequence (a).\\
+The next symbols in the project's ``periodic table" that we construct, after Ω⃗ and Π⃗ₙ, will be B⃗ and E⃗, which we feature in the chapter on Puppe sequence (a).\\
 
 A useful thing for us to construct first is the boundary of a product of Δ¹'s and the boundary of a directed simplex. We might even like to expand on this later, but for now just consider for a moment how each might be made out of a glueing construction involving face maps.\\
 
-Even though the π⃗ₙ's can be defined using Ω⃗ⁿ X and various face maps f$\_(n,b)$ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n}$ X for $b : \{ 0, 1 \}$, it may be nice to have this as a result, with the definition one featuring two cubes glued together along their boundary.\\
+Even though the Π⃗ₙ's can be defined using Ω⃗ⁿ X and various face maps f$\_(n,b)$ : Ω⃗${}^{n-1}$ X ⭢ Ω⃗${}^{n}$ X for $b : \{ 0, 1 \}$, it may be nice to have this as a result, with the definition one featuring two cubes glued together along their boundary.\\
 
 This means that we want directed box filling in addition to directed prism filling (but which also uses directed prism filling in its proof).
 
 {\bf Box Filling (BF)} Let Y be a quasicategory, and let f, g : ∂Δⁿ ⭢ Y. A homotopy h : ∂Δⁿ × Δ¹ ⭢ Y between f, g : ∂Δⁿ ⭢ Y extends to a map H : Δⁿ × Δ¹ ⭢ Y; this follows from the condition that Y be a quasicategory. H(-,1) and g match on ∂Δⁿ, producing a map f : X ⭢ Y, where X consists of two copies of Δⁿ glued together at the boundary. Consider a space X' formed as a quotient of Δⁿ × Δ¹ by ∂Δⁿ × Δ¹. There is a map φ : X ⭢ X'. An induction hypothesis on f and g involving πₙ ensures that the aparent map X ⭢ Y lifts along φ, producing a map from Δⁿ × Δ¹ which is constant on ∂Δⁿ × Δ¹. Stacking this on top of H can be done using an isomorphism between Δ¹ and Δ¹ glued with itself along different endpoints. Altogether this produces a homotopy between f and g.\\
 
-This goes hand-in-hand with a definition of π⃗ₙ which suits (I) and (II) in the introduction to chapter (3). If we make sure to prove lemmas... 
+This goes hand-in-hand with a definition of Π⃗ₙ which suits (I) and (II) in the introduction to chapter (3). If we make sure to prove lemmas... 
 
-The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's introduction.\\
+The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of Π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's introduction.\\
 
 Breaking down BF further can be done conveniently using sub-simplicial sets, just like we used in the proof of prism filling. 
 
@@ -2334,9 +2643,35 @@ Imagine
 
 
 
-\part{OPERADS AND OPEROIDS}
+\part{CATEGORIES AND E${}^k$-CATEGORIES}
+
+In this section we establish the following notions:
+
+internal operad, enriched operad, internal operoid, and enriched operoid. These structures pertain to categories in which one can 
 
 
+{
+\footnotesize
+\begin{center}
+\begin{tabular}{| l || l | l || l | l ||} 
+ \hline
+\texttt{Strict/Lax} & $\texttt{Category}$  &\ $\texttt{Operoid}$ \\
+ \hline \hline
+\texttt{Internal/Enriched} & $\texttt{Internal}$ & $\texttt{Enriched}$ & $\texttt{Internal}$ & $\texttt{Enriched}$ \\ 
+ \hline \hline
+$\texttt{C.Obj ≅ terminal\_object ℂ}$ & & & & \\ 
+ \hline
+$\texttt{C.Obj ≅ terminal\_object ℂ}$ & & & & \\ 
+ \hline
+  & & & & \\ 
+ \hline
+ & & & & \\ 
+ \hline
+& & & & \\ 
+ \hline
+\end{tabular}
+\end{center}
+}
 
 \iffalse
 
@@ -2457,11 +2792,6 @@ The internal group actions principal stems from the simple observation that the 
 
 \iffalse
 \chapter{Chapter 12: Internal and Operadic Groupoids and their Actions}
-
-An operadic groupoid is an algebra for the little lines operoid with ??? entries
-
-An operadic internal groupoid in C is an algebra in C for the little lines internal operoid with ??? entries
-
 
 In this chapter, we discuss internal categories and internal presheaves in a pullback system. We may keep in mind that internal categories and internal presheaves can be formed in any category with pullbacks, even though we focus on the case of pullback systems because of our interest in Whitehead theorem (a).\\
 
