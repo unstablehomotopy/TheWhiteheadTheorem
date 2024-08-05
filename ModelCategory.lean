@@ -47,8 +47,8 @@ lemma pushout_preserves_left_lifting_property
     have big_sq_hasLift := h.sq_hasLift big_sq
     have g := big_sq_hasLift.exists_lift.some
     have sq_lift : sq.LiftStruct := {
-      l := sorry
-      fac_left := sorry
+      l := po.desc s g.l g.fac_left.symm
+      fac_left := IsPushout.inl_desc po s g.l g.fac_left.symm
       fac_right := sorry
     }
     exact ⟨Nonempty.intro sq_lift⟩⟩
