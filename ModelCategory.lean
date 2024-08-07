@@ -66,8 +66,8 @@ lemma pushout_preserves_left_lifting_property
         -- have s : Limits.Cocone (Limits.span a i) := sq_A_A'_B_Y.cocone
         -- have := po.isColimit.uniq s
         --- pushout_desc_uniq
-        have uniq := pushout_desc_uniq po (i' ≫ t) (b ≫ t) (by simp only [po.w_assoc])
-        have uniq_t := uniq t (by simp only) (by simp only)
+        have uniq := pushout_desc_uniq po (i' ≫ t) (b ≫ t) (by rw [po.w_assoc])
+        have uniq_t := uniq t rfl rfl
         have uniq_w_f := uniq (w ≫ f) (by rw [← Category.assoc, w_fac_left, sq.w])
           (by rw [← Category.assoc, po.inr_desc s g.l g.fac_left.symm, g.fac_right])
         exact Eq.trans uniq_w_f uniq_t.symm
