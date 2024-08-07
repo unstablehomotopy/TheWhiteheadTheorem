@@ -31,10 +31,8 @@ variable {C : Type*} [Category C] {Z X Y P : C}
   {f : Z ⟶ X} {g : Z ⟶ Y} {inl : X ⟶ P} {inr : Y ⟶ P}
 
 lemma pushout_desc_uniq (hP : IsPushout f g inl inr)
-    {W : C} (h : X ⟶ W) (k : Y ⟶ W) (d : P ⟶ W)
-    (w : f ≫ h = g ≫ k)
-    (hl : inl ≫ d = h)
-    (hr : inr ≫ d = k) : d = hP.desc h k w := by
+    {W : C} (h : X ⟶ W) (k : Y ⟶ W) (w : f ≫ h = g ≫ k)
+    (d : P ⟶ W) (hl : inl ≫ d = h) (hr : inr ≫ d = k) : d = hP.desc h k w := by
   sorry
 end
 
@@ -60,16 +58,19 @@ lemma pushout_preserves_left_lifting_property
     have g := big_sq_hasLift.exists_lift.some
     let w := po.desc s g.l g.fac_left.symm
     let w_fac_left : i' ≫ w = s := po.inl_desc s g.l g.fac_left.symm
-    have sq_A_A'_B_Y : CommSq a i (s ≫ f) (b ≫ t) := ⟨by
-      simp only [← big_sq.w, Category.assoc]⟩
+    -- have sq_A_A'_B_Y : CommSq a i (s ≫ f) (b ≫ t) := ⟨by simp only [← big_sq.w, Category.assoc]⟩
     have sq_lift : sq.LiftStruct := {
       l := w
       fac_left := w_fac_left
       fac_right := by
-        have s : Limits.Cocone (Limits.span a i) := sq_A_A'_B_Y.cocone
-        have := po.isColimit.uniq s
+        -- have s : Limits.Cocone (Limits.span a i) := sq_A_A'_B_Y.cocone
+        -- have := po.isColimit.uniq s
         --- pushout_desc_uniq
-        sorry
+        have uniq := pushout_desc_uniq po (i' ≫ t) (b ≫ t) (by simp only [po.w_assoc])
+        have uniq_t := uniq t (by simp only) (by simp only)
+        have uniq_w_f := uniq (w ≫ f) (by rw [← Category.assoc, w_fac_left, sq.w])
+          (by rw [← Category.assoc, po.inr_desc s g.l g.fac_left.symm, g.fac_right])
+        exact Eq.trans uniq_w_f uniq_t.symm
     }
     exact ⟨Nonempty.intro sq_lift⟩⟩
 
