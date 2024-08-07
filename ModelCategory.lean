@@ -25,6 +25,18 @@ section LiftingProperties
 #check Square.isPushout_iff -- import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Square
 #check IsPullback           -- import Mathlib.CategoryTheory.Limits.Shapes.Pullback.CommSq
 
+section
+
+variable {C : Type*} [Category C] {Z X Y P : C}
+  {f : Z ⟶ X} {g : Z ⟶ Y} {inl : X ⟶ P} {inr : Y ⟶ P}
+
+lemma pushout_desc_uniq (hP : IsPushout f g inl inr)
+    {W : C} (h : X ⟶ W) (k : Y ⟶ W) (d : P ⟶ W)
+    (w : f ≫ h = g ≫ k)
+    (hl : inl ≫ d = h)
+    (hr : inr ≫ d = k) : d = hP.desc h k w := by
+  sorry
+end
 
 variable {C : Type*} [Category C] {A B A' B' X Y : C}
   (a : A ⟶ A') (i : A ⟶ B) (i' : A' ⟶ B') (b : B ⟶ B') (f : X ⟶ Y)
@@ -43,13 +55,21 @@ variable {C : Type*} [Category C] {A B A' B' X Y : C}
 lemma pushout_preserves_left_lifting_property
     (h : HasLiftingProperty i f) (po : IsPushout a i i' b) : HasLiftingProperty i' f :=
   ⟨fun {s} {t} sq => by
-    have big_sq := CommSq.horiz_comp ⟨po.w⟩ sq
+    have big_sq := CommSq.horiz_comp po.toCommSq sq
     have big_sq_hasLift := h.sq_hasLift big_sq
     have g := big_sq_hasLift.exists_lift.some
+    let w := po.desc s g.l g.fac_left.symm
+    let w_fac_left : i' ≫ w = s := po.inl_desc s g.l g.fac_left.symm
+    have sq_A_A'_B_Y : CommSq a i (s ≫ f) (b ≫ t) := ⟨by
+      simp only [← big_sq.w, Category.assoc]⟩
     have sq_lift : sq.LiftStruct := {
-      l := po.desc s g.l g.fac_left.symm
-      fac_left := IsPushout.inl_desc po s g.l g.fac_left.symm
-      fac_right := sorry
+      l := w
+      fac_left := w_fac_left
+      fac_right := by
+        have s : Limits.Cocone (Limits.span a i) := sq_A_A'_B_Y.cocone
+        have := po.isColimit.uniq s
+        --- pushout_desc_uniq
+        sorry
     }
     exact ⟨Nonempty.intro sq_lift⟩⟩
 
