@@ -56,12 +56,10 @@ variable {C : Type*} [Category C] {A B A' B' X Y : C}
 lemma pushout_preserves_left_lifting_property
     (h : HasLiftingProperty i f) (po : IsPushout a i i' b) : HasLiftingProperty i' f :=
   ⟨fun {s} {t} sq => by
-    have big_sq := CommSq.horiz_comp po.toCommSq sq
-    have big_sq_hasLift := h.sq_hasLift big_sq
-    have g := big_sq_hasLift.exists_lift.some
+    have g := (h.sq_hasLift (CommSq.horiz_comp po.toCommSq sq)).exists_lift.some
     let w := po.desc s g.l g.fac_left.symm
     let w_fac_left : i' ≫ w = s := po.inl_desc s g.l g.fac_left.symm
-    have sq_lift : sq.LiftStruct := {
+    exact ⟨Nonempty.intro {
       l := w
       fac_left := w_fac_left
       fac_right := by
@@ -69,9 +67,7 @@ lemma pushout_preserves_left_lifting_property
         have uniq_t := uniq t rfl rfl
         have uniq_w_f := uniq (w ≫ f) (by rw [← Category.assoc, w_fac_left, sq.w])
           (by rw [← Category.assoc, po.inr_desc s g.l g.fac_left.symm, g.fac_right])
-        exact Eq.trans uniq_w_f uniq_t.symm
-    }
-    exact ⟨Nonempty.intro sq_lift⟩⟩
+        exact Eq.trans uniq_w_f uniq_t.symm }⟩⟩
 
 end LiftingProperties
 
