@@ -31,15 +31,11 @@ variable {C : Type*} [Category C] {Z X Y P : C}
   {f : Z ⟶ X} {g : Z ⟶ Y} {inl : X ⟶ P} {inr : Y ⟶ P}
 
 lemma uniq (hP : IsPushout f g inl inr) {W : C} (h : X ⟶ W) (k : Y ⟶ W) (w : f ≫ h = g ≫ k)
-    (d : P ⟶ W) (hl : inl ≫ d = h) (hr : inr ≫ d = k) : d = hP.desc h k w := by
-  have sq : CommSq f g h k := ⟨w⟩
-  let s : Limits.Cocone (Limits.span f g) := sq.cocone -- (CommSq.mk w).cocone
-  apply hP.isColimit.uniq s d
-  intro j
-  match j with
-  | none => simp; congr
-  | some Limits.WalkingPair.left => simp; congr
-  | some Limits.WalkingPair.right => simp; congr
+    (d : P ⟶ W) (hl : inl ≫ d = h) (hr : inr ≫ d = k) : d = hP.desc h k w :=
+  hP.isColimit.uniq (CommSq.mk w).cocone d fun j => match j with
+    | none => by simp; congr
+    | some Limits.WalkingPair.left => by simp; congr
+    | some Limits.WalkingPair.right => by simp; congr
 
 end CategoryTheory.IsPushout
 
