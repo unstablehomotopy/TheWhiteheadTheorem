@@ -25,16 +25,23 @@ section LiftingProperties
 #check Square.isPushout_iff -- import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Square
 #check IsPullback           -- import Mathlib.CategoryTheory.Limits.Shapes.Pullback.CommSq
 
-section
+namespace CategoryTheory.IsPushout
 
 variable {C : Type*} [Category C] {Z X Y P : C}
   {f : Z ⟶ X} {g : Z ⟶ Y} {inl : X ⟶ P} {inr : Y ⟶ P}
 
-lemma pushout_desc_uniq (hP : IsPushout f g inl inr)
-    {W : C} (h : X ⟶ W) (k : Y ⟶ W) (w : f ≫ h = g ≫ k)
+lemma uniq (hP : IsPushout f g inl inr) {W : C} (h : X ⟶ W) (k : Y ⟶ W) (w : f ≫ h = g ≫ k)
     (d : P ⟶ W) (hl : inl ≫ d = h) (hr : inr ≫ d = k) : d = hP.desc h k w := by
-  sorry
-end
+  have sq : CommSq f g h k := ⟨w⟩
+  let s : Limits.Cocone (Limits.span f g) := sq.cocone -- (CommSq.mk w).cocone
+  apply hP.isColimit.uniq s d
+  intro j
+  match j with
+  | none => simp; congr
+  | some Limits.WalkingPair.left => simp; congr
+  | some Limits.WalkingPair.right => simp; congr
+
+end CategoryTheory.IsPushout
 
 variable {C : Type*} [Category C] {A B A' B' X Y : C}
   (a : A ⟶ A') (i : A ⟶ B) (i' : A' ⟶ B') (b : B ⟶ B') (f : X ⟶ Y)
@@ -58,15 +65,11 @@ lemma pushout_preserves_left_lifting_property
     have g := big_sq_hasLift.exists_lift.some
     let w := po.desc s g.l g.fac_left.symm
     let w_fac_left : i' ≫ w = s := po.inl_desc s g.l g.fac_left.symm
-    -- have sq_A_A'_B_Y : CommSq a i (s ≫ f) (b ≫ t) := ⟨by simp only [← big_sq.w, Category.assoc]⟩
     have sq_lift : sq.LiftStruct := {
       l := w
       fac_left := w_fac_left
       fac_right := by
-        -- have s : Limits.Cocone (Limits.span a i) := sq_A_A'_B_Y.cocone
-        -- have := po.isColimit.uniq s
-        --- pushout_desc_uniq
-        have uniq := pushout_desc_uniq po (i' ≫ t) (b ≫ t) (by rw [po.w_assoc])
+        have uniq := po.uniq (i' ≫ t) (b ≫ t) (by rw [po.w_assoc])
         have uniq_t := uniq t rfl rfl
         have uniq_w_f := uniq (w ≫ f) (by rw [← Category.assoc, w_fac_left, sq.w])
           (by rw [← Category.assoc, po.inr_desc s g.l g.fac_left.symm, g.fac_right])
