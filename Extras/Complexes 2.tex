@@ -440,6 +440,10 @@ Here are the packages that I use
 \ \\
 \scalebox{3}{\texttt{The Whitehead Theorem}}\\
 \ \\
+\scalebox{3}{\texttt{and}}\\
+\ \\
+\scalebox{3}{\texttt{Two Variations}}\\
+\ \\
 \end{center}
 \end{tcolorbox}
 \end{center}
@@ -454,8 +458,6 @@ Here are the packages that I use
 \scalebox{0.85}{∀(C:D(∞-Cat)),∀(D:D(∞-Cat)),∀(F:D(∞-Cat).Hom C D),∀(G:D(∞-Cat).Hom C D),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) → F = G}\\
 \ \\
 \scalebox{0.85}{∀(X:D(∞-Grpd)),∀(Y:D(∞-Grpd)),∀(f:D(∞-Grpd).Hom X Y),∀(g:D(∞-Grpd).Hom X Y),(∀(n:Nat),(Πₙ f = Πₙ g)) → f = g}\\
-\ \\
-\scalebox{0.85}{∀(C:D(∞-Cat₋₁)),∀(D:D(∞-Cat₋₁)),∀(F:D(∞-Cat₋₁).Hom C D),∀(G:D(∞-Cat₋₁).Hom C D),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G}\\
 \ \\
 \scalebox{0.85}{∀(X:D(∞-Grpd₋₁)),∀(Y:D(∞-Grpd₋₁)),∀(f:D(∞-Grpd₋₁).Hom X Y),∀(g:D(∞-Grpd₋₁).Hom X Y),(∀(n:Nat),(πₙ f = πₙ g)) → f = g}\\
 \end{center}
@@ -530,138 +532,18 @@ Here are the packages that I use
 \ \\
 \ \\
 
-We wish to acknowledge the collaborative efforts of E. Dean Young and Jiazhen Xia. Together the authors are pursuing these plans as a long term project.\\
+We wish to acknowledge the collaborative efforts of E. Dean Young and Jiazhen Xia. Dean Young initially formulated the introduction with twelve goals, posting them on the Lean Zulip in August of 2023. Together the authors are pursuing these plans as a long term project.\\
+
 
 
 \newpage
 
-\iffalse
-░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░ 
-░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
-░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
-░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░   
-░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
-░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
- ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░
-\fi
-\newpage
-\section{Unicode}
-
-Here is a list of the unicode characters we will use:
-
-{\footnotesize
-\begin{center}
-\begin{tabular}{|| l || l || l || l ||} 
-\hline
-$\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use}$\\
-\hline
-\hline
-\multicolumn{4}{||c||}{\texttt{Lean's Kernel}} \\
-\hline
-\hline
-× & 2A2F & \backslash\texttt{times} & Product of types\\
-\hline
-→ & 2192 & \backslash\texttt{rightarrow}  & Hom of types\\
-\hline
-⟨,⟩ & 27E8,27E9 & \backslash\texttt{langle},\backslash\texttt{rangle}  & Product term introduction\\
-\hline
-↦ & 21A6 &\backslash\texttt{mapsto}  & Hom term introduction\\
-\hline
-∧ & 2227 &\backslash\texttt{wedge}  & Conjunction \\
-\hline
-∨ & 2228 &\backslash\texttt{vee}  & Disjunction \\
-\hline
-∀ & 2200 &\backslash\texttt{forall}  & Universal quantification \\
-\hline
-∃ & 2203 &\backslash\texttt{exists}  & Existential quantification\\
-\hline
-¬ & 00AC &\backslash\texttt{neg}  & Negation\\
-\hline
-\hline
-\multicolumn{4}{||c||}{\texttt{Variables and Constants}} \\
-\hline
-\hline
-ᵃ,ᵇ,ᶜ,...,ᶻ & 1D52,1D56 & & Variables and constants \\
-\hline
-⁰,¹,²,³,⁴,⁵,⁶,⁷,⁸,⁹ & 1D52,1D56 &  & Variables and constants \\
-\hline
-⁻ & 207B &  & Variables and constants \\
-\hline
-₀,₁,₂,₃,₄,₅,₆,₇,₈,₉ & 2080 - 2089 & \backslash\texttt{0}-\backslash\texttt{9} & Variables and constants\\
-\hline
-𝔸,...,ℤ & 1D538 &  &  \\
-\hline
-𝕒,...,𝕫 & 1D552 &  &  \\
-\hline
-𝐀,...,𝐙 & 1D41A &  &  \\
-\hline
-𝐚,...,𝐳 & 1D41A &  &  \\
-\hline
-\texttt{α}-\texttt{ω},\texttt{A}-\texttt{Ω} & 03B1-03C9 & & Variables and constants\\
-\hline
-\hline
-\multicolumn{4}{||c||}{\texttt{Categories}} \\
-\hline
-\hline
- 𝟙 & 1D7D9 & \backslash\texttt{b1}  & The identity morphism\\
-\hline
- ∘ & 2218 & \backslash\texttt{circ}  & Composition\\
- \hline
- \hline
- \multicolumn{4}{||c||}{\texttt{Bicategories}} \\
- \hline 
- \hline
- • & 2022  & \backslash\texttt{smul}  & Horizontal composition of objects\\ 
-  \hline
-  \hline
- \multicolumn{4}{||c||}{\texttt{Adjunctions}} \\
-\hline
-\hline
-⇄ & 21C4 & \backslash\texttt{rightleftarrows}  & Adjunctions \\
-\hline
-⇆ & 21C6 & \backslash\texttt{leftrightarrows}  & Adjunctions \\
-\hline
-𛲔 & 1BC94 &  & Right adjoints\\
-\hline
-ॱ & 0971 &  & Left adjoints \\
-\hline
-⊣ & 22A3 & \backslash\texttt{dashv}  & The condition that two functors are adjoint \\
-\hline
-\hline
-\multicolumn{4}{||c||}{\texttt{Monads and Comonads}} \\
-\hline
-\hline
-?,¿ & 003F, 00BF & ?,\backslash\texttt{?}  & The corresponding (co)monad of an adjunction\\
-\hline
-!,¡ & 0021, 00A1 & !, \backslash\texttt{!}  & The (co)-Eilenberg-(co)-Moore adjunction \\
-\hline
-ꜝ,ꜞ & A71D, A71E &  & The (co)exponential maps\\
-\hline
-\hline
-\multicolumn{4}{||c||}{\texttt{Miscellaneous}} \\
-\hline
-\hline
-∼ & 223C & \backslash\texttt{sim} & Homotopies \\
-\hline
-≃ & 2243 & \backslash\texttt{equiv}  & Equivalences \\
-\hline
-≅ & 2245 & \backslash\texttt{cong}  & Isomorphisms \\
-\hline
-⊥ & 22A5 & \backslash\texttt{bot}  & The overobject classifier \\
-\hline
-∞ & 221E & \backslash\texttt{infty}  & Infinity categories and infinity groupoids\\ 
-\hline
-${}^{\leftrightarrow}$ & 20D7 &  & Homotopical operations on ∞-categories \\
-\hline
-${}^{\rightarrow}$ & 20E1 &  & Homotopical operations on ∞-groupoids \\
-\hline
-\end{tabular}
-\end{center}}
 
 
 \newpage
 \section{Contents}
 
+The table of contents below reflects the tentative long-term goals of the authors, with the main goal the pursuit of the Whitehead theorem for a point-set model involving Mathlib's predefined homotopy groups.\\
 
 {
 \footnotesize
@@ -678,17 +560,17 @@ Unicode & \\
 \hline
 Introduction & \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{PART I: } Based ∞-Groupoids} \\
+\multicolumn{2}{||c||}{\texttt{PART I: } BASED ∞-Groupoids} \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{Chapter 1: }Based ∞-Groupoids} \\
+\multicolumn{2}{||c||}{\texttt{Chapter 1: }BASED ∞-Groupoids} \\
 \hline \hline
-D(∞-Grpd₀) & The derived category of Based ∞-groupoids \\
+D(∞-Grpd₀) & The derived category of BASED ∞-groupoids \\
 \hline
-D(∞-Grpd₀/X₀) & The derived category of Based ∞-groupoids over X₀. \\
+D(∞-Grpd₀/X₀) & The derived category of BASED ∞-groupoids over X₀. \\
 \hline
 Ω : ∞-Grpd₀ ⭢ ∞-Grpd & The loop space functor \\
 \hline
-Σ : ∞-Grpd₀ ⭢ ∞-Grpd₀ & The Based suspension functor \\
+Σ : ∞-Grpd₀ ⭢ ∞-Grpd₀ & The based suspension functor \\
 \hline 
 ω f : ∞-Grpd/D₀ ⭢ ∞-Grpd/C₀ & The homotopy fiber\\
 \hline 
@@ -696,21 +578,21 @@ D(∞-Grpd₀/X₀) & The derived category of Based ∞-groupoids over X₀. \\
  \hline 
 πₙ : ∞-Grpd₀ ⭢ Set & The connected components functors\\
  \hline \hline
-  \multicolumn{2}{||c||}{\texttt{Chapter 2: }The Whitehead Theorem for Based ∞-Groupoids} \\
+  \multicolumn{2}{||c||}{\texttt{Chapter 2: }The Whitehead Theorem for BASED ∞-Groupoids} \\
 \hline \hline
 Globular Sets & Defining globular sets\\
 \hline
-HEP for Based ∞-groupoids & The homotopy extension property for ∞$\texttt{-Grpd}$₀\\
+HEP for BASED ∞-groupoids & The homotopy extension property for ∞$\texttt{-Grpd}$₀\\
  \hline 
-REP for Based ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
+REP for BASED ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
 \hline
 Whitehead theorem (c) & A map $\texttt{F : D(}$∞$\texttt{-Grpd₀).Hom E₀ B₀}$ is determined by $\texttt{λ(n:Nat),πₙ F}$. \\
 \hline \hline
   \multicolumn{2}{||c||}{\texttt{Chapter 3: }The Category of Maps} \\
 \hline \hline
-HEP for Maps of Based ∞-groupoids & The homotopy extension property for ∞$\texttt{-Grpd}$₀\\
+HEP for Maps of BASED ∞-groupoids & The homotopy extension property for ∞$\texttt{-Grpd}$₀\\
  \hline 
-REP for Maps of Based ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
+REP for Maps of BASED ∞-groupoids & The replacement functor on ∞$\texttt{-Grpd}$₀ \\
 \hline
 The Whitehead theorem for Maps & ... \\
 \hline \hline
@@ -724,7 +606,7 @@ D(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
 \hline
 Ω⃡ : ∞-Grpd ⭢ ∞-Grpd & The directed path space functor \\
  \hline 
-Σ⃡ : ∞-Grpd ⭢ ∞-Grpd & The unBased suspension functor \\
+Σ⃡ : ∞-Grpd ⭢ ∞-Grpd & The unbased suspension functor \\
  \hline 
 ω⃡ f : ∞-Grpd⁄D ⭢ ∞-Grpd/C & The directed homotopy pullback functor\\
 \hline 
@@ -753,7 +635,7 @@ HEP for Maps of ∞-groupoids & The homotopy extension property for ∞$\texttt{
  \hline 
 The Whitehead theorem for Maps of ∞-groupoids & ... \\
 \hline \hline
-\multicolumn{2}{||c||}{\texttt{PART II: } Based ∞-CATEGORIES} \\
+\multicolumn{2}{||c||}{\texttt{PART II: } BASED ∞-CATEGORIES} \\
 \hline \hline 
 \multicolumn{2}{||c||}{\texttt{Chapter 4: }∞\texttt{-...}}\\
 \hline \hline
@@ -763,7 +645,7 @@ D(∞-Grpd/X) & The derived category of ∞-groupoids over X \\
 \hline
 Ω⃡ : ∞-Grpd ⭢ ∞-Grpd & The directed path space functor \\
  \hline 
-Σ⃡ : ∞-Grpd ⭢ ∞-Grpd & The unBased suspension functor \\
+Σ⃡ : ∞-Grpd ⭢ ∞-Grpd & The unbased suspension functor \\
  \hline 
 ω⃡ f : ∞-Grpd⁄D ⭢ ∞-Grpd/C & The directed homotopy pullback functor\\
 \hline 
@@ -802,7 +684,7 @@ D(∞-Cat⁄C) & The derived category of ∞-categories over C \\
 \hline
 Ω⃗ : ∞-Cat ⭢ ∞-Cat & The directed path space functor \\
  \hline 
- Σ⃗ : ∞-Cat ⭢ ∞-Cat & The directed unBased suspension \\
+ Σ⃗ : ∞-Cat ⭢ ∞-Cat & The directed unbased suspension \\
 \hline 
 ω⃗ f : ∞-Cat⁄D ⭢ ∞-Cat/C & The directed homotopy pullback functor\\
  \hline 
@@ -904,7 +786,7 @@ AbelianGroup & The symmetric monoidal category of abelian groups\\
 \hline \hline
  \multicolumn{2}{||c||}{\texttt{Chapter 6: }∞-Grpd₋₁ ⇄ ∞-Space} \\
 \hline \hline
-??? & The free ∞-space given a Based ∞-groupoid \\
+??? & The free ∞-space given a based ∞-groupoid \\
 \hline
 ??? & The forgetul functor from ∞-spaces to ∞-groupoids \\
 \hline
@@ -954,6 +836,116 @@ $A{}^{\infty}$-RingAction ($A{}^{\infty}$-Ring C) ≅ $A{}^{\infty}$-Ring ($A{}^
 \hline
 Maps A${}^{\infty}$-Algebras & \\
  \hline \hline
+\multicolumn{2}{||c||}{\texttt{PART III: } DERIVATIONS AND CONNECTIONS} \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 11: }Lie Algebras} \\
+\hline \hline
+lie\_algebra & The type of Lie-algebras \\
+\hline
+LieAlgebra & The category of Lie-algebras \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 12: }Derivations} \\
+\hline \hline
+InternalAbelianGroup (Maps (Algebra A)) ≅ MonoidActionObject A & ??? \\
+\hline
+??? : (Maps (Algebra A)) ⇄ InternalAbelianGroup (Maps (Algebra A)) : ??? & The free abelian group functor for (Maps (Algebra A)) \\
+\hline
+Λ : ??? ⇄ ??? : FstDeg & \\ 
+\hline
+??? : (Algebra A) ⇄ [E⃗.obj ℕ, (Algebra A)] : ??? & The free DGA functor \\
+\hline 
+derivation & Definition of a derivation \\
+\hline
+Der : () ⇄ (InternalMonoidAction A) : ??? & A derivation is a primitive element \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 13: }L${}^{\infty}$ Algebras} \\
+\hline \hline
+Lⁱⁿᶠ\_algebra & The type of L${}^{\infty}$-algebras  \\
+\hline
+L${}^{\infty}$Algebra &  \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 14: }∞-Derivations} \\
+\hline \hline
+OperadicAbelianGroup (Maps (∞-Algebra A)) ≅ E${}^{\infty}$-MonoidAction A & ??? \\
+\hline
+??? : $A{}^{\infty}$-Algebras ⇄ ???  & The free abelian group \\
+\hline
+Λ : ??? ⇄ ??? : FstDeg &  \\ 
+\hline
+??? : (???) ⇄ (???) : ??? & The free ??? \\
+\hline
+∞-derivation & Definition of an ∞-derivation \\
+\hline
+∞-Der : () ⇄ () : ??? & A derivation is an ∞-primitive element \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 15: }Tensor Product of Lie Algebras} \\
+\hline \hline
+- ⊗\_() - &  \\
+\hline
+LieAlgebra : ??? & The monoidal category of Lie algebras\\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 16: }Tensor Product of L${}^{\infty}$-Algebras} \\
+\hline \hline
+- ⊗\_() - & \\ 
+ \hline
+ : ??? & The symmetric monoidal category of L${}^{\infty}$-algebras \\
+ \hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 17: }Lie Algebra Representations} \\
+\hline \hline
+ & \\
+\hline
+ & \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 18: }Connections} \\
+\hline \hline
+??? & The ??? equivalence \\
+\hline
+??? & The free internal abelian group action functor \\
+\hline
+??? & The first degree of the free E${}^{\infty}$-DGM on an algebra is s\_() \\
+\hline
+???   & ??? \\
+\hline
+connection & Definition of a connection \\
+\hline
+??? & A connection is a d-action \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 19: }L${}^{\infty}$-Representations} \\
+\hline \hline
+ & \\
+\hline
+ & \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 20: }∞-Connections} \\
+\hline \hline
+??? & The ??? equivalence \\
+\hline
+??? & The free operadic abelian group action functor \\
+\hline
+??? & The first degree of the free E${}^{\infty}$-DGM on an algebra is sⁱⁿᶠ\_() \\
+\hline
+???  & ??? \\
+\hline
+connection & Definition of a connection \\
+\hline
+??? & A connection is a dⁱⁿᶠ-action\\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 21: }Tensor Product of Lie-Algebra Representations} \\
+\hline \hline
+- ⊗\_() - &  \\
+\hline
+[-,-]\_() &  \\
+\hline
+??? & The symmetric monoidal closed category of Lie-algebra representations \\
+\hline \hline
+\multicolumn{2}{||c||}{\texttt{Chapter 22: }Tensor Product of L${}^{\infty}$-Algebra Representations} \\
+\hline \hline
+- ⊗\_() -  &  \\
+ \hline
+[-,-]\_() - &  \\
+ \hline
+??? & The symmetric monoidal closed category of L${}^{\infty}$-algebra representations\\
+ \hline \hline
 \end{longtable}
 }
 
@@ -962,16 +954,20 @@ Maps A${}^{\infty}$-Algebras & \\
 \newpage
 \section{Introduction}
 
-{\bf The main goal of this repository is to prove the Whitehead theorem in Lean 4 using Mathlib 4's homotopy groups}. Three other subsequent goals are to state and prove three variations of the Whitehead theorem:\\
+{\bf The main goal of this repository is to prove the Whitehead theorem in Lean 4 using Mathlib 4's homotopy groups}. Two other subsequent goals are to state and prove two variations of the Whitehead theorem. It is important that initial pull requests stemming from our work remain basic and accessible; we hope to make progress which is gradual and incremental.\\
+
+Besides this goal, we have three others. Here are the four heorems which will form our main goals:
 
 \begin{enumerate}[(a)]
-\item (The Whitehead theorem for Based ∞-groupoids) ∀(E:D(∞-Grpd₋₁)),∀(B:D(∞-Grpd₋₁)),∀(F:D(∞-Grpd₋₁).Hom E B),∀(G:D(∞-Grpd₋₁).Hom E B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n, where π n : Functor D(∞-Grpd₋₁) Set.
+\item (The Whitehead theorem for based ∞-groupoids) ∀(E:D(∞-Grpd₋₁)),∀(B:D(∞-Grpd₋₁)),∀(F:D(∞-Grpd₋₁).Hom E B),∀(G:D(∞-Grpd₋₁).Hom E B),(∀(n:Nat),(πₙ F = πₙ G)) → F = G, where πₙ is notation for π n, where π n : Functor D(∞-Grpd₋₁) Set.
 \item (The Whitehead theorem for ∞-groupoids) ∀(E:D(∞-Grpd)),∀(B:D(∞-Grpd)),∀(F:D(∞-Grpd).Hom E B),∀(G:D(∞-Grpd).Hom E B),(∀(n:Nat),(Πₙ F = Πₙ G)) → F = G, where Πₙ is notation for Π n, where Π n : Functor D(∞-Grpd) Set.
-\item (The Whitehead theorem for Based ) ∀(E:D(∞-Cat₋₁)),∀(B:D(∞-Cat₋₁)),∀(F:D(∞-Cat₋₁).Hom E B),∀(G:D(∞-Cat₋₁).Hom E B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G, where π⃗ₙ is notation for π⃗ n, where π⃗ n : Functor D(∞-Cat₋₁) Set.
+\item (The Whitehead theorem for based ) ∀(E:D(∞-Cat₋₁)),∀(B:D(∞-Cat₋₁)),∀(F:D(∞-Cat₋₁).Hom E B),∀(G:D(∞-Cat₋₁).Hom E B),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G, where π⃗ₙ is notation for π⃗ n, where π⃗ n : Functor D(∞-Cat₋₁) Set.
 \item (The Whitehead theorem for ∞-categories) ∀(E:D(∞-Cat)),∀(B:D(∞-Cat)),∀(F:D(∞-Cat).Hom E B),∀(G:D(∞-Cat).Hom E B),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) → F = G, where Π⃗ₙ is notation for Π⃗ n, where Π⃗ n : Functor D(∞-Cat₋₁) Set.
 \end{enumerate}
 
-(a) in the above reflects the known Whitehead theorem, which dates back to Whitehead's two papers titled `Combinatorial Homotopy I' and `Combinatorial Homotopy II'. We will use two models of each of the following categories in the theorems above:
+(a) in the above reflects the known Whitehead theorem, which dates back to Whitehead's two papers titled `Combinatorial Homotopy I' and `Combinatorial Homotopy II'. There is also a fourth Whitehead theorem.\\
+
+We will use two models of each of the following categories in the theorems above:
 
 \begin{enumerate}[(i)]
 \item We model ∞-Grpd₋₁ : Cat using based CW-complexes.
@@ -982,25 +978,34 @@ Maps A${}^{\infty}$-Algebras & \\
 
 This choice accords with the standard approach to the third theorem, in which one typically chooses both a combinatorial and point-set model, with the former featuring a \href{https://github.com/leanprover-community/mathlib4/blob/8666bd82efec40b8b3a5abca02dc9b24bbdf2652/Mathlib/AlgebraicTopology/SimplicialSet.lean#L235-L236}{geometric realization functor} into the latter.\\
 
-The theorems in the above involve the four pi-functors:
+We will use $\texttt{Mathlib 4}$'s category theory, particularly
+
+\begin{enumerate}
+\item Categories (see Mathlib's $\texttt{Category X}$)
+\item Functors (see Mathlib's $\texttt{Functor C D}$)
+\item Natural transformations (see Mathlib's $\texttt{NatTrans F G}$)
+\item Equations between natural transformations (see Mathlib's $\texttt{NatExt}$ here; these are related to our $\texttt{equation}$)
+\end{enumerate}
+
+While the functors πₙ occuring in the main theorems above are already defined in $\texttt{Mathlib 4}$ for the desired point-set model, the functors πₙ, Πₙ, and Π⃗ₙ are not. The existence of a base point makes πₙ relatively straightforward to define. Here are their types:
 
 \begin{enumerate}[(i)]
-\item πₙ : Functor D(∞-Grpd₋₁) Set
+\item πₙ : Functor D(∞-Grpd₋₁) Set (???)
 \item π⃗ₙ : Functor D(∞-Cat₋₁) Set
 \item Πₙ : Functor D(∞-Grpd) Set
 \item Π⃗ₙ : Functor D(∞-Cat) Set
 \end{enumerate}
 
-While the functors πₙ occuring in the main theorems above are already defined in $\texttt{Mathlib 4}$ for topological spaces, the functors π⃗ₙ, Πₙ, and Π⃗ₙ are not. We will also form their derived functors:
+ We also form their derived functors:
 
 \begin{enumerate}[(i)]
 \item D(πₙ) : Functor D(∞-Grpd₋₁) Set
 \item D(π⃗ₙ) : Functor D(∞-Cat₋₁) Set
-\item D(Πₙ) : Functor D(∞-Grpd) (Map Set)
-\item D(Π⃗ₙ) : Functor D(∞-Cat) (Map Set)
+\item D(Πₙ) : Functor D(∞-Grpd) (Glb →$\_(Cat)$ Sets)
+\item D(Π⃗ₙ) : Functor D(∞-Cat) (Glb →$\_(Cat)$ Sets)
 \end{enumerate}
 
-In the course of the repository we will need the directed path space, path space, and loop space functors as well, which fit with the analogy formed by the Whitehead theorem and its two variations:
+Where Glb →$\_(Cat)$ Sets is the category of globular sets. In the course of the repository we will need the directed path space, path space, and loop space functors as well, which fit with the analogy formed by the Whitehead theorem and its two variations:
 
 \begin{enumerate}
 \item Ω : Functor ∞-Grpd₋₁ ∞-Grpd₋₁
@@ -1027,7 +1032,7 @@ We will define three different kinds of derived category:\\
 \begin{enumerate}
 \item D(∞-Cat) : Cat (the directed derived category of ∞-categories)
 \item D(∞-Grpd) : Cat (the derived category of ∞-groupoids)
-\item D(∞-Grpd₀) : Cat (the derived category of Based ∞-groupoids)
+\item D(∞-Grpd₀) : Cat (the derived category of based ∞-groupoids)
 \end{enumerate}
 
 We then create the second kind of derived category, one for each of the objects in the respective categories above:
@@ -1062,8 +1067,8 @@ The six internal structures above arise here in relation to six functors:
 \item ω⃗ (𝟙 C) : ∞-Cat/C ⭢ ∞-Cat/C, the derived directed homotopy pullback with 𝟙 C. D(ω⃗ (𝟙 C)) factors through a categorical equivalence between D(∞-Cat/C) and internal P⃗C-presheaves in D(∞-Cat/C).
 \item Ω⃡ : ∞-Grpd ⭢ ∞-Grpd (notation for the path space functor [I,-]), the derived homotopy pullback of an ∞-groupoid with itself. D(Ω⃡) factors through a categorical equivalence between D(∞-Grpd) and internal groupoids in D(∞-Grpd)
 \item ω⃡ (𝟙 X) : ∞-Grpd/X ⭢ ∞-Grpd/X, the derived homotopy pullback with 𝟙 X. D(ω⃡ (𝟙 X)) factors through internal P⃡X
-\item Ω : ∞-Grpd₀ ⭢ ∞-Grpd₀, the loop space functor. D(Ω) factors through a categorical equivalence between D(∞-Grpd₀) and internal groups in D(∞-Grpd₀) (the loop space functor on connected Based ∞-groupoids)
-\item ω (𝟙 X) : ∞-Grpd₀/X₀ ⭢ ∞-Grpd₀/X₀, the homotopy pullback with the base of X₀. D(ω (𝟙 X)) factors through internal PX₀-actions in Based spaces over X₀.
+\item Ω : ∞-Grpd₀ ⭢ ∞-Grpd₀, the loop space functor. D(Ω) factors through a categorical equivalence between D(∞-Grpd₀) and internal groups in D(∞-Grpd₀) (the loop space functor on connected based ∞-groupoids)
+\item ω (𝟙 X) : ∞-Grpd₀/X₀ ⭢ ∞-Grpd₀/X₀, the homotopy pullback with the base of X₀. D(ω (𝟙 X)) factors through internal PX₀-actions in BASED spaces over X₀.
 \end{enumerate}
 
 (v) in the above is shown \href{https://mathoverflow.net/questions/128883/why-omega-x-and-bg-are-adjoint-functors}{here} and (vi) in the above is shown in a typical exposition of $G$-principal bundles.\\
@@ -1341,15 +1346,9 @@ $\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use
 \hline
 ∞ & 221E & \backslash\texttt{infty}  & Infinity categories and infinity groupoids\\ 
 \hline
-${}^{\rightarrow}$ & 20E1 &  & Used for structures with r value of 1 \\
+${}^{\leftrightarrow}$ & 20D7 &  & Homotopical operations on ∞-categories \\
 \hline
-\hline
-\multicolumn{4}{||c||}{\texttt{Miscellaneous}} \\
-\hline
-\hline
- □ & ??? & ??? & The box construction \\ 
-\hline
- 𝓓 & ??? & ??? & The derived category \\ 
+${}^{\rightarrow}$ & 20E1 &  & Homotopical operations on ∞-groupoids \\
 \hline
 \end{tabular}
 \end{center}}
@@ -1433,7 +1432,7 @@ def reflexivity {X : Type} {x : X} : x = x := Eq.refl x
 
 This command defines a function called reflexivity that proves the reflexivity property of equality. The function takes two type parameters: $\texttt{X}$ represents the type of the elements being compared, and $\texttt{x}$ represents an element of type $\texttt{X}$. It also takes an argument ω which is a proof that $\texttt{x}$ is equal to itself ($\texttt{x = x}$). The function body states that the result of $\texttt{reflexivity}$ is the proof ω itself using the $\texttt{Eq.refl}$ constructor, which indicates that $\texttt{x}$  is equal to itself.
 
-In $\texttt{Lean 4}$, $\{\texttt{x : X}\}$ represents an implicit argument, where Lean will attempt to infer the value of $\texttt{x}$ Based on the context. $\texttt{(x : X)}$ represents an explicit argument, requiring the value of $\texttt{x}$ to be provided explicitly when using the function or definition.
+In $\texttt{Lean 4}$, $\{\texttt{x : X}\}$ represents an implicit argument, where Lean will attempt to infer the value of $\texttt{x}$ based on the context. $\texttt{(x : X)}$ represents an explicit argument, requiring the value of $\texttt{x}$ to be provided explicitly when using the function or definition.
 
 %LEAN: 
 \begin{center}
@@ -1506,7 +1505,7 @@ Here are some introductions to Lean 4 and Mathlib 4:
 
 
 
-\part{Based ∞-GROUPOIDS}
+\part{BASED ∞-GROUPOIDS}
 
 In this first section we prove the standard Whitehead theorem.\\
 
@@ -1588,11 +1587,30 @@ def CWComplexCat := FullSubcategory IsCWComplex
 
 
 
-Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected Based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
+Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
 
 \section{D(∞-Grpd₋₁)}
 
-In this section, we construct the homotopy category of Based ∞-groupoids D(∞-Grpd₋₁) as the category of (CW) complexes with homotopy classes of maps. A CW-complex, which we here refer to as a complex.\\
+{\footnotesize
+\begin{center}
+\begin{tabular}{|| l || l || l || l ||} 
+\hline
+$\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use}$\\
+\hline
+\multicolumn{4}{||c||}{\texttt{Lean's Kernel}} \\
+\hline
+× & 2A2F & \backslash\texttt{times} & Product of types\\
+\hline
+→ & 2192 & \backslash\texttt{rightarrow}  & Hom of types\\
+\hline
+⊣ & 22A3 & \backslash\texttt{dashv}  & The condition that two functors are adjoint \\
+\hline
+?,¿ & 003F, 00BF & ?,\backslash\texttt{?}  & The corresponding (co)monad of an adjunction\\
+\hline
+∼ & 223C & \backslash\texttt{sim} & Homotopies \\
+\hline
+\end{tabular}
+\end{center}}
 
 %LEAN: 
 \begin{center}
@@ -1603,35 +1621,29 @@ In this section, we construct the homotopy category of Based ∞-groupoids D(∞
 \end{tcolorbox}
 \end{center}
 
-\section{D(∞-Grpd₋₁/X)}
+\section{D(∞-Grpd₀/X₀)}
 
-The derived category of an overcategory of Based ∞-groupoids...\\
+The derived category of BASED ∞-groupoids over X₀. \\
 
-
-
-\section{Σ : ∞-Grpd₋₁ ⇄ ∞-Grpd₋₁ : Ω}
-
-The loop space functor $\texttt{Ω : Functor ∞-Grpd₋₁ ∞-Grpd₋₁}$ is right adjoint to the (Based) suspension functor $\texttt{Σ : Functor ∞-Grpd₋₁ ∞-Grpd₋₁}$.
+\section{Ω : ∞-Grpd₀ ⭢ ∞-Grpd}
 
 
 
-\section{σ f : ∞-Grpd₋₁/B ⇄ ∞-Grpd₋₁/E : ω f, f : ∞-Grpd₋₁.Hom E B}
+\section{Σ : ∞-Grpd₀ ⭢ ∞-Grpd₀} 
+
+The based suspension functor
+
+\section{ω f : ∞-Grpd/D₀ ⭢ ∞-Grpd/C₀}
 
 The homotopy fiber
 
-\iffalse
-Is this homotopy pullback with S₀?
-\fi
+\section{σ f : ∞-Grpd₀/C₀ ⭢ ∞-Grpd₀/D₀}
 
 Based homotopy pushout
 
-\iffalse
-Is this homotopy pushout with S₀?
-\fi
+\section{πₙ : ∞-Grpd₀ ⭢ Set}
 
-\section{πₙ : Functor ∞-Grpd₋₁ Set}
-
-The homotopy groups can be first understood as functors into $\texttt{Set}$, only later adding in the fact that $\texttt{πₙ}$ factors through $\texttt{InternalGroup • ⋯ • InternalGroup Set ≃ InternalAbelianGroup Set ≃ AbelianGroup}$ for $\texttt{n ≥ 2}$, and $\texttt{InternalGroup Set ≃ Group}$ for $\texttt{n = 1}$.\\
+The connected components functors
 
 \iffalse
 https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/Basic.html
@@ -1641,12 +1653,16 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/B
 
 \chapter{Chapter 2: The Whitehead Theorem}
 
-The proof of the Whitehead theorem divides into REP (replacement for Based ∞-groupoids X : ∞-Grpd₋₁) and HEP (the homotopy extension property for weak equivalent maps of Based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
+
+
+
+
+The proof of the Whitehead theorem divides into REP (replacement for based ∞-groupoids X : ∞-Grpd₋₁) and HEP (the homotopy extension property for weak equivalent maps of based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
 
 Globular sets are not a rich enough invariant for homotopy, but maps of globular sets bear a criticall difference because of 
 
 \begin{center}
-\texttt{∀(E:D(∞-Grpd₋₁)),∀(B:D(∞-Grpd₋₁)),∀(f:D(∞-Grpd₋₁).Hom E B),∀(G:D(∞-Grpd₋₁).Hom E B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G}
+\texttt{∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(π₀ F = π₀ G)) ⭢ F = G}
 \end{center}
 
 \section{Globular Sets}
@@ -1699,64 +1715,31 @@ Can the attaching map be
 While each of the above unit balls are homeomorphic, so that one has a choice of $p$-norm, the unit balls in [ℕ,ℝ] for different norms are not homeomorphic. Here are two lemmas we have for the 2-norm and ∞-norm unit balls in [ℕ,ℝ]:
 
 \begin{theorem}
-$\texttt{B(2,1) × B(2,∞) ≅ B(2,∞)}$, where B is the unit ball in l₂ under the 2-norm.
+$\texttt{I × B ≅ B}$, where B is the unit ball in l₂ under the 2-norm.
 \end{theorem}
 
 \begin{proof}
-Define a function f : B(2,1) × B(2,∞) $\rightarrow$ B(2,∞) sending (t,x) to ...
+...
 \end{proof}
 
 \begin{theorem}
-$\texttt{I × B(∞,∞) ≅ B(∞,∞)}$, where B is the unit ball in l₂ under the 2-norm.
+$\texttt{I × [ℕ,I] ≅ [ℕ,I]}$, where B is the unit ball in l₂ under the 2-norm.
 \end{theorem}
 
 \begin{proof}
-Define a function $\texttt{f : I × B(∞,∞) ⭢ B(∞,∞)}$ sending $\texttt{f(x,(aₙ))}$ to $\texttt{f(bₙ)}$ where $\texttt{fb₀ = x}$ and $\texttt{fbₙ = a}$${}_{n-1}$. $f$ is continuous. 
-
-Define a function $\texttt{g₁ : B(∞,∞) ⭢ I}$ sending $\texttt{(aₙ)}$ to $\texttt{a₀}$.\\
-
-Define a function $\texttt{g₂ : B(∞,∞) ⭢ I}$ sending $\texttt{(aₙ)}$ to $\texttt{(bₙ)}$ where $\texttt{bₙ = a}$${}_{n+1}$.\\
-
-Define a function $\texttt{g : B(∞,∞) ⭢ I × B(∞,∞)}$.\\
-\iffalse
-$\texttt{g • f = 1}{}_{I × B(∞,∞)}$ and $\texttt{f • g = 1}{}_{B(∞,∞)}$.
-\fi
+...
 \end{proof}
-
-\iffalse
-\begin{theorem}
-$\texttt{B(2,1) × B(2,∞) ≅ B(2,∞)}$, where B is the unit ball in l₂ under the 2-norm.
-\end{theorem}
-
-\begin{proof}
-Define a function f : B(2,1) × B(2,∞) $\rightarrow$ B(2,∞) sending (t,x) to ...
-\end{proof}
-
-\begin{theorem}
-$\texttt{I × B(∞,∞) ≅ B(∞,∞)}$, where B is the unit ball in l₂ under the 2-norm.
-\end{theorem}
-
-\begin{proof}
-Define a function $\texttt{f : I × B(∞,∞) ⭢ B(∞,∞)}$ sending $\texttt{f(x,(aₙ))}$ to $\texttt{f(bₙ)}$ where $\texttt{fb₀ = x}$ and $\texttt{fbₙ = a}$${}_{n-1}$. $f$ is continuous. 
-
-Define a function $\texttt{g₁ : B(∞,∞) ⭢ I}$ sending $\texttt{(aₙ)}$ to $\texttt{a₀}$.\\
-
-Define a function $\texttt{g₂ : B(∞,∞) ⭢ I}$ sending $\texttt{(aₙ)}$ to $\texttt{(bₙ)}$ where $\texttt{bₙ = a}$${}_{n+1}$.\\
-
-Define a function $\texttt{g : B(∞,∞) ⭢ I × B(∞,∞)}$.\\
-
-$\texttt{g • f = 1}{}_{I × B(∞,∞)}$ and $\texttt{f • g = 1}{}_{B(∞,∞)}$.
-\end{proof}
-
-\fi
-
 
 
 \begin{definition}[(a)]
 ...
 \end{definition}
 
-
+\iffalse
+\begin{definition}
+Define a function d${}^{(n_1,...,n_k)} : $ D${}^{n_1}$ × $\cdots$ × D${}^{n_k}$ ⭢ D${}^{n_1 + \cdots + n_k}$ sending $(x_1,...,x_k)$...
+\end{definition}
+\fi
 
 \begin{theorem}
 i¹ : S⁰ ⭢ D¹ 
@@ -1783,11 +1766,18 @@ Fix n : ℕ and let ∂ⁿ : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of
 \end{proof}
 
 
+\begin{theorem}
+Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\sum_{i = 1}^n x_i^2}$, and write ||-||${}_{2}$
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
 
 
-\section{HEP for Based connected ∞-groupoids}
+\section{HEP for based connected ∞-groupoids}
 
-In this section we prove the homotopy extension property for Based ∞-groupoids, which we model as CW-complexes.
+In this section we prove the homotopy extension property for based ∞-groupoids, which we model as CW-complexes.
 
 {\bf Jar filling} Next we turn to defining `jar shapes' $\texttt{Jⁿ}$, which include into $\texttt{Dⁿ × I}$ $\texttt{iₙ : Jⁿ ⭢ Dⁿ × I}$, after which we `fill' them (i.e. demonstrate that any continuous map f : Jⁿ ⭢ X extends to a continuous map g : Dⁿ × I ⭢ X).\\
 
@@ -1802,14 +1792,14 @@ $\texttt{∀(f : Jₙ ⭢ X),∃(g : Dⁿ × I),g • jₙ = f}$.
 \end{theorem}
 
 The first approach I cover here involves `shining a light ray down from above the jar', i.e. projection. This divides into two steps, where in the first we define the projection onto the sides and bottom (seperately), and in the second we show that these continuous functions match on Sⁿ⁻¹ and that they assemble into a continuous function projₙ from Dⁿ × I to Jₙ.\\
-\iffalse
+
 \begin{theorem}
 There is a continuous function $\texttt{proj}_{\texttt{n}} : Dⁿ × I \rightarrow Jₙ$ such that .
 \end{theorem}
 
 After this, we show that $\texttt{projₙ • jₙ = }1_{Jₙ}$.\\
 
-\fi
+
 
 
 \iffalse
@@ -1833,17 +1823,13 @@ $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 ...
 \end{proof}
 
-\begin{center}
-\includegraphics[width=8.75cm,height=5cm]{basechange.png}
-\end{center}
-
 The proof in the above can be depicted like so, as a `painting with two concentric frames':
 
 \begin{center}
-\includegraphics[scale=0.35]{windowframe.png}
+\includegraphics[scale=0.5]{windowframe.png}
 \end{center}
 
-that the Based CW-complexes (X,x) and (X,y) are 
+that the based CW-complexes (X,x) and (X,y) are 
 
 \begin{theorem}
 
@@ -1860,7 +1846,7 @@ that the Based CW-complexes (X,x) and (X,y) are
  
 
  \iffalse
-- Base change for Based connected CW-complexes
+- Base change for based connected CW-complexes
 - pushout ∂Dⁿ ∂Dⁿ ≅ Sⁿ, where ∂Dⁿ : Sⁿ ⭢ Dⁿ
 - The unit balls in ℝⁿ under the p norm are homotopic via ...
 - The unit balls ...
@@ -1875,25 +1861,16 @@ that the Based CW-complexes (X,x) and (X,y) are
 
 the homotopy extension property
 
-\begin{lemma}
-Given Based complexes $\texttt{X, Y : ∞-Grpd₋₁}$ and continuous maps $\texttt{f, g : ∞-Grpd₋₁.Hom X (Ω.obj Y)}$, and a continuous function $\texttt{∞-Grpd₋₁.Hom I pushout d₀ d₁}$ such that $\texttt{}$, ...
-\end{lemma}
-
-\begin{proof}
-$\texttt{f • (¬ g)}$...
-\end{proof}
-
-Note: the `little lines' operad and its algebras arise in the study of how .\\
-
-\begin{theorem}[HEP] Given a Based complex $\texttt{X}$ and a space $\texttt{Y}$ with $\texttt{π₀.obj X ≅ *}$ and a continuous maps $\texttt{f : ∞-Grpd₋₁.Hom X (Ω.obj Y)}$ which is weak equivalent to $0$, there is a homotopy $\texttt{f ≃ *}$ between $\texttt{f}$ and the constant function $\texttt{* : ∞-Grpd₋₁ X Y}$.
+\begin{theorem}[HEP] given spaces X, Y, and continuous maps α : Sⁿ ⭢ X, f : pushout ∂Dⁿ⁺¹ α ⭢ Y, g : pushout ∂Dⁿ⁺¹ α ⭢ Y, H : homotopy (f • ?, g • ?), then f and g are homotopic.  
 \end{theorem}
 
 \begin{proof}
-For each $\texttt{n : Nat}$, let $\texttt{Xₙ}$ be the nth space in the complex $\texttt{X}$, and let $\texttt{αₙ : ∞-Grpd₋₁.Hom (Aₙ × Sⁿ) Xₙ}$ be the attaching map. Let $\texttt{fₙ}$ be the precomposition of $\texttt{f}$ with the map $\texttt{∞-Grpd₋₁.Hom Xₙ X}$. We construct a homotopy $\texttt{f ≃ *}$ inductively. 
+
 \end{proof}
 
+...\\
 
-\section{REP for Based connected ∞-groupoids}
+\section{REP for based connected ∞-groupoids}
 
 In this section we use the notion of globular sets to replace a topological space with a CW-complex. Together with HEP (homotopy extension), this will complete the proof of the Whitehead theorem.\\
 
@@ -1925,16 +1902,7 @@ Later: locales...
 
 \section{The Whitehead theorem}
 
-𝓓
-
-\begin{theorem}[HEP] Given Based complexes $\texttt{X}$ and $\texttt{Y}$ with $\texttt{π₀.obj X ≅ *}$ and continuous maps φ : ???.Hom Sⁿ X, f : pushout ∂Dⁿ⁺¹ α ⭢ Y, g : pushout ∂Dⁿ⁺¹ α ⭢ Y, H : homotopy (f • ?, g • ?), then f and g are homotopic.  
-\end{theorem}
-
-\begin{proof}
-For $\texttt{n = 0}$, 
-\end{proof}
-
-Here we show the Whitehead theorem using the homotopy extension property and replacement (REP).
+Here we show the Whitehead theorem using the homotopy extension property and replacement.
 
 \iffalse
 https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/HomotopyGroup.html
@@ -1947,30 +1915,32 @@ In proving the Whitehead theorem formally, \textit{we make use of a line} as wel
 
 \chapter{Chapter 3: The Category of Maps}
 
-In this section I cover the category of maps $\texttt{Map C}$ in a category $\texttt{C}$. After this I inductively form $\texttt{□ⁿ⁺¹ C}$ as $\texttt{Map (□ⁿ C)}$ and $\texttt{□ⁱⁿᶠ C}$ as the colimit of $\texttt{□ⁿ C}$. The category $\texttt{□ C}$ formed in this way has the property that $\texttt{Map (□ C) ≅ □ C}$.\\
+In this section I cover the category of maps $\texttt{Map C}$ in a category $\texttt{C}$. After this I inductively form $\texttt{□ⁿ⁺¹ C}$ as $\texttt{Map (□ⁿ C)}$ and $\texttt{□ⁱⁿᶠ C}$ as the colimit of $\texttt{□ⁿ C}$.\\
+
+
 
 
 \part{∞-GROUPOIDS}
 
-The Whitehead theorem is about the ways that spheres get trapped in spaces (higher homotopy groups), and the last section established how these higher homotopy groups relate to maps in the homotopy category of Based CW-complexes.\\
+The Whitehead theorem is about the ways that spheres get trapped in spaces (higher homotopy groups), and the last section established how these higher homotopy groups relate to maps in the homotopy category of based CW-complexes.\\
 
 
 \chapter{Chapter 9: ∞\texttt{-Grpd}}
 
 
-\section{- × I : ∞-Grpd ⇄ ∞-Grpd : [I,-]}
+\section{Ω⃡}
 
 Our choice of symbols refects our choice of three variations of the Whitehead theorem and three Puppe sequences. Ω⃡, the analogue of loop space, is the internal hom functor [I,-] : ∞-Grpd ⭢ ∞-Grpd. This is not hard to construct, with the main lemma being that the path space of a quasicategory has the quasicategory lifting conditon.\\
 
 We will be interested in one formal model of D(∞-Cat) which consists of formal compositions f₁ • g₁ • f₂ • g₂ • ⋯ • fₙ • gₙ, where gₙ $: Dom(f{}_{n+1}) $⭢ ??? is a weak equivalence, and something similar for D(∞-Cat). However, it is still vital to have the replacement functor $\texttt{repl}$, which ensures the Whitehead theorem for particular ∞-categories which are constructed out of attaching maps.\\
 
 
-\section{??? : ⇄  : ???}
+\section{ω⃡}
 
 Ω⃗ is to internal categories as ω⃡ is to internal G-actions. It is also called directed homotopy pullback. These functors will later be used to produce functors P⃡ : D(∞-Grpd) ⭢ InternalCategory D(∞-Grpd) and p⃡ : D(∞-Grpd⁄C) ⭢ InternalPresheaf (P⃡ G) D(∞-Grpd⁄G).\\
 
 
-\section{Πₙ : Functor ∞-Grpd Set}
+\section{Πₙ}
 
 
 
@@ -2074,7 +2044,7 @@ We have divided the work of proving Whitehead theorem (a) into two steps: REP an
 
 \section{HEP}
 
-Consider the context of , supposing that we have constructed a homotopy ... This gives a picture that is a bit like ``filling up a jar``: a homotopy h : of f, g : ∂Δ² ⭢ Y, along with the value of g on Δ², produces a ``jar" shape in Y, which can be ``filled up" to produce a homotopy h : Δ¹ × Δ² ⭢ Y. This is easier for simplicial-Based approaches than for point-set topological approaches, the latter of which needs extra steps that deform a map into a cellular map.\\
+Consider the context of , supposing that we have constructed a homotopy ... This gives a picture that is a bit like ``filling up a jar``: a homotopy h : of f, g : ∂Δ² ⭢ Y, along with the value of g on Δ², produces a ``jar" shape in Y, which can be ``filled up" to produce a homotopy h : Δ¹ × Δ² ⭢ Y. This is easier for simplicial-based approaches than for point-set topological approaches, the latter of which needs extra steps that deform a map into a cellular map.\\
 
 This construction, in the case of point set topology, often involves first deforming maps so as to be cellular; however our analogue of CW complexes allows us to skip this step.\\
 
@@ -2148,7 +2118,7 @@ Imagine
 
 
 
-\part{Based ∞-CATEGORIES}
+\part{BASED ∞-CATEGORIES}
 
 In this first section we prove the standard Whitehead theorem.\\
 
@@ -2225,8 +2195,7 @@ def CWComplexCat := FullSubcategory IsCWComplex
 
 
 
-Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected Based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
-
+Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
 
 \section{D(∞-Grpd₀)}
 
@@ -2260,29 +2229,27 @@ $\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use
 \end{tcolorbox}
 \end{center}
 
-
 \section{D(∞-Grpd₀/X₀)}
 
-The derived category of Based ∞-groupoids over X₀. \\
+The derived category of BASED ∞-groupoids over X₀. \\
+
+\section{Ω : ∞-Grpd₀ ⭢ ∞-Grpd}
 
 
 
-\section{Ω : ∞-Grpd₀ ⇄ ∞-Grpd₀ : Σ}
+\section{Σ : ∞-Grpd₀ ⭢ ∞-Grpd₀} 
 
-\begin{enumerate}
-\item The Based suspension functor
-\end{enumerate}
+The based suspension functor
 
+\section{ω f : ∞-Grpd/D₀ ⭢ ∞-Grpd/C₀}
 
-\section{ω f : ∞-Grpd/D₀ ⇄ ∞-Grpd/C₀ : σ f}
+The homotopy fiber
 
-\begin{enumerate}
-\item The homotopy fiber
-\item Based homotopy pushout
-\end{enumerate}
+\section{σ f : ∞-Grpd₀/C₀ ⭢ ∞-Grpd₀/D₀}
 
+Based homotopy pushout
 
-\section{πₙ : ∞-Grpd₀ ⇄ Set}
+\section{πₙ : ∞-Grpd₀ ⭢ Set}
 
 The connected components functors
 
@@ -2294,7 +2261,7 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/B
 
 \chapter{Chapter 2: The Whitehead Theorem}
 
-The proof of the Whitehead theorem divides into REP (replacement for Based ∞-groupoids X : ∞-Grpd₀) and HEP (the homotopy extension property for weak equivalent maps of Based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
+The proof of the Whitehead theorem divides into REP (replacement for BASED ∞-groupoids X : ∞-Grpd₀) and HEP (the homotopy extension property for weak equivalent maps of based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
 
 Globular sets are not a rich enough invariant for homotopy, but maps of globular sets bear a criticall difference because of 
 
@@ -2392,9 +2359,9 @@ Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\
 ...
 \end{proof}
 
-\section{HEP for Based ∞-groupoids}
+\section{HEP for BASED ∞-groupoids}
 
-In this section we prove the homotopy extension property for Based ∞-groupoids, which we here model as CW-complexes.\\
+In this section we prove the homotopy extension property for BASED ∞-groupoids, which we here model as CW-complexes.\\
 
 
 {\bf Jar filling} Next we turn to defining `jar shapes' $\texttt{Jⁿ}$, which include into $\texttt{Dⁿ × I}$ $\texttt{iₙ : Jⁿ ⭢ Dⁿ × I}$, after which we `fill' them (i.e. demonstrate that any continuous map f : Jⁿ ⭢ X extends to a continuous map g : Dⁿ × I ⭢ X).\\
@@ -2429,7 +2396,7 @@ The proof in the above can be depicted like so, as a `painting with two concentr
 \includegraphics[scale=0.5]{windowframe.png}
 \end{center}
 
-that the Based CW-complexes (X₋₁,x) and (X₋₁,y) are 
+that the based CW-complexes (X₋₁,x) and (X₋₁,y) are 
 
 \begin{theorem}
 
@@ -2447,7 +2414,7 @@ that the Based CW-complexes (X₋₁,x) and (X₋₁,y) are
 
 
 
-\section{REP for Based ??? ∞-categories}
+\section{REP for based ??? ∞-categories}
 
 In this section we use the notion of globular sets to replace a topological space with a CW-complex. Together with HEP (homotopy extension), this will complete the proof of the Whitehead theorem.
 
@@ -2602,7 +2569,7 @@ We have divided the work of proving Whitehead theorem (a) into two steps: REP an
 
 \section{HEP}
 
-Consider the context of , supposing that we have constructed a homotopy ... This gives a picture that is a bit like ``filling up a jar``: a homotopy h : of f, g : ∂Δ² ⭢ Y, along with the value of g on Δ², produces a ``jar" shape in Y, which can be ``filled up" to produce a homotopy h : Δ¹ × Δ² ⭢ Y. This is easier for simplicial-Based approaches than for point-set topological approaches, the latter of which needs extra steps that deform a map into a cellular map.\\
+Consider the context of , supposing that we have constructed a homotopy ... This gives a picture that is a bit like ``filling up a jar``: a homotopy h : of f, g : ∂Δ² ⭢ Y, along with the value of g on Δ², produces a ``jar" shape in Y, which can be ``filled up" to produce a homotopy h : Δ¹ × Δ² ⭢ Y. This is easier for simplicial-based approaches than for point-set topological approaches, the latter of which needs extra steps that deform a map into a cellular map.\\
 
 This construction, in the case of point set topology, often involves first deforming maps so as to be cellular; however our analogue of CW complexes allows us to skip this step.\\
 
@@ -2826,7 +2793,7 @@ The internal group actions principal stems from the simple observation that the 
 \iffalse
 \chapter{Chapter 12: Internal and Operadic Groupoids and their Actions}
 
-In this chapter, we discuss internal categories and internal presheaves . We may keep in mind that internal categories and internal presheaves can be formed in any category with pullbacks, even though we focus on the case of pullback systems because of our interest in Whitehead theorem (a).\\
+In this chapter, we discuss internal categories and internal presheaves in a pullback system. We may keep in mind that internal categories and internal presheaves can be formed in any category with pullbacks, even though we focus on the case of pullback systems because of our interest in Whitehead theorem (a).\\
 
 After defining the category of internal categories D(Γ), we proceed to observe how, for C , D : D(Γ), F : C ⭢ D, (ω⃗ F).obj F forms an internal categry. Further, in considering internal (P⃗\_(Γ) F)-presheaves for  C , D : D(Γ), F : C ⭢ D, we proceed to make observations about (ω⃗ F).obj G.\\
 
@@ -2882,12 +2849,12 @@ In this chapter I define an \href{https://ncatlab.org/nlab/show/internal+categor
 \end{definition}
 
 
-%LEAN: definition of an internal groupoid 
+%LEAN: definition of an internal groupoid in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of an internal category 
+-- definition of an internal category in a pullback system
 /-
 structure internal_groupoid (Γ : Cat) where
   Obj : .Obj
@@ -2907,20 +2874,37 @@ structure internal_groupoid (Γ : Cat) where
 \end{tcolorbox}
 \end{center}
 
-The internal functor structure combines with the internal category structure to give a category of internal categories .\\
+The internal functor structure combines with the internal category structure to give a category of internal categories in a pullback system.\\
 
 \begin{definition}[Internal functors between internal groupoids] 
 \begin{enumerate}
-\item ...
+\item An object $\texttt{ℂ.Mor : ℂ}$ 
+\item A morphism $\texttt{ℂ.Cod : C.Hom ℂ.Mor ℂ.Obj}$
+\item A morphism $\texttt{ℂ.Cod : C.Hom ℂ.Mor ℂ.Obj}$
+\item A morphism $\texttt{ℂ.Idn : C.Hom ℂ.Obj ℂ.Mor}$
+\item A term $\texttt{X : (pullback ℂ.Cod ℂ.Dom)}$
+\item A term $\texttt{X₁ : (pullback ℂ.Cod X.Pr₁)}$
+\item A term $\texttt{X₂ : (pullback X.Pr₂ ℂ.Dom)}$
+\item A morphism $\texttt{ℂ.Mul : C.Hom X.Obj ℂ.Mor}$
+\item A term $\texttt{ℂ. : ℂ.Dom • ℂ.Idn = 𝟙\_(ℂ.Obj)}$
+\item A term $\texttt{ℂ. : ℂ.Cod • ℂ.Idn = 𝟙\_(ℂ.Obj)}$
+\item A term $\texttt{ℂ. : ℂ.Dom • ℂ.Mul =  Proj × ℂ.Mul • ℂ.Cod}$
+\item A term $\texttt{ℂ. : ℂ.Cod • (ℂ.Mul × 𝟙\_(ℂ.Mor)) = Pr₁ • ℂ.Mul}$
+\item A term $\texttt{ℂ.Id₁ : ℂ.Mul • (ℂ.Idn × 𝟙\_(ℂ.Mor)) • ??? = 𝟙\_(ℂ.Mor)}$
+\item A term $\texttt{ℂ.Id₂ : ℂ.Mul • (𝟙\_(ℂ.Mor) × ℂ.Idn) • ??? = 𝟙\_(ℂ.Mor)}$
+\item A term $\texttt{ℂ.Ass : ℂ.Mul • (ℂ.Mul × 𝟙\_(ℂ.Mor)) = ℂ.Mul • (𝟙\_(ℂ.Mor) × ℂ.Mul)}$
+\item A term $\texttt{ℂ.Inv : ℂ.Mul = ℂ.Mul}$
+\item A term $\texttt{ℂ.Eq₁ : ℂ.Mul • (ℂ.Inv × 𝟙\_(ℂ.Mor)) = ℂ.Idn • ℂ.Dom}$
+\item A term $\texttt{ℂ.Eq₂ : ℂ.Mul • (𝟙\_(ℂ.Mor) × ℂ.Mul) = ℂ.Idn • ℂ.Cod}$
 \end{enumerate}
 \end{definition}
 
-%LEAN: definition of an internal functor 
+%LEAN: definition of an internal functor in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of an internal functor 
+-- definition of an internal functor in a pullback system
 structure internal_functor (Γ : pullback_system) (C : internal_category Γ) (D : internal_category Γ) where
   Obj : D(Γ).Hom C.Obj D.Obj
 -- Mor : D(Γ).
@@ -2937,67 +2921,67 @@ structure internal_functor (Γ : pullback_system) (C : internal_category Γ) (D 
 \end{center}
 
 
-%LEAN: definition of the identity internal functor 
+%LEAN: definition of the identity internal functor in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of the identity internal functor 
+-- definition of the identity internal functor in a pullback system
 def InternalCategoryIdn (Γ : pullback_system) (C : internal_category Γ) : (internal_functor Γ C C) := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: definition of the composition of internal functors 
+%LEAN: definition of the composition of internal functors in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of the composition of internal functors 
+-- definition of the composition of internal functors in a pullback system
 def InternalCategoryCmp (Γ : pullback_system) (C : internal_category Γ) (D : internal_category Γ) (E : internal_category Γ) (F : internal_functor Γ C D) (G : internal_functor Γ D E) : (internal_functor Γ C E) := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: proving the first identity law for internal categories 
+%LEAN: proving the first identity law for internal categories in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- proving the the first identity law for internal categories 
+-- proving the the first identity law for internal categories in a pullback system
 def InternalCategoryId₁ (Γ : pullback_system) (X : internal_category Γ) (Y : internal_category Γ) (f : internal_functor Γ X Y) : InternalCategoryCmp Γ X Y Y f (InternalCategoryIdn Γ Y) = f := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: proving the second identity law for internal categories  
+%LEAN: proving the second identity law for internal categories  in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- proving the second identity law for internal categories 
+-- proving the second identity law for internal categories in a pullback system
 def InternalCategoryId₂ (Γ : pullback_system) (X : internal_category Γ) (Y : internal_category Γ) (f : internal_functor Γ X Y) : (InternalCategoryCmp Γ X X Y (InternalCategoryIdn Γ X) f = f) := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: proving the associativity law for internal categories 
+%LEAN: proving the associativity law for internal categories in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- proving the associativity law for internal categories 
+-- proving the associativity law for internal categories in a pullback system
 def InternalCategoryAss (Γ : pullback_system) (W : internal_category Γ) (X : internal_category Γ) (Y : internal_category Γ) (Z  : internal_category Γ) (f : internal_functor Γ W X) (g : internal_functor Γ X Y) (h : internal_functor Γ Y Z) : InternalCategoryCmp Γ W X Z f (InternalCategoryCmp Γ X Y Z g h) = InternalCategoryCmp Γ W Y Z (InternalCategoryCmp Γ W X Y f g) h := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: defining the category of internal categories 
+%LEAN: defining the category of internal categories in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
@@ -3182,7 +3166,7 @@ An operadic internal category in C is an algebra in C for the little rays intern
 
 \fi
 
-In this chapter, we discuss internal categories and internal presheaves . We may keep in mind that internal categories and internal presheaves can be formed in any category with pullbacks, even though we focus on the case of pullback systems because of our interest in Whitehead theorem (a).\\
+In this chapter, we discuss internal categories and internal presheaves in a pullback system. We may keep in mind that internal categories and internal presheaves can be formed in any category with pullbacks, even though we focus on the case of pullback systems because of our interest in Whitehead theorem (a).\\
 
 After defining the category of internal categories D(Γ), we proceed to observe how, for C , D : D(Γ), F : C ⭢ D, (ω⃗ F).obj F forms an internal categry. Further, in considering internal (P⃗\_(Γ) F)-presheaves for  C , D : D(Γ), F : C ⭢ D, we proceed to make observations about (ω⃗ F).obj G.\\
 
@@ -3234,25 +3218,6 @@ Recall that, for a category C, with objects X${}_1$, X${}_2$, Y : C and morphism
 \end{enumerate}
 \end{enumerate}
 
-%LEAN: 
-\begin{centr}
-\begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
-\begin{minted}[breaklines, escapeinside=||]{lean}
-
-structure pullback {C : Category₇} {X₁ : C.Obj} {X₂ : C.Obj} {X : C.Obj} (f₁ : C.Hom X₁ X) (f₂ : C.Hom X₂ X) where
-  Obj : C.Obj
-  Pr₁ : C.Hom Obj X₁
-  Pr₂ : C.Hom Obj X₂
-  Eqn : (C.Cmp Obj X₁ X Pr₁ f₁) = (C.Cmp Obj X₂ X Pr₂ f₂)
-  Str : ∀(Y : C.Obj),∀(g₁ : C.Hom Y X₁),∀(g₂ : C.Hom Y X₂),∀(_ : C.Cmp Y X₁ X g₁ f₁ = C.Cmp Y X₂ X g₂ f₂),∃(g : C.Hom Y Obj),((C.Cmp Y Obj X₁ g Pr₁ = g₁) ∧ (C.Cmp Y Obj X₂ g Pr₂ = g₂))
-  --   Str : ∀(Y : C.Obj),∀(g₁ : C.Hom Y X₁),∀(g₂ : C.Hom Y X₂),∀(_ : C.Cmp Y X₁ X g₁ f₁ = C.Cmp Y X₂ X g₂ f₂),∃!(g : C.Hom Y Obj),((C.Cmp Y Obj X₁ g Pr₁ = g₁) ∧ (C.Cmp Y Obj X₂ g Pr₂ = g₂))
-
-
-\end{minted}
-\end{tcolorbox}
-\end{center}
-
-
 In $\texttt{Categories and Hilbert Spaces}$, this was implemented as :
 
 Let C be a category. An internal category ℂ consists of:
@@ -3280,42 +3245,39 @@ Let C be a category. An internal category ℂ consists of:
 
 Discounting those entries of the internal category structure which assume the existence of pullbacks, an internal category has 13 entries. Internal categories are often defined on categories with $\textit{all pullbacks}$, but here we take an approach in which $\texttt{InternalCategory}$ has type $\texttt{Cat → Cat}$, so that it can be iterated. This entails separate entries assuming the existence of particular pullbacks.\\
 
-%LEAN: definition of an internal category
+%LEAN: definition of an internal category in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of an internal category
-structure InternalCategory (C : Category₇) where
-  Obj : C.Obj
-  Mor : C.Obj
-  Cod : C.Hom Mor Obj
-  Dom : C.Hom Mor Obj
-  Idn : C.Hom Obj Mor
-  X : pullback Cod Dom
-  X₁ : pullback Cod Pr₁
-  X₂ : pullback Pr₂ Dom
-  Mul : C.Hom X.Obj Mor
---  ??? :
---  ??? : 
---  ??? : 
---  ??? : 
---  Id₁ : 
---  Id₂ : 
---  Ass : 
+-- definition of an internal category in a pullback system
+/-
+structure internal_category (Γ : Cat) where
+  Obj : .Obj
+  Mor : .Obj
+  Dom : .Hom Mor Obj
+  Cod : .Hom Mor Obj
+  Idn : .Hom Obj Mor
+  Fst : .Cmp Obj Mor Obj Idn Dom  = 𝟙_(Γ.Obj) Obj
+  Snd : .Cmp Obj Mor Obj Idn Cod = 𝟙_(Γ.Obj) Obj
+--  Cmp : D(Γ).Γ.PulObj ...
+-- Id₁ : D(Γ).
+-- Id₂ : D(Γ).
+-- Ass : D(Γ).
+-/
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-The internal functor structure combines with the internal category structure to give a category of internal categories.\\
+The internal functor structure combines with the internal category structure to give a category of internal categories in a pullback system.\\
 
-%LEAN: definition of an internal functor
+%LEAN: definition of an internal functor in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of an internal functor
+-- definition of an internal functor in a pullback system
 structure internal_functor (Γ : pullback_system) (C : internal_category Γ) (D : internal_category Γ) where
   Obj : D(Γ).Hom C.Obj D.Obj
 -- Mor : D(Γ).
@@ -3329,67 +3291,67 @@ structure internal_functor (Γ : pullback_system) (C : internal_category Γ) (D 
 \end{center}
 
 
-%LEAN: definition of the identity internal functor 
+%LEAN: definition of the identity internal functor in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of the identity internal functor 
+-- definition of the identity internal functor in a pullback system
 def InternalCategoryIdn (Γ : pullback_system) (C : internal_category Γ) : (internal_functor Γ C C) := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: definition of the composition of internal functors 
+%LEAN: definition of the composition of internal functors in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- definition of the composition of internal functors 
+-- definition of the composition of internal functors in a pullback system
 def InternalCategoryCmp (Γ : pullback_system) (C : internal_category Γ) (D : internal_category Γ) (E : internal_category Γ) (F : internal_functor Γ C D) (G : internal_functor Γ D E) : (internal_functor Γ C E) := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: proving the first identity law for internal categories 
+%LEAN: proving the first identity law for internal categories in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- proving the the first identity law for internal categories 
+-- proving the the first identity law for internal categories in a pullback system
 def InternalCategoryId₁ (Γ : pullback_system) (X : internal_category Γ) (Y : internal_category Γ) (f : internal_functor Γ X Y) : InternalCategoryCmp Γ X Y Y f (InternalCategoryIdn Γ Y) = f := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: proving the second identity law for internal categories  
+%LEAN: proving the second identity law for internal categories  in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- proving the second identity law for internal categories 
+-- proving the second identity law for internal categories in a pullback system
 def InternalCategoryId₂ (Γ : pullback_system) (X : internal_category Γ) (Y : internal_category Γ) (f : internal_functor Γ X Y) : (InternalCategoryCmp Γ X X Y (InternalCategoryIdn Γ X) f = f) := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: proving the associativity law for internal categories 
+%LEAN: proving the associativity law for internal categories in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
 
--- proving the associativity law for internal categories 
+-- proving the associativity law for internal categories in a pullback system
 def InternalCategoryAss (Γ : pullback_system) (W : internal_category Γ) (X : internal_category Γ) (Y : internal_category Γ) (Z  : internal_category Γ) (f : internal_functor Γ W X) (g : internal_functor Γ X Y) (h : internal_functor Γ Y Z) : InternalCategoryCmp Γ W X Z f (InternalCategoryCmp Γ X Y Z g h) = InternalCategoryCmp Γ W Y Z (InternalCategoryCmp Γ W X Y f g) h := sorry
 
 \end{minted}
 \end{tcolorbox}
 \end{center}
 
-%LEAN: defining the category of internal categories 
+%LEAN: defining the category of internal categories in a pullback system
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{Lean \thelcounter} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Blue,coltitle=black]
 \begin{minted}[breaklines, escapeinside=||]{lean}
@@ -3514,7 +3476,7 @@ Next we mention the internal presheaf principal, which says that the pullback of
 \item γ\_(Cat) →\_(Cat) - : Cat.Hom Cat Cat is an endofunctor of Cat.
 \item The colimit of Φₙ := (γ\_(Cat) →\_(Cat) -)ⁿ under the inclusions which use identity maps produces a category C, and the functor form C to the colimit of a natural transformation from Φₙ to itself is γ\_(Cat) →\_(Cat) C. 
 \item Call the new category □ C
-\item There is a functor from Based objects in C to □ C which is the composition of * C → Maps C → Maps □ C → □ C
+\item There is a functor from based objects in C to □ C which is the composition of * C → Maps C → Maps □ C → □ C
 \item There is a functor from Maps C 
 \item There is a functor from
 \item There is a functor from 
