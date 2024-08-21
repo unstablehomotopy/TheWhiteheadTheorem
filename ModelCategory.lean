@@ -25,6 +25,19 @@ section LiftingProperties
 #check Square.isPushout_iff -- import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Square
 #check IsPullback           -- import Mathlib.CategoryTheory.Limits.Shapes.Pullback.CommSq
 
+namespace CategoryTheory.IsPushout
+
+variable {C : Type*} [Category C] {Z X Y P : C}
+  {f : Z ⟶ X} {g : Z ⟶ Y} {inl : X ⟶ P} {inr : Y ⟶ P}
+
+lemma uniq (hP : IsPushout f g inl inr) {W : C} (h : X ⟶ W) (k : Y ⟶ W) (w : f ≫ h = g ≫ k)
+    (d : P ⟶ W) (hl : inl ≫ d = h) (hr : inr ≫ d = k) : d = hP.desc h k w :=
+  hP.isColimit.uniq (CommSq.mk w).cocone d fun j => match j with
+    | none => by simp; congr
+    | some Limits.WalkingPair.left => by simp; congr
+    | some Limits.WalkingPair.right => by simp; congr
+
+end CategoryTheory.IsPushout
 
 variable {C : Type*} [Category C] {A B A' B' X Y : C}
   (a : A ⟶ A') (i : A ⟶ B) (i' : A' ⟶ B') (b : B ⟶ B') (f : X ⟶ Y)
@@ -43,15 +56,18 @@ variable {C : Type*} [Category C] {A B A' B' X Y : C}
 lemma pushout_preserves_left_lifting_property
     (h : HasLiftingProperty i f) (po : IsPushout a i i' b) : HasLiftingProperty i' f :=
   ⟨fun {s} {t} sq => by
-    have big_sq := CommSq.horiz_comp ⟨po.w⟩ sq
-    have big_sq_hasLift := h.sq_hasLift big_sq
-    have g := big_sq_hasLift.exists_lift.some
-    have sq_lift : sq.LiftStruct := {
-      l := sorry
-      fac_left := sorry
-      fac_right := sorry
-    }
-    exact ⟨Nonempty.intro sq_lift⟩⟩
+    have g := (h.sq_hasLift (CommSq.horiz_comp po.toCommSq sq)).exists_lift.some
+    let w := po.desc s g.l g.fac_left.symm
+    let w_fac_left : i' ≫ w = s := po.inl_desc s g.l g.fac_left.symm
+    exact ⟨Nonempty.intro {
+      l := w
+      fac_left := w_fac_left
+      fac_right := by
+        have uniq := po.uniq (i' ≫ t) (b ≫ t) (by rw [po.w_assoc])
+        have uniq_t := uniq t rfl rfl
+        have uniq_w_f := uniq (w ≫ f) (by rw [← Category.assoc, w_fac_left, sq.w])
+          (by rw [← Category.assoc, po.inr_desc s g.l g.fac_left.symm, g.fac_right])
+        exact Eq.trans uniq_w_f uniq_t.symm }⟩⟩
 
 end LiftingProperties
 
