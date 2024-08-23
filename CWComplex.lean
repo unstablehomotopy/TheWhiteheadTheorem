@@ -122,7 +122,7 @@ def inclusion' {A : TopCat} (X : RelativeCWComplex A)
     rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h')]
     linarith
 
-#check CategoryTheory.NatTrans.ofSequence
+#check Functor.ofSequence
 
 /-- The colimit diagram in the definition of a relative CW-complex -/
 def colimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
