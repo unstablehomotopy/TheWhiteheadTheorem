@@ -23,11 +23,13 @@ https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/to
 
 open CategoryTheory
 
+universe u
+
 namespace RelativeCWComplex
 
 /-- The `n`-dimensional sphere is the set of points in ℝⁿ⁺¹ whose norm equals `1`, endowed with the
 subspace topology. -/
-noncomputable def sphere (n : ℤ) : TopCat :=
+noncomputable def sphere (n : ℤ) : TopCat.{u} :=
   TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| Int.toNat <| n + 1) 1
 
 /-- The `n`-dimensional closed disk is the set of points in ℝⁿ whose norm is at most `1`, endowed
@@ -91,10 +93,11 @@ structure RelativeCWComplex where
   sk : ℕ → TopCat
   attach_cells : (n : ℕ) → RelativeCWComplex.AttachCells (sk n) (sk (n + 1)) (n - 1)
 
-namespace RelativeCWComplex
-
 /-- A CW-complex is a relative CW-complex whose `sk 0` (i.e., `(-1)`-skeleton) is empty. -/
-def isCWComplex (X : RelativeCWComplex) : Prop := X.sk 0 = TopCat.of Empty
+structure CWComplex extends RelativeCWComplex where
+  sk_zero_empty : sk 0 = TopCat.of Empty
+
+namespace RelativeCWComplex
 
 /-- The inclusion map from `sk n` (i.e., the `(n-1)`-skeleton) to `sk (n+1)` (i.e., the
 `n`-skeleton) of a relative CW-complex -/
