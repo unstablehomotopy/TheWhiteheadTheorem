@@ -23,13 +23,13 @@ https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/to
 
 open CategoryTheory
 
-universe u
+-- universe u
 
 namespace RelativeCWComplex
 
 /-- The `n`-dimensional sphere is the set of points in ℝⁿ⁺¹ whose norm equals `1`, endowed with the
 subspace topology. -/
-noncomputable def sphere (n : ℤ) : TopCat.{u} :=
+noncomputable def sphere (n : ℤ) : TopCat :=
   TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| Int.toNat <| n + 1) 1
 
 /-- The `n`-dimensional closed disk is the set of points in ℝⁿ whose norm is at most `1`, endowed
@@ -99,13 +99,19 @@ structure CWComplex extends RelativeCWComplex where
 
 namespace RelativeCWComplex
 
+noncomputable section
+
 /-- The inclusion map from `sk n` (i.e., the `(n-1)`-skeleton) to `sk (n+1)` (i.e., the
 `n`-skeleton) of a relative CW-complex -/
-noncomputable def inclusion (X : RelativeCWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+def inclusion (X : RelativeCWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
   RelativeCWComplex.AttachCells.inclusion (X.sk n) (X.sk (n + 1)) (n - 1) (X.attach_cells n)
 
 /-- The topology on a relative CW-complex -/
-noncomputable def toTopCat (X : RelativeCWComplex) : TopCat :=
+def toTopCat (X : RelativeCWComplex) : TopCat :=
   Limits.colimit <| Functor.ofSequence <| inclusion X
+
+instance : Coe RelativeCWComplex TopCat where coe X := toTopCat X
+
+end
 
 end RelativeCWComplex
