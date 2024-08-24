@@ -9,11 +9,12 @@ import Mathlib.Analysis.InnerProductSpace.PiL2
 import Mathlib.CategoryTheory.Functor.OfSequence
 
 /-!
-# CW-complexes
+# Relative CW-complexes
 
 In this file we define a relative CW-complex as the colimit of an expanding sequence of subspaces
-`sk i` (called the `i`-skeleta) for `i ≥ -1`, where `sk (-1)` is an arbitrary topological space
-and each `sk (n+1)` is obtained from `sk n` by attaching (n+1)-disks.
+`sk i` (called the `(i-1)`-skeleton) for `i ≥ 0`, where `sk 0` (i.e., the `(-1)`-skeleton) is an
+arbitrary topological space, and each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n`
+(i.e., the `(n-1)`-skeleton) by attaching `n`-disks.
 
 ## References
 The definition of CW complexes follows David Wärn's suggestion at
@@ -90,10 +91,10 @@ structure RelativeCWComplex where
   sk : ℕ → TopCat
   attach_cells : (n : ℕ) → RelativeCWComplex.AttachCells (sk n) (sk (n + 1)) (n - 1)
 
+namespace RelativeCWComplex
+
 /-- A CW-complex is a relative CW-complex whose `sk 0` (i.e., `(-1)`-skeleton) is empty. -/
 def isCWComplex (X : RelativeCWComplex) : Prop := X.sk 0 = TopCat.of Empty
-
-namespace RelativeCWComplex
 
 /-- The inclusion map from `sk n` (i.e., the `(n-1)`-skeleton) to `sk (n+1)` (i.e., the
 `n`-skeleton) of a relative CW-complex -/
