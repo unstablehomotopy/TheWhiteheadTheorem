@@ -38,7 +38,7 @@ noncomputable def disk (n : ℤ) : TopCat.{u} :=
   TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin <| Int.toNat n) 1
 
 /-- `𝕊 n` denotes the `n`-dimensional sphere. -/
-scoped notation "𝕊 " => sphere
+scoped notation "𝕊 "n => sphere n
 
 /-- `𝔻 n` denotes the `n`-dimensional closed disk. -/
 scoped notation "𝔻 "n => disk n
@@ -66,7 +66,7 @@ def generalizedSigmaAttachMap (X : TopCat.{u}) (n : ℤ) (cells : Type)
   toFun := fun ⟨i, x⟩ ↦ attach_maps i x
   continuous_toFun := continuous_sigma fun i ↦ (attach_maps i).continuous_toFun
 
-/-- A type witnessing that `X'` is obtained from `X` by attaching generalized `(n+1)`-disks -/
+/-- A type witnessing that `X'` is obtained from `X` by attaching generalized `(n+1)`-cells -/
 structure AttachGeneralizedCells (X X' : TopCat.{u}) (n : ℤ) where
   /-- The index type over the `(n+1)`-disks -/
   cells : Type
