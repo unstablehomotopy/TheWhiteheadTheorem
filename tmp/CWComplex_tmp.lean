@@ -52,15 +52,16 @@ def sphereInclusion (n : ℤ) : (𝕊 n) ⟶ (𝔻 n + 1) where
 
 variable {S D : ℤ → TopCat.{u}} (f : ∀ n, S n ⟶ D (n + 1))
 
-/-- The inclusion map from the disjoint union of `S n` to the disjoint union of `D (n + 1)`,
-where both of the disjoint unions are indexed by `cells` -/
+/-- The inclusion map from the disjoint union of `S n` (boundary of generalized `(n+1)`-cells) to
+the disjoint union of `D (n + 1)` (generalized `(n+1)`-cells) where both of the disjoint unions are
+indexed by `cells` -/
 def generalizedSigmaSphereInclusion (n : ℤ) (cells : Type) :
     TopCat.of (Σ (_ : cells), S n) ⟶ TopCat.of (Σ (_ : cells), D (n + 1)) where
   toFun := Sigma.map id fun _ x ↦ (f n).toFun x
   continuous_toFun := Continuous.sigma_map fun _ ↦ (f n).continuous_toFun
 
-/-- Given an attaching map for each `S n`, we construct the attaching map for the disjoint
-union of all the `S n`. -/
+/-- Given an attaching map for each `S n` (boundary of the generalized `(n+1)`-cell), we construct
+the attaching map for the disjoint union of all the `S n`. -/
 def generalizedSigmaAttachMap (X : TopCat.{u}) (n : ℤ) (cells : Type)
     (attach_maps : cells → C(S n, X)) : TopCat.of (Σ (_ : cells), S n) ⟶ X where
   toFun := fun ⟨i, x⟩ ↦ attach_maps i x
