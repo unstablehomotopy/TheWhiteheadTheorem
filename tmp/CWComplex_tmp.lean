@@ -21,8 +21,6 @@ The definition of CW complexes follows David Wärn's suggestion at
 https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/Do.20we.20have.20CW.20complexes.3F/near/231769080
 -/
 
-set_option linter.missingDocs true
-
 open CategoryTheory
 
 universe u
@@ -46,7 +44,7 @@ scoped notation "𝕊 " => sphere
 scoped notation "𝔻 "n => disk n
 
 /-- The inclusion map from the `n`-sphere to the `(n+1)`-disk -/
-def sphereInclusion (n : ℤ) : (sphere.{u} n) ⟶ (disk.{u} (n + 1)) where
+def sphereInclusion (n : ℤ) : (𝕊 n) ⟶ (𝔻 n + 1) where
   toFun := fun ⟨p, hp⟩ ↦ ⟨p, le_of_eq hp⟩
   continuous_toFun := ⟨fun t ⟨s, ⟨r, hro, hrt⟩, hst⟩ ↦ by
     rw [isOpen_induced_iff, ← hst, ← hrt]
@@ -109,11 +107,11 @@ noncomputable section
 
 /-- The inclusion map from `sk n` (i.e., the `(n-1)`-skeleton) to `sk (n+1)` (i.e., the
 `n`-skeleton) of a relative CW-complex -/
-def inclusion (X : RelativeCWComplex) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+def inclusion (X : RelativeCWComplex.{u}) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
   RelativeCWComplex.AttachCells.inclusion (X.sk n) (X.sk (n + 1)) (n - 1) (X.attach_cells n)
 
 /-- The topology on a relative CW-complex -/
-def toTopCat (X : RelativeCWComplex) : TopCat.{u} :=
+def toTopCat (X : RelativeCWComplex.{u}) : TopCat.{u} :=
   Limits.colimit <| Functor.ofSequence <| inclusion X
 
 instance : Coe RelativeCWComplex TopCat where coe X := toTopCat X
