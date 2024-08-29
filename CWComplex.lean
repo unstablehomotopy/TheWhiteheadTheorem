@@ -277,10 +277,9 @@ noncomputable def jarRimProjFstToFun (n : ℤ) : jarRim n → 𝕊 n := fun p �
 
 lemma continuous_jarRimProjFstToFun (n : ℤ) : Continuous (jarRimProjFstToFun n) := by
   refine Continuous.subtype_mk ?_ _
-  exact continuous_smul.comp <| (Continuous.div continuous_const (continuous_norm.comp <|
-    continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val) <|
-    jarRim_fst_ne_zero n).prod_mk <|
-    continuous_subtype_val.comp <| continuous_fst.comp <| continuous_subtype_val
+  exact continuous_smul.comp <| (Continuous.div continuous_const
+    (continuous_subtype_val.fst.subtype_val.norm) <| jarRim_fst_ne_zero n).prod_mk <|
+      continuous_subtype_val.fst.subtype_val
 
 noncomputable def jarRimProjFst (n : ℤ) : C(jarRim n, 𝕊 n) :=
   ⟨jarRimProjFstToFun n, continuous_jarRimProjFstToFun n⟩

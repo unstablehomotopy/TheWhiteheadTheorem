@@ -215,7 +215,7 @@ noncomputable def jarMidProjToFun (n : ℤ) : jarMid.{u} n → disk.{u} (n + 1) 
   val := match p with
     | ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, _⟩ ⟩, _⟩ => (2 / (2 - y)) • x,
   property := by
-    obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
+    obtain ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, _, _⟩ ⟩, hxy⟩ := p
     dsimp only [Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq]
     rw [Metric.mem_closedBall]
     rw [dist_zero_right, norm_smul, norm_div, RCLike.norm_ofNat, Real.norm_eq_abs]
@@ -223,14 +223,39 @@ noncomputable def jarMidProjToFun (n : ℤ) : jarMid.{u} n → disk.{u} (n + 1) 
     rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
     nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
     rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
-    exact Or.inl hxy
-  }⟩
+    exact Or.inl hxy }⟩
 
 lemma continuous_jarMidProjToFun (n : ℤ) : Continuous (jarMidProjToFun.{u} n) :=
-  (((continuous_smul.comp <| continuous_swap.comp <|
-    continuous_subtype_val.prod_map <| continuous_const.div
-      ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
-        rw [Function.comp_apply]; linarith).comp continuous_subtype_val).subtype_mk _).comp continuous_uLift_down
+  continuous_uLift_up.comp <|
+    ((continuous_smul.comp <| continuous_swap.comp <| continuous_uLift_down.subtype_val.prod_map <|
+      continuous_const.div ((continuous_sub_left _).comp continuous_subtype_val)
+      fun ⟨y, _, _⟩ ↦ by rw [Function.comp_apply]; linarith).comp
+    continuous_subtype_val).subtype_mk _
+
+noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) :=
+  ⟨jarMidProjToFun n, continuous_jarMidProjToFun n⟩
+
+lemma jarRim_fst_ne_zero (n : ℤ) : ∀ p : jarRim n, ‖p.val.fst.down.val‖ ≠ 0 :=
+  fun ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, _, _⟩ ⟩, hxy⟩ ↦ by
+    conv => lhs; arg 1; dsimp
+    change ‖x‖ ≥ 1 - y / 2 at hxy
+    linarith
+
+noncomputable def jarRimProjFstToFun (n : ℤ) : jarRim.{u} n → sphere.{u} n := fun p ↦ ⟨{
+  val := match p with
+    | ⟨⟨ ⟨⟨x, _⟩⟩, _ ⟩, _⟩ => (1 / ‖x‖) • x
+  property := by
+    obtain ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, yl, yr⟩ ⟩, hxy⟩ := p
+    simp only [one_div, mem_sphere_iff_norm, sub_zero, norm_smul, norm_inv, norm_norm]
+    change ‖x‖ ≥ 1 - y / 2 at hxy
+    exact inv_mul_cancel₀ (by linarith) }⟩
+
+lemma continuous_jarRimProjFstToFun (n : ℤ) : Continuous (jarRimProjFstToFun.{u} n) := by
+  refine continuous_uLift_up.comp ?_
+  refine Continuous.subtype_mk ?_ _
+  exact continuous_smul.comp <| (Continuous.div continuous_const
+    (continuous_uLift_down.subtype_val.fst.subtype_val.norm) <| jarRim_fst_ne_zero.{u} n).prod_mk <|
+      continuous_uLift_down.subtype_val.fst.subtype_val
 
 end HEP
 
