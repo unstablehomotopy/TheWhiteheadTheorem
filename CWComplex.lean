@@ -246,7 +246,7 @@ noncomputable def jarMidProjToFun (n : ℤ) : jarMid n → 𝔻 n + 1 := fun p �
     rw [Metric.mem_closedBall]
     rw [dist_zero_right, norm_smul, norm_div, RCLike.norm_ofNat, Real.norm_eq_abs]
     have : 0 < |2 - y| := lt_of_le_of_ne (abs_nonneg _) (abs_ne_zero.mpr (by linarith)).symm
-    rw [← le_div_iff' (div_pos (by norm_num) this), one_div, inv_div]
+    rw [← le_div_iff₀' (div_pos (by norm_num) this), one_div, inv_div]
     nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
     rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
     exact Or.inl hxy}
@@ -278,7 +278,7 @@ noncomputable def jarRimProjFstToFun (n : ℤ) : jarRim n → 𝕊 n := fun p �
 lemma continuous_jarRimProjFstToFun (n : ℤ) : Continuous (jarRimProjFstToFun n) := by
   refine Continuous.subtype_mk ?_ _
   exact continuous_smul.comp <| (Continuous.div continuous_const
-    (continuous_subtype_val.fst.subtype_val.norm) <| jarRim_fst_ne_zero n).prod_mk <|
+    (continuous_subtype_val.fst.subtype_val.norm) <| jarRim_fst_ne_zero n).prod_mk
       continuous_subtype_val.fst.subtype_val
 
 noncomputable def jarRimProjFst (n : ℤ) : C(jarRim n, 𝕊 n) :=
@@ -296,8 +296,8 @@ noncomputable def jarRimProjSndToFun (n : ℤ) : jarRim n → I := fun p ↦ {
     constructor
     all_goals rw [← add_le_add_iff_right (-2)]
     · rw [← neg_le_neg_iff, add_neg_cancel_right, zero_add, neg_neg]
-      rw [← neg_div, neg_sub, div_le_iff (by assumption)]; linarith
-    · rw [add_assoc, add_neg_cancel, add_zero, div_le_iff (by assumption)]; linarith}
+      rw [← neg_div, neg_sub, div_le_iff₀ (by assumption)]; linarith
+    · rw [add_assoc, add_neg_cancel, add_zero, div_le_iff₀ (by assumption)]; linarith}
 
 lemma continuous_jarRimProjSndToFun (n : ℤ) : Continuous (jarRimProjSndToFun n) := by
   refine Continuous.subtype_mk ?_ _
