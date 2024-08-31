@@ -11,162 +11,129 @@ import Mathlib.CategoryTheory.Functor.OfSequence
 /-!
 # CW-complexes
 
-In this file we define a relative CW-complex as the colimit of an expanding sequence of subspaces
-`sk i` (called the `i`-skeleta) for `i ≥ -1`, where `sk (-1)` is an arbitrary topological space
-and each `sk (n+1)` is obtained from `sk n` by attaching (n+1)-disks.
+This file defines (relative) CW-complexes.
+
+## Main definitions
+
+* `RelativeCWComplex`: A relative CW-complex is the colimit of an expanding sequence of subspaces
+`sk i` (called the `(i-1)`-skeleton) for `i ≥ 0`, where `sk 0` (i.e., the `(-1)`-skeleton) is an
+arbitrary topological space, and each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n`
+(i.e., the `(n-1)`-skeleton) by attaching `n`-disks.
+
+* `CWComplex`: A CW-complex is a relative CW-complex whose `sk 0` (i.e., `(-1)`-skeleton) is empty.
 
 ## References
-The definition of CW complexes follows David Wärn's suggestion at
+
+The definition of CW-complexes follows David Wärn's suggestion at
 https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/Do.20we.20have.20CW.20complexes.3F/near/231769080
 -/
 
 open CategoryTheory
 
+universe u
+
 namespace RelativeCWComplex
 
-/-- The n-dimensional sphere is the set of points in ℝⁿ⁺¹ whose norm equals 1, endowed with the
-subspace topology. -/
-noncomputable def sphere (n : ℤ) : TopCat :=
-  TopCat.of <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| Int.toNat <| n + 1) 1
+/-- The `n`-sphere is the set of points in ℝⁿ⁺¹ whose norm equals `1`,
+endowed with the subspace topology. -/
+noncomputable def sphere (n : ℤ) : TopCat.{u} :=
+  TopCat.of <| ULift <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| Int.toNat <| n + 1) 1
 
-/-- The n-dimensional closed disk is the set of points in ℝⁿ whose norm is at most 1, endowed with
-the subspace topology. -/
-noncomputable def disk (n : ℤ) : TopCat :=
-  TopCat.of <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin <| Int.toNat n) 1
+/-- The `n`-disk is the set of points in ℝⁿ whose norm is at most `1`,
+endowed with the subspace topology. -/
+noncomputable def disk (n : ℤ) : TopCat.{u} :=
+  TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin <| Int.toNat n) 1
 
-/-- `𝕊 n` denotes the n-dimensional sphere. -/
+/-- `𝕊 n` denotes the `n`-sphere. -/
 scoped notation "𝕊 "n => sphere n
 
-/-- `𝔻 n` denotes the n-dimensional closed disk. -/
+/-- `𝔻 n` denotes the `n`-disk. -/
 scoped notation "𝔻 "n => disk n
 
-/-- The inclusion map from the n-sphere to the (n+1)-disk -/
+/-- The inclusion map from the `n`-sphere to the `(n+1)`-disk -/
 def sphereInclusion (n : ℤ) : (𝕊 n) ⟶ (𝔻 n + 1) where
   toFun := fun ⟨p, hp⟩ ↦ ⟨p, le_of_eq hp⟩
-  continuous_toFun := ⟨fun t ⟨s, hso, hst⟩ ↦ by
-    rw [isOpen_induced_iff, ← hst]
+  continuous_toFun := ⟨fun t ⟨s, ⟨r, hro, hrs⟩, hst⟩ ↦ by
+    rw [isOpen_induced_iff, ← hst, ← hrs]
     tauto⟩
 
-/-- The inclusion map from the disjoint union of n-spheres to the disjoint union of (n+1)-disks,
-where both of the disjoint unions are indexed by `cells` -/
-def sigmaSphereInclusion (n : ℤ) (cells : Type) :
-    TopCat.of (Σ (_ : cells), 𝕊 n) ⟶ TopCat.of (Σ (_ : cells), 𝔻 n + 1) where
-  toFun := Sigma.map id fun _ x ↦ (sphereInclusion n).toFun x
-  continuous_toFun := Continuous.sigma_map fun _ ↦ (sphereInclusion n).continuous_toFun
+variable {S D : ℤ → TopCat.{u}} (f : ∀ n, S n ⟶ D (n + 1))
 
-/-- Given an attaching map for each n-sphere, we construct the attaching map for the disjoint
-union of the n-spheres. -/
-def sigmaAttachMap (X : TopCat) (n : ℤ) (cells : Type) (attach_maps : cells → C(𝕊 n, X)) :
-    TopCat.of (Σ (_ : cells), 𝕊 n) ⟶ X where
+/-- The inclusion map from the disjoint union of `S n` (boundary of generalized `(n+1)`-cells) to
+the disjoint union of `D (n + 1)` (generalized `(n+1)`-cells) where both of the disjoint unions are
+indexed by `cells` -/
+def generalizedSigmaSphereInclusion (n : ℤ) (cells : Type) :
+    TopCat.of (Σ (_ : cells), S n) ⟶ TopCat.of (Σ (_ : cells), D (n + 1)) where
+  toFun := Sigma.map id fun _ x ↦ (f n).toFun x
+  continuous_toFun := Continuous.sigma_map fun _ ↦ (f n).continuous_toFun
+
+/-- Given an attaching map for each `S n` (boundary of a generalized `(n+1)`-cell), we construct
+the attaching map for the disjoint union of all the `S n`. -/
+def generalizedSigmaAttachMap (X : TopCat.{u}) (n : ℤ) (cells : Type)
+    (attach_maps : cells → C(S n, X)) : TopCat.of (Σ (_ : cells), S n) ⟶ X where
   toFun := fun ⟨i, x⟩ ↦ attach_maps i x
   continuous_toFun := continuous_sigma fun i ↦ (attach_maps i).continuous_toFun
 
-/-- A type witnessing that `X'` is obtained from `X` by attaching (n+1)-disks -/
-structure AttachCells (X X' : TopCat) (n : ℤ) where
-  /-- The index type over the (n+1)-disks -/
+/-- A type witnessing that `X'` is obtained from `X` by attaching generalized `(n+1)`-cells, where
+a generalized `(n+1)`-cell is given by `f n : S n ⟶ D (n + 1)`. -/
+structure AttachGeneralizedCells (X X' : TopCat.{u}) (n : ℤ) where
+  /-- The index type over the generalized `(n+1)`-cells -/
   cells : Type
-  /-- For each (n+1)-disk, we have an attaching map from its boundary, namely an n-sphere,
-  to `X`. -/
-  attach_maps : cells → C(𝕊 n, X)
+  /-- For each generalized `(n+1)`-cell, we have an attaching map from its boundary to `X`. -/
+  attach_maps : cells → C(S n, X)
   /-- `X'` is the pushout obtained from `X` along `sigmaAttachMap`. -/
-  iso_pushout : X' ≅ Limits.pushout
-    (sigmaSphereInclusion n cells) (sigmaAttachMap X n cells attach_maps)
+  iso_pushout : X' ≅ Limits.pushout (generalizedSigmaSphereInclusion f n cells)
+    (generalizedSigmaAttachMap X n cells attach_maps)
+
+/-- The inclusion map from the disjoint union of `n`-spheres to the disjoint union of `(n+1)`-disks,
+where both of the disjoint unions are indexed by `cells` -/
+noncomputable abbrev sigmaSphereInclusion := generalizedSigmaSphereInclusion sphereInclusion
+
+/-- Given an attaching map for each `n`-sphere, we construct the attaching map for the disjoint
+union of the `n`-spheres. -/
+abbrev sigmaAttachMap := @generalizedSigmaAttachMap sphere
+
+/-- A type witnessing that `X'` is obtained from `X` by attaching `(n+1)`-disks -/
+abbrev AttachCells := AttachGeneralizedCells sphereInclusion
 
 end RelativeCWComplex
 
-/-- A relative CW-complex contains an expanding sequence of subspaces `sk i`
-(called the `i`-skeleton) for `i ≥ -1`, where `sk (-1)` is an arbitrary topological space,
-isomorphic to `A`, and each `sk (n+1)` is obtained from `sk n` by attaching (n+1)-disks. -/
-structure RelativeCWComplex (A : TopCat) where
-  /-- Skeleta -/
-  sk : ℤ → TopCat
-  /-- `A` is isomorphic to the (-1)-skeleton. -/
-  iso_sk_neg_one : A ≅ sk (-1)
-  /-- The (n+1)-skeleton is obtained from the n-skeleton by attaching (n+1)-disks. -/
-  attach_cells : (n : ℤ) → RelativeCWComplex.AttachCells (sk n) (sk (n + 1)) n
+/-- A relative CW-complex contains an expanding sequence of subspaces `sk i` (called the
+`(i-1)`-skeleton) for `i ≥ 0`, where `sk 0` (i.e., the `(-1)`-skeleton) is an arbitrary topological
+space, and each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n` (i.e., the
+`(n-1)`-skeleton) by attaching `n`-disks. -/
+structure RelativeCWComplex where
+  /-- The skeletons. Note: `sk i` is usually called the `(i-1)`-skeleton in the math literature. -/
+  sk : ℕ → TopCat.{u}
+  /-- Each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n` (i.e., the
+  `(n-1)`-skeleton) by attaching `n`-disks. -/
+  attach_cells : (n : ℕ) → RelativeCWComplex.AttachCells (sk n) (sk (n + 1)) (n - 1)
 
-/-- A CW-complex is a relative CW-complex whose (-1)-skeleton is empty. -/
-abbrev CWComplex := RelativeCWComplex (TopCat.of Empty)
+/-- A CW-complex is a relative CW-complex whose `sk 0` (i.e., `(-1)`-skeleton) is empty. -/
+structure CWComplex extends RelativeCWComplex.{u} where
+  /-- `sk 0` (i.e., the `(-1)`-skeleton) is empty. -/
+  sk_zero_empty : sk 0 = TopCat.of (ULift Empty)
 
 namespace RelativeCWComplex
 
 noncomputable section Topology
 
-namespace AttachCells
-
 /-- The inclusion map from `X` to `X'`, given that `X'` is obtained from `X` by attaching
-(n+1)-disks -/
-def inclusion (X X' : TopCat) (n : ℤ) (att : AttachCells X X' n) : X ⟶ X' :=
-  @Limits.pushout.inr TopCat _ _ _ X
-    (sigmaSphereInclusion n att.cells)
+`(n+1)`-disks -/
+def AttachCells.inclusion (X X' : TopCat.{u}) (n : ℤ) (att : AttachCells X X' n) : X ⟶ X' :=
+  @Limits.pushout.inr TopCat _ _ _ X (sigmaSphereInclusion n att.cells)
     (sigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
 
-end AttachCells
-
-/-- The inclusion map from the n-skeleton to the (n+1)-skeleton of a relative CW-complex -/
-def inclusion {A : TopCat} (X : RelativeCWComplex A) (n : ℤ) : X.sk n ⟶ X.sk (n + 1) :=
-  RelativeCWComplex.AttachCells.inclusion (X.sk n) (X.sk (n + 1)) n (X.attach_cells n)
-
-/-- The inclusion map from the n-skeleton to the m-skeleton of a relative CW-complex -/
-def inclusion' {A : TopCat} (X : RelativeCWComplex A)
-    (n : ℤ) (m : ℤ) (n_le_m : n ≤ m) : X.sk n ⟶ X.sk m :=
-  if h : n = m then by
-    subst m
-    exact 𝟙 (X.sk n)
-  else by
-    have h' : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, h⟩
-    exact inclusion X n ≫ inclusion' X (n + 1) m h'
-  termination_by Int.toNat (m - n)
-  decreasing_by
-    simp_wf
-    rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h')]
-    linarith
-
-#check Functor.ofSequence
-
-/-- The colimit diagram in the definition of a relative CW-complex -/
-def colimitDiagram {A : TopCat} (X : RelativeCWComplex A) : ℤ ⥤ TopCat where
-  obj := X.sk
-  map {n m} n_le_m := inclusion' X n m (leOfHom n_le_m)
-  map_id := by simp [inclusion']
-  map_comp := by
-    let rec p (n m l : ℤ) (n_le_m : n ≤ m) (m_le_l : m ≤ l) (n_le_l : n ≤ l) :
-        inclusion' X n l n_le_l =
-        inclusion' X n m n_le_m ≫
-        inclusion' X m l m_le_l :=
-      if hnm : n = m then by
-        unfold inclusion'
-        subst hnm
-        simp only [eq_mpr_eq_cast, ↓reduceDIte, cast_eq, Category.id_comp]
-      else by
-        have h1 : n < m := Int.lt_iff_le_and_ne.mpr ⟨n_le_m, hnm⟩
-        have h2 : n < l := by linarith
-        unfold inclusion'
-        simp [hnm, Int.ne_of_lt h2]
-        by_cases hml : m = l
-        · subst hml
-          simp only [↓reduceDIte, Category.comp_id]
-        congr
-        rw [p (n + 1) m l h1 m_le_l h2]
-        congr
-        simp only [hml, ↓reduceDIte]
-        conv => lhs; unfold inclusion'
-        simp only [hml, ↓reduceDIte]
-      termination_by Int.toNat (l - n)
-      decreasing_by
-        simp_wf
-        rw [Int.toNat_of_nonneg (Int.sub_nonneg_of_le h2)]
-        linarith
-    intro n m l n_le_m m_le_l
-    have n_le_m := Quiver.Hom.le n_le_m
-    have m_le_l := Quiver.Hom.le m_le_l
-    exact p n m l n_le_m m_le_l (Int.le_trans n_le_m m_le_l)
+/-- The inclusion map from `sk n` (i.e., the `(n-1)`-skeleton) to `sk (n+1)` (i.e., the
+`n`-skeleton) of a relative CW-complex -/
+def inclusion (X : RelativeCWComplex.{u}) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+  RelativeCWComplex.AttachCells.inclusion (X.sk n) (X.sk (n + 1)) (n - 1) (X.attach_cells n)
 
 /-- The topology on a relative CW-complex -/
-def toTopCat {A : TopCat} (X : RelativeCWComplex A) : TopCat :=
-  Limits.colimit (colimitDiagram X)
+def toTopCat (X : RelativeCWComplex.{u}) : TopCat.{u} :=
+  Limits.colimit <| Functor.ofSequence <| inclusion X
 
-instance : Coe CWComplex TopCat where coe X := toTopCat X
+instance : Coe RelativeCWComplex TopCat where coe X := toTopCat X
 
 end Topology
 
@@ -218,8 +185,8 @@ section HEP
 open unitInterval
 
 abbrev Jar (n : ℤ) := (𝔻 n + 1) × I
-def jarMid (n : ℤ) := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : Jar n | ‖x‖ ≤ 1 - y / 2}
-def jarRim (n : ℤ) := {⟨⟨x, _⟩, ⟨y, _⟩⟩ : Jar n | ‖x‖ ≥ 1 - y / 2}
+def jarMid (n : ℤ) := {⟨ ⟨⟨x, _⟩⟩, ⟨y, _⟩ ⟩ : Jar n | ‖x‖ ≤ 1 - y / 2}
+def jarRim (n : ℤ) := {⟨ ⟨⟨x, _⟩⟩, ⟨y, _⟩ ⟩ : Jar n | ‖x‖ ≥ 1 - y / 2}
 
 def jarClosedCover (n : ℤ) : Fin 2 → Set (Jar n) := ![jarMid n, jarRim n]
 
@@ -227,21 +194,21 @@ lemma continuous_sub_div_two : Continuous fun (y : ℝ) ↦ 1 - y / 2 :=
   (continuous_sub_left _).comp <| continuous_mul_right _
 
 lemma isClosed_jarMid (n : ℤ) : IsClosed (jarMid n) :=
-  continuous_iff_isClosed.mp (continuous_subtype_val.norm.prod_map continuous_id)
+  continuous_iff_isClosed.mp (continuous_uLift_down.subtype_val.norm.prod_map continuous_id)
     {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <| isClosed_le continuous_fst <|
     continuous_sub_div_two.comp <| continuous_subtype_val.comp continuous_snd
 
 lemma isClosed_jarRim (n : ℤ) : IsClosed (jarRim n) :=
-  continuous_iff_isClosed.mp (continuous_subtype_val.norm.prod_map continuous_id)
+  continuous_iff_isClosed.mp (continuous_uLift_down.subtype_val.norm.prod_map continuous_id)
     {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <| isClosed_le
     (continuous_sub_div_two.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
-noncomputable def jarMidProjToFun (n : ℤ) : jarMid n → 𝔻 n + 1 := fun p ↦ {
+noncomputable def jarMidProjToFun (n : ℤ) : jarMid.{u} n → disk.{u} (n + 1) := fun p ↦ ⟨{
   -- Note: pattern matching is done inside `toFun` to make `Continuous.subtype_mk` work
   val := match p with
-    | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (2 / (2 - y)) • x,
+    | ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, _⟩ ⟩, _⟩ => (2 / (2 - y)) • x,
   property := by
-    obtain ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
+    obtain ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, _, _⟩ ⟩, hxy⟩ := p
     dsimp only [Int.ofNat_eq_coe, Set.coe_setOf, Set.mem_setOf_eq]
     rw [Metric.mem_closedBall]
     rw [dist_zero_right, norm_smul, norm_div, RCLike.norm_ofNat, Real.norm_eq_abs]
@@ -249,46 +216,54 @@ noncomputable def jarMidProjToFun (n : ℤ) : jarMid n → 𝔻 n + 1 := fun p �
     rw [← le_div_iff₀' (div_pos (by norm_num) this), one_div, inv_div]
     nth_rw 2 [← (@abs_eq_self ℝ _ 2).mpr (by norm_num)]
     rw [← abs_div, sub_div, div_self (by norm_num), le_abs]
-    exact Or.inl hxy}
+    exact Or.inl hxy }⟩
 
-lemma continuous_jarMidProjToFun (n : ℤ) : Continuous (jarMidProjToFun n) :=
-  ((continuous_smul.comp <| continuous_swap.comp <|
-    continuous_subtype_val.prod_map <| continuous_const.div
-      ((continuous_sub_left _).comp continuous_subtype_val) fun ⟨y, ⟨_, _⟩⟩ ↦ by
-        rw [Function.comp_apply]; linarith).comp continuous_subtype_val).subtype_mk _
+lemma continuous_jarMidProjToFun (n : ℤ) : Continuous (jarMidProjToFun.{u} n) := by
+  refine continuous_uLift_up.comp ?_
+  refine Continuous.subtype_mk ?_ _
+  exact continuous_smul.comp <| Continuous.prod_mk
+    (continuous_const.div ((continuous_sub_left _).comp <| continuous_subtype_val.comp <|
+      continuous_snd.comp <| continuous_subtype_val) fun ⟨⟨ _, ⟨y, _, _⟩ ⟩, _⟩ ↦ by
+        dsimp only [Function.comp_apply, ne_eq]; linarith)
+    (continuous_subtype_val.comp <| continuous_uLift_down.comp <| continuous_fst.comp <|
+      continuous_subtype_val)
 
 noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) :=
   ⟨jarMidProjToFun n, continuous_jarMidProjToFun n⟩
 
-lemma jarRim_fst_ne_zero (n : ℤ) : ∀ p : jarRim n, ‖p.val.fst.val‖ ≠ 0 :=
-  fun ⟨⟨⟨x, _⟩, ⟨y, _, _⟩⟩, hxy⟩ ↦ by
+lemma jarRim_fst_ne_zero (n : ℤ) : ∀ p : jarRim n, ‖p.val.fst.down.val‖ ≠ 0 :=
+  fun ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, _, _⟩ ⟩, hxy⟩ ↦ by
     conv => lhs; arg 1; dsimp
     change ‖x‖ ≥ 1 - y / 2 at hxy
     linarith
 
-noncomputable def jarRimProjFstToFun (n : ℤ) : jarRim n → 𝕊 n := fun p ↦ {
+noncomputable def jarRimProjFstToFun (n : ℤ) : jarRim.{u} n → sphere.{u} n := fun p ↦ ⟨{
   val := match p with
-    | ⟨⟨⟨x, _⟩, _⟩, _⟩ => (1 / ‖x‖) • x
+    | ⟨⟨ ⟨⟨x, _⟩⟩, _ ⟩, _⟩ => (1 / ‖x‖) • x
   property := by
-    obtain ⟨⟨⟨x, _⟩, ⟨y, yl, yr⟩⟩, hxy⟩ := p
+    obtain ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, yl, yr⟩ ⟩, hxy⟩ := p
     simp only [one_div, mem_sphere_iff_norm, sub_zero, norm_smul, norm_inv, norm_norm]
     change ‖x‖ ≥ 1 - y / 2 at hxy
-    exact inv_mul_cancel₀ (by linarith)}
+    exact inv_mul_cancel₀ (by linarith) }⟩
 
 lemma continuous_jarRimProjFstToFun (n : ℤ) : Continuous (jarRimProjFstToFun n) := by
+  refine continuous_uLift_up.comp ?_
   refine Continuous.subtype_mk ?_ _
-  exact continuous_smul.comp <| (Continuous.div continuous_const
-    (continuous_subtype_val.fst.subtype_val.norm) <| jarRim_fst_ne_zero n).prod_mk
-      continuous_subtype_val.fst.subtype_val
+  exact continuous_smul.comp <| Continuous.prod_mk
+    (Continuous.div continuous_const (continuous_norm.comp <| continuous_subtype_val.comp <|
+      continuous_uLift_down.comp <| continuous_fst.comp <| continuous_subtype_val) <|
+        jarRim_fst_ne_zero n)
+    (continuous_subtype_val.comp <| continuous_uLift_down.comp <| continuous_fst.comp <|
+      continuous_subtype_val)
 
 noncomputable def jarRimProjFst (n : ℤ) : C(jarRim n, 𝕊 n) :=
   ⟨jarRimProjFstToFun n, continuous_jarRimProjFstToFun n⟩
 
 noncomputable def jarRimProjSndToFun (n : ℤ) : jarRim n → I := fun p ↦ {
   val := match p with
-    | ⟨⟨⟨x, _⟩, ⟨y, _⟩⟩, _⟩ => (y - 2) / ‖x‖ + 2
+    | ⟨⟨ ⟨⟨x, _⟩⟩, ⟨y, _⟩ ⟩, _⟩ => (y - 2) / ‖x‖ + 2
   property := by
-    obtain ⟨⟨⟨x, hx⟩, ⟨y, _, _⟩⟩, hxy⟩ := p
+    obtain ⟨⟨ ⟨⟨x, hx⟩⟩, ⟨y, _, _⟩ ⟩, hxy⟩ := p
     simp only [Set.mem_Icc]
     rw [Metric.mem_closedBall, dist_zero_right] at hx
     change ‖x‖ ≥ 1 - y / 2 at hxy
@@ -304,7 +279,7 @@ lemma continuous_jarRimProjSndToFun (n : ℤ) : Continuous (jarRimProjSndToFun n
   exact (continuous_add_right _).comp <| Continuous.div
     ((continuous_sub_right _).comp <| continuous_subtype_val.comp <|
       continuous_snd.comp <| continuous_subtype_val)
-    (continuous_norm.comp <| continuous_subtype_val.comp <|
+    (continuous_norm.comp <| continuous_subtype_val.comp <| continuous_uLift_down.comp <|
       continuous_fst.comp <| continuous_subtype_val) <| jarRim_fst_ne_zero n
 
 noncomputable def jarRimProjSnd (n : ℤ) : C(jarRim n, I) :=
@@ -314,16 +289,14 @@ noncomputable def jarRimProj (n : ℤ) : C(jarRim n, (𝕊 n) × I) :=
   ContinuousMap.prodMk (jarRimProjFst n) (jarRimProjSnd n)
 
 noncomputable def jarProj (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y)) :
-    ∀ i, C(jarClosedCover n i, Y) :=
+    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y)) : ∀ i, C(jarClosedCover n i, Y) :=
   Fin.cons (f.comp (jarMidProj n)) <| Fin.cons (H.comp (jarRimProj n)) finZeroElim
 
 lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
-    (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
+    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y)) (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ∀ (p : Jar n) (hp0 : p ∈ jarClosedCover n 0) (hp1 : p ∈ jarClosedCover n 1),
     jarProj n f H 0 ⟨p, hp0⟩ = jarProj n f H 1 ⟨p, hp1⟩ :=
-  fun ⟨⟨x, hx⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
+  fun ⟨⟨⟨x, hx⟩⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
     change f (jarMidProj n _) = H (jarRimProj n _)
     change ‖x‖ ≤ 1 - y / 2 at hp0
     change ‖x‖ ≥ 1 - y / 2 at hp1
@@ -342,7 +315,7 @@ lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
       dsimp only [Int.ofNat_eq_coe, ContinuousMap.prod_eval, ContinuousMap.coe_mk]
       conv => rhs; change (q, ⟨0, by norm_num, by norm_num⟩)
       congr 2
-      · congr 1
+      · congr 2
         rw [this, div_eq_div_iff (by linarith) (by linarith)]
         rw [one_mul, mul_sub, mul_one, ← mul_comm_div, div_self (by norm_num), one_mul]
       · rw [this, ← eq_sub_iff_add_eq, zero_sub, div_eq_iff (by linarith), mul_sub, mul_one]
@@ -352,8 +325,7 @@ lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
     rw [hf]
 
 lemma jarProj_compatible' (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
-    (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
+    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y)) (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ∀ (i j) (p : Jar n) (hpi : p ∈ jarClosedCover n i) (hpj : p ∈ jarClosedCover n j),
     jarProj n f H i ⟨p, hpi⟩ = jarProj n f H j ⟨p, hpj⟩ := by
   intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
@@ -415,29 +387,21 @@ lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace 
   conv_rhs => equals (jarProj n f H 1) ⟨⟨q, ⟨y, hy⟩⟩, hq⟩ => apply liftCoverClosed_coe'
   simp only [jarProj, Fin.succ_zero_eq_one, Fin.cons_one, Fin.cons_zero, ContinuousMap.comp_apply]
   congr
-  · dsimp only [jarRimProjFst, sphereInclusion, ContinuousMap.coe_mk, jarRimProjFstToFun, one_div, q]
+  · dsimp only [jarRimProjFst, sphereInclusion, ContinuousMap.coe_mk, jarRimProjFstToFun, one_div,
+      q]
     rw [mem_sphere_zero_iff_norm.mp hx, div_one, one_smul]
   · dsimp only [sphereInclusion, q]
     rw [mem_sphere_zero_iff_norm.mp hx, div_one, sub_add_cancel]
 
-def HomotopyExtensionProperty {A X : Type} [TopologicalSpace A] [TopologicalSpace X]
+def HomotopyExtensionProperty {A X : Type u} [TopologicalSpace A] [TopologicalSpace X]
     (i : C(A, X)) : Prop :=
   ∀ {Y : Type} [TopologicalSpace Y] (f : C(X, Y)) (H : C(A × I, Y)), f ∘ i = H ∘ (·, 0) →
   ∃ H' : C(X × I, Y), ⇑f = ⇑H' ∘ (·, 0) ∧ ⇑H = ⇑H' ∘ Prod.map i id
 
-theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (sphereInclusion n) :=
-  fun f H hf ↦ ⟨jarHomotopyExtension n f H hf,
-    jarHomotopyExtension_bottom_commutes n f H hf,
+theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (sphereInclusion.{u} n) :=
+  fun f H hf ↦ ⟨jarHomotopyExtension n f H hf, jarHomotopyExtension_bottom_commutes n f H hf,
     jarHomotopyExtension_wall_commutes n f H hf⟩
 
 end HEP
 
 end RelativeCWComplex
-
------------------------------------------------------------------
-
-def IsCWComplex (X : TopCat) : Prop := ∃ Y : CWComplex, Nonempty (↑Y ≅ X)
-
-def CWComplexCat := FullSubcategory IsCWComplex
-
-#check [Category CWComplexCat]
