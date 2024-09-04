@@ -158,7 +158,7 @@ noncomputable def liftCoverClosed : C(α, β) :=
       ext x
       simp only [Set.mem_image, Set.mem_preimage, Subtype.exists, exists_and_right, exists_eq_right,
         Set.mem_inter_iff]
-      conv_lhs => rhs; ext hxi; lhs; equals Φ x => exact Eq.symm (Set.liftCover_of_mem hxi)
+      conv => lhs; rhs; ext hxi; arg 2; equals Φ x => exact Eq.symm (Set.liftCover_of_mem hxi)
       tauto
     have : Φ ⁻¹' Y = ⋃ i, Subtype.val '' (φ i ⁻¹' Y) := by
       conv_rhs => ext x; arg 1; ext i; rw [this]
