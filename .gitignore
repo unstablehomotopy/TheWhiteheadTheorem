@@ -1,3 +1,5 @@
+.DS_Store
+
 ## lean
 /build
 /lake-packages/*
