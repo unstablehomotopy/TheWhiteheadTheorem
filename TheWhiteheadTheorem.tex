@@ -1752,9 +1752,16 @@ $\texttt{g • f = 1}{}_{I × B(∞,∞)}$ and $\texttt{f • g = 1}{}_{B(∞,�
 
 
 
+
+
 \begin{definition}[(a)]
 ...
 \end{definition}
+
+\iffalse
+Interrepositorial
+Intrarepositorial
+\fi
 
 
 
@@ -1816,7 +1823,16 @@ After this, we show that $\texttt{projₙ • jₙ} = 1_\texttt{Jₙ}$.\\
 In what follows, it is possible to use CW-complexes instead of CW-complexes. This reflects how the argument makes no use of the stronger condition associated to the CW-complexes that cells be attached in order of nondecreasing dimension.
 \fi
 
-{\bf Change of Base} Change of base demonstrates that πₙ(X,x) is isomorphic to πₙ(X,y) for a connected CW-complex X and two different points x and y in X given a path between them. This isomorphism depends on the choice of path.
+{\bf Change of Base} Change of base demonstrates that πₙ(X,x) is isomorphic to πₙ(X,y) for a connected CW-complex X and two different points x and y in X. This change depends on a path between them.\\
+
+Given a path $\texttt{jj}$
+
+\iffalse
+the use of a jar factors through the use of a line
+\fi
+
+
+The construction proceeds by defining a sphere 
 
 \begin{definition}
 Let X be a connected CW-complex and let n : Nat be a natural number. The transport function $\texttt{trans\ n\ X : (f : [I,X])  → πₙ (X,ev f 0) ⭢ πₙ (X, ev f 1)}$ ...
@@ -1840,7 +1856,7 @@ $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 The proof in the above can be depicted like so, as a `painting with two concentric frames':
 
 \begin{center}
-\includegraphics[scale=0.35]{windowframe.png}
+\includegraphics[scale=0.35]{pictureframe.png}
 \end{center}
 
 that the Based CW-complexes (X,x) and (X,y) are 
@@ -1857,8 +1873,10 @@ that the Based CW-complexes (X,x) and (X,y) are
 \includegraphics[width=3.5cm,height=5cm]{proj.png}
 \end{center}
 
+\iffalse
+- smooth jar filling with the unit ball in l₂
+\fi
  
-
  \iffalse
 - Base change for Based connected CW-complexes
 - pushout ∂Dⁿ ∂Dⁿ ≅ Sⁿ, where ∂Dⁿ : Sⁿ ⭢ Dⁿ
@@ -2426,7 +2444,7 @@ $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 The proof in the above can be depicted like so, as a `painting with two concentric frames':
 
 \begin{center}
-\includegraphics[scale=0.5]{windowframe.png}
+\includegraphics[scale=0.5]{pictureframe.png}
 \end{center}
 
 that the Based CW-complexes (X₋₁,x) and (X₋₁,y) are 
