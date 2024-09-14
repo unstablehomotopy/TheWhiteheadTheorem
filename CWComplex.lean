@@ -5,8 +5,8 @@ Authors: Jiazhen Xia, Elliot Dean Young
 -/
 
 import Mathlib.Topology.Category.TopCat.Limits.Basic
-import Mathlib.Analysis.InnerProductSpace.PiL2
 import Mathlib.CategoryTheory.Functor.OfSequence
+import Mathlib.Analysis.InnerProductSpace.PiL2
 
 /-!
 # CW-complexes
@@ -45,13 +45,13 @@ noncomputable def disk (n : ℤ) : TopCat.{u} :=
   TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin <| Int.toNat n) 1
 
 /-- `𝕊 n` denotes the `n`-sphere. -/
-scoped notation "𝕊 "n => sphere n
+scoped prefix:arg "𝕊 " => sphere
 
 /-- `𝔻 n` denotes the `n`-disk. -/
-scoped notation "𝔻 "n => disk n
+scoped prefix:arg "𝔻 " => disk
 
 /-- The inclusion map from the `n`-sphere to the `(n+1)`-disk -/
-def sphereInclusion (n : ℤ) : (𝕊 n) ⟶ (𝔻 n + 1) where
+def sphereInclusion (n : ℤ) : 𝕊 n ⟶ 𝔻 (n + 1) where
   toFun := fun ⟨p, hp⟩ ↦ ⟨p, le_of_eq hp⟩
   continuous_toFun := ⟨fun t ⟨s, ⟨r, hro, hrs⟩, hst⟩ ↦ by
     rw [isOpen_induced_iff, ← hst, ← hrs]
@@ -107,12 +107,12 @@ structure RelativeCWComplex where
   sk : ℕ → TopCat.{u}
   /-- Each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n` (i.e., the
   `(n-1)`-skeleton) by attaching `n`-disks. -/
-  attach_cells : (n : ℕ) → RelativeCWComplex.AttachCells (sk n) (sk (n + 1)) (n - 1)
+  attach_cells (n : ℕ) : RelativeCWComplex.AttachCells (sk n) (sk (n + 1)) (n - 1)
 
 /-- A CW-complex is a relative CW-complex whose `sk 0` (i.e., `(-1)`-skeleton) is empty. -/
 structure CWComplex extends RelativeCWComplex.{u} where
   /-- `sk 0` (i.e., the `(-1)`-skeleton) is empty. -/
-  sk_zero_empty : sk 0 = TopCat.of (ULift Empty)
+  sk_zero_empty : IsEmpty (sk 0)
 
 namespace RelativeCWComplex
 
@@ -184,7 +184,7 @@ section HEP
 
 open unitInterval
 
-abbrev Jar (n : ℤ) := (𝔻 n + 1) × I
+abbrev Jar (n : ℤ) := 𝔻 (n + 1) × I
 def jarMid (n : ℤ) := {⟨ ⟨⟨x, _⟩⟩, ⟨y, _⟩ ⟩ : Jar n | ‖x‖ ≤ 1 - y / 2}
 def jarRim (n : ℤ) := {⟨ ⟨⟨x, _⟩⟩, ⟨y, _⟩ ⟩ : Jar n | ‖x‖ ≥ 1 - y / 2}
 
@@ -228,7 +228,7 @@ lemma continuous_jarMidProjToFun (n : ℤ) : Continuous (jarMidProjToFun.{u} n) 
     (continuous_subtype_val.comp <| continuous_uLift_down.comp <| continuous_fst.comp <|
       continuous_subtype_val)
 
-noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 n + 1) :=
+noncomputable def jarMidProj (n : ℤ) : C(jarMid n, 𝔻 (n + 1)) :=
   ⟨jarMidProjToFun n, continuous_jarMidProjToFun n⟩
 
 lemma jarRim_fst_ne_zero (n : ℤ) : ∀ p : jarRim n, ‖p.val.fst.down.val‖ ≠ 0 :=
@@ -289,11 +289,11 @@ noncomputable def jarRimProj (n : ℤ) : C(jarRim n, (𝕊 n) × I) :=
   ContinuousMap.prodMk (jarRimProjFst n) (jarRimProjSnd n)
 
 noncomputable def jarProj (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y)) : ∀ i, C(jarClosedCover n i, Y) :=
+    (f : C(𝔻 (n + 1), Y)) (H: C((𝕊 n) × I, Y)) : ∀ i, C(jarClosedCover n i, Y) :=
   Fin.cons (f.comp (jarMidProj n)) <| Fin.cons (H.comp (jarRimProj n)) finZeroElim
 
 lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y)) (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
+    (f : C(𝔻 (n + 1), Y)) (H: C((𝕊 n) × I, Y)) (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ∀ (p : Jar n) (hp0 : p ∈ jarClosedCover n 0) (hp1 : p ∈ jarClosedCover n 1),
     jarProj n f H 0 ⟨p, hp0⟩ = jarProj n f H 1 ⟨p, hp1⟩ :=
   fun ⟨⟨⟨x, hx⟩⟩, ⟨y, hy0, hy1⟩⟩ hp0 hp1 ↦ by
@@ -325,7 +325,7 @@ lemma jarProj_compatible (n : ℤ) {Y : Type} [TopologicalSpace Y]
     rw [hf]
 
 lemma jarProj_compatible' (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y)) (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
+    (f : C(𝔻 (n + 1), Y)) (H: C((𝕊 n) × I, Y)) (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ∀ (i j) (p : Jar n) (hpi : p ∈ jarClosedCover n i) (hpj : p ∈ jarClosedCover n j),
     jarProj n f H i ⟨p, hpi⟩ = jarProj n f H j ⟨p, hpj⟩ := by
   intro ⟨i, hi⟩ ⟨j, hj⟩ p hpi hpj
@@ -345,14 +345,14 @@ lemma jarClosedCover_isClosed (n : ℤ) : ∀ i, IsClosed (jarClosedCover n i) :
   exact isClosed_jarRim n
 
 noncomputable def jarHomotopyExtension (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
+    (f : C(𝔻 (n + 1), Y)) (H: C((𝕊 n) × I, Y))
     (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) : C((Jar n), Y) :=
   liftCoverClosed (jarClosedCover n) (jarProj n f H) (jarProj_compatible' n f H hf)
     (jarClosedCover_is_cover n) (jarClosedCover_isClosed n)
 
 -- The triangle involving the bottom (i.e., `𝔻 n + 1`) of the jar commutes.
 lemma jarHomotopyExtension_bottom_commutes (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
+    (f : C(𝔻 (n + 1), Y)) (H: C((𝕊 n) × I, Y))
     (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ⇑f = jarHomotopyExtension n f H hf ∘ (·, 0) := by
   ext p
@@ -373,7 +373,7 @@ lemma jarHomotopyExtension_bottom_commutes (n : ℤ) {Y : Type} [TopologicalSpac
 
 -- The triangle involving the wall (i.e., `𝕊 n × I`) of the jar commutes.
 lemma jarHomotopyExtension_wall_commutes (n : ℤ) {Y : Type} [TopologicalSpace Y]
-    (f : C((𝔻 n + 1), Y)) (H: C((𝕊 n) × I, Y))
+    (f : C(𝔻 (n + 1), Y)) (H: C((𝕊 n) × I, Y))
     (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
     ⇑H = jarHomotopyExtension n f H hf ∘ Prod.map (sphereInclusion n) id := by
   ext ⟨⟨x, hx⟩, ⟨y, hy⟩⟩
