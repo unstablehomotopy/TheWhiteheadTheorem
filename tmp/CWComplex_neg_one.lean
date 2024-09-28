@@ -3,18 +3,9 @@ The definition of CW complexes follows David Wärn's suggestion at
 https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/Do.20we.20have.20CW.20complexes.3F/near/231769080
 -/
 
-import Mathlib.Topology.ContinuousFunction.Basic
-import Mathlib.Topology.Category.TopCat.Basic
-import Mathlib.Topology.Category.TopCat.Limits.Products
-import Mathlib.Topology.Category.TopCat.Limits.Pullbacks
-import Mathlib.Topology.Order
-import Mathlib.Topology.MetricSpace.Basic
-import Mathlib.Topology.UnitInterval
-import Mathlib.CategoryTheory.Limits.Shapes.Products
-import Mathlib.CategoryTheory.Limits.Shapes.Pullbacks
-import Mathlib.CategoryTheory.Category.Preorder
-import Mathlib.Analysis.InnerProductSpace.PiL2 -- EuclideanSpace
-import Mathlib.Init.Set
+import Mathlib.Topology.Category.TopCat.Limits.Basic
+import Mathlib.CategoryTheory.Functor.OfSequence
+import Mathlib.Analysis.InnerProductSpace.PiL2
 
 open CategoryTheory
 

@@ -4,9 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jiazhen Xia, Elliot Dean Young
 -/
 
-import Mathlib.Topology.Category.TopCat.Limits.Basic
-import Mathlib.CategoryTheory.Functor.OfSequence
 import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Topology.Category.TopCat.Limits.Basic
+import Mathlib.CategoryTheory.Limits.Shapes.Products
+import Mathlib.CategoryTheory.Functor.OfSequence
 
 /-!
 # CW-complexes
@@ -16,11 +17,11 @@ This file defines (relative) CW-complexes.
 ## Main definitions
 
 * `RelativeCWComplex`: A relative CW-complex is the colimit of an expanding sequence of subspaces
-`sk i` (called the `(i-1)`-skeleton) for `i ≥ 0`, where `sk 0` (i.e., the `(-1)`-skeleton) is an
-arbitrary topological space, and each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n`
-(i.e., the `(n-1)`-skeleton) by attaching `n`-disks.
+  `sk i` (called the $(i-1)$-skeleton) for `i ≥ 0`, where `sk 0` (i.e., the $(-1)$-skeleton) is an
+  arbitrary topological space, and each `sk (n + 1)` (i.e., the $n$-skeleton) is obtained from
+  `sk n` (i.e., the $(n-1)$-skeleton) by attaching `n`-disks.
 
-* `CWComplex`: A CW-complex is a relative CW-complex whose `sk 0` (i.e., `(-1)`-skeleton) is empty.
+* `CWComplex`: A CW-complex is a relative CW-complex whose `sk 0` (i.e., $(-1)$-skeleton) is empty.
 
 ## References
 
@@ -28,7 +29,7 @@ The definition of CW-complexes follows David Wärn's suggestion at
 https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/Do.20we.20have.20CW.20complexes.3F/near/231769080
 -/
 
-open CategoryTheory
+open CategoryTheory TopCat
 
 universe u
 
@@ -37,12 +38,12 @@ namespace RelativeCWComplex
 /-- The `n`-sphere is the set of points in ℝⁿ⁺¹ whose norm equals `1`,
 endowed with the subspace topology. -/
 noncomputable def sphere (n : ℤ) : TopCat.{u} :=
-  TopCat.of <| ULift <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| Int.toNat <| n + 1) 1
+  TopCat.of <| ULift <| Metric.sphere (0 : EuclideanSpace ℝ <| Fin <| (n + 1).toNat) 1
 
 /-- The `n`-disk is the set of points in ℝⁿ whose norm is at most `1`,
 endowed with the subspace topology. -/
 noncomputable def disk (n : ℤ) : TopCat.{u} :=
-  TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin <| Int.toNat n) 1
+  TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ <| Fin <| n.toNat) 1
 
 /-- `𝕊 n` denotes the `n`-sphere. -/
 scoped prefix:arg "𝕊 " => sphere
@@ -50,88 +51,61 @@ scoped prefix:arg "𝕊 " => sphere
 /-- `𝔻 n` denotes the `n`-disk. -/
 scoped prefix:arg "𝔻 " => disk
 
-/-- The inclusion map from the `n`-sphere to the `(n+1)`-disk -/
+/-- The inclusion map from the `n`-sphere to the `(n + 1)`-disk -/
 def sphereInclusion (n : ℤ) : 𝕊 n ⟶ 𝔻 (n + 1) where
   toFun := fun ⟨p, hp⟩ ↦ ⟨p, le_of_eq hp⟩
   continuous_toFun := ⟨fun t ⟨s, ⟨r, hro, hrs⟩, hst⟩ ↦ by
     rw [isOpen_induced_iff, ← hst, ← hrs]
     tauto⟩
 
-variable {S D : ℤ → TopCat.{u}} (f : ∀ n, S n ⟶ D (n + 1))
+/-- A type witnessing that `X'` is obtained from `X` by attaching generalized cells `f : S ⟶ D` -/
+structure AttachGeneralizedCells {S D : TopCat.{u}} (f : S ⟶ D) (X X' : TopCat.{u}) where
+  /-- The index type over the generalized cells -/
+  cells : Type u
+  /-- An attaching map for each generalized cell -/
+  attachMaps : cells → (S ⟶ X)
+  /-- `X'` is the pushout of `∐ S ⟶ X` and `∐ S ⟶ ∐ D`. -/
+  iso_pushout : X' ≅ Limits.pushout (Limits.Sigma.desc attachMaps) (Limits.Sigma.map fun _ ↦ f)
 
-/-- The inclusion map from the disjoint union of `S n` (boundary of generalized `(n+1)`-cells) to
-the disjoint union of `D (n + 1)` (generalized `(n+1)`-cells) where both of the disjoint unions are
-indexed by `cells` -/
-def generalizedSigmaSphereInclusion (n : ℤ) (cells : Type) :
-    TopCat.of (Σ (_ : cells), S n) ⟶ TopCat.of (Σ (_ : cells), D (n + 1)) where
-  toFun := Sigma.map id fun _ x ↦ (f n).toFun x
-  continuous_toFun := Continuous.sigma_map fun _ ↦ (f n).continuous_toFun
-
-/-- Given an attaching map for each `S n` (boundary of a generalized `(n+1)`-cell), we construct
-the attaching map for the disjoint union of all the `S n`. -/
-def generalizedSigmaAttachMap (X : TopCat.{u}) (n : ℤ) (cells : Type)
-    (attach_maps : cells → C(S n, X)) : TopCat.of (Σ (_ : cells), S n) ⟶ X where
-  toFun := fun ⟨i, x⟩ ↦ attach_maps i x
-  continuous_toFun := continuous_sigma fun i ↦ (attach_maps i).continuous_toFun
-
-/-- A type witnessing that `X'` is obtained from `X` by attaching generalized `(n+1)`-cells, where
-a generalized `(n+1)`-cell is given by `f n : S n ⟶ D (n + 1)`. -/
-structure AttachGeneralizedCells (X X' : TopCat.{u}) (n : ℤ) where
-  /-- The index type over the generalized `(n+1)`-cells -/
-  cells : Type
-  /-- For each generalized `(n+1)`-cell, we have an attaching map from its boundary to `X`. -/
-  attach_maps : cells → C(S n, X)
-  /-- `X'` is the pushout obtained from `X` along `sigmaAttachMap`. -/
-  iso_pushout : X' ≅ Limits.pushout (generalizedSigmaSphereInclusion f n cells)
-    (generalizedSigmaAttachMap X n cells attach_maps)
-
-/-- The inclusion map from the disjoint union of `n`-spheres to the disjoint union of `(n+1)`-disks,
-where both of the disjoint unions are indexed by `cells` -/
-noncomputable abbrev sigmaSphereInclusion := generalizedSigmaSphereInclusion sphereInclusion
-
-/-- Given an attaching map for each `n`-sphere, we construct the attaching map for the disjoint
-union of the `n`-spheres. -/
-abbrev sigmaAttachMap := @generalizedSigmaAttachMap sphere
-
-/-- A type witnessing that `X'` is obtained from `X` by attaching `(n+1)`-disks -/
-abbrev AttachCells := AttachGeneralizedCells sphereInclusion
+/-- A type witnessing that `X'` is obtained from `X` by attaching `(n + 1)`-disks -/
+def AttachCells (n : ℤ) := AttachGeneralizedCells (sphereInclusion n)
 
 end RelativeCWComplex
 
-/-- A relative CW-complex contains an expanding sequence of subspaces `sk i` (called the
-`(i-1)`-skeleton) for `i ≥ 0`, where `sk 0` (i.e., the `(-1)`-skeleton) is an arbitrary topological
-space, and each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n` (i.e., the
-`(n-1)`-skeleton) by attaching `n`-disks. -/
+/-- A relative CW-complex consists of an expanding sequence of subspaces `sk i` (called the
+$(i-1)$-skeleton) for `i ≥ 0`, where `sk 0` (i.e., the $(-1)$-skeleton) is an arbitrary topological
+space, and each `sk (n + 1)` (i.e., the `n`-skeleton) is obtained from `sk n` (i.e., the
+$(n-1)$-skeleton) by attaching `n`-disks. -/
 structure RelativeCWComplex where
-  /-- The skeletons. Note: `sk i` is usually called the `(i-1)`-skeleton in the math literature. -/
+  /-- The skeletons. Note: `sk i` is usually called the $(i-1)$-skeleton in the math literature. -/
   sk : ℕ → TopCat.{u}
-  /-- Each `sk (n+1)` (i.e., the `n`-skeleton) is obtained from `sk n` (i.e., the
-  `(n-1)`-skeleton) by attaching `n`-disks. -/
-  attach_cells (n : ℕ) : RelativeCWComplex.AttachCells (sk n) (sk (n + 1)) (n - 1)
+  /-- Each `sk (n + 1)` (i.e., the $n$-skeleton) is obtained from `sk n`
+  (i.e., the $(n-1)$-skeleton) by attaching `n`-disks. -/
+  attachCells (n : ℕ) : RelativeCWComplex.AttachCells ((n : ℤ) - 1) (sk n) (sk (n + 1))
 
-/-- A CW-complex is a relative CW-complex whose `sk 0` (i.e., `(-1)`-skeleton) is empty. -/
+/-- A CW-complex is a relative CW-complex whose `sk 0` (i.e., $(-1)$-skeleton) is empty. -/
 structure CWComplex extends RelativeCWComplex.{u} where
-  /-- `sk 0` (i.e., the `(-1)`-skeleton) is empty. -/
-  sk_zero_empty : IsEmpty (sk 0)
+  /-- `sk 0` (i.e., the $(-1)$-skeleton) is empty. -/
+  isEmpty_sk_zero : IsEmpty (sk 0)
 
 namespace RelativeCWComplex
 
 noncomputable section Topology
 
 /-- The inclusion map from `X` to `X'`, given that `X'` is obtained from `X` by attaching
-`(n+1)`-disks -/
-def AttachCells.inclusion (X X' : TopCat.{u}) (n : ℤ) (att : AttachCells X X' n) : X ⟶ X' :=
-  @Limits.pushout.inr TopCat _ _ _ X (sigmaSphereInclusion n att.cells)
-    (sigmaAttachMap X n att.cells att.attach_maps) _ ≫ att.iso_pushout.inv
+`(n + 1)`-disks -/
+def AttachCells.inclusion {X X' : TopCat.{u}} {n : ℤ} (att : AttachCells n X X') : X ⟶ X' :=
+  Limits.pushout.inl (Limits.Sigma.desc att.attachMaps) (Limits.Sigma.map fun _ ↦ sphereInclusion n)
+    ≫ att.iso_pushout.inv
 
-/-- The inclusion map from `sk n` (i.e., the `(n-1)`-skeleton) to `sk (n+1)` (i.e., the
-`n`-skeleton) of a relative CW-complex -/
-def inclusion (X : RelativeCWComplex.{u}) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
-  RelativeCWComplex.AttachCells.inclusion (X.sk n) (X.sk (n + 1)) (n - 1) (X.attach_cells n)
+/-- The inclusion map from `sk n` (i.e., the $(n-1)$-skeleton) to `sk (n + 1)` (i.e., the
+$n$-skeleton) of a relative CW-complex -/
+def skInclusion (X : RelativeCWComplex.{u}) (n : ℕ) : X.sk n ⟶ X.sk (n + 1) :=
+  (X.attachCells n).inclusion
 
 /-- The topology on a relative CW-complex -/
 def toTopCat (X : RelativeCWComplex.{u}) : TopCat.{u} :=
-  Limits.colimit <| Functor.ofSequence <| inclusion X
+  Limits.colimit (Functor.ofSequence X.skInclusion)
 
 instance : Coe RelativeCWComplex TopCat where coe X := toTopCat X
 
