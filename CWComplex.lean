@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jiazhen Xia, Elliot Dean Young
 -/
 import Mathlib.Topology.CWComplex
+import Mathlib.Topology.Homotopy.HomotopyGroup
 
 /-!
 # CW-complexes
@@ -28,7 +29,7 @@ This file defines (relative) CW-complexes.
 
 section GluingLemma
 
---#check ContinuousMap.liftCover -- gluing lemma for an open cover
+-- #check ContinuousMap.liftCover -- gluing lemma for an open cover
 
 variable {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
 
@@ -236,7 +237,7 @@ noncomputable def jarHomotopyExtension (n : ℤ) {Y : Type} [TopologicalSpace Y]
   liftCoverClosed (jarClosedCover n) (jarProj n f H) (jarProj_compatible' n f H hf)
     (jarClosedCover_is_cover n) (jarClosedCover_isClosed n)
 
--- The triangle involving the bottom (i.e., `𝔻 n + 1`) of the jar commutes.
+-- The triangle involving the bottom (i.e., `𝔻 (n + 1)`) of the jar commutes.
 lemma jarHomotopyExtension_bottom_commutes (n : ℤ) {Y : Type} [TopologicalSpace Y]
     (f : C(𝔻 (n + 1), Y)) (H: C((𝕊 n) × I, Y))
     (hf: f ∘ sphereInclusion n = H ∘ (·, 0)) :
@@ -291,3 +292,18 @@ theorem hep_sphereInclusion (n : ℤ) : HomotopyExtensionProperty (sphereInclusi
 end HEP
 
 end RelativeCWComplex
+
+
+-- change of base point (draft)
+
+section
+
+open scoped Topology TopCat
+
+def Cube.ofDisk (n : ℕ) : (𝔻 n) → (I^ Fin n) := by
+  sorry
+
+def Cube.homeoDisk (n : ℕ) : (𝔻 n) ≃ₜ (I^ Fin n) := by
+  sorry
+
+end
