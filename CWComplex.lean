@@ -300,20 +300,10 @@ section
 
 open scoped Topology TopCat
 
-def Fin.max [SupSet α] (f : Fin n → α) : α :=
-  iSup f    -- ⨆ i, f i
-
-#check ContinuousMap.liftCover -- gluing lemma for an open cover
-#check Set.liftCover
-
-example (x : ℚ) : ℝ := if x = 0 then 1 else 2
-
-example (x : ℝ) : ℝ := if x = 0 then 1 else 2
-
 noncomputable def Cube.center : I^α := fun _ ↦ ⟨1 / 2, by simp; rw [inv_le]; all_goals simp⟩
 
 noncomputable def Cube.ofDisk (n : ℕ) : (𝔻 n) → (I^ Fin n)
-  | ⟨⟨x, px⟩⟩ => if x = 0 then Cube.center else fun i ↦ ⟨Fin.max x, sorry⟩
+  | ⟨⟨x, px⟩⟩ => if ∀ i, x i = 0 then Cube.center else fun i ↦ ⟨iSup x, sorry⟩
 
 noncomputable def Cube.toDisk (n : ℕ) : (I^ Fin n) → (𝔻 n) := by
   sorry
