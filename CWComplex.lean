@@ -296,11 +296,47 @@ end RelativeCWComplex
 
 -- change of base point (draft)
 
+noncomputable section
+
+-- universe u
+
+open scoped Topology TopCat
+
+def disk (n : ℕ) := Metric.sphere (0 : EuclideanSpace ℝ (Fin n)) 1  -- `L^2` distance
+
+def cube (n : ℕ) := { x : Fin n → ℝ | dist x 0 ≤ 1 }  -- `L^∞` distance
+
+#check pi_norm_le_iff_of_nonempty
+#check pi_norm_le_iff_of_nonempty'
+#check ENNReal.ofReal_le_one
+#check Real.toNNReal_le_one
+#check edist_dist
+#check dist_edist
+#check dist_eq_norm
+#check edist_eq_coe_nnnorm
+#check WithLp.equiv
+#check WithLp.equiv 2 (Fin 3 → ℝ)
+#check PiLp.norm_equiv
+def f₁ (n : ℕ) : disk n → cube n
+  | ⟨x, px⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else ⟨x, by
+      simp [cube]
+      simp [disk, mem_sphere_iff_norm] at px
+      have lip := PiLp.lipschitzWith_equiv 2 (fun _ : Fin n ↦ ℝ) x 0
+      simp [edist_dist, px] at lip
+      exact lip⟩
+
+def f (n : ℕ) : disk n → cube n
+  | ⟨x, px⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
+      ⟨ (‖x‖ ^ 2 / ‖WithLp.equiv 2 _ x‖) • x, by  -- ‖WithLp.equiv 2 _ x‖ is the L^∞ norm
+        sorry⟩
+
+end
+
 section
 
 open scoped Topology TopCat
 
-noncomputable def Cube.center : I^α := fun _ ↦ ⟨1 / 2, by simp; rw [inv_le]; all_goals simp⟩
+noncomputable def Cube.center : I^α := fun _ ↦ ⟨1 / 2, by simp [inv_le]⟩
 
 noncomputable def Cube.ofDisk (n : ℕ) : (𝔻 n) → (I^ Fin n)
   | ⟨⟨x, px⟩⟩ => if ∀ i, x i = 0 then Cube.center else fun i ↦ ⟨iSup x, sorry⟩
