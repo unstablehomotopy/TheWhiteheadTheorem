@@ -351,6 +351,10 @@ def g (n : ℕ) : cube n → disk n
         simp [cube] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
+#check norm_ne_zero_iff
+example (a : EuclideanSpace ℝ (Fin 2)) (ha : ‖a‖ ≠ 0) : ‖a‖ > 0 :=
+  lt_of_le_of_ne (norm_nonneg a) ha.symm
+#check smul_smul
 def disk_equiv_cube (n : ℕ) : disk n ≃ cube n where
   toFun := f n
   invFun := g n
@@ -360,7 +364,21 @@ def disk_equiv_cube (n : ℕ) : disk n ≃ cube n where
     by_cases hzero : ∀ i, x i = 0
     · simp [f, g, hzero]
       exact Eq.symm (PiLp.ext hzero)
-    · simp [f, hzero]
+    · have hzero' : x ≠ 0 := fun i => hzero (congrFun i)
+      have hfzero : (f n ⟨x, ‹_›⟩).1 ≠ 0 := by
+        simp [f, hzero, hzero']
+        apply norm_ne_zero_iff.mp
+        rw [← norm_ne_zero_iff] at hzero'
+        have hzero'' : ‖x‖ > 0 := lt_of_le_of_ne (norm_nonneg x) hzero'.symm
+        have lip := PiLp.antilipschitzWith_equiv 2 _ x 0
+        simp [edist_dist] at lip
+        sorry
+      --simp [f, hzero]
+      simp [g]
+      simp [hfzero]
+      simp [f, hzero, norm_smul]
+      simp [smul_smul]
+
       sorry
   right_inv := sorry
 
