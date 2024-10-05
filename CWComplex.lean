@@ -302,7 +302,7 @@ noncomputable section
 
 open scoped Topology TopCat
 
-def disk (n : ℕ) := Metric.sphere (0 : EuclideanSpace ℝ (Fin n)) 1  -- `L^2` distance
+def disk (n : ℕ) := Metric.closedBall (0 : EuclideanSpace ℝ (Fin n)) 1  -- `L^2` distance
 
 def cube (n : ℕ) := { x : Fin n → ℝ | dist x 0 ≤ 1 }  -- `L^∞` distance
 
@@ -317,18 +317,52 @@ def cube (n : ℕ) := { x : Fin n → ℝ | dist x 0 ≤ 1 }  -- `L^∞` distanc
 #check WithLp.equiv
 #check WithLp.equiv 2 (Fin 3 → ℝ)
 #check PiLp.norm_equiv
+#check inv_mul_le_one
+#check inv_mul_cancel
 def f₁ (n : ℕ) : disk n → cube n
-  | ⟨x, px⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else ⟨x, by
+  | ⟨x, hx⟩ => ⟨x, by
       simp [cube]
-      simp [disk, mem_sphere_iff_norm] at px
-      have lip := PiLp.lipschitzWith_equiv 2 (fun _ : Fin n ↦ ℝ) x 0
-      simp [edist_dist, px] at lip
-      exact lip⟩
+      simp [disk, mem_closedBall_iff_norm] at hx
+      have lip := PiLp.lipschitzWith_equiv 2 _ x 0
+      simp [edist_dist] at lip
+      exact lip.trans hx⟩
+
+def f₂ (n : ℕ) : disk n → cube n
+  | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
+      ⟨ ‖WithLp.equiv 2 _ x‖⁻¹ • x, by  -- ‖WithLp.equiv 2 _ x‖ is the L^∞ norm
+        simp [cube, norm_smul]
+        simp [disk, mem_closedBall_iff_norm] at hx
+        exact inv_mul_le_one⟩
+
+example (ha0 : 0 ≤ a) (ha1 : a ≤ (1:ℝ)) (hb0 : 0 ≤ b) (hb1 : b ≤ (1:ℝ)) : a * b ≤ 1 := by
+  exact Left.mul_le_one_of_le_of_le ha1 hb1 ha0
 
 def f (n : ℕ) : disk n → cube n
-  | ⟨x, px⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
-      ⟨ (‖x‖ ^ 2 / ‖WithLp.equiv 2 _ x‖) • x, by  -- ‖WithLp.equiv 2 _ x‖ is the L^∞ norm
-        sorry⟩
+  | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
+      ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- ‖WithLp.equiv 2 _ x‖ is the L^∞ norm
+        simp [cube, norm_smul, mul_assoc]
+        simp [disk] at hx
+        exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
+
+def g (n : ℕ) : cube n → disk n
+  | ⟨x, hx⟩ => if x = 0 then ⟨0, by simp [disk]⟩ else
+      ⟨ (‖x‖ * ‖(WithLp.equiv 2 _).symm x‖⁻¹) • x, by  -- ‖(WithLp.equiv 2 _).symm x‖ is the L^2 norm
+        simp [disk, norm_smul, mul_assoc]
+        simp [cube] at hx
+        exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
+
+def disk_equiv_cube (n : ℕ) : disk n ≃ cube n where
+  toFun := f n
+  invFun := g n
+  left_inv := by
+    intro ⟨x, hx⟩
+    simp [disk] at hx
+    by_cases hzero : ∀ i, x i = 0
+    · simp [f, g, hzero]
+      exact Eq.symm (PiLp.ext hzero)
+    · simp [f, hzero]
+      sorry
+  right_inv := sorry
 
 end
 
@@ -339,7 +373,7 @@ open scoped Topology TopCat
 noncomputable def Cube.center : I^α := fun _ ↦ ⟨1 / 2, by simp [inv_le]⟩
 
 noncomputable def Cube.ofDisk (n : ℕ) : (𝔻 n) → (I^ Fin n)
-  | ⟨⟨x, px⟩⟩ => if ∀ i, x i = 0 then Cube.center else fun i ↦ ⟨iSup x, sorry⟩
+  | ⟨⟨x, hx⟩⟩ => if ∀ i, x i = 0 then Cube.center else fun i ↦ ⟨iSup x, sorry⟩
 
 noncomputable def Cube.toDisk (n : ℕ) : (I^ Fin n) → (𝔻 n) := by
   sorry
