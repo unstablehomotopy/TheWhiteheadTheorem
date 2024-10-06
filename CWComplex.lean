@@ -339,22 +339,21 @@ example (ha0 : 0 ≤ a) (ha1 : a ≤ (1:ℝ)) (hb0 : 0 ≤ b) (hb1 : b ≤ (1:�
 
 def f (n : ℕ) : disk n → cube n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
-      ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- ‖WithLp.equiv 2 _ x‖ is the L^∞ norm
-        simp [cube, norm_smul, mul_assoc]
+      ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- (‖x‖₂ / ‖x‖_∞) • x
+        simp [cube, norm_smul]; rw [mul_assoc]
         simp [disk] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
 def g (n : ℕ) : cube n → disk n
   | ⟨x, hx⟩ => if x = 0 then ⟨0, by simp [disk]⟩ else
-      ⟨ (‖x‖ * ‖(WithLp.equiv 2 _).symm x‖⁻¹) • x, by  -- ‖(WithLp.equiv 2 _).symm x‖ is the L^2 norm
-        simp [disk, norm_smul, mul_assoc]
+      ⟨ (‖x‖ * ‖(WithLp.equiv 2 _).symm x‖⁻¹) • x, by  -- (‖x‖_∞ / ‖x‖₂) • x
+        simp [disk, norm_smul]; rw [mul_assoc]
         simp [cube] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
 #check norm_ne_zero_iff
-example (a : EuclideanSpace ℝ (Fin 2)) (ha : ‖a‖ ≠ 0) : ‖a‖ > 0 :=
-  lt_of_le_of_ne (norm_nonneg a) ha.symm
 #check smul_smul
+#check inv_mul_cancel₀
 def disk_equiv_cube (n : ℕ) : disk n ≃ cube n where
   toFun := f n
   invFun := g n
@@ -367,19 +366,27 @@ def disk_equiv_cube (n : ℕ) : disk n ≃ cube n where
     · have hzero' : x ≠ 0 := fun i => hzero (congrFun i)
       have hfzero : (f n ⟨x, ‹_›⟩).1 ≠ 0 := by
         simp [f, hzero, hzero']
-        apply norm_ne_zero_iff.mp
-        rw [← norm_ne_zero_iff] at hzero'
-        have hzero'' : ‖x‖ > 0 := lt_of_le_of_ne (norm_nonneg x) hzero'.symm
-        have lip := PiLp.antilipschitzWith_equiv 2 _ x 0
-        simp [edist_dist] at lip
-        sorry
-      --simp [f, hzero]
-      simp [g]
-      simp [hfzero]
-      simp [f, hzero, norm_smul]
-      simp [smul_smul]
-
-      sorry
+        exact hzero'
+      simp [g, hfzero]
+      simp [f, hzero, norm_smul, smul_smul]
+      rw [mul_assoc ‖x‖]
+      -- have : ‖x‖ ≠ 0 := norm_ne_zero_iff.mpr hzero'
+      -- have : ‖(WithLp.equiv 2 (Fin n → ℝ)) x‖ ≠ 0 := norm_ne_zero_iff.mpr hzero'
+      have : ‖(WithLp.equiv 2 _) x‖⁻¹ * (@norm (Fin n → ℝ) _ x) = 1 :=
+        inv_mul_cancel₀ (norm_ne_zero_iff.mpr hzero')
+      rw [this, mul_one]
+      simp only [mul_assoc]
+      rw [← mul_assoc ‖x‖⁻¹]
+      rw [inv_mul_cancel₀ (norm_ne_zero_iff.mpr hzero'), one_mul]
+      -- have : @norm (Fin n → ℝ) SeminormedAddCommGroup.toNorm ((WithLp.equiv 2 (Fin n → ℝ)) x) =
+      --   @norm (Fin n → ℝ) NormedRing.toNorm ((WithLp.equiv 2 (Fin n → ℝ)) x) := rfl
+      have : @norm (Fin n → ℝ) SeminormedAddCommGroup.toNorm ((WithLp.equiv 2 (Fin n → ℝ)) x) *
+        (@norm (Fin n → ℝ) NormedRing.toNorm ((WithLp.equiv 2 (Fin n → ℝ)) x))⁻¹ = 1 :=
+          mul_inv_cancel₀ (norm_ne_zero_iff.mpr hzero')
+      rw [this, mul_one]
+      have : ‖x‖ * ‖(WithLp.equiv 2 (Fin n → ℝ)).symm x‖⁻¹ = 1 :=
+        mul_inv_cancel₀ (norm_ne_zero_iff.mpr hzero')
+      rw [this, one_smul]
   right_inv := sorry
 
 end
