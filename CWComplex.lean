@@ -298,90 +298,75 @@ end RelativeCWComplex
 
 noncomputable section
 
--- universe u
+universe u
 
 open scoped Topology TopCat
 
-def disk (n : ℕ) := Metric.closedBall (0 : EuclideanSpace ℝ (Fin n)) 1  -- `L^2` distance
+def disk (n : ℤ) : TopCat.{u} :=
+  TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ (Fin n.toNat)) 1  -- `L^2` distance
 
-def cube (n : ℕ) := { x : Fin n → ℝ | dist x 0 ≤ 1 }  -- `L^∞` distance
-
-#check pi_norm_le_iff_of_nonempty
-#check pi_norm_le_iff_of_nonempty'
-#check ENNReal.ofReal_le_one
-#check Real.toNNReal_le_one
-#check edist_dist
-#check dist_edist
-#check dist_eq_norm
-#check edist_eq_coe_nnnorm
-#check WithLp.equiv
-#check WithLp.equiv 2 (Fin 3 → ℝ)
-#check PiLp.norm_equiv
-#check inv_mul_le_one
-#check inv_mul_cancel
-def f₁ (n : ℕ) : disk n → cube n
-  | ⟨x, hx⟩ => ⟨x, by
-      simp [cube]
-      simp [disk, mem_closedBall_iff_norm] at hx
-      have lip := PiLp.lipschitzWith_equiv 2 _ x 0
-      simp [edist_dist] at lip
-      exact lip.trans hx⟩
-
-def f₂ (n : ℕ) : disk n → cube n
-  | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
-      ⟨ ‖WithLp.equiv 2 _ x‖⁻¹ • x, by  -- ‖WithLp.equiv 2 _ x‖ is the L^∞ norm
-        simp [cube, norm_smul]
-        simp [disk, mem_closedBall_iff_norm] at hx
-        exact inv_mul_le_one⟩
-
-example (ha0 : 0 ≤ a) (ha1 : a ≤ (1:ℝ)) (hb0 : 0 ≤ b) (hb1 : b ≤ (1:ℝ)) : a * b ≤ 1 := by
-  exact Left.mul_le_one_of_le_of_le ha1 hb1 ha0
+def cube (n : ℤ) : TopCat.{u} :=
+  TopCat.of <| ULift <| { x : Fin n.toNat → ℝ | dist x 0 ≤ 1 }  -- `L^∞` distance
 
 set_option diagnostics true
 -- example (x : EuclideanSpace ℝ (Fin 2)) : ℝ := if x = 0 then 1 else 2 -- failed to synthesize Decidable (x = 0)
 example (x : (Fin 2) → ℝ) : ℝ := if x = 0 then 1 else 2
 set_option diagnostics false
 
-def f (n : ℕ) : disk n → cube n
+def f (n : ℤ) : disk.{u} n → cube.{u} n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
       ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- (‖x‖₂ / ‖x‖_∞) • x
         simp [cube, norm_smul]; rw [mul_assoc]
         simp [disk] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
-def g (n : ℕ) : cube n → disk n
+def g (n : ℤ) : cube.{u} n → disk.{u} n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [disk]⟩ else
       ⟨ (‖x‖ * ‖(WithLp.equiv 2 _).symm x‖⁻¹) • x, by  -- (‖x‖_∞ / ‖x‖₂) • x
         simp [disk, norm_smul]; rw [mul_assoc]
         simp [cube] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
-#check norm_ne_zero_iff
-#check smul_smul
-#check inv_mul_cancel₀
-example (x : EuclideanSpace ℝ (Fin 2)) (a b : ℝ) (h : a = b) : a • x = b • x :=
-  congrFun (congrArg HSMul.hSMul h) x
-example (i : Type) (p : Prop) (f : i → Prop) (h : ∀ i, p ∨ f i) : p ∨ ∀ i, f i :=
-  forall_or_left.mp h
-example (x : Fin 2 → ℝ) : ‖(WithLp.equiv 2 _) x‖ = ‖x‖ := rfl
+-- lemma continuous_f : Continuous f := by
+--   sorry
 
-lemma g_comp_f (n : ℕ) : ∀ x, g n (f n x) = x := fun ⟨x, _⟩ ↦ by
+example (a b c d : α) (h : (⟨a, b⟩ : α × α) = ⟨c, d⟩) : a = c := by
+  simp only [Prod.mk.injEq] at h
+  exact h.1
+example (a b c d : α) (h : (⟨a, b⟩ : α × α) = ⟨c, d⟩) : a = c :=
+  congrArg Prod.fst h
+example {α : Type u_1} (x y : α) (h : ULift.up.{u_2} x = ULift.up.{u_2} y) : x = y :=
+  congrArg ULift.down h
+--example (x y : EuclideanSpace ℝ (Fin 3)) (h : )
+#check Prod.mk.injEq
+#check ULift.up
+
+lemma g_comp_f (n : ℤ) : ∀ x, g.{u} n (f.{u} n x) = x := fun ⟨x, _⟩ ↦ by
   by_cases hx0 : ∀ i, x i = 0
-  · simp [f, g, hx0]
+  · simp [g, f, hx0]
+    congr
     exact (PiLp.ext hx0).symm
   have hx0' : x ≠ 0 := fun h ↦ hx0 (congrFun h)
-  have hf0 : ¬∀ i, (f n ⟨x, ‹_›⟩).val i = 0 := by simpa [f, hx0, hx0', Decidable.not_forall.mp]
-  simp [g, hf0]
-  simp [f, hx0, norm_smul, smul_smul]
-  rw [mul_assoc ‖x‖]
-  conv in ‖x‖ * _ => arg 2; equals 1 => exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
-  simp only [mul_one, ← mul_assoc]
-  conv in ‖x‖ * _ => equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
-  rw [one_mul, mul_assoc _ _ ‖x‖, @inv_mul_cancel₀ _ _ ‖x‖ (norm_ne_zero_iff.mpr ‹_›), mul_one]
-  conv_lhs => arg 1; equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
-  rw [one_smul]
+  have hf0 : ¬∀ i, (f.{u} n ⟨x, ‹_›⟩).down.val i = 0 := by
+    simpa [f, hx0, hx0', Decidable.not_forall.mp]
+  simp [g]
+  split
+  next _ y hy hfx =>
+    have hf0 : ¬∀ i, y i = 0 := by rwa [hfx] at hf0
+    split_ifs
+    congr
+    have hfx := congrArg ULift.down hfx
+    simp [f, hx0] at hfx
+    simp [← hfx, norm_smul, smul_smul]
+    rw [mul_assoc ‖x‖]
+    conv in ‖x‖ * _ => arg 2; equals 1 => exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
+    simp only [mul_one, ← mul_assoc]
+    conv in ‖x‖ * _ => equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
+    rw [one_mul, mul_assoc _ _ ‖x‖, @inv_mul_cancel₀ _ _ ‖x‖ (norm_ne_zero_iff.mpr ‹_›), mul_one]
+    conv_lhs => arg 1; equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
+    rw [one_smul]
 
-lemma f_comp_g (n : ℕ) : ∀ x, f n (g n x) = x := fun ⟨x, _⟩ ↦ by
+lemma f_comp_g (n : ℤ) : ∀ x, f n (g n x) = x := fun ⟨x, _⟩ ↦ by
   by_cases hx0 : ∀ i, x i = 0
   . simp [f, g, hx0]
     aesop
@@ -391,14 +376,14 @@ lemma f_comp_g (n : ℕ) : ∀ x, f n (g n x) = x := fun ⟨x, _⟩ ↦ by
   simp [g, hx0, norm_smul, smul_smul]
   rw [mul_assoc ‖x‖]
   conv in ‖x‖ * _ => arg 2; equals 1 => exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
-  have : (x : Fin n → ℝ) → ‖(WithLp.equiv 2 _) x‖ = ‖x‖ := fun x ↦ rfl
-  simp [mul_one, this, norm_smul, ← mul_assoc]
+  have : (x : Fin n.toNat → ℝ) → ‖(WithLp.equiv 2 _) x‖ = ‖x‖ := fun x ↦ rfl
+  simp [this, norm_smul, ← mul_assoc]
   conv in ‖x‖ * _ => equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
   rw [one_mul, mul_assoc _ _ ‖x‖, @inv_mul_cancel₀ _ _ ‖x‖ (norm_ne_zero_iff.mpr ‹_›), mul_one]
   conv_lhs => arg 1; equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
   rw [one_smul]
 
-def disk_equiv_cube (n : ℕ) : disk n ≃ cube n where
+def disk_equiv_cube (n : ℤ) : disk n ≃ cube n where
   toFun := f n
   invFun := g n
   left_inv := g_comp_f n
@@ -407,6 +392,8 @@ def disk_equiv_cube (n : ℕ) : disk n ≃ cube n where
 end
 
 section
+
+open scoped ENNReal NNReal
 
 open scoped Topology TopCat
 
