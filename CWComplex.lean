@@ -313,12 +313,16 @@ set_option diagnostics true
 example (x : (Fin 2) → ℝ) : ℝ := if x = 0 then 1 else 2
 set_option diagnostics false
 
-def f (n : ℤ) : disk.{u} n → cube.{u} n
+def f (n : ℤ) : disk n → cube n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
       ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- (‖x‖₂ / ‖x‖_∞) • x
         simp [cube, norm_smul]; rw [mul_assoc]
         simp [disk] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
+
+#check ContinuousAt
+lemma continuous_f (n : ℤ) : Continuous (f n) := by
+  sorry
 
 def g (n : ℤ) : cube.{u} n → disk.{u} n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [disk]⟩ else
@@ -327,36 +331,23 @@ def g (n : ℤ) : cube.{u} n → disk.{u} n
         simp [cube] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
--- lemma continuous_f : Continuous f := by
---   sorry
-
-example (a b c d : α) (h : (⟨a, b⟩ : α × α) = ⟨c, d⟩) : a = c := by
-  simp only [Prod.mk.injEq] at h
-  exact h.1
-example (a b c d : α) (h : (⟨a, b⟩ : α × α) = ⟨c, d⟩) : a = c :=
-  congrArg Prod.fst h
-example {α : Type u_1} (x y : α) (h : ULift.up.{u_2} x = ULift.up.{u_2} y) : x = y :=
-  congrArg ULift.down h
---example (x y : EuclideanSpace ℝ (Fin 3)) (h : )
-#check Prod.mk.injEq
-#check ULift.up
+lemma continuous_g (n : ℤ) : Continuous (g n) := by
+  sorry
 
 lemma g_comp_f (n : ℤ) : ∀ x, g.{u} n (f.{u} n x) = x := fun ⟨x, _⟩ ↦ by
+  unfold g
   by_cases hx0 : ∀ i, x i = 0
-  · simp [g, f, hx0]
+  · simp [f, hx0]
     congr
     exact (PiLp.ext hx0).symm
-  have hx0' : x ≠ 0 := fun h ↦ hx0 (congrFun h)
-  have hf0 : ¬∀ i, (f.{u} n ⟨x, ‹_›⟩).down.val i = 0 := by
-    simpa [f, hx0, hx0', Decidable.not_forall.mp]
-  simp [g]
   split
   next _ y hy hfx =>
-    have hf0 : ¬∀ i, y i = 0 := by rwa [hfx] at hf0
-    split_ifs
-    congr
     have hfx := congrArg ULift.down hfx
     simp [f, hx0] at hfx
+    have hx0' : x ≠ 0 := fun h ↦ hx0 (congrFun h)
+    have hf0 : ¬∀ i, y i = 0 := by simpa [← hfx, hx0, hx0', Decidable.not_forall.mp]
+    split_ifs
+    congr
     simp [← hfx, norm_smul, smul_smul]
     rw [mul_assoc ‖x‖]
     conv in ‖x‖ * _ => arg 2; equals 1 => exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
@@ -367,27 +358,36 @@ lemma g_comp_f (n : ℤ) : ∀ x, g.{u} n (f.{u} n x) = x := fun ⟨x, _⟩ ↦ 
     rw [one_smul]
 
 lemma f_comp_g (n : ℤ) : ∀ x, f n (g n x) = x := fun ⟨x, _⟩ ↦ by
+  unfold f
   by_cases hx0 : ∀ i, x i = 0
-  . simp [f, g, hx0]
+  . simp [g, hx0]
+    congr
     aesop
-  have hx0' : x ≠ 0 := fun h ↦ hx0 (congrFun h)
-  have hg0 : ¬∀ i, (g n ⟨x, ‹_›⟩).val i = 0 := by simpa [g, hx0, hx0', Decidable.not_forall.mp]
-  simp [f, hg0]
-  simp [g, hx0, norm_smul, smul_smul]
-  rw [mul_assoc ‖x‖]
-  conv in ‖x‖ * _ => arg 2; equals 1 => exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
-  have : (x : Fin n.toNat → ℝ) → ‖(WithLp.equiv 2 _) x‖ = ‖x‖ := fun x ↦ rfl
-  simp [this, norm_smul, ← mul_assoc]
-  conv in ‖x‖ * _ => equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
-  rw [one_mul, mul_assoc _ _ ‖x‖, @inv_mul_cancel₀ _ _ ‖x‖ (norm_ne_zero_iff.mpr ‹_›), mul_one]
-  conv_lhs => arg 1; equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
-  rw [one_smul]
+  split
+  next _ y hy hgx =>
+    have hgx := congrArg ULift.down hgx
+    simp [g, hx0] at hgx
+    have hx0' : x ≠ 0 := fun h ↦ hx0 (congrFun h)
+    have hg0 : ¬∀ i, y i = 0 := by simpa [← hgx, hx0, hx0', Decidable.not_forall.mp]
+    split_ifs
+    congr
+    simp [← hgx, norm_smul, smul_smul]
+    rw [mul_assoc ‖x‖]
+    conv in ‖x‖ * _ => arg 2; equals 1 => exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
+    have : (x : Fin n.toNat → ℝ) → ‖(WithLp.equiv 2 _) x‖ = ‖x‖ := fun x ↦ rfl
+    simp [this, norm_smul, ← mul_assoc]
+    conv in ‖x‖ * _ => equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
+    rw [one_mul, mul_assoc _ _ ‖x‖, @inv_mul_cancel₀ _ _ ‖x‖ (norm_ne_zero_iff.mpr ‹_›), mul_one]
+    conv_lhs => arg 1; equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
+    rw [one_smul]
 
-def disk_equiv_cube (n : ℤ) : disk n ≃ cube n where
+def disk_homeo_cube (n : ℤ) : disk n ≃ₜ cube n where
   toFun := f n
   invFun := g n
   left_inv := g_comp_f n
   right_inv := f_comp_g n
+  continuous_toFun := continuous_f n
+  continuous_invFun := continuous_g n
 
 end
 
