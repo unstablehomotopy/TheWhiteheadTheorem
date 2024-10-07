@@ -294,41 +294,133 @@ end HEP
 end RelativeCWComplex
 
 
--- change of base point (draft)
-
-noncomputable section
+noncomputable section -- change of base point (draft)
 
 universe u
 
 open scoped Topology TopCat
 
 def disk (n : ℤ) : TopCat.{u} :=
-  TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ (Fin n.toNat)) 1  -- `L^2` distance
+  TopCat.of <| ULift <| Metric.closedBall (0 : EuclideanSpace ℝ (Fin n.toNat)) 1  -- `L^2` norm
 
 def cube (n : ℤ) : TopCat.{u} :=
-  TopCat.of <| ULift <| { x : Fin n.toNat → ℝ | dist x 0 ≤ 1 }  -- `L^∞` distance
+  TopCat.of <| ULift <| { x : Fin n.toNat → ℝ | ‖x‖ ≤ 1 }  -- `L^∞` norm
 
 set_option diagnostics true
 -- example (x : EuclideanSpace ℝ (Fin 2)) : ℝ := if x = 0 then 1 else 2 -- failed to synthesize Decidable (x = 0)
 example (x : (Fin 2) → ℝ) : ℝ := if x = 0 then 1 else 2
 set_option diagnostics false
 
+#check ContinuousAt
+#check Continuous.continuousAt
+#check ContinuousAt.continuousWithinAt
+#check continuousAt_def
+#check continuousAt_const_smul_iff
+#check continuousAt_update_of_ne
+#check continuousAt_update_same
+#check continuousAt_apply
+#check continuousAt_iff_ultrafilter
+
+#check continuousAt_congr
+#check continuousAt_codRestrict_iff
+#check continuousOn_iff_continuous_restrict
+#check continuousWithinAt_iff_continuousAt_restrict
+--#check ContinuousMap.continuous_restrict
+
+-- #check continuousAt_of_locally_lipschitz
+-- #check Metric.continuousWithinAt_iff
+-- #check (inferInstance : PseudoMetricSpace (EuclideanSpace ℝ (Fin 2)))
+-- #check (inferInstance : PseudoMetricSpace (disk 2))  -- fail
+
+#check continuousAt_of_tendsto_nhds
+#check ContinuousAt.comp_continuousWithinAt
+#check ContinuousOn.continuousAt
+#check continuousOn_iff
+
+section -- experiment with easier funcitons
+
+--#check continuous_iff_continuousOn_univ
+#check continuous_subtype_val
+example : ContinuousOn (· + (1 : ℝ)) {x | x > 0} := by
+  apply continuousOn_iff_continuous_restrict.mpr
+  -- unfold Set.restrict; simp only
+  exact (continuous_add_right 1).comp continuous_subtype_val
+def f₁ (n : ℤ) : disk n → cube n
+  | ⟨x, hx⟩ => ⟨x, by
+      simp only [Metric.mem_closedBall, dist_zero_right] at hx
+      have lip := PiLp.lipschitzWith_equiv 2 _ x 0
+      simp [edist_dist] at lip
+      exact lip.trans hx⟩
+lemma continuous_f₁ (n : ℤ) : Continuous (f₁ n) := by
+  refine continuous_uLift_up.comp ?_
+  refine Continuous.subtype_mk ?_ _
+  -- refine Continuous.subtype_val ?_
+  exact continuous_uLift_down.subtype_val
+example (n : ℤ) : ContinuousOn (f₁ n) { ⟨x, _⟩ | ¬∀ i, x i = 0 } := by
+  apply continuousOn_iff_continuous_restrict.mpr
+  -- unfold Set.restrict
+  exact (continuous_f₁ n).comp continuous_subtype_val
+def f₂ (n : ℤ) : disk n → cube n
+  | ⟨x, hx⟩ => ⟨‖x‖ • x, sorry⟩
+#check Continuous.smul (Continuous.norm continuous_id) continuous_id
+#check Continuous.prod_mk (Continuous.norm continuous_id) continuous_id
+#check Continuous.norm continuous_id
+#check Continuous.subtype_val
+lemma continuous_f₂ (n : ℤ) : Continuous (f₂ n) := by
+  refine continuous_uLift_up.comp ?_
+  refine Continuous.subtype_mk ?_ _
+  -- refine Continuous.smul ?_ ?_
+  exact Continuous.smul (continuous_uLift_down.subtype_val.norm) continuous_uLift_down.subtype_val
+def f₃ (n : ℤ) : disk n → cube n
+  | ⟨x, hx⟩ => ⟨‖WithLp.equiv 2 _ x‖ • x, sorry⟩
+#check PiLp.continuous_equiv 2
+#check @PiLp.continuous_equiv 2 (Fin 5) (fun _ ↦ ℝ)
+lemma continuous_f₃ (n : ℤ) : Continuous (f₃ n) := by
+  refine continuous_uLift_up.comp ?_
+  refine Continuous.subtype_mk ?_ _
+  refine Continuous.smul ?_ ?_
+  · refine Continuous.norm ?_
+    --refine (@PiLp.continuous_equiv _ _ (fun _ ↦ ℝ)).comp ?_
+    exact continuous_uLift_down.subtype_val
+  exact continuous_uLift_down.subtype_val
+lemma continuousOn_f₃ (n : ℤ) : ContinuousOn (f₃ n) { ⟨x, _⟩ | ¬∀ i, x i = 0 } := by
+  apply continuousOn_iff_continuous_restrict.mpr
+  refine continuous_uLift_up.comp ?_
+  refine Continuous.subtype_mk ?_ _
+  refine Continuous.smul ?_ ?_
+  · refine Continuous.norm ?_
+    -- refine (@PiLp.continuous_equiv _ _ (fun _ ↦ ℝ)).comp ?_
+    exact (continuous_uLift_down.comp continuous_subtype_val).subtype_val
+  exact (continuous_uLift_down.comp continuous_subtype_val).subtype_val
+end -- experiment with easier funcitons
+
 def f (n : ℤ) : disk n → cube n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
       ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- (‖x‖₂ / ‖x‖_∞) • x
-        simp [cube, norm_smul]; rw [mul_assoc]
-        simp [disk] at hx
+        simp only [Set.mem_setOf_eq, norm_smul, norm_mul, norm_norm, norm_inv]
+        rw [mul_assoc]
+        simp only [Metric.mem_closedBall, dist_zero_right] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
-#check ContinuousAt
-lemma continuous_f (n : ℤ) : Continuous (f n) := by
+lemma continuousOn_f (n : ℤ) : ContinuousOn (f n) { ⟨x, _⟩ | ¬∀ i, x i = 0 } := by
+  apply continuousOn_iff_continuous_restrict.mpr
+  unfold Set.restrict f
+  refine continuous_uLift_up.comp ?_
+  refine Continuous.subtype_mk ?_ _
+  simp only [Set.coe_setOf, Set.mem_setOf_eq]
   sorry
+
+lemma continuous_f (n : ℤ) : Continuous (f n) :=
+  continuous_iff_continuousAt.mpr fun ⟨x, hx⟩ ↦ by
+    by_cases hx0 : ∀ i, x i = 0
+    . sorry
+    sorry
 
 def g (n : ℤ) : cube.{u} n → disk.{u} n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [disk]⟩ else
       ⟨ (‖x‖ * ‖(WithLp.equiv 2 _).symm x‖⁻¹) • x, by  -- (‖x‖_∞ / ‖x‖₂) • x
-        simp [disk, norm_smul]; rw [mul_assoc]
-        simp [cube] at hx
+        simp only [Metric.mem_closedBall, dist_zero_right, norm_smul, norm_mul, norm_norm, norm_inv]
+        rw [mul_assoc]
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
 lemma continuous_g (n : ℤ) : Continuous (g n) := by
@@ -389,7 +481,8 @@ def disk_homeo_cube (n : ℤ) : disk n ≃ₜ cube n where
   continuous_toFun := continuous_f n
   continuous_invFun := continuous_g n
 
-end
+end -- change of base point (draft)
+
 
 section
 
