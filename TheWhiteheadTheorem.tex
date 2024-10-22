@@ -1968,39 +1968,98 @@ In proving the Whitehead theorem formally, \textit{we make use of a line} as wel
 In this section I cover the category of maps $\texttt{Map C}$ in a category $\texttt{C}$. After this I inductively form $\texttt{□ⁿ⁺¹ C}$ as $\texttt{Map (□ⁿ C)}$ and $\texttt{□ⁱⁿᶠ C}$ as the colimit of $\texttt{□ⁿ C}$. The category $\texttt{□ C}$ formed in this way has the property that $\texttt{Map (□ C) ≅ □ C}$.\\
 
 
+
+\section{Haar Integral}
+
+\subsection{Existence of Haar integral}
+
+\begin{enumerate}
+\item Existence of haar integral
+\end{enumerate}
+
+%https://ncatlab.org/nlab/show/Haar+integral
+
+
+\subsection{Uniqueness of Haar integral}
+
+\begin{enumerate}
+\item Uniqueness of haar integral
+\end{enumerate}
+
+
+
+\section{Duality}
+
+\subsection{Fourier Duality}
+
+\begin{enumerate}
+\item Proving Fourier duality
+\item Injectivity and the completion of a pre-Hilbert space
+\item Surjectivity 
+\item String calculus for Hopf algebras
+\end{enumerate}
+
+
+\subsection{Pontrjagin Duality}
+
+\begin{enumerate}
+\item Proving Pontrjagin duality
+\item Density
+\item Closed image
+\end{enumerate}
+
+
+\section{Trace and Determinant}
+
+\subsection{Trace}
+
+\begin{enumerate}
+\item Trace (for finite extensions)
+\end{enumerate}
+
+\subsection{Determinant}
+
+\begin{enumerate}
+\item Determinant (for finite extensions)
+\end{enumerate}
+
+
+
+
+
 \part{∞-GROUPOIDS}
 
 The Whitehead theorem is about the ways that spheres get trapped in spaces (higher homotopy groups), and the last section established how these higher homotopy groups relate to maps in the homotopy category of Based CW-complexes.\\
 
 
-\chapter{Chapter 9: ∞\texttt{-Grpd}}
+\section{Chapter 9: ∞\texttt{-Grpd}}
 
 
-\section{- × I : ∞-Grpd ⇄ ∞-Grpd : [I,-]}
+\subsection{- × I : ∞-Grpd ⇄ ∞-Grpd : [I,-]}
 
 Our choice of symbols refects our choice of three variations of the Whitehead theorem and three Puppe sequences. Ω⃡, the analogue of loop space, is the internal hom functor [I,-] : ∞-Grpd ⭢ ∞-Grpd. This is not hard to construct, with the main lemma being that the path space of a quasicategory has the quasicategory lifting conditon.\\
 
 We will be interested in one formal model of D(∞-Cat) which consists of formal compositions f₁ • g₁ • f₂ • g₂ • ⋯ • fₙ • gₙ, where gₙ $: Dom(f{}_{n+1}) $⭢ ??? is a weak equivalence, and something similar for D(∞-Cat). However, it is still vital to have the replacement functor $\texttt{repl}$, which ensures the Whitehead theorem for particular ∞-categories which are constructed out of attaching maps.\\
 
 
-\section{??? : ⇄  : ???}
+\subsection{??? : ⇄  : ???}
 
 Ω⃗ is to internal categories as ω⃡ is to internal G-actions. It is also called directed homotopy pullback. These functors will later be used to produce functors P⃡ : D(∞-Grpd) ⭢ InternalCategory D(∞-Grpd) and p⃡ : D(∞-Grpd⁄C) ⭢ InternalPresheaf (P⃡ G) D(∞-Grpd⁄G).\\
 
 
-\section{Πₙ : Functor ∞-Grpd Set}
+\subsection{Πₙ : Functor ∞-Grpd Set}
 
 
 
 
 
 
-\chapter{Chapter 10: The Whitehead Theorem for ∞-Groupoids}
+\section{Chapter 10: The Whitehead Theorem for ∞-Groupoids}
 
 
 
 
-\section{Cubical Complexes}
+\subsection{???}
 
 ...\\
 
@@ -2157,9 +2216,63 @@ Imagine
 
 
 
-\chapter{Chapter 11: The Category of Maps of ∞-Groupoids}
+\section{Chapter 11: The Category of Maps of ∞-Groupoids}
 
 
+
+\section{Haar Integral}
+
+\subsection{Existence of Haar integral}
+
+\begin{enumerate}
+\item Existence of haar integral
+\end{enumerate}
+
+%https://ncatlab.org/nlab/show/Haar+integral
+
+
+\subsection{Uniqueness of Haar integral}
+
+\begin{enumerate}
+\item Uniqueness of haar integral
+\end{enumerate}
+
+
+
+\section{Duality}
+
+\subsection{Fourier Duality}
+
+\begin{enumerate}
+\item Proving Fourier duality
+\item Injectivity and the completion of a pre-Hilbert space
+\item Surjectivity 
+\item String calculus for Hopf algebras
+\end{enumerate}
+
+
+\subsection{Pontrjagin Duality}
+
+\begin{enumerate}
+\item Proving Pontrjagin duality
+\item Density
+\item Closed image
+\end{enumerate}
+
+
+\section{Trace and Determinant}
+
+\subsection{Trace}
+
+\begin{enumerate}
+\item Trace (for finite extensions)
+\end{enumerate}
+
+\subsection{Determinant}
+
+\begin{enumerate}
+\item Determinant (for finite extensions)
+\end{enumerate}
 
 
 
@@ -2171,7 +2284,7 @@ Imagine
 In this first section we prove the standard Whitehead theorem.\\
 
 
-\chapter{Chapter 1: ∞\texttt{-Cat₋₁}}
+\section{Chapter 1: ∞\texttt{-Cat₋₁}}
 
 
 \noindent\textcolor{Red}{\rule{16cm}{1mm}}
@@ -2235,18 +2348,11 @@ def CWComplexCat := FullSubcategory IsCWComplex
 
 
 
-\noindent\textcolor{Red}{\rule{16cm}{1mm}}
-\begin{center}
-\texttt{Writing Progress}
-\end{center}
-\noindent\textcolor{Red}{\rule{16cm}{1mm}}
-
-
 
 Here we define CW-complexes, as well as relative CW-complexes, and also the derived categories D(∞-Grpd₀) of connected Based ∞-groupoids and D(∞-Grpd₀/G₀), made from CW-complexes.\\
 
 
-\section{D(∞-Grpd₀)}
+\subsection{D(∞-Grpd₀)}
 
 {\footnotesize
 \begin{center}
@@ -2279,20 +2385,20 @@ $\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use
 \end{center}
 
 
-\section{D(∞-Grpd₀/X₀)}
+\subsection{D(∞-Grpd₀/X₀)}
 
 The derived category of Based ∞-groupoids over X₀. \\
 
 
 
-\section{Ω : ∞-Grpd₀ ⇄ ∞-Grpd₀ : Σ}
+\subsection{Ω : ∞-Grpd₀ ⇄ ∞-Grpd₀ : Σ}
 
 \begin{enumerate}
 \item The Based suspension functor
 \end{enumerate}
 
 
-\section{ω f : ∞-Grpd/D₀ ⇄ ∞-Grpd/C₀ : σ f}
+\subsection{ω f : ∞-Grpd/D₀ ⇄ ∞-Grpd/C₀ : σ f}
 
 \begin{enumerate}
 \item The homotopy fiber
@@ -2300,7 +2406,7 @@ The derived category of Based ∞-groupoids over X₀. \\
 \end{enumerate}
 
 
-\section{πₙ : ∞-Grpd₀ ⇄ Set}
+\subsection{πₙ : ∞-Grpd₀ ⇄ Set}
 
 The connected components functors
 
@@ -2310,7 +2416,7 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Homotopy/B
 
 
 
-\chapter{Chapter 2: The Whitehead Theorem}
+\section{Chapter 2: The Whitehead Theorem}
 
 The proof of the Whitehead theorem divides into REP (replacement for Based ∞-groupoids X : ∞-Grpd₀) and HEP (the homotopy extension property for weak equivalent maps of Based ∞-groupoids). The replacement functor ∞$\texttt{-Grpd}$₀ can be constructed using globular sets.\\
 
@@ -2320,7 +2426,7 @@ Globular sets are not a rich enough invariant for homotopy, but maps of globular
 \texttt{∀(E:D(∞-Grpd₀)),∀(B:D(∞-Grpd₀)),∀(f:E ⭢ B),∀(G:E ⭢ B),(∀(n:Nat),(πₙ F = πₙ G)) ⭢ F = G}
 \end{center}
 
-\section{Globular Sets}
+\subsection{Globular Sets}
 
 The globe category 𝔾 is the category
 
@@ -2410,7 +2516,7 @@ Define a function ||-||${}_{2}$ : Dⁿ ⭢ I sending (x₁,...,xₙ) to $\sqrt{\
 ...
 \end{proof}
 
-\section{HEP for Based ∞-groupoids}
+\subsection{HEP for Based ∞-groupoids}
 
 In this section we prove the homotopy extension property for Based ∞-groupoids, which we here model as CW-complexes.\\
 
@@ -2465,7 +2571,7 @@ that the Based CW-complexes (X₋₁,x) and (X₋₁,y) are
 
 
 
-\section{REP for Based ??? ∞-categories}
+\subsection{REP for Based ??? ∞-categories}
 
 In this section we use the notion of globular sets to replace a topological space with a CW-complex. Together with HEP (homotopy extension), this will complete the proof of the Whitehead theorem.
 
@@ -2485,9 +2591,65 @@ In proving the Whitehead theorem formally, \textit{we make use of a line} as wel
 \fi
 
 
-\chapter{Chapter 3: The Category of Maps}
+\section{Chapter 3: The Category of Maps}
 
 In this section I would like to 
+
+
+\section{Haar Integral}
+
+\subsection{Existence of Haar integral}
+
+\begin{enumerate}
+\item Existence of haar integral
+\end{enumerate}
+
+%https://ncatlab.org/nlab/show/Haar+integral
+
+
+\subsection{Uniqueness of Haar integral}
+
+\begin{enumerate}
+\item Uniqueness of haar integral
+\end{enumerate}
+
+
+
+\section{Duality}
+
+\subsection{Fourier Duality}
+
+\begin{enumerate}
+\item Proving Fourier duality
+\item Injectivity and the completion of a pre-Hilbert space
+\item Surjectivity 
+\item String calculus for Hopf algebras
+\end{enumerate}
+
+
+\subsection{Pontrjagin Duality}
+
+\begin{enumerate}
+\item Proving Pontrjagin duality
+\item Density
+\item Closed image
+\end{enumerate}
+
+
+\section{Trace and Determinant}
+
+\subsection{Trace}
+
+\begin{enumerate}
+\item Trace (for finite extensions)
+\end{enumerate}
+
+\subsection{Determinant}
+
+\begin{enumerate}
+\item Determinant (for finite extensions)
+\end{enumerate}
+
 
 
 
@@ -2496,7 +2658,7 @@ In this section I would like to
 
 \part{∞-CATEGORIES}
 
-\chapter{Chapter 13: ∞\texttt{-Cat}}
+\section{Chapter 13: ∞\texttt{-Cat}}
 
 This chapter and the next chapter are more technical and difficult than the rest of the book.\\
 
@@ -2508,32 +2670,32 @@ This chapter and the next chapter are more technical and difficult than the rest
 \item We first construct both the category D(∞-Cat) and, for each C : D(∞-Cat), the category D(∞-Cat/C) by formally inverting weak equivalences in the category of quasicategories and the category of quasicategories over C.
 \end{enumerate}
 
-\section{Ω⃗}
+\subsection{Ω⃗}
 
 Our choice of symbols refects our choice of three variations of the Whitehead theorem and three Puppe sequences. Ω⃗, the analogue of loop space, is the internal hom functor [Δ¹,-] : ∞-Cat ⭢ ∞-Cat. This is not hard to construct, with the main lemma being that the path space of a quasicategory has the quasicategory lifting conditon.\\
 
 We will be interested in one formal model of D(∞-Cat) which consists of formal compositions f₁ • g₁ • f₂ • g₂ • ⋯ • fₙ • gₙ, where gₙ $: Dom(f{}_{n+1}) $⭢ ??? is a weak equivalence, and something similar for D(∞-Cat). However, it is still vital to have the replacement functor $\texttt{repl}$, which ensures the Whitehead theorem for particular ∞-categories which are constructed out of attaching maps.\\
 
 
-\section{ω⃗}
+\subsection{ω⃗}
 
 Ω⃗ is to internal categories as ω⃗ is to internal C-presheaves. It is also called directed homotopy pullback. These functors will later be used to produce functors P⃗ : D(∞-Cat) ⭢ InternalCategory D(∞-Cat) and p⃗ : D(∞-Cat⁄C) ⭢ InternalPresheaf (P⃗ C) D(∞-Cat⁄C).\\
 
 
-\section{Π⃗ₙ}
+\subsection{Π⃗ₙ}
 
 The mentioned functors Π⃗ₙ are designed with both Whitehead theorem (a) and Puppe sequence (a) in mind.
 
 
 
-\chapter{Chapter 14: The Whitehead Theorem for ∞-Categories}
+\section{Chapter 14: The Whitehead Theorem for ∞-Categories}
 
 \iffalse
 https://mathoverflow.net/questions/368596/intuition-for-categorical-fibrations#:~:text=a%20left%2Fright%20fibration%20is,categories%20with%20correspondences%20between%20fibers.
 \fi
 
 
-\section{Directed Cubical Complexes}
+\subsection{Directed Cubical Complexes}
 
 ...\\
 
