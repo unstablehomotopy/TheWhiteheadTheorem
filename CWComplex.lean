@@ -81,12 +81,12 @@ lemma continuous_sub_div_two : Continuous fun (y : ℝ) ↦ 1 - y / 2 :=
   (continuous_sub_left _).comp <| continuous_mul_right _
 
 lemma isClosed_jarMid (n : ℤ) : IsClosed (jarMid n) :=
-  continuous_iff_isClosed.mp (continuous_uLift_down.subtype_val.norm.prod_map continuous_id)
+  continuous_iff_isClosed.mp (continuous_uLift_down.subtype_val.norm.prodMap continuous_id)
     {⟨x, y, _⟩ : ℝ × I | x ≤ 1 - y / 2} <| isClosed_le continuous_fst <|
     continuous_sub_div_two.comp <| continuous_subtype_val.comp continuous_snd
 
 lemma isClosed_jarRim (n : ℤ) : IsClosed (jarRim n) :=
-  continuous_iff_isClosed.mp (continuous_uLift_down.subtype_val.norm.prod_map continuous_id)
+  continuous_iff_isClosed.mp (continuous_uLift_down.subtype_val.norm.prodMap continuous_id)
     {⟨x, y, _⟩ : ℝ × I | x ≥ 1 - y / 2} <| isClosed_le
     (continuous_sub_div_two.comp <| continuous_subtype_val.comp continuous_snd) continuous_fst
 
@@ -394,7 +394,7 @@ lemma continuousOn_f₃ (n : ℤ) : ContinuousOn (f₃ n) { ⟨x, _⟩ | ¬∀ i
   exact (continuous_uLift_down.comp continuous_subtype_val).subtype_val
 end -- experiment with easier funcitons
 
-def f (n : ℤ) : disk n → cube n
+def diskToCube (n : ℤ) : disk n → cube n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
       ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- (‖x‖₂ / ‖x‖_∞) • x
         simp only [Set.mem_setOf_eq, norm_smul, norm_mul, norm_norm, norm_inv]
@@ -402,40 +402,40 @@ def f (n : ℤ) : disk n → cube n
         simp only [Metric.mem_closedBall, dist_zero_right] at hx
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
-lemma continuousOn_f (n : ℤ) : ContinuousOn (f n) { ⟨x, _⟩ | ¬∀ i, x i = 0 } := by
+lemma continuousOn_diskToCube (n : ℤ) : ContinuousOn (diskToCube n) { ⟨x, _⟩ | ¬∀ i, x i = 0 } := by
   apply continuousOn_iff_continuous_restrict.mpr
-  unfold Set.restrict f
+  unfold Set.restrict diskToCube
   refine continuous_uLift_up.comp ?_
   refine Continuous.subtype_mk ?_ _
   simp only [Set.coe_setOf, Set.mem_setOf_eq]
   sorry
 
-lemma continuous_f (n : ℤ) : Continuous (f n) :=
+lemma continuous_diskToCube (n : ℤ) : Continuous (diskToCube n) :=
   continuous_iff_continuousAt.mpr fun ⟨x, hx⟩ ↦ by
     by_cases hx0 : ∀ i, x i = 0
     . sorry
     sorry
 
-def g (n : ℤ) : cube.{u} n → disk.{u} n
+def cubeToDisk (n : ℤ) : cube.{u} n → disk.{u} n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [disk]⟩ else
       ⟨ (‖x‖ * ‖(WithLp.equiv 2 _).symm x‖⁻¹) • x, by  -- (‖x‖_∞ / ‖x‖₂) • x
         simp only [Metric.mem_closedBall, dist_zero_right, norm_smul, norm_mul, norm_norm, norm_inv]
         rw [mul_assoc]
         exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
 
-lemma continuous_g (n : ℤ) : Continuous (g n) := by
+lemma continuous_cubeToDisk (n : ℤ) : Continuous (cubeToDisk n) := by
   sorry
 
-lemma g_comp_f (n : ℤ) : ∀ x, g.{u} n (f.{u} n x) = x := fun ⟨x, _⟩ ↦ by
-  unfold g
+lemma cubeToDisk_comp_diskToCube (n : ℤ) : ∀ x, cubeToDisk n (diskToCube n x) = x := fun ⟨x, _⟩ ↦ by
+  unfold cubeToDisk
   by_cases hx0 : ∀ i, x i = 0
-  · simp [f, hx0]
+  · simp [diskToCube, hx0]
     congr
     exact (PiLp.ext hx0).symm
   split
   next _ y hy hfx =>
     have hfx := congrArg ULift.down hfx
-    simp [f, hx0] at hfx
+    simp [diskToCube, hx0] at hfx
     have hx0' : x ≠ 0 := fun h ↦ hx0 (congrFun h)
     have hf0 : ¬∀ i, y i = 0 := by simpa [← hfx, hx0, hx0', Decidable.not_forall.mp]
     split_ifs
@@ -449,16 +449,16 @@ lemma g_comp_f (n : ℤ) : ∀ x, g.{u} n (f.{u} n x) = x := fun ⟨x, _⟩ ↦ 
     conv_lhs => arg 1; equals 1 => exact mul_inv_cancel₀ (norm_ne_zero_iff.mpr ‹_›)
     rw [one_smul]
 
-lemma f_comp_g (n : ℤ) : ∀ x, f n (g n x) = x := fun ⟨x, _⟩ ↦ by
-  unfold f
+lemma diskToCube_comp_cubeToDisk (n : ℤ) : ∀ x, diskToCube n (cubeToDisk n x) = x := fun ⟨x, _⟩ ↦ by
+  unfold diskToCube
   by_cases hx0 : ∀ i, x i = 0
-  . simp [g, hx0]
+  . simp [cubeToDisk, hx0]
     congr
     aesop
   split
   next _ y hy hgx =>
     have hgx := congrArg ULift.down hgx
-    simp [g, hx0] at hgx
+    simp [cubeToDisk, hx0] at hgx
     have hx0' : x ≠ 0 := fun h ↦ hx0 (congrFun h)
     have hg0 : ¬∀ i, y i = 0 := by simpa [← hgx, hx0, hx0', Decidable.not_forall.mp]
     split_ifs
@@ -474,12 +474,12 @@ lemma f_comp_g (n : ℤ) : ∀ x, f n (g n x) = x := fun ⟨x, _⟩ ↦ by
     rw [one_smul]
 
 def disk_homeo_cube (n : ℤ) : disk n ≃ₜ cube n where
-  toFun := f n
-  invFun := g n
-  left_inv := g_comp_f n
-  right_inv := f_comp_g n
-  continuous_toFun := continuous_f n
-  continuous_invFun := continuous_g n
+  toFun := diskToCube n
+  invFun := cubeToDisk n
+  left_inv := cubeToDisk_comp_diskToCube n
+  right_inv := diskToCube_comp_cubeToDisk n
+  continuous_toFun := continuous_diskToCube n
+  continuous_invFun := continuous_cubeToDisk n
 
 end -- change of base point (draft)
 
@@ -490,7 +490,7 @@ open scoped ENNReal NNReal
 
 open scoped Topology TopCat
 
-noncomputable def Cube.center : I^α := fun _ ↦ ⟨1 / 2, by simp [inv_le]⟩
+noncomputable def Cube.center : I^α := fun _ ↦ ⟨1 / 2, by simp [inv_le_comm₀]⟩
 
 noncomputable def Cube.ofDisk (n : ℕ) : (𝔻 n) → (I^ Fin n)
   | ⟨⟨x, hx⟩⟩ => if ∀ i, x i = 0 then Cube.center else fun i ↦ ⟨iSup x, sorry⟩
