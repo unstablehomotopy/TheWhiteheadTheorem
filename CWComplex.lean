@@ -337,6 +337,21 @@ set_option diagnostics false
 #check ContinuousOn.continuousAt
 #check continuousOn_iff
 
+section -- continuity of if-then-else functions
+
+variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+
+-- example (A : Set X) [∀ x, Decidable (x ∈ A)]
+--     (hA : IsOpen A) (f : C({x // x ∈ A}, Y)) (g : X → Y) : X → Y :=
+--   fun x : X ↦ if h : x ∈ A then f ⟨x, h⟩ else g x
+
+lemma continuousOn_of_continuous_open (A : Set X) [∀ x, Decidable (x ∈ A)]
+    (hA : IsOpen A) (f : C({x // x ∈ A}, Y)) (g : X → Y) :
+    ContinuousOn (fun x ↦ if h : x ∈ A then f ⟨x, h⟩ else g x) A := by
+  sorry
+
+end -- continuity of if-then-else functions
+
 section -- experiment with easier funcitons
 
 --#check continuous_iff_continuousOn_univ
