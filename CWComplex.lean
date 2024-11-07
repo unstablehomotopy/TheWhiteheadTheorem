@@ -419,6 +419,15 @@ lemma continuousOn_f₃ (n : ℤ) : ContinuousOn (f₃ n) { ⟨x, _⟩ | ¬∀ i
   exact (continuous_uLift_down.comp continuous_subtype_val).subtype_val
 end -- experiment with easier funcitons
 
+#check ContinuousOn.congr_mono
+def diskToCube' (n : ℤ) : disk n → cube n
+  | ⟨x, hx⟩ =>
+      ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- (‖x‖₂ / ‖x‖_∞) • x
+        simp only [Set.mem_setOf_eq, norm_smul, norm_mul, norm_norm, norm_inv]
+        rw [mul_assoc]
+        simp only [Metric.mem_closedBall, dist_zero_right] at hx
+        exact Left.mul_le_one_of_le_of_le hx inv_mul_le_one (norm_nonneg _)⟩
+
 def diskToCube (n : ℤ) : disk n → cube n
   | ⟨x, hx⟩ => if ∀ i, x i = 0 then ⟨0, by simp [cube]⟩ else
       ⟨ (‖x‖ * ‖WithLp.equiv 2 _ x‖⁻¹) • x, by  -- (‖x‖₂ / ‖x‖_∞) • x
