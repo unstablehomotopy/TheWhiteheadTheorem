@@ -341,14 +341,24 @@ section -- continuity of if-then-else functions
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
--- example (A : Set X) [∀ x, Decidable (x ∈ A)]
---     (hA : IsOpen A) (f : C({x // x ∈ A}, Y)) (g : X → Y) : X → Y :=
---   fun x : X ↦ if h : x ∈ A then f ⟨x, h⟩ else g x
-
-lemma continuousOn_of_continuous_open (A : Set X) [∀ x, Decidable (x ∈ A)]
-    (hA : IsOpen A) (f : C({x // x ∈ A}, Y)) (g : X → Y) :
-    ContinuousOn (fun x ↦ if h : x ∈ A then f ⟨x, h⟩ else g x) A := by
-  sorry
+lemma continuousOn_of_continuous_subspace (A : Set X) [∀ x, Decidable (x ∈ A)]
+    (f : C({x // x ∈ A}, Y)) (g : X → Y) :
+    ContinuousOn (fun x ↦ if h : x ∈ A then f ⟨x, h⟩ else g x) A :=
+  continuousOn_iff.mpr fun x hxA t ht hft ↦ by
+    simp only [hxA, ↓reduceDIte] at hft
+    have := @Continuous.continuousAt _ _ _ _ _ ⟨x, hxA⟩ f.continuous_toFun
+    have hf := continuousAt_def.mp this t (ht.mem_nhds hft)
+    rw [ContinuousMap.toFun_eq_coe, mem_nhds_iff] at hf
+    obtain ⟨u, hu, ⟨v, hv, hvu⟩, hxu⟩ := hf
+    use v, hv
+    constructor
+    . rw [← hvu, Set.mem_preimage] at hxu
+      exact hxu
+    rintro a ⟨hav, haA⟩
+    simp only [Set.mem_preimage, haA, ↓reduceDIte]
+    apply hu
+    rw [← hvu, Set.mem_preimage]
+    exact hav
 
 end -- continuity of if-then-else functions
 
