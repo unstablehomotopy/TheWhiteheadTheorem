@@ -98,6 +98,7 @@ Here are the packages that I use
 \newunicodechar{₇}{${}_{\texttt{7}}$}
 \newunicodechar{₈}{${}_{\texttt{8}}$}
 \newunicodechar{₉}{${}_{\texttt{9}}$}
+
 \newunicodechar{𝔸}{$\mathbb{A}$}
 \newunicodechar{𝔹}{$\mathbb{B}$}
 \newunicodechar{ℂ}{$\mathbb{C}$}
@@ -111,45 +112,20 @@ Here are the packages that I use
 \newunicodechar{𝕂}{$\mathbb{K}$}
 \newunicodechar{𝕃}{$\mathbb{L}$}
 \newunicodechar{𝕄}{$\mathbb{M}$}
-\newunicodechar{ℕ}{$\mathbb{N}$} 
+\newunicodechar{ℕ}{$\mathbb{N}$}
 \newunicodechar{𝕆}{$\mathbb{O}$}
 \newunicodechar{ℙ}{$\mathbb{P}$}
 \newunicodechar{ℚ}{$\mathbb{Q}$}
 \newunicodechar{ℝ}{$\mathbb{R}$}
 \newunicodechar{𝕊}{$\mathbb{S}$}
-\newunicodechar{𝕋}{$\mathbb{T}$} 
+\newunicodechar{𝕋}{$\mathbb{T}$}
 \newunicodechar{𝕌}{$\mathbb{U}$}
 \newunicodechar{𝕍}{$\mathbb{V}$}
 \newunicodechar{𝕎}{$\mathbb{W}$}
 \newunicodechar{𝕏}{$\mathbb{X}$}
 \newunicodechar{𝕐}{$\mathbb{Y}$}
 \newunicodechar{ℤ}{$\mathbb{Z}$}
-\newunicodechar{𝕒}{$\mathbb{a}$}
-\newunicodechar{𝕓}{$\mathbb{b}$}
-\newunicodechar{𝕔}{$\mathbb{c}$}
-\newunicodechar{𝕕}{$\mathbb{d}$}
-\newunicodechar{𝕖}{$\mathbb{e}$}
-\newunicodechar{𝕗}{$\mathbb{f}$}
-\newunicodechar{𝕘}{$\mathbb{g}$}
-\newunicodechar{𝕙}{$\mathbb{h}$}
-\newunicodechar{𝕚}{$\mathbb{i}$}
-\newunicodechar{𝕛}{$\mathbb{j}$}
-\newunicodechar{𝕜}{$\mathbb{k}$}%𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫
-\newunicodechar{𝕝}{$\mathbb{l}$} 
-\newunicodechar{𝕞}{$\mathbb{m}$}
-\newunicodechar{𝕟}{$\mathbb{n}$}
-\newunicodechar{𝕠}{$\mathbb{o}$}
-\newunicodechar{𝕡}{$\mathbb{p}$}
-\newunicodechar{𝕢}{$\mathbb{q}$}
-\newunicodechar{𝕣}{$\mathbb{r}$}
-\newunicodechar{𝕤}{$\mathbb{s}$}
-\newunicodechar{𝕥}{$\mathbb{t}$}
-\newunicodechar{𝕦}{$\mathbb{u}$}
-\newunicodechar{𝕧}{$\mathbb{v}$}
-\newunicodechar{𝕨}{$\mathbb{w}$}
-\newunicodechar{𝕩}{$\mathbb{x}$}
-\newunicodechar{𝕪}{$\mathbb{y}$}
-\newunicodechar{𝕫}{$\mathbb{z}$}
+
 \newunicodechar{𝚫}{$\Delta$}
 \newunicodechar{ʃ}{$\int$}
 \newunicodechar{∪}{$\cup$}
@@ -399,21 +375,24 @@ Here are the packages that I use
 
 \thispagestyle{empty} 
 
+\iffalse
 \AddToShipoutPicture*
     {\put(540,720){
 
     \href{http://www.linearlibrary.net}{\includegraphics[width=2cm,height=2cm]{ll.png}}
 
-    }}
+    }
+    }
+\fi
 
 \AddToShipoutPicture*
   {\put(470,767){
-    \href{https://github.com/linlib/CategoriesandHilbertSpaces/StringDiagramGenerator.py}{\texttt{.py file}}
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.py}{\texttt{.py file}}
   }}
 
 \AddToShipoutPicture*
   {\put(470,752){
-    \href{https://github.com/linlib/TheWhiteheadTheoremandTwoVariations/blob/main/TheWhiteheadTheoremandTwoVariations.tex}{\texttt{.tex file}}\\
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.tex}{\texttt{.tex file}}\\
 
   }}
 
@@ -421,13 +400,38 @@ Here are the packages that I use
 \AddToShipoutPicture*
   {\put(470,737){
 
-    \href{https://github.com/linlib/TheWhiteheadTheoremandTwoVariations/blob/main/TheWhiteheadTheoremandTwoVariations.pdf}{\texttt{.pdf file}}\\
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.pdf}{\texttt{.pdf file}}\\
 
   }}
 
   \AddToShipoutPicture*
   {\put(470,722){
-    \href{https://github.com/linlib/TheWhiteheadTheoremandTwoVariations/blob/main/TheWhiteheadTheoremandTwoVariations.lean}{\texttt{.lean file}}
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.lean}{\texttt{.lean file}}
+
+  }}
+
+\AddToShipoutPicture*
+  {\put(490,767){
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/StringDiagramGenerator.py}{\texttt{.py file}}
+  }}
+
+\AddToShipoutPicture*
+  {\put(400,752){
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.tex}{\texttt{.tex file}}\\
+
+  }}
+
+
+\AddToShipoutPicture*
+  {\put(400,737){
+
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.pdf}{\texttt{.pdf file}}\\
+
+  }}
+
+  \AddToShipoutPicture*
+  {\put(400,722){
+    \href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.lean}{\texttt{.lean file}}
 
   }}
 
@@ -473,8 +477,9 @@ Here are the packages that I use
 
 \thispagestyle{empty}
 
-
+\iffalse
 \newpage
+\fi
 
 \ \\
 \ \\
@@ -563,9 +568,9 @@ $\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use
 \hline
 → & 2192 & \backslash\texttt{rightarrow}  & Hom of types\\
 \hline
-⟨,⟩ & 27E8,27E9 & \backslash\texttt{langle},\backslash\texttt{rangle}  & Product term introduction\\
+⟨,⟩ & 27E8,27E9 & \backslash\texttt{langle},\backslash\texttt{rangle}  & Product term \\
 \hline
-↦ & 21A6 &\backslash\texttt{mapsto}  & Hom term introduction\\
+↦ & 21A6 &\backslash\texttt{mapsto}  & Hom term \\
 \hline
 ∧ & 2227 &\backslash\texttt{wedge}  & Conjunction \\
 \hline
@@ -676,7 +681,7 @@ Contents & \\
 \hline
 Unicode & \\
 \hline
-Introduction & \\
+ & \\
 \hline \hline
 \multicolumn{2}{||c||}{\texttt{PART I: } Based ∞-Groupoids} \\
 \hline \hline
@@ -960,7 +965,7 @@ Maps A${}^{\infty}$-Algebras & \\
 
 
 \newpage
-\section{Introduction}
+\section{}
 
 {\bf The main goal of this repository is to prove the Whitehead theorem in Lean 4 using Mathlib 4's homotopy groups}. Three other subsequent goals are to state and prove three variations of the Whitehead theorem:\\
 
@@ -1253,9 +1258,9 @@ $\texttt{Symbol}$ & $\texttt{Unicode}$ & \texttt{VSCode shortcut} & $\texttt{Use
 \hline
 → & 2192 & \backslash\texttt{rightarrow}  & Hom of types\\
 \hline
-⟨,⟩ & 27E8,27E9 & \backslash\texttt{langle},\backslash\texttt{rangle}  & Product term introduction\\
+⟨,⟩ & 27E8,27E9 & \backslash\texttt{langle},\backslash\texttt{rangle}  & Product term \\
 \hline
-↦ & 21A6 &\backslash\texttt{mapsto}  & Hom term introduction\\
+↦ & 21A6 &\backslash\texttt{mapsto}  & Hom term \\
 \hline
 ∧ & 2227 &\backslash\texttt{wedge}  & Conjunction \\
 \hline
@@ -1399,7 +1404,7 @@ E-spectrum
 \fi
 
 \newpage
-\section{Introduction to \texttt{Lean 4}}
+\section{ to \texttt{Lean 4}}
 
 The main way to tell Lean 4 what something means is with $\texttt{def}$, which defines a term in \href{https://leanprover.github.io/theorem_proving_in_lean/dependent_type_theory.html}{dependent type theory}. Much in the same way as other computer languages, we then supply the type of the term (e.g. $\texttt{Int}$ for integer), followed by the formula itself:
 
@@ -1495,10 +1500,10 @@ def pairwise {A : Type} {B : Type} (a₁ : A) (a₂ : A) (b₁ : B) (b₂ : B) (
 \end{tcolorbox}
 \end{center}
 
-Here are some introductions to Lean 4 and Mathlib 4:
+Here are some s to Lean 4 and Mathlib 4:
 
 \begin{enumerate}
-\item The tutorial \href{https://leanprover.github.io/theorem_proving_in_lean4/}{here} gives an introduction to using the dependent type theory in Lean.
+\item The tutorial \href{https://leanprover.github.io/theorem_proving_in_lean4/}{here} gives an  to using the dependent type theory in Lean.
 \item 
 \end{enumerate}
 
@@ -1653,9 +1658,11 @@ Globular sets are not a rich enough invariant for homotopy, but maps of globular
 
 The globe category 𝔾 is the category
 
+\iffalse
 \begin{center}
 \includegraphics[scale=0.5]{globecat.png}
 \end{center}
+\fi
 
 \href{https://ncatlab.org/nlab/show/globular+set}{Globular sets} are functors from the opposite category of the globe category 𝔾 into the category of sets, and maps of globular sets are natural transformations between them.\\
 
@@ -1855,9 +1862,11 @@ $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 
 The proof in the above can be depicted like so, as a `painting with two concentric frames':
 
+\iffalse
 \begin{center}
 \includegraphics[scale=0.35]{pictureframe.png}
 \end{center}
+\fi
 
 that the Based CW-complexes (X,x) and (X,y) are 
 
@@ -1966,62 +1975,6 @@ In proving the Whitehead theorem formally, \textit{we make use of a line} as wel
 \chapter{Chapter 3: The Category of Maps}
 
 In this section I cover the category of maps $\texttt{Map C}$ in a category $\texttt{C}$. After this I inductively form $\texttt{□ⁿ⁺¹ C}$ as $\texttt{Map (□ⁿ C)}$ and $\texttt{□ⁱⁿᶠ C}$ as the colimit of $\texttt{□ⁿ C}$. The category $\texttt{□ C}$ formed in this way has the property that $\texttt{Map (□ C) ≅ □ C}$.\\
-
-
-
-\section{Haar Integral}
-
-\subsection{Existence of Haar integral}
-
-\begin{enumerate}
-\item Existence of haar integral
-\end{enumerate}
-
-%https://ncatlab.org/nlab/show/Haar+integral
-
-
-\subsection{Uniqueness of Haar integral}
-
-\begin{enumerate}
-\item Uniqueness of haar integral
-\end{enumerate}
-
-
-
-\section{Duality}
-
-\subsection{Fourier Duality}
-
-\begin{enumerate}
-\item Proving Fourier duality
-\item Injectivity and the completion of a pre-Hilbert space
-\item Surjectivity 
-\item String calculus for Hopf algebras
-\end{enumerate}
-
-
-\subsection{Pontrjagin Duality}
-
-\begin{enumerate}
-\item Proving Pontrjagin duality
-\item Density
-\item Closed image
-\end{enumerate}
-
-
-\section{Trace and Determinant}
-
-\subsection{Trace}
-
-\begin{enumerate}
-\item Trace (for finite extensions)
-\end{enumerate}
-
-\subsection{Determinant}
-
-\begin{enumerate}
-\item Determinant (for finite extensions)
-\end{enumerate}
 
 
 
@@ -2189,9 +2142,9 @@ This means that we want directed box filling in addition to directed prism filli
 
 {\bf Box Filling (BF)} Let Y be a quasicategory, and let f, g : ∂Δⁿ ⭢ Y. A homotopy h : ∂Δⁿ × Δ¹ ⭢ Y between f, g : ∂Δⁿ ⭢ Y extends to a map H : Δⁿ × Δ¹ ⭢ Y; this follows from the condition that Y be a quasicategory. H(-,1) and g match on ∂Δⁿ, producing a map f : X ⭢ Y, where X consists of two copies of Δⁿ glued together at the boundary. Consider a space X' formed as a quotient of Δⁿ × Δ¹ by ∂Δⁿ × Δ¹. There is a map φ : X ⭢ X'. An induction hypothesis on f and g involving πₙ ensures that the aparent map X ⭢ Y lifts along φ, producing a map from Δⁿ × Δ¹ which is constant on ∂Δⁿ × Δ¹. Stacking this on top of H can be done using an isomorphism between Δ¹ and Δ¹ glued with itself along different endpoints. Altogether this produces a homotopy between f and g.\\
 
-This goes hand-in-hand with a definition of Π⃗ₙ which suits (I) and (II) in the introduction to chapter (3). If we make sure to prove lemmas... 
+This goes hand-in-hand with a definition of Π⃗ₙ which suits (I) and (II) in the  to chapter (3). If we make sure to prove lemmas... 
 
-The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of Π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's introduction.\\
+The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of Π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's .\\
 
 Breaking down BF further can be done conveniently using sub-simplicial sets, just like we used in the proof of prism filling. 
 
@@ -2217,62 +2170,6 @@ Imagine
 
 
 \section{Chapter 11: The Category of Maps of ∞-Groupoids}
-
-
-
-\section{Haar Integral}
-
-\subsection{Existence of Haar integral}
-
-\begin{enumerate}
-\item Existence of haar integral
-\end{enumerate}
-
-%https://ncatlab.org/nlab/show/Haar+integral
-
-
-\subsection{Uniqueness of Haar integral}
-
-\begin{enumerate}
-\item Uniqueness of haar integral
-\end{enumerate}
-
-
-
-\section{Duality}
-
-\subsection{Fourier Duality}
-
-\begin{enumerate}
-\item Proving Fourier duality
-\item Injectivity and the completion of a pre-Hilbert space
-\item Surjectivity 
-\item String calculus for Hopf algebras
-\end{enumerate}
-
-
-\subsection{Pontrjagin Duality}
-
-\begin{enumerate}
-\item Proving Pontrjagin duality
-\item Density
-\item Closed image
-\end{enumerate}
-
-
-\section{Trace and Determinant}
-
-\subsection{Trace}
-
-\begin{enumerate}
-\item Trace (for finite extensions)
-\end{enumerate}
-
-\subsection{Determinant}
-
-\begin{enumerate}
-\item Determinant (for finite extensions)
-\end{enumerate}
 
 
 
@@ -2549,9 +2446,12 @@ $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 
 The proof in the above can be depicted like so, as a `painting with two concentric frames':
 
+\iffalse
 \begin{center}
 \includegraphics[scale=0.5]{pictureframe.png}
 \end{center}
+\fi
+
 
 that the Based CW-complexes (X₋₁,x) and (X₋₁,y) are 
 
@@ -2594,64 +2494,6 @@ In proving the Whitehead theorem formally, \textit{we make use of a line} as wel
 \section{Chapter 3: The Category of Maps}
 
 In this section I would like to 
-
-
-\section{Haar Integral}
-
-\subsection{Existence of Haar integral}
-
-\begin{enumerate}
-\item Existence of haar integral
-\end{enumerate}
-
-%https://ncatlab.org/nlab/show/Haar+integral
-
-
-\subsection{Uniqueness of Haar integral}
-
-\begin{enumerate}
-\item Uniqueness of haar integral
-\end{enumerate}
-
-
-
-\section{Duality}
-
-\subsection{Fourier Duality}
-
-\begin{enumerate}
-\item Proving Fourier duality
-\item Injectivity and the completion of a pre-Hilbert space
-\item Surjectivity 
-\item String calculus for Hopf algebras
-\end{enumerate}
-
-
-\subsection{Pontrjagin Duality}
-
-\begin{enumerate}
-\item Proving Pontrjagin duality
-\item Density
-\item Closed image
-\end{enumerate}
-
-
-\section{Trace and Determinant}
-
-\subsection{Trace}
-
-\begin{enumerate}
-\item Trace (for finite extensions)
-\end{enumerate}
-
-\subsection{Determinant}
-
-\begin{enumerate}
-\item Determinant (for finite extensions)
-\end{enumerate}
-
-
-
 
 
 
@@ -2820,9 +2662,9 @@ This means that we want directed box filling in addition to directed prism filli
 
 {\bf Box Filling (BF)} Let Y be a quasicategory, and let f, g : ∂Δⁿ ⭢ Y. A homotopy h : ∂Δⁿ × Δ¹ ⭢ Y between f, g : ∂Δⁿ ⭢ Y extends to a map H : Δⁿ × Δ¹ ⭢ Y; this follows from the condition that Y be a quasicategory. H(-,1) and g match on ∂Δⁿ, producing a map f : X ⭢ Y, where X consists of two copies of Δⁿ glued together at the boundary. Consider a space X' formed as a quotient of Δⁿ × Δ¹ by ∂Δⁿ × Δ¹. There is a map φ : X ⭢ X'. An induction hypothesis on f and g involving πₙ ensures that the aparent map X ⭢ Y lifts along φ, producing a map from Δⁿ × Δ¹ which is constant on ∂Δⁿ × Δ¹. Stacking this on top of H can be done using an isomorphism between Δ¹ and Δ¹ glued with itself along different endpoints. Altogether this produces a homotopy between f and g.\\
 
-This goes hand-in-hand with a definition of Π⃗ₙ which suits (I) and (II) in the introduction to chapter (3). If we make sure to prove lemmas... 
+This goes hand-in-hand with a definition of Π⃗ₙ which suits (I) and (II) in the  to chapter (3). If we make sure to prove lemmas... 
 
-The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of Π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's introduction.\\
+The box filling and prism filling HEPs can be extended to the case of attaching all cells of a particular fixed dimension and as indexed by simplicial set arising from a set (or Lean 4 $\texttt{Type}$). That is, we might like to extend × $()$ (or possibly somehow a $\texttt{Set}$ as well), and that we may find an interest in the following two definitions of Π⃗ₙ, which are designed to fullfill both (I) and (II) in the chapter's .\\
 
 Breaking down BF further can be done conveniently using sub-simplicial sets, just like we used in the proof of prism filling. 
 
@@ -3759,7 +3601,7 @@ Further reading:
 \item Saunders Mac Lane, "Categories for the Working Mathematician," Graduate Texts in Mathematics, vol. 5, Springer-Verlag, New York, 1971.
 \item Samuel Eilenberg and Saunders Mac Lane, ``General Theory of Natural Equivalences," Transactions of the American Mathematical Society, vol. 58, no. 2, pp. 231-294, 1945.
 \item Daniel M. Kan, ``Adjoint Functors," Transactions of the American Mathematical Society, vol. 87, no. 2, pp. 294-329, 1958.
-\item Chris Heunen, Jamie Vicary, and Stefan Wolf, ``Categories for Quantum Theory: An Introduction," Oxford Graduate Texts, Oxford University Press, Oxford, 2018.
+\item Chris Heunen, Jamie Vicary, and Stefan Wolf, ``Categories for Quantum Theory: An ," Oxford Graduate Texts, Oxford University Press, Oxford, 2018.
 \item S. Eilenberg and J. C. Moore, ``Adjoint Functors and Triples," Proceedings of the Conference on Categorical Algebra, La Jolla, California, 1965, pp. 89-106.
 \item Daniel M. Kan, ``On Adjoints to Functors" (1958): In this paper, Kan further explored the theory of adjoint functors, focusing on the existence and uniqueness of adjoints. His work provided important insights into the fundamental aspects of adjoint functors and their role in category theory.
 \item \href{https://mathematicswithoutapologies.wordpress.com/2015/05/13/univalent-foundations-no-comment/}{A comment thread concerning Jacob Lurie's breakthrough prize and different approaches to homotopy on the computer}
