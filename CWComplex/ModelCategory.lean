@@ -1,9 +1,11 @@
--- import LeanCopilot
-
+import Mathlib.Topology.CWComplex
 import Mathlib.CategoryTheory.Square
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Square
 import Mathlib.CategoryTheory.MorphismProperty.Factorization
 import Mathlib.CategoryTheory.SmallObject.Construction
+
+-- import LeanCopilot
+-- https://live.lean-lang.org/#codez=JYWwDg9gTgLgBAWQIYwBYBtgCMB0AVCSdCAcwE8cBhAdUonHQFMAPAKAFp25UYYwBnAFwB6YUyQA7MFAgA3RlHYBjeiACuE4DAoktqNbmARhIFBmwAWAPoATCEv7DkaTFmEEipMsJp0GLHB4QdABiX3owJmYAEgAGIA
 
 -----------------------------------------------------------------
 
