@@ -375,11 +375,14 @@ Here are the packages that I use
 
 \thispagestyle{empty} 
 
+\iffalse 
 \AddToShipoutPicture*
-    {\put(545,720){\href{http://www.linearlibrary.net}{\includegraphics[width=2cm,height=2cm]{ll.png}}}}
+    {\put(545,720){\href{http://www.linearlibrary.net}{\includegraphics[width=2cm,height=2cm]{ll.png}} } }
 
 \AddToShipoutPicture*
-  {\put(465,767){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.py}{\raisebox{-0.198 em}{\includegraphics[width=0.35cm,height=0.35cm]{stringdiagrampicture.png}}\texttt{ Braid group}}
+  {\put(465,767){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem
+/blob/main/TheWhiteheadTheorem
+.py}{\raisebox{-0.198 em}{\includegraphics[width=0.35cm,height=0.35cm]{stringdiagrampicture.png}}\texttt{ Braid group}}
   }}
 
 \AddToShipoutPicture*
@@ -387,7 +390,7 @@ Here are the packages that I use
   }}
 
 \AddToShipoutPicture*
-  {\put(465,737){\href{https://en.wikipedia.org/wiki/Whitehead\_theorem}{\texttt{\raisebox{-0.158 em}{\includegraphics[width=0.38cm,height=0.30cm]{wikipedialogo.png}} Wikipedia}}\\
+  {\put(465,737){\href{https://en.wikipedia.org/wiki/Whitehead_theorem}{\texttt{\raisebox{-0.158 em}{\includegraphics[width=0.38cm,height=0.30cm]{wikipedialogo.png}} Wikipedia}}\\
   }}
 
   \AddToShipoutPicture*
@@ -396,16 +399,24 @@ Here are the packages that I use
 
 
 \AddToShipoutPicture*
-  {\put(375,767){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.lean}{\texttt{\raisebox{-0.1 em}{\includegraphics[width=0.30cm,height=0.30cm]{leanlogo.png}} Lean file}}}}
+  {\put(375,767){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem
+/blob/main/TheWhiteheadTheorem
+.lean}{\texttt{\raisebox{-0.1 em}{\includegraphics[width=0.30cm,height=0.30cm]{leanlogo.png}} Lean file}}}}
 
 \AddToShipoutPicture*
-  {\put(375,752){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.agda}{\texttt{\raisebox{-0.09 em}{\includegraphics[width=0.33cm,height=0.31cm]{agdalogo.png}} Agda file}}}}
+  {\put(375,752){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem
+/blob/main/TheWhiteheadTheorem
+.agda}{\texttt{\raisebox{-0.09 em}{\includegraphics[width=0.33cm,height=0.31cm]{agdalogo.png}} Agda file}}}}
 
 \AddToShipoutPicture*
-  {\put(375,737){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.v}{\texttt{\raisebox{-0.17 em}{\includegraphics[width=0.31cm,height=0.34cm]{coqlogo.png}} Coq file}}}}
+  {\put(375,737){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem
+/blob/main/TheWhiteheadTheorem
+.v}{\texttt{\raisebox{-0.17 em}{\includegraphics[width=0.31cm,height=0.34cm]{coqlogo.png}} Coq file}}}}
 
   \AddToShipoutPicture*
-  {\put(375,722){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.thy}{\texttt{\raisebox{-0.2 em}{\includegraphics[width=0.34cm,height=0.35cm]{isabellelogo.png}} Isabelle file}}}}
+  {\put(375,722){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem
+/blob/main/TheWhiteheadTheorem
+.thy}{\texttt{\raisebox{-0.2 em}{\includegraphics[width=0.34cm,height=0.35cm]{isabellelogo.png}} Isabelle file}}}}
 
 
 \AddToShipoutPicture*
@@ -431,14 +442,21 @@ Here are the packages that I use
   {\put(185,752){\href{https://live.lean-lang.org}{\texttt{Leanprover}}}}
 
 \AddToShipoutPicture*
-  {\put(185,737){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.tex}{\texttt{Latex file}}
+  {\put(185,737){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem
+/blob/main/TheWhiteheadTheorem
+.tex}{\texttt{Latex file}}
   }}
 
   \AddToShipoutPicture*
-  {\put(185,722){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem/blob/main/TheWhiteheadTheorem.pdf}{\texttt{PDF file}}
+  {\put(185,722){\href{https://github.com/unstablehomotopy/TheWhiteheadTheorem
+/blob/main/TheWhiteheadTheorem
+.pdf}{\texttt{PDF file}}
   }}
+\fi
 
 
+
+\ \\
 
 \ \\
 
@@ -447,10 +465,7 @@ Here are the packages that I use
 \begin{tcolorbox}[width=5.8in,colback={white},coltitle=white]
 \begin{center}
 \ \\
-\ \\
-\scalebox{2.8}{\texttt{The Whitehead Theorem}}\
-\ \\
-\ \\
+\scalebox{3}{\texttt{The Whitehead Theorem}}\\
 \end{center}
 \end{tcolorbox}
 \end{center}
@@ -460,39 +475,23 @@ Here are the packages that I use
 \ \\
 %LEAN: 
 \begin{center}
-\begin{tcolorbox}[width=5.8in,colback={white}]
+\begin{tcolorbox}[width=6in,colback={white}]
 \begin{center}
-\scalebox{0.62}{∀(C:Ho(DirCWCat)),∀(D:Ho(DirCWCat)),∀(F:Ho(DirCWCat).Hom C D),∀(G:Ho(DirCWCat).Hom C D),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) → F = G}\\
+\scalebox{0.85}{∀(C:D(∞-Cat)),∀(D:D(∞-Cat)),∀(F:D(∞-Cat).Hom C D),∀(G:D(∞-Cat).Hom C D),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) → F = G}\\
 \ \\
-\scalebox{0.62}{∀(X:Ho(CWCat)),∀(Y:Ho(CWCat)),∀(f:Ho(CWCat).Hom X Y),∀(g:Ho(CWCat).Hom X Y),(∀(n:Nat),(Πₙ f = Πₙ g)) → f = g}\\
+\scalebox{0.85}{∀(X:D(∞-Grpd)),∀(Y:D(∞-Grpd)),∀(f:D(∞-Grpd).Hom X Y),∀(g:D(∞-Grpd).Hom X Y),(∀(n:Nat),(Πₙ f = Πₙ g)) → f = g}\\
 \ \\
-\scalebox{0.62}{∀(C:Ho(DirCWCat₋₁)),∀(D:Ho(DirCWCat₋₁)),∀(F:Ho(DirCWCat₋₁).Hom C D),∀(G:Ho(DirCWCat₋₁).Hom C D),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G}\\
+\scalebox{0.85}{∀(C:D(∞-Cat₋₁)),∀(D:D(∞-Cat₋₁)),∀(F:D(∞-Cat₋₁).Hom C D),∀(G:D(∞-Cat₋₁).Hom C D),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G}\\
 \ \\
-\scalebox{0.62}{∀(X:Ho(CWCat₋₁)),∀(Y:Ho(CWCat₋₁)),∀(f:Ho(CWCat₋₁).Hom X Y),∀(g:Ho(CWCat₋₁).Hom X Y),(∀(n:Nat),(πₙ f = πₙ g)) → f = g}\\
+\scalebox{0.85}{∀(X:D(∞-Grpd₋₁)),∀(Y:D(∞-Grpd₋₁)),∀(f:D(∞-Grpd₋₁).Hom X Y),∀(g:D(∞-Grpd₋₁).Hom X Y),(∀(n:Nat),(πₙ f = πₙ g)) → f = g}\\
 \end{center}
 \end{tcolorbox}
 \end{center}
 
-\iffalse
-%LEAN: 
-\begin{center}
-\begin{tcolorbox}[width=5.8in,colback={white}]
-\begin{center}
-\scalebox{0.5}{∀(C:D(∞-Cat)),∀(D:D(∞-Cat)),∀(F:D(∞-Cat).Hom C D),∀(G:D(∞-Cat).Hom C D),(∀(n:Nat),(Π⃗ₙ F = Π⃗ₙ G)) → F = G}\\
-\ \\
-\scalebox{0.5}{∀(X:D(∞-Grpd)),∀(Y:D(∞-Grpd)),∀(f:D(∞-Grpd).Hom X Y),∀(g:D(∞-Grpd).Hom X Y),(∀(n:Nat),(Πₙ f = Πₙ g)) → f = g}\\
-\ \\
-\scalebox{0.5}{∀(C:D(∞-Cat₋₁)),∀(D:D(∞-Cat₋₁)),∀(F:D(∞-Cat₋₁).Hom C D),∀(G:D(∞-Cat₋₁).Hom C D),(∀(n:Nat),(π⃗ₙ F = π⃗ₙ G)) → F = G}\\
-\ \\
-\scalebox{0.5}{∀(X:D(∞-Grpd₋₁)),∀(Y:D(∞-Grpd₋₁)),∀(f:D(∞-Grpd₋₁).Hom X Y),∀(g:D(∞-Grpd₋₁).Hom X Y),(∀(n:Nat),(πₙ f = πₙ g)) → f = g}\\
-\end{center}
-\end{tcolorbox}
-\end{center}
-\fi
-
 \ \\
 \begin{center}
-\texttt{Plans to prove the Whitehead theorem in Lean 4 using Mathlib 4}
+\texttt{Plans to prove the Whitehead theorem}\\
+\texttt{in Lean 4, with extensive use of Mathlib 4}
 \end{center}
 \ \\
 \ \\
@@ -1717,10 +1716,9 @@ Can the attaching map be
  \hline
  p-norm unit ball for 2 < p < ∞ & ∂B(p,n) & B(p,n) \\
  \hline
- p-norm unit ball for p = ∞ & ∂B(∞,n) & B(∞,n) \\
- \hline
- The n-simplex & ∂Δⁿ & Δⁿ \\
- \hline
+ p-norm unit ball for 
+
+ p = ∞ & ∂B(∞,n) & B(∞,n) \\
  \hline
 \end{tabular}
 \end{center}
@@ -1807,7 +1805,7 @@ Dⁿ × D¹ ⭢ Dⁿ⁺¹
 Dⁿ ⭢ Dᵐ
 \end{definition}
 
-\iffalse
+
 \begin{theorem}
 Fix n : ℕ and let ∂ⁿ : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of the following diagram is isomorphic to Sⁿ⁺¹:
 \begin{center}
@@ -1818,7 +1816,7 @@ Fix n : ℕ and let ∂ⁿ : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of
 \begin{proof}
 
 \end{proof}
-\fi
+
 
 
 
@@ -1879,11 +1877,9 @@ $\texttt{(trans\ n X₋₁ f⁻¹) • (trans\ n X₋₁ f) = 1\_(πₙ (f 0))}$
 ...
 \end{proof}
 
-\iffalse
 \begin{center}
 \includegraphics[width=8.75cm,height=5cm]{basechange.png}
 \end{center}
-\fi
 
 The proof in the above can be depicted like so, as a `painting with two concentric frames':
 
@@ -1903,11 +1899,9 @@ that the Based CW-complexes (X,x) and (X,y) are
 ...
 \end{proof}
 
-\iffalse
 \begin{center}
 \includegraphics[width=3.5cm,height=5cm]{proj.png}
 \end{center}
-\fi
 
 \iffalse
 - smooth jar filling with the unit ball in l₂
@@ -2139,11 +2133,9 @@ This construction (HEP for quasicategories) may even be equivalent to the quasic
 
 In this section, we demonstrate this extension property and use it to conclude the Whitehead theorem for ∞-categories stated above.\\
 
-\iffalse
 \begin{center}
 \includegraphics[width=0.5\textwidth]{HEP.png}
 \end{center}
-\fi
 
 {\bf Prism Filling (PF)} Let Y be a quasicategory, and let f, g : ∂Δⁿ ⭢ Y. A homotopy h : ∂Δⁿ × Δ¹ ⭢ Y between f, g : ∂Δⁿ ⭢ Y extends to a map H : Δⁿ × Δ¹ ⭢ Y; this follows from the condition that Y be a quasicategory. H(-,1) and g match on ∂Δⁿ, producing a map f : X ⭢ Y, where X consists of two copies of Δⁿ glued together at the boundary. Consider a space X' formed as a quotient of Δⁿ × Δ¹ by ∂Δⁿ × Δ¹. There is a map φ : X ⭢ X'. An induction hypothesis on f and g involving πₙ ensures that the aparent map X ⭢ Y lifts along φ, producing a map from Δⁿ × Δ¹ which is constant on ∂Δⁿ × Δ¹. Stacking this on top of H can be done using an isomorphism between Δ¹ and Δ¹ glued with itself along different endpoints. Altogether this produces a homotopy between f and g.\\
 
@@ -2151,11 +2143,9 @@ Directed prism filling may combine fruitfully with the yoneda lemma and/or the f
 
 {\bf Decomposing Δⁿ × Δ¹ into a colimit involving n+1 Δ${}^{n+1}$'s} ...
 
-\iffalse
 \begin{center}
 \includegraphics[width=300pt]{prismfilling.png}
 \end{center}
-\fi
 
 In the above, it may be easier if we make use of sub-simplicial sets and prove the theorem using that colimit applied to a natural isomorphism of diagrams products an isomorphism.\\
 
@@ -2179,11 +2169,9 @@ The box filling and prism filling HEPs can be extended to the case of attaching 
 
 Breaking down BF further can be done conveniently using sub-simplicial sets, just like we used in the proof of prism filling. 
 
-\iffalse
 \begin{center}
 \includegraphics[width=300pt]{boxfilling.png}
 \end{center}
-\fi
 
 
 {\bf Decomposing (Δ¹)ⁿ into a colimit involving n! Δⁿ's} Consider the face maps fᵢ : Δⁿ ⭢ Δ${}^{n+1}$
@@ -2360,11 +2348,9 @@ Globular sets are not a rich enough invariant for homotopy, but maps of globular
 
 The globe category 𝔾 is the category
 
-\iffalse
 \begin{center}
 \includegraphics[scale=0.5]{globecat.png}
 \end{center}
-\fi
 
 \href{https://ncatlab.org/nlab/show/globular+set}{Globular sets} are functors from the opposite category of the globe category 𝔾 into the category of sets, and maps of globular sets are natural transformations between them.\\
 
@@ -2427,14 +2413,13 @@ Dⁿ × D¹ ⭢ Dⁿ⁺¹
 Dⁿ ⭢ Dᵐ
 \end{definition}
 
-\iffalse
+
 \begin{theorem}
 Fix n : ℕ and let ∂ⁿ : Sⁿ ⭢ Dⁿ⁺¹ be the inclusion. The pushout of the following diagram is isomorphic to Sⁿ⁺¹:
 \begin{center}
 \includegraphics[scale=0.5]{pushout.png}
 \end{center}
 \end{theorem}
-\fi
 
 \begin{proof}
 
@@ -2499,11 +2484,10 @@ that the Based CW-complexes (X₋₁,x) and (X₋₁,y) are
 ...
 \end{proof}
 
-\iffalse
 \begin{center}
 \includegraphics[width=3.5cm,height=5cm]{proj.png}
 \end{center}
-\fi
+
  
 
 
@@ -2669,11 +2653,9 @@ This construction (HEP for quasicategories) may even be equivalent to the quasic
 
 In this section, we demonstrate this extension property and use it to conclude the Whitehead theorem for ∞-categories stated above.\\
 
-\iffalse
 \begin{center}
 \includegraphics[width=0.5\textwidth]{HEP.png}
 \end{center}
-\fi
 
 {\bf Prism Filling (PF)} Let Y be a quasicategory, and let f, g : ∂Δⁿ ⭢ Y. A homotopy h : ∂Δⁿ × Δ¹ ⭢ Y between f, g : ∂Δⁿ ⭢ Y extends to a map H : Δⁿ × Δ¹ ⭢ Y; this follows from the condition that Y be a quasicategory. H(-,1) and g match on ∂Δⁿ, producing a map f : X ⭢ Y, where X consists of two copies of Δⁿ glued together at the boundary. Consider a space X' formed as a quotient of Δⁿ × Δ¹ by ∂Δⁿ × Δ¹. There is a map φ : X ⭢ X'. An induction hypothesis on f and g involving πₙ ensures that the aparent map X ⭢ Y lifts along φ, producing a map from Δⁿ × Δ¹ which is constant on ∂Δⁿ × Δ¹. Stacking this on top of H can be done using an isomorphism between Δ¹ and Δ¹ glued with itself along different endpoints. Altogether this produces a homotopy between f and g.\\
 
@@ -2681,11 +2663,9 @@ Directed prism filling may combine fruitfully with the yoneda lemma and/or the f
 
 {\bf Decomposing Δⁿ × Δ¹ into a colimit involving n+1 Δ${}^{n+1}$'s} ...
 
-\iffalse
 \begin{center}
 \includegraphics[width=300pt]{prismfilling.png}
 \end{center}
-\fi
 
 In the above, it may be easier if we make use of sub-simplicial sets and prove the theorem using that colimit applied to a natural isomorphism of diagrams products an isomorphism.\\
 
@@ -2709,11 +2689,10 @@ The box filling and prism filling HEPs can be extended to the case of attaching 
 
 Breaking down BF further can be done conveniently using sub-simplicial sets, just like we used in the proof of prism filling. 
 
-\iffalse
 \begin{center}
 \includegraphics[width=300pt]{boxfilling.png}
 \end{center}
-\fi
+
 
 {\bf Decomposing (Δ¹)ⁿ into a colimit involving n! Δⁿ's} Consider the face maps fᵢ : Δⁿ ⭢ Δ${}^{n+1}$
 
@@ -3690,7 +3669,6 @@ Ideas for future applications:
 \ \\
 \ \\
 \ \\
-\iffalse
 %LEAN: 
 \begin{center}
 \begin{tcolorbox}[width=5in,colback={white},title={\begin{center}\texttt{About the Author} \addtocounter{lcounter}{1}  \end{center}},colbacktitle=Yellow,coltitle=black]
@@ -3710,8 +3688,6 @@ Jiazhen Xia is a graduate student at Zhejiang University, where he studies compu
 \end{tcolorbox}
 \end{center}
 \newpage
-\fi
-
 \ \\
 \thispagestyle{empty}
 
